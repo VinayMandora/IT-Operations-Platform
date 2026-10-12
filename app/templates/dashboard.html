@@ -1,0 +1,45 @@
+{% extends "base.html" %}{% block title %}Dashboard · Northstar Claims Ltd{% endblock %}
+{% block content %}
+<h1>IT Operations Dashboard</h1>{% if user.role in ('Admin','Technician') %}<section class="card"><a class="button" href="/employees">Employee onboarding / offboarding</a></section>{% endif %}<p class="muted">Helpdesk queue, SLA monitoring, devices and technician activity · {{ user.role }} view</p>
+<section class="grid" aria-label="Key operational metrics">
+<div class="card"><div class="muted stats">Open / unresolved</div><div class="value">{{ stats.open_tickets }}</div></div>
+<div class="card"><div class="muted stats">Resolved / closed</div><div class="value good">{{ stats.resolved_tickets }}</div></div>
+<div class="card"><div class="muted stats">High / critical issues</div><div class="value">{{ stats.high_priority }}</div></div>
+<div class="card"><div class="muted stats">Overdue SLA</div><div class="value danger">{{ stats.overdue_tickets }}</div></div>
+<div class="card"><div class="muted stats">Devices assigned</div><div class="value">{{ stats.assigned_devices }}</div></div>
+{% if user.role in ('Admin','Technician') %}<div class="card"><div class="muted stats">Devices needing maintenance</div><div class="value">{{ stats.maintenance_devices }}</div></div>{% endif %}
+</section>
+<section class="card"><div class="actions"><a class="button" href="/tickets/new">Report an issue</a><a class="button alt" href="/tickets">View tickets</a>
+{% if user.role in ('Admin','Technician') %}<a class="button alt" href="/assets">Manage inventory</a>{% endif %}</div></section>
+<section class="card scroll"><h2>Recent accessible tickets</h2>
+<table><thead><tr><th>Reference</th><th>Title</th><th>Priority</th><th>Status</th><th>Due UTC</th></tr></thead><tbody>
+{% for t in recent_tickets %}<tr><td><a href="/tickets/{{ t.id }}">{{ t.reference }}</a></td><td>{{ t.title }}</td><td>{{ t.priority }}</td><td>{{ t.status }}</td><td>{{ t.sla_due_at }}</td></tr>
+{% else %}<tr><td colspan="5">No tickets available.</td></tr>{% endfor %}</tbody></table></section>
+{% if user.role in ('Admin','Technician') %}
+<section class="card scroll"><h2>Recent technician activities</h2><table><thead><tr><th>Technician</th><th>Event</th><th>UTC</th></tr></thead><tbody>
+{% for e in events %}<tr><td>{{ e.technician }}</td><td>{{ e.type }}</td><td>{{ e.when }}</td></tr>{% else %}<tr><td colspan="3">No recent technician actions.</td></tr>{% endfor %}
+</tbody></table></section>{% endif %}
+{% if user.role == 'Admin' %}
+<section class="grid"><div class="card"><div class="muted">Imported claims · Task 1</div><div class="value">{{ total_claims }}</div></div>
+<div class="card"><div class="muted">Total claimed GBP · Task 1</div><div class="value">£{{ total_amount }}</div></div>
+<div class="card"><div class="muted">Recent import batches · Task 1</div><div class="value">{{ batches|length }}</div></div></section>
+<section class="card"><a class="button" href="/claims-management">Open Task 4 claims management</a> <a class="button alt" href="/workflow-logs">Investigate workflows</a></section>
+<section class="card"><h2>Task 1: Import claims</h2>
+<p class="muted">Upload a UTF-8 CSV or XLSX, up to the configured limit.</p>
+<form id="upload"><input type="file" name="file" accept=".csv,.xlsx" aria-label="Claims file" required>
+<button type="submit">Import claims</button> <a class="button alt" href="/api/reports/claims.xlsx">Download claims Excel</a></form>
+<div id="result" aria-live="polite"></div></section>
+<section class="card scroll"><h2>Recent claims</h2><table><thead><tr><th>Claim ID</th><th>Claimant</th><th>Type</th><th>Status</th><th>Amount GBP</th></tr></thead><tbody>
+{% for c in claims %}<tr><td>{{ c.claim_id }}</td><td>{{ c.claimant_name }}</td><td>{{ c.claim_type }}</td><td>{{ c.status }}</td><td>£{{ '%.2f'|format(c.amount_gbp) }}</td></tr>
+{% else %}<tr><td colspan="5">No claims yet.</td></tr>{% endfor %}</tbody></table></section>
+<section class="card scroll"><h2>Recent import batches</h2><table><thead><tr><th>Batch</th><th>Filename</th><th>Rows</th><th>Imported</th><th>Rejected</th><th>Rejections</th></tr></thead><tbody>
+{% for b in batches %}<tr><td>{{ b.id }}</td><td>{{ b.filename }}</td><td>{{ b.total_rows }}</td><td>{{ b.imported_rows }}</td><td>{{ b.rejected_rows }}</td><td><a href="/api/imports/{{ b.id }}/rejections">Inspect</a></td></tr>
+{% else %}<tr><td colspan="6">No import batches.</td></tr>{% endfor %}</tbody></table></section>
+{% endif %}
+{% endblock %}{% block scripts %}{% if user.role == 'Admin' %}<script>
+document.getElementById('upload').addEventListener('submit',async e=>{
+ e.preventDefault();const button=e.target.querySelector('button');button.disabled=true;
+ try{const res=await fetch('/api/claims/import',{method:'POST',body:new FormData(e.target),headers:{'X-CSRF-Token':window.csrfToken},credentials:'same-origin'});
+ const data=await res.json();if(!res.ok)throw Error(JSON.stringify(data.detail));showResult(`${data.imported_rows} imported; ${data.rejected_rows} rejected; replayed=${data.replayed}`);}
+ catch(err){showResult(err.message,true)}finally{button.disabled=false}
+});</script>{% endif %}{% endblock %}

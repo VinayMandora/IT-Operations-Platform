@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}Tickets · Northstar Claims Ltd{% endblock %}
+{% block content %}<h1>IT Support Tickets</h1><p class="muted">Employees can see their own tickets. Technicians see tickets assigned to them.</p>
+<a class="button" href="/tickets/new">Create support ticket</a>
+{% if user.role in ('Admin','Technician') %}<a class="button alt" href="/api/reports/tickets.xlsx">Download tickets Excel</a>{% endif %}
+<section class="card scroll"><table><thead><tr><th>Reference</th><th>Title</th><th>Employee</th><th>Category</th><th>Priority</th><th>Status</th><th>SLA due (UTC)</th></tr></thead><tbody>
+{% for t in tickets %}<tr><td><a href="/tickets/{{ t.id }}">{{ t.reference }}</a></td><td>{{ t.title }}</td><td>{{ t.employee.full_name }}</td><td>{{ t.category }}</td><td>{{ t.priority }}</td><td><span class="tag">{{ t.status }}</span></td><td>{{ t.sla_due_at }}</td></tr>
+{% else %}<tr><td colspan="7">No tickets available.</td></tr>{% endfor %}</tbody></table></section>{% endblock %}

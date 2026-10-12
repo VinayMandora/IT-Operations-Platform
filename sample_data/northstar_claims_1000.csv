@@ -1,0 +1,1001 @@
+﻿claim_id,policy_number,claimant_name,claim_type,incident_date,reported_date,status,amount_gbp,postcode,description
+NCL-000001,POL-000001,Test Claimant 0001,Home,2024-01-02,2024-01-04,In Progress,100.75,M2 3AB,Fictional portfolio test claim 0001
+NCL-000002,POL-000002,Test Claimant 0002,Travel,2024-01-03,2024-01-06,Closed,101.5,M3 4AD,Fictional portfolio test claim 0002
+NCL-000003,POL-000003,Test Claimant 0003,Business,2024-01-04,2024-01-08,Declined,102.25,M4 5AF,Fictional portfolio test claim 0003
+NCL-000004,POL-000004,Test Claimant 0004,Motor,2024-01-05,2024-01-10,Open,103.0,M5 6AG,Fictional portfolio test claim 0004
+NCL-000005,POL-000005,Test Claimant 0005,Home,2024-01-06,2024-01-12,In Progress,103.75,M1 1AA,Fictional portfolio test claim 0005
+NCL-000006,POL-000006,Test Claimant 0006,Travel,2024-01-07,2024-01-14,Closed,104.5,M2 3AB,Fictional portfolio test claim 0006
+NCL-000007,POL-000007,  test   claimant 0007 ,Business,2024-01-08,2024-01-16,Declined,105.25,M3 4AD,Fictional portfolio test claim 0007
+NCL-000008,POL-000008,Test Claimant 0008,Motor,2024-01-09,2024-01-18,Open,106.0,m4 5af,Fictional portfolio test claim 0008
+NCL-000009,POL-000009,Test Claimant 0009,Home,2024-01-10,2024-01-11, in progress ,106.75,M5 6AG,Fictional portfolio test claim 0009
+NCL-000010,POL-000010,Test Claimant 0010,Travel,2024-01-11,2024-01-13,Closed,107.5,M1 1AA,Fictional portfolio test claim 0010
+ ncl-000011,POL-000011,Test Claimant 0011,Business,2024-01-12,2024-01-15,Declined,108.25,M2 3AB,Fictional portfolio test claim 0011
+NCL-000012,POL-000012,Test Claimant 0012,Motor,2024-01-13,2024-01-17,Open,109.0,M3 4AD,Fictional portfolio test claim 0012
+NCL-000013,pol-000013,Test Claimant 0013,Home,2024-01-14,2024-01-19,In Progress,109.75,M4 5AF,Fictional portfolio test claim 0013
+NCL-000014,POL-000014,  test   claimant 0014 ,Travel,2024-01-15,2024-01-21,Closed,110.5,M5 6AG,Fictional portfolio test claim 0014
+NCL-000015,POL-000015,Test Claimant 0015,Business,2024-01-16,2024-01-23,Declined,111.25,M1 1AA,Fictional portfolio test claim 0015
+NCL-000016,POL-000016,Test Claimant 0016,Motor,2024-01-17,2024-01-25,Open,112.0,m2 3ab,Fictional portfolio test claim 0016
+NCL-000017 ,POL-000017,Test Claimant 0017,Home,2024-01-18,2024-01-27,In Progress,112.75,M3 4AD,Fictional portfolio test claim 0017
+NCL-000018,POL-000018,Test Claimant 0018,Travel,2024-01-19,2024-01-20, closed ,113.5,M4 5AF,Fictional portfolio test claim 0018
+NCL-000019,POL-000019,Test Claimant 0019,business,2024-01-20,2024-01-22,Declined,114.25,M5 6AG,Fictional portfolio test claim 0019
+NCL-000020,POL-000020,Test Claimant 0020,Motor,2024-01-21,2024-01-24,Open,115.0,M1 1AA,Fictional portfolio test claim 0020
+NCL-000021,POL-000021,  test   claimant 0021 ,Home,2024-01-22,2024-01-26,In Progress,115.75,M2 3AB,Fictional portfolio test claim 0021
+ ncl-000022,POL-000022,Test Claimant 0022,Travel,2024-01-23,2024-01-28,Closed,116.5,M3 4AD,Fictional portfolio test claim 0022
+NCL-000023,POL-000023,Test Claimant 0023,Business,2024-01-24,2024-01-30,Declined,117.25,M4 5AF,Fictional portfolio test claim 0023
+NCL-000024,POL-000024,Test Claimant 0024,Motor,2024-01-25,2024-02-01,Open,118.0,m5 6ag,Fictional portfolio test claim 0024
+NCL-000025,POL-000025,Test Claimant 0025,Home,2024-01-26,2024-02-03,In Progress,118.75,M1 1AA,Fictional portfolio test claim 0025
+NCL-000026,pol-000026,Test Claimant 0026,Travel,2024-01-27,2024-02-05,Closed,119.5,M2 3AB,Fictional portfolio test claim 0026
+NCL-000027,POL-000027,Test Claimant 0027,Business,2024-01-28,2024-01-29, declined ,120.25,M3 4AD,Fictional portfolio test claim 0027
+NCL-000028,POL-000028,  test   claimant 0028 ,Motor,2024-01-29,2024-01-31,Open,121.0,M4 5AF,Fictional portfolio test claim 0028
+NCL-000029,POL-000029,Test Claimant 0029,Home,2024-01-30,2024-02-02,In Progress,121.75,M5 6AG,Fictional portfolio test claim 0029
+NCL-000030,POL-000030,Test Claimant 0030,Travel,2024-01-31,2024-02-04,Closed,122.5,M1 1AA,Fictional portfolio test claim 0030
+NCL-000031,POL-000031,Test Claimant 0031,Business,2024-02-01,2024-02-06,Declined,123.25,M2 3AB,Fictional portfolio test claim 0031
+NCL-000032,POL-000032,Test Claimant 0032,Motor,2024-02-02,2024-02-08,Open,124.0,m3 4ad,Fictional portfolio test claim 0032
+ ncl-000033,POL-000033,Test Claimant 0033,Home,2024-02-03,2024-02-10,In Progress,124.75,M4 5AF,Fictional portfolio test claim 0033
+NCL-000034 ,POL-000034,Test Claimant 0034,Travel,2024-02-04,2024-02-12,Closed,125.5,M5 6AG,Fictional portfolio test claim 0034
+NCL-000035,POL-000035,  test   claimant 0035 ,Business,2024-02-05,2024-02-14,Declined,126.25,M1 1AA,Fictional portfolio test claim 0035
+NCL-000036,POL-000036,Test Claimant 0036,Motor,2024-02-06,2024-02-07, open ,127.0,M2 3AB,Fictional portfolio test claim 0036
+NCL-000037,POL-000037,Test Claimant 0037,Home,2024-02-07,2024-02-09,In Progress,127.75,M3 4AD,Fictional portfolio test claim 0037
+NCL-000038,POL-000038,Test Claimant 0038,travel,2024-02-08,2024-02-11,Closed,128.5,M4 5AF,Fictional portfolio test claim 0038
+NCL-000039,pol-000039,Test Claimant 0039,Business,2024-02-09,2024-02-13,Declined,129.25,M5 6AG,Fictional portfolio test claim 0039
+NCL-000040,POL-000040,Test Claimant 0040,Motor,2024-02-10,2024-02-15,Open,130.0,m1 1aa,Fictional portfolio test claim 0040
+NCL-000041,POL-000041,Test Claimant 0041,Home,2024-02-11,2024-02-17,In Progress,130.75,M2 3AB,Fictional portfolio test claim 0041
+NCL-000042,POL-000042,  test   claimant 0042 ,Travel,2024-02-12,2024-02-19,Closed,131.5,M3 4AD,Fictional portfolio test claim 0042
+NCL-000043,POL-000043,Test Claimant 0043,Business,2024-02-13,2024-02-21,Declined,132.25,M4 5AF,Fictional portfolio test claim 0043
+ ncl-000044,POL-000044,Test Claimant 0044,Motor,2024-02-14,2024-02-23,Open,133.0,M5 6AG,Fictional portfolio test claim 0044
+NCL-000045,POL-000045,Test Claimant 0045,Home,2024-02-15,2024-02-16, in progress ,133.75,M1 1AA,Fictional portfolio test claim 0045
+NCL-000046,POL-000046,Test Claimant 0046,Travel,2024-02-16,2024-02-18,Closed,134.5,M2 3AB,Fictional portfolio test claim 0046
+NCL-000047,POL-000047,Test Claimant 0047,Business,2024-02-17,2024-02-20,Declined,135.25,M3 4AD,Fictional portfolio test claim 0047
+NCL-000048,POL-000048,Test Claimant 0048,Motor,2024-02-18,2024-02-22,Open,136.0,m4 5af,Fictional portfolio test claim 0048
+NCL-000049,POL-000049,  test   claimant 0049 ,Home,2024-02-19,2024-02-24,In Progress,136.75,M5 6AG,Fictional portfolio test claim 0049
+NCL-000050,POL-000050,Test Claimant 0050,Travel,2024-02-20,2024-02-26,Closed,137.5,M1 1AA,Fictional portfolio test claim 0050
+NCL-000051 ,POL-000051,Test Claimant 0051,Business,2024-02-21,2024-02-28,Declined,138.25,M2 3AB,Fictional portfolio test claim 0051
+NCL-000052,pol-000052,Test Claimant 0052,Motor,2024-02-22,2024-03-01,Open,139.0,M3 4AD,Fictional portfolio test claim 0052
+NCL-000053,POL-000053,Test Claimant 0053,Home,2024-02-23,2024-03-03,In Progress,139.75,M4 5AF,Fictional portfolio test claim 0053
+NCL-000054,POL-000054,Test Claimant 0054,Travel,2024-02-24,2024-02-25, closed ,140.5,M5 6AG,Fictional portfolio test claim 0054
+ ncl-000055,POL-000055,Test Claimant 0055,Business,2024-02-25,2024-02-27,Declined,141.25,M1 1AA,Fictional portfolio test claim 0055
+NCL-000056,POL-000056,  test   claimant 0056 ,Motor,2024-02-26,2024-02-29,Open,142.0,m2 3ab,Fictional portfolio test claim 0056
+NCL-000057,POL-000057,Test Claimant 0057,home,2024-02-27,2024-03-02,In Progress,142.75,M3 4AD,Fictional portfolio test claim 0057
+NCL-000058,POL-000058,Test Claimant 0058,Travel,2024-02-28,2024-03-04,Closed,143.5,M4 5AF,Fictional portfolio test claim 0058
+NCL-000059,POL-000059,Test Claimant 0059,Business,2024-02-29,2024-03-06,Declined,144.25,M5 6AG,Fictional portfolio test claim 0059
+NCL-000060,POL-000060,Test Claimant 0060,Motor,2024-03-01,2024-03-08,Open,145.0,M1 1AA,Fictional portfolio test claim 0060
+NCL-000061,POL-000061,Test Claimant 0061,Home,2024-03-02,2024-03-10,In Progress,145.75,M2 3AB,Fictional portfolio test claim 0061
+NCL-000062,POL-000062,Test Claimant 0062,Travel,2024-03-03,2024-03-12,Closed,146.5,M3 4AD,Fictional portfolio test claim 0062
+NCL-000063,POL-000063,  test   claimant 0063 ,Business,2024-03-04,2024-03-05, declined ,147.25,M4 5AF,Fictional portfolio test claim 0063
+NCL-000064,POL-000064,Test Claimant 0064,Motor,2024-03-05,2024-03-07,Open,148.0,m5 6ag,Fictional portfolio test claim 0064
+NCL-000065,pol-000065,Test Claimant 0065,Home,2024-03-06,2024-03-09,In Progress,148.75,M1 1AA,Fictional portfolio test claim 0065
+ ncl-000066,POL-000066,Test Claimant 0066,Travel,2024-03-07,2024-03-11,Closed,149.5,M2 3AB,Fictional portfolio test claim 0066
+NCL-000067,POL-000067,Test Claimant 0067,Business,2024-03-08,2024-03-13,Declined,150.25,M3 4AD,Fictional portfolio test claim 0067
+NCL-000068 ,POL-000068,Test Claimant 0068,Motor,2024-03-09,2024-03-15,Open,151.0,M4 5AF,Fictional portfolio test claim 0068
+NCL-000069,POL-000069,Test Claimant 0069,Home,2024-03-10,2024-03-17,In Progress,151.75,M5 6AG,Fictional portfolio test claim 0069
+NCL-000070,POL-000070,  test   claimant 0070 ,Travel,2024-03-11,2024-03-19,Closed,152.5,M1 1AA,Fictional portfolio test claim 0070
+NCL-000071,POL-000071,Test Claimant 0071,Business,2024-03-12,2024-03-21,Declined,153.25,M2 3AB,Fictional portfolio test claim 0071
+NCL-000072,POL-000072,Test Claimant 0072,Motor,2024-03-13,2024-03-14, open ,154.0,m3 4ad,Fictional portfolio test claim 0072
+NCL-000073,POL-000073,Test Claimant 0073,Home,2024-03-14,2024-03-16,In Progress,154.75,M4 5AF,Fictional portfolio test claim 0073
+NCL-000074,POL-000074,Test Claimant 0074,Travel,2024-03-15,2024-03-18,Closed,155.5,M5 6AG,Fictional portfolio test claim 0074
+NCL-000075,POL-000075,Test Claimant 0075,Business,2024-03-16,2024-03-20,Declined,156.25,M1 1AA,Fictional portfolio test claim 0075
+NCL-000076,POL-000076,Test Claimant 0076,motor,2024-03-17,2024-03-22,Open,157.0,M2 3AB,Fictional portfolio test claim 0076
+ ncl-000077,POL-000077,  test   claimant 0077 ,Home,2024-03-18,2024-03-24,In Progress,157.75,M3 4AD,Fictional portfolio test claim 0077
+NCL-000078,pol-000078,Test Claimant 0078,Travel,2024-03-19,2024-03-26,Closed,158.5,M4 5AF,Fictional portfolio test claim 0078
+NCL-000079,POL-000079,Test Claimant 0079,Business,2024-03-20,2024-03-28,Declined,159.25,M5 6AG,Fictional portfolio test claim 0079
+NCL-000080,POL-000080,Test Claimant 0080,Motor,2024-03-21,2024-03-30,Open,160.0,m1 1aa,Fictional portfolio test claim 0080
+NCL-000081,POL-000081,Test Claimant 0081,Home,2024-03-22,2024-03-23, in progress ,160.75,M2 3AB,Fictional portfolio test claim 0081
+NCL-000082,POL-000082,Test Claimant 0082,Travel,2024-03-23,2024-03-25,Closed,161.5,M3 4AD,Fictional portfolio test claim 0082
+NCL-000083,POL-000083,Test Claimant 0083,Business,2024-03-24,2024-03-27,Declined,162.25,M4 5AF,Fictional portfolio test claim 0083
+NCL-000084,POL-000084,  test   claimant 0084 ,Motor,2024-03-25,2024-03-29,Open,163.0,M5 6AG,Fictional portfolio test claim 0084
+NCL-000085 ,POL-000085,Test Claimant 0085,Home,2024-03-26,2024-03-31,In Progress,163.75,M1 1AA,Fictional portfolio test claim 0085
+NCL-000086,POL-000086,Test Claimant 0086,Travel,2024-03-27,2024-04-02,Closed,164.5,M2 3AB,Fictional portfolio test claim 0086
+NCL-000087,POL-000087,Test Claimant 0087,Business,2024-03-28,2024-04-04,Declined,165.25,M3 4AD,Fictional portfolio test claim 0087
+ ncl-000088,POL-000088,Test Claimant 0088,Motor,2024-03-29,2024-04-06,Open,166.0,m4 5af,Fictional portfolio test claim 0088
+NCL-000089,POL-000089,Test Claimant 0089,Home,2024-03-30,2024-04-08,In Progress,166.75,M5 6AG,Fictional portfolio test claim 0089
+NCL-000090,POL-000090,Test Claimant 0090,Travel,2024-03-31,2024-04-01, closed ,167.5,M1 1AA,Fictional portfolio test claim 0090
+NCL-000091,pol-000091,  test   claimant 0091 ,Business,2024-04-01,2024-04-03,Declined,168.25,M2 3AB,Fictional portfolio test claim 0091
+NCL-000092,POL-000092,Test Claimant 0092,Motor,2024-04-02,2024-04-05,Open,169.0,M3 4AD,Fictional portfolio test claim 0092
+NCL-000093,POL-000093,Test Claimant 0093,Home,2024-04-03,2024-04-07,In Progress,169.75,M4 5AF,Fictional portfolio test claim 0093
+NCL-000094,POL-000094,Test Claimant 0094,Travel,2024-04-04,2024-04-09,Closed,170.5,M5 6AG,Fictional portfolio test claim 0094
+NCL-000095,POL-000095,Test Claimant 0095,business,2024-04-05,2024-04-11,Declined,171.25,M1 1AA,Fictional portfolio test claim 0095
+NCL-000096,POL-000096,Test Claimant 0096,Motor,2024-04-06,2024-04-13,Open,172.0,m2 3ab,Fictional portfolio test claim 0096
+NCL-000097,POL-000097,Test Claimant 0097,Home,2024-04-07,2024-04-15,In Progress,172.75,M3 4AD,Fictional portfolio test claim 0097
+NCL-000098,POL-000098,  test   claimant 0098 ,Travel,2024-04-08,2024-04-17,Closed,173.5,M4 5AF,Fictional portfolio test claim 0098
+ ncl-000099,POL-000099,Test Claimant 0099,Business,2024-04-09,2024-04-10, declined ,174.25,M5 6AG,Fictional portfolio test claim 0099
+NCL-000100,POL-000100,Test Claimant 0100,Motor,2024-04-10,2024-04-12,Open,175.0,M1 1AA,Fictional portfolio test claim 0100
+NCL-000101,POL-000101,Test Claimant 0101,Home,2024-04-11,2024-04-14,In Progress,175.75,M2 3AB,Fictional portfolio test claim 0101
+NCL-000102 ,POL-000102,Test Claimant 0102,Travel,2024-04-12,2024-04-16,Closed,176.5,M3 4AD,Fictional portfolio test claim 0102
+NCL-000103,POL-000103,Test Claimant 0103,Business,2024-04-13,2024-04-18,Declined,177.25,M4 5AF,Fictional portfolio test claim 0103
+NCL-000104,pol-000104,Test Claimant 0104,Motor,2024-04-14,2024-04-20,Open,178.0,m5 6ag,Fictional portfolio test claim 0104
+NCL-000105,POL-000105,  test   claimant 0105 ,Home,2024-04-15,2024-04-22,In Progress,178.75,M1 1AA,Fictional portfolio test claim 0105
+NCL-000106,POL-000106,Test Claimant 0106,Travel,2024-04-16,2024-04-24,Closed,179.5,M2 3AB,Fictional portfolio test claim 0106
+NCL-000107,POL-000107,Test Claimant 0107,Business,2024-04-17,2024-04-26,Declined,180.25,M3 4AD,Fictional portfolio test claim 0107
+NCL-000108,POL-000108,Test Claimant 0108,Motor,2024-04-18,2024-04-19, open ,181.0,M4 5AF,Fictional portfolio test claim 0108
+NCL-000109,POL-000109,Test Claimant 0109,Home,2024-04-19,2024-04-21,In Progress,181.75,M5 6AG,Fictional portfolio test claim 0109
+ ncl-000110,POL-000110,Test Claimant 0110,Travel,2024-04-20,2024-04-23,Closed,182.5,M1 1AA,Fictional portfolio test claim 0110
+NCL-000111,POL-000111,Test Claimant 0111,Business,2024-04-21,2024-04-25,Declined,183.25,M2 3AB,Fictional portfolio test claim 0111
+NCL-000112,POL-000112,  test   claimant 0112 ,Motor,2024-04-22,2024-04-27,Open,184.0,m3 4ad,Fictional portfolio test claim 0112
+NCL-000113,POL-000113,Test Claimant 0113,Home,2024-04-23,2024-04-29,In Progress,184.75,M4 5AF,Fictional portfolio test claim 0113
+NCL-000114,POL-000114,Test Claimant 0114,travel,2024-04-24,2024-05-01,Closed,185.5,M5 6AG,Fictional portfolio test claim 0114
+NCL-000115,POL-000115,Test Claimant 0115,Business,2024-04-25,2024-05-03,Declined,186.25,M1 1AA,Fictional portfolio test claim 0115
+NCL-000116,POL-000116,Test Claimant 0116,Motor,2024-04-26,2024-05-05,Open,187.0,M2 3AB,Fictional portfolio test claim 0116
+NCL-000117,pol-000117,Test Claimant 0117,Home,2024-04-27,2024-04-28, in progress ,187.75,M3 4AD,Fictional portfolio test claim 0117
+NCL-000118,POL-000118,Test Claimant 0118,Travel,2024-04-28,2024-04-30,Closed,188.5,M4 5AF,Fictional portfolio test claim 0118
+NCL-000119 ,POL-000119,  test   claimant 0119 ,Business,2024-04-29,2024-05-02,Declined,189.25,M5 6AG,Fictional portfolio test claim 0119
+NCL-000120,POL-000120,Test Claimant 0120,Motor,2024-04-30,2024-05-04,Open,190.0,m1 1aa,Fictional portfolio test claim 0120
+ ncl-000121,POL-000121,Test Claimant 0121,Home,2024-05-01,2024-05-06,In Progress,190.75,M2 3AB,Fictional portfolio test claim 0121
+NCL-000122,POL-000122,Test Claimant 0122,Travel,2024-05-02,2024-05-08,Closed,191.5,M3 4AD,Fictional portfolio test claim 0122
+NCL-000123,POL-000123,Test Claimant 0123,Business,2024-05-03,2024-05-10,Declined,192.25,M4 5AF,Fictional portfolio test claim 0123
+NCL-000124,POL-000124,Test Claimant 0124,Motor,2024-05-04,2024-05-12,Open,193.0,M5 6AG,Fictional portfolio test claim 0124
+NCL-000125,POL-000125,Test Claimant 0125,Home,2024-05-05,2024-05-14,In Progress,193.75,M1 1AA,Fictional portfolio test claim 0125
+NCL-000126,POL-000126,  test   claimant 0126 ,Travel,2024-05-06,2024-05-07, closed ,194.5,M2 3AB,Fictional portfolio test claim 0126
+NCL-000127,POL-000127,Test Claimant 0127,Business,2024-05-07,2024-05-09,Declined,195.25,M3 4AD,Fictional portfolio test claim 0127
+NCL-000128,POL-000128,Test Claimant 0128,Motor,2024-05-08,2024-05-11,Open,196.0,m4 5af,Fictional portfolio test claim 0128
+NCL-000129,POL-000129,Test Claimant 0129,Home,2024-05-09,2024-05-13,In Progress,196.75,M5 6AG,Fictional portfolio test claim 0129
+NCL-000130,pol-000130,Test Claimant 0130,Travel,2024-05-10,2024-05-15,Closed,197.5,M1 1AA,Fictional portfolio test claim 0130
+NCL-000131,POL-000131,Test Claimant 0131,Business,2024-05-11,2024-05-17,Declined,198.25,M2 3AB,Fictional portfolio test claim 0131
+ ncl-000132,POL-000132,Test Claimant 0132,Motor,2024-05-12,2024-05-19,Open,199.0,M3 4AD,Fictional portfolio test claim 0132
+NCL-000133,POL-000133,  test   claimant 0133 ,home,2024-05-13,2024-05-21,In Progress,199.75,M4 5AF,Fictional portfolio test claim 0133
+NCL-000134,POL-000134,Test Claimant 0134,Travel,2024-05-14,2024-05-23,Closed,200.5,M5 6AG,Fictional portfolio test claim 0134
+NCL-000135,POL-000135,Test Claimant 0135,Business,2024-05-15,2024-05-16, declined ,201.25,M1 1AA,Fictional portfolio test claim 0135
+NCL-000136 ,POL-000136,Test Claimant 0136,Motor,2024-05-16,2024-05-18,Open,202.0,m2 3ab,Fictional portfolio test claim 0136
+NCL-000137,POL-000137,Test Claimant 0137,Home,2024-05-17,2024-05-20,In Progress,202.75,M3 4AD,Fictional portfolio test claim 0137
+NCL-000138,POL-000138,Test Claimant 0138,Travel,2024-05-18,2024-05-22,Closed,203.5,M4 5AF,Fictional portfolio test claim 0138
+NCL-000139,POL-000139,Test Claimant 0139,Business,2024-05-19,2024-05-24,Declined,204.25,M5 6AG,Fictional portfolio test claim 0139
+NCL-000140,POL-000140,  test   claimant 0140 ,Motor,2024-05-20,2024-05-26,Open,205.0,M1 1AA,Fictional portfolio test claim 0140
+NCL-000141,POL-000141,Test Claimant 0141,Home,2024-05-21,2024-05-28,In Progress,205.75,M2 3AB,Fictional portfolio test claim 0141
+NCL-000142,POL-000142,Test Claimant 0142,Travel,2024-05-22,2024-05-30,Closed,206.5,M3 4AD,Fictional portfolio test claim 0142
+ ncl-000143,pol-000143,Test Claimant 0143,Business,2024-05-23,2024-06-01,Declined,207.25,M4 5AF,Fictional portfolio test claim 0143
+NCL-000144,POL-000144,Test Claimant 0144,Motor,2024-05-24,2024-05-25, open ,208.0,m5 6ag,Fictional portfolio test claim 0144
+NCL-000145,POL-000145,Test Claimant 0145,Home,2024-05-25,2024-05-27,In Progress,208.75,M1 1AA,Fictional portfolio test claim 0145
+NCL-000146,POL-000146,Test Claimant 0146,Travel,2024-05-26,2024-05-29,Closed,209.5,M2 3AB,Fictional portfolio test claim 0146
+NCL-000147,POL-000147,  test   claimant 0147 ,Business,2024-05-27,2024-05-31,Declined,210.25,M3 4AD,Fictional portfolio test claim 0147
+NCL-000148,POL-000148,Test Claimant 0148,Motor,2024-05-28,2024-06-02,Open,211.0,M4 5AF,Fictional portfolio test claim 0148
+NCL-000149,POL-000149,Test Claimant 0149,Home,2024-05-29,2024-06-04,In Progress,211.75,M5 6AG,Fictional portfolio test claim 0149
+NCL-000150,POL-000150,Test Claimant 0150,Travel,2024-05-30,2024-06-06,Closed,212.5,M1 1AA,Fictional portfolio test claim 0150
+NCL-000151,POL-000151,Test Claimant 0151,Business,2024-05-31,2024-06-08,Declined,213.25,M2 3AB,Fictional portfolio test claim 0151
+NCL-000152,POL-000152,Test Claimant 0152,motor,2024-06-01,2024-06-10,Open,214.0,m3 4ad,Fictional portfolio test claim 0152
+NCL-000153 ,POL-000153,Test Claimant 0153,Home,2024-06-02,2024-06-03, in progress ,214.75,M4 5AF,Fictional portfolio test claim 0153
+ ncl-000154,POL-000154,  test   claimant 0154 ,Travel,2024-06-03,2024-06-05,Closed,215.5,M5 6AG,Fictional portfolio test claim 0154
+NCL-000155,POL-000155,Test Claimant 0155,Business,2024-06-04,2024-06-07,Declined,216.25,M1 1AA,Fictional portfolio test claim 0155
+NCL-000156,pol-000156,Test Claimant 0156,Motor,2024-06-05,2024-06-09,Open,217.0,M2 3AB,Fictional portfolio test claim 0156
+NCL-000157,POL-000157,Test Claimant 0157,Home,2024-06-06,2024-06-11,In Progress,217.75,M3 4AD,Fictional portfolio test claim 0157
+NCL-000158,POL-000158,Test Claimant 0158,Travel,2024-06-07,2024-06-13,Closed,218.5,M4 5AF,Fictional portfolio test claim 0158
+NCL-000159,POL-000159,Test Claimant 0159,Business,2024-06-08,2024-06-15,Declined,219.25,M5 6AG,Fictional portfolio test claim 0159
+NCL-000160,POL-000160,Test Claimant 0160,Motor,2024-06-09,2024-06-17,Open,220.0,m1 1aa,Fictional portfolio test claim 0160
+NCL-000161,POL-000161,  test   claimant 0161 ,Home,2024-06-10,2024-06-19,In Progress,220.75,M2 3AB,Fictional portfolio test claim 0161
+NCL-000162,POL-000162,Test Claimant 0162,Travel,2024-06-11,2024-06-12, closed ,221.5,M3 4AD,Fictional portfolio test claim 0162
+NCL-000163,POL-000163,Test Claimant 0163,Business,2024-06-12,2024-06-14,Declined,222.25,M4 5AF,Fictional portfolio test claim 0163
+NCL-000164,POL-000164,Test Claimant 0164,Motor,2024-06-13,2024-06-16,Open,223.0,M5 6AG,Fictional portfolio test claim 0164
+ ncl-000165,POL-000165,Test Claimant 0165,Home,2024-06-14,2024-06-18,In Progress,223.75,M1 1AA,Fictional portfolio test claim 0165
+NCL-000166,POL-000166,Test Claimant 0166,Travel,2024-06-15,2024-06-20,Closed,224.5,M2 3AB,Fictional portfolio test claim 0166
+NCL-000167,POL-000167,Test Claimant 0167,Business,2024-06-16,2024-06-22,Declined,225.25,M3 4AD,Fictional portfolio test claim 0167
+NCL-000168,POL-000168,  test   claimant 0168 ,Motor,2024-06-17,2024-06-24,Open,226.0,m4 5af,Fictional portfolio test claim 0168
+NCL-000169,pol-000169,Test Claimant 0169,Home,2024-06-18,2024-06-26,In Progress,226.75,M5 6AG,Fictional portfolio test claim 0169
+NCL-000170 ,POL-000170,Test Claimant 0170,Travel,2024-06-19,2024-06-28,Closed,227.5,M1 1AA,Fictional portfolio test claim 0170
+NCL-000171,POL-000171,Test Claimant 0171,business,2024-06-20,2024-06-21, declined ,228.25,M2 3AB,Fictional portfolio test claim 0171
+NCL-000172,POL-000172,Test Claimant 0172,Motor,2024-06-21,2024-06-23,Open,229.0,M3 4AD,Fictional portfolio test claim 0172
+NCL-000173,POL-000173,Test Claimant 0173,Home,2024-06-22,2024-06-25,In Progress,229.75,M4 5AF,Fictional portfolio test claim 0173
+NCL-000174,POL-000174,Test Claimant 0174,Travel,2024-06-23,2024-06-27,Closed,230.5,M5 6AG,Fictional portfolio test claim 0174
+NCL-000175,POL-000175,  test   claimant 0175 ,Business,2024-06-24,2024-06-29,Declined,231.25,M1 1AA,Fictional portfolio test claim 0175
+ ncl-000176,POL-000176,Test Claimant 0176,Motor,2024-06-25,2024-07-01,Open,232.0,m2 3ab,Fictional portfolio test claim 0176
+NCL-000177,POL-000177,Test Claimant 0177,Home,2024-06-26,2024-07-03,In Progress,232.75,M3 4AD,Fictional portfolio test claim 0177
+NCL-000178,POL-000178,Test Claimant 0178,Travel,2024-06-27,2024-07-05,Closed,233.5,M4 5AF,Fictional portfolio test claim 0178
+NCL-000179,POL-000179,Test Claimant 0179,Business,2024-06-28,2024-07-07,Declined,234.25,M5 6AG,Fictional portfolio test claim 0179
+NCL-000180,POL-000180,Test Claimant 0180,Motor,2024-06-29,2024-06-30, open ,235.0,M1 1AA,Fictional portfolio test claim 0180
+NCL-000181,POL-000181,Test Claimant 0181,Home,2024-06-30,2024-07-02,In Progress,235.75,M2 3AB,Fictional portfolio test claim 0181
+NCL-000182,pol-000182,  test   claimant 0182 ,Travel,2024-07-01,2024-07-04,Closed,236.5,M3 4AD,Fictional portfolio test claim 0182
+NCL-000183,POL-000183,Test Claimant 0183,Business,2024-07-02,2024-07-06,Declined,237.25,M4 5AF,Fictional portfolio test claim 0183
+NCL-000184,POL-000184,Test Claimant 0184,Motor,2024-07-03,2024-07-08,Open,238.0,m5 6ag,Fictional portfolio test claim 0184
+NCL-000185,POL-000185,Test Claimant 0185,Home,2024-07-04,2024-07-10,In Progress,238.75,M1 1AA,Fictional portfolio test claim 0185
+NCL-000186,POL-000186,Test Claimant 0186,Travel,2024-07-05,2024-07-12,Closed,239.5,M2 3AB,Fictional portfolio test claim 0186
+ ncl-000187 ,POL-000187,Test Claimant 0187,Business,2024-07-06,2024-07-14,Declined,240.25,M3 4AD,Fictional portfolio test claim 0187
+NCL-000188,POL-000188,Test Claimant 0188,Motor,2024-07-07,2024-07-16,Open,241.0,M4 5AF,Fictional portfolio test claim 0188
+NCL-000189,POL-000189,  test   claimant 0189 ,Home,2024-07-08,2024-07-09, in progress ,241.75,M5 6AG,Fictional portfolio test claim 0189
+NCL-000190,POL-000190,Test Claimant 0190,travel,2024-07-09,2024-07-11,Closed,242.5,M1 1AA,Fictional portfolio test claim 0190
+NCL-000191,POL-000191,Test Claimant 0191,Business,2024-07-10,2024-07-13,Declined,243.25,M2 3AB,Fictional portfolio test claim 0191
+NCL-000192,POL-000192,Test Claimant 0192,Motor,2024-07-11,2024-07-15,Open,244.0,m3 4ad,Fictional portfolio test claim 0192
+NCL-000193,POL-000193,Test Claimant 0193,Home,2024-07-12,2024-07-17,In Progress,244.75,M4 5AF,Fictional portfolio test claim 0193
+NCL-000194,POL-000194,Test Claimant 0194,Travel,2024-07-13,2024-07-19,Closed,245.5,M5 6AG,Fictional portfolio test claim 0194
+NCL-000195,pol-000195,Test Claimant 0195,Business,2024-07-14,2024-07-21,Declined,246.25,M1 1AA,Fictional portfolio test claim 0195
+NCL-000196,POL-000196,  test   claimant 0196 ,Motor,2024-07-15,2024-07-23,Open,247.0,M2 3AB,Fictional portfolio test claim 0196
+NCL-000197,POL-000197,Test Claimant 0197,Home,2024-07-16,2024-07-25,In Progress,247.75,M3 4AD,Fictional portfolio test claim 0197
+ ncl-000198,POL-000198,Test Claimant 0198,Travel,2024-07-17,2024-07-18, closed ,248.5,M4 5AF,Fictional portfolio test claim 0198
+NCL-000199,POL-000199,Test Claimant 0199,Business,2024-07-18,2024-07-20,Declined,249.25,M5 6AG,Fictional portfolio test claim 0199
+NCL-000200,POL-000200,Test Claimant 0200,Motor,2024-07-19,2024-07-22,Open,250.0,m1 1aa,Fictional portfolio test claim 0200
+NCL-000201,POL-000201,Test Claimant 0201,Home,2024-07-20,2024-07-24,In Progress,250.75,M2 3AB,Fictional portfolio test claim 0201
+NCL-000202,POL-000202,Test Claimant 0202,Travel,2024-07-21,2024-07-26,Closed,251.5,M3 4AD,Fictional portfolio test claim 0202
+NCL-000203,POL-000203,  test   claimant 0203 ,Business,2024-07-22,2024-07-28,Declined,252.25,M4 5AF,Fictional portfolio test claim 0203
+NCL-000204 ,POL-000204,Test Claimant 0204,Motor,2024-07-23,2024-07-30,Open,253.0,M5 6AG,Fictional portfolio test claim 0204
+NCL-000205,POL-000205,Test Claimant 0205,Home,2024-07-24,2024-08-01,In Progress,253.75,M1 1AA,Fictional portfolio test claim 0205
+NCL-000206,POL-000206,Test Claimant 0206,Travel,2024-07-25,2024-08-03,Closed,254.5,M2 3AB,Fictional portfolio test claim 0206
+NCL-000207,POL-000207,Test Claimant 0207,Business,2024-07-26,2024-07-27, declined ,255.25,M3 4AD,Fictional portfolio test claim 0207
+NCL-000208,pol-000208,Test Claimant 0208,Motor,2024-07-27,2024-07-29,Open,256.0,m4 5af,Fictional portfolio test claim 0208
+ ncl-000209,POL-000209,Test Claimant 0209,home,2024-07-28,2024-07-31,In Progress,256.75,M5 6AG,Fictional portfolio test claim 0209
+NCL-000210,POL-000210,  test   claimant 0210 ,Travel,2024-07-29,2024-08-02,Closed,257.5,M1 1AA,Fictional portfolio test claim 0210
+NCL-000211,POL-000211,Test Claimant 0211,Business,2024-07-30,2024-08-04,Declined,258.25,M2 3AB,Fictional portfolio test claim 0211
+NCL-000212,POL-000212,Test Claimant 0212,Motor,2024-07-31,2024-08-06,Open,259.0,M3 4AD,Fictional portfolio test claim 0212
+NCL-000213,POL-000213,Test Claimant 0213,Home,2024-08-01,2024-08-08,In Progress,259.75,M4 5AF,Fictional portfolio test claim 0213
+NCL-000214,POL-000214,Test Claimant 0214,Travel,2024-08-02,2024-08-10,Closed,260.5,M5 6AG,Fictional portfolio test claim 0214
+NCL-000215,POL-000215,Test Claimant 0215,Business,2024-08-03,2024-08-12,Declined,261.25,M1 1AA,Fictional portfolio test claim 0215
+NCL-000216,POL-000216,Test Claimant 0216,Motor,2024-08-04,2024-08-05, open ,262.0,m2 3ab,Fictional portfolio test claim 0216
+NCL-000217,POL-000217,  test   claimant 0217 ,Home,2024-08-05,2024-08-07,In Progress,262.75,M3 4AD,Fictional portfolio test claim 0217
+NCL-000218,POL-000218,Test Claimant 0218,Travel,2024-08-06,2024-08-09,Closed,263.5,M4 5AF,Fictional portfolio test claim 0218
+NCL-000219,POL-000219,Test Claimant 0219,Business,2024-08-07,2024-08-11,Declined,264.25,M5 6AG,Fictional portfolio test claim 0219
+ ncl-000220,POL-000220,Test Claimant 0220,Motor,2024-08-08,2024-08-13,Open,265.0,M1 1AA,Fictional portfolio test claim 0220
+NCL-000221 ,pol-000221,Test Claimant 0221,Home,2024-08-09,2024-08-15,In Progress,265.75,M2 3AB,Fictional portfolio test claim 0221
+NCL-000222,POL-000222,Test Claimant 0222,Travel,2024-08-10,2024-08-17,Closed,266.5,M3 4AD,Fictional portfolio test claim 0222
+NCL-000223,POL-000223,Test Claimant 0223,Business,2024-08-11,2024-08-19,Declined,267.25,M4 5AF,Fictional portfolio test claim 0223
+NCL-000224,POL-000224,  test   claimant 0224 ,Motor,2024-08-12,2024-08-21,Open,268.0,m5 6ag,Fictional portfolio test claim 0224
+NCL-000225,POL-000225,Test Claimant 0225,Home,2024-08-13,2024-08-14, in progress ,268.75,M1 1AA,Fictional portfolio test claim 0225
+NCL-000226,POL-000226,Test Claimant 0226,Travel,2024-08-14,2024-08-16,Closed,269.5,M2 3AB,Fictional portfolio test claim 0226
+NCL-000227,POL-000227,Test Claimant 0227,Business,2024-08-15,2024-08-18,Declined,270.25,M3 4AD,Fictional portfolio test claim 0227
+NCL-000228,POL-000228,Test Claimant 0228,motor,2024-08-16,2024-08-20,Open,271.0,M4 5AF,Fictional portfolio test claim 0228
+NCL-000229,POL-000229,Test Claimant 0229,Home,2024-08-17,2024-08-22,In Progress,271.75,M5 6AG,Fictional portfolio test claim 0229
+NCL-000230,POL-000230,Test Claimant 0230,Travel,2024-08-18,2024-08-24,Closed,272.5,M1 1AA,Fictional portfolio test claim 0230
+ ncl-000231,POL-000231,  test   claimant 0231 ,Business,2024-08-19,2024-08-26,Declined,273.25,M2 3AB,Fictional portfolio test claim 0231
+NCL-000232,POL-000232,Test Claimant 0232,Motor,2024-08-20,2024-08-28,Open,274.0,m3 4ad,Fictional portfolio test claim 0232
+NCL-000233,POL-000233,Test Claimant 0233,Home,2024-08-21,2024-08-30,In Progress,274.75,M4 5AF,Fictional portfolio test claim 0233
+NCL-000234,pol-000234,Test Claimant 0234,Travel,2024-08-22,2024-08-23, closed ,275.5,M5 6AG,Fictional portfolio test claim 0234
+NCL-000235,POL-000235,Test Claimant 0235,Business,2024-08-23,2024-08-25,Declined,276.25,M1 1AA,Fictional portfolio test claim 0235
+NCL-000236,POL-000236,Test Claimant 0236,Motor,2024-08-24,2024-08-27,Open,277.0,M2 3AB,Fictional portfolio test claim 0236
+NCL-000237,POL-000237,Test Claimant 0237,Home,2024-08-25,2024-08-29,In Progress,277.75,M3 4AD,Fictional portfolio test claim 0237
+NCL-000238 ,POL-000238,  test   claimant 0238 ,Travel,2024-08-26,2024-08-31,Closed,278.5,M4 5AF,Fictional portfolio test claim 0238
+NCL-000239,POL-000239,Test Claimant 0239,Business,2024-08-27,2024-09-02,Declined,279.25,M5 6AG,Fictional portfolio test claim 0239
+NCL-000240,POL-000240,Test Claimant 0240,Motor,2024-08-28,2024-09-04,Open,280.0,m1 1aa,Fictional portfolio test claim 0240
+NCL-000241,POL-000241,Test Claimant 0241,Home,2024-08-29,2024-09-06,In Progress,280.75,M2 3AB,Fictional portfolio test claim 0241
+ ncl-000242,POL-000242,Test Claimant 0242,Travel,2024-08-30,2024-09-08,Closed,281.5,M3 4AD,Fictional portfolio test claim 0242
+NCL-000243,POL-000243,Test Claimant 0243,Business,2024-08-31,2024-09-01, declined ,282.25,M4 5AF,Fictional portfolio test claim 0243
+NCL-000244,POL-000244,Test Claimant 0244,Motor,2024-09-01,2024-09-03,Open,283.0,M5 6AG,Fictional portfolio test claim 0244
+NCL-000245,POL-000245,  test   claimant 0245 ,Home,2024-09-02,2024-09-05,In Progress,283.75,M1 1AA,Fictional portfolio test claim 0245
+NCL-000246,POL-000246,Test Claimant 0246,Travel,2024-09-03,2024-09-07,Closed,284.5,M2 3AB,Fictional portfolio test claim 0246
+NCL-000247,pol-000247,Test Claimant 0247,business,2024-09-04,2024-09-09,Declined,285.25,M3 4AD,Fictional portfolio test claim 0247
+NCL-000248,POL-000248,Test Claimant 0248,Motor,2024-09-05,2024-09-11,Open,286.0,m4 5af,Fictional portfolio test claim 0248
+NCL-000249,POL-000249,Test Claimant 0249,Home,2024-09-06,2024-09-13,In Progress,286.75,M5 6AG,Fictional portfolio test claim 0249
+NCL-000250,POL-000250,Test Claimant 0250,Travel,2024-09-07,2024-09-15,Closed,287.5,M1 1AA,Fictional portfolio test claim 0250
+NCL-000251,POL-000251,Test Claimant 0251,Business,2024-09-08,2024-09-17,Declined,288.25,M2 3AB,Fictional portfolio test claim 0251
+NCL-000252,POL-000252,  test   claimant 0252 ,Motor,2024-09-09,2024-09-10, open ,289.0,M3 4AD,Fictional portfolio test claim 0252
+ ncl-000253,POL-000253,Test Claimant 0253,Home,2024-09-10,2024-09-12,In Progress,289.75,M4 5AF,Fictional portfolio test claim 0253
+NCL-000254,POL-000254,Test Claimant 0254,Travel,2024-09-11,2024-09-14,Closed,290.5,M5 6AG,Fictional portfolio test claim 0254
+NCL-000255 ,POL-000255,Test Claimant 0255,Business,2024-09-12,2024-09-16,Declined,291.25,M1 1AA,Fictional portfolio test claim 0255
+NCL-000256,POL-000256,Test Claimant 0256,Motor,2024-09-13,2024-09-18,Open,292.0,m2 3ab,Fictional portfolio test claim 0256
+NCL-000257,POL-000257,Test Claimant 0257,Home,2024-09-14,2024-09-20,In Progress,292.75,M3 4AD,Fictional portfolio test claim 0257
+NCL-000258,POL-000258,Test Claimant 0258,Travel,2024-09-15,2024-09-22,Closed,293.5,M4 5AF,Fictional portfolio test claim 0258
+NCL-000259,POL-000259,  test   claimant 0259 ,Business,2024-09-16,2024-09-24,Declined,294.25,M5 6AG,Fictional portfolio test claim 0259
+NCL-000260,pol-000260,Test Claimant 0260,Motor,2024-09-17,2024-09-26,Open,295.0,M1 1AA,Fictional portfolio test claim 0260
+NCL-000261,POL-000261,Test Claimant 0261,Home,2024-09-18,2024-09-19, in progress ,295.75,M2 3AB,Fictional portfolio test claim 0261
+NCL-000262,POL-000262,Test Claimant 0262,Travel,2024-09-19,2024-09-21,Closed,296.5,M3 4AD,Fictional portfolio test claim 0262
+NCL-000263,POL-000263,Test Claimant 0263,Business,2024-09-20,2024-09-23,Declined,297.25,M4 5AF,Fictional portfolio test claim 0263
+ ncl-000264,POL-000264,Test Claimant 0264,Motor,2024-09-21,2024-09-25,Open,298.0,m5 6ag,Fictional portfolio test claim 0264
+NCL-000265,POL-000265,Test Claimant 0265,Home,2024-09-22,2024-09-27,In Progress,298.75,M1 1AA,Fictional portfolio test claim 0265
+NCL-000266,POL-000266,  test   claimant 0266 ,travel,2024-09-23,2024-09-29,Closed,299.5,M2 3AB,Fictional portfolio test claim 0266
+NCL-000267,POL-000267,Test Claimant 0267,Business,2024-09-24,2024-10-01,Declined,300.25,M3 4AD,Fictional portfolio test claim 0267
+NCL-000268,POL-000268,Test Claimant 0268,Motor,2024-09-25,2024-10-03,Open,301.0,M4 5AF,Fictional portfolio test claim 0268
+NCL-000269,POL-000269,Test Claimant 0269,Home,2024-09-26,2024-10-05,In Progress,301.75,M5 6AG,Fictional portfolio test claim 0269
+NCL-000270,POL-000270,Test Claimant 0270,Travel,2024-09-27,2024-09-28, closed ,302.5,M1 1AA,Fictional portfolio test claim 0270
+NCL-000271,POL-000271,Test Claimant 0271,Business,2024-09-28,2024-09-30,Declined,303.25,M2 3AB,Fictional portfolio test claim 0271
+NCL-000272 ,POL-000272,Test Claimant 0272,Motor,2024-09-29,2024-10-02,Open,304.0,m3 4ad,Fictional portfolio test claim 0272
+NCL-000273,pol-000273,  test   claimant 0273 ,Home,2024-09-30,2024-10-04,In Progress,304.75,M4 5AF,Fictional portfolio test claim 0273
+NCL-000274,POL-000274,Test Claimant 0274,Travel,2024-10-01,2024-10-06,Closed,305.5,M5 6AG,Fictional portfolio test claim 0274
+ ncl-000275,POL-000275,Test Claimant 0275,Business,2024-10-02,2024-10-08,Declined,306.25,M1 1AA,Fictional portfolio test claim 0275
+NCL-000276,POL-000276,Test Claimant 0276,Motor,2024-10-03,2024-10-10,Open,307.0,M2 3AB,Fictional portfolio test claim 0276
+NCL-000277,POL-000277,Test Claimant 0277,Home,2024-10-04,2024-10-12,In Progress,307.75,M3 4AD,Fictional portfolio test claim 0277
+NCL-000278,POL-000278,Test Claimant 0278,Travel,2024-10-05,2024-10-14,Closed,308.5,M4 5AF,Fictional portfolio test claim 0278
+NCL-000279,POL-000279,Test Claimant 0279,Business,2024-10-06,2024-10-07, declined ,309.25,M5 6AG,Fictional portfolio test claim 0279
+NCL-000280,POL-000280,  test   claimant 0280 ,Motor,2024-10-07,2024-10-09,Open,310.0,m1 1aa,Fictional portfolio test claim 0280
+NCL-000281,POL-000281,Test Claimant 0281,Home,2024-10-08,2024-10-11,In Progress,310.75,M2 3AB,Fictional portfolio test claim 0281
+NCL-000282,POL-000282,Test Claimant 0282,Travel,2024-10-09,2024-10-13,Closed,311.5,M3 4AD,Fictional portfolio test claim 0282
+NCL-000283,POL-000283,Test Claimant 0283,Business,2024-10-10,2024-10-15,Declined,312.25,M4 5AF,Fictional portfolio test claim 0283
+NCL-000284,POL-000284,Test Claimant 0284,Motor,2024-10-11,2024-10-17,Open,313.0,M5 6AG,Fictional portfolio test claim 0284
+NCL-000285,POL-000285,Test Claimant 0285,home,2024-10-12,2024-10-19,In Progress,313.75,M1 1AA,Fictional portfolio test claim 0285
+ ncl-000286,pol-000286,Test Claimant 0286,Travel,2024-10-13,2024-10-21,Closed,314.5,M2 3AB,Fictional portfolio test claim 0286
+NCL-000287,POL-000287,  test   claimant 0287 ,Business,2024-10-14,2024-10-23,Declined,315.25,M3 4AD,Fictional portfolio test claim 0287
+NCL-000288,POL-000288,Test Claimant 0288,Motor,2024-10-15,2024-10-16, open ,316.0,m4 5af,Fictional portfolio test claim 0288
+NCL-000289 ,POL-000289,Test Claimant 0289,Home,2024-10-16,2024-10-18,In Progress,316.75,M5 6AG,Fictional portfolio test claim 0289
+NCL-000290,POL-000290,Test Claimant 0290,Travel,2024-10-17,2024-10-20,Closed,317.5,M1 1AA,Fictional portfolio test claim 0290
+NCL-000291,POL-000291,Test Claimant 0291,Business,2024-10-18,2024-10-22,Declined,318.25,M2 3AB,Fictional portfolio test claim 0291
+NCL-000292,POL-000292,Test Claimant 0292,Motor,2024-10-19,2024-10-24,Open,319.0,M3 4AD,Fictional portfolio test claim 0292
+NCL-000293,POL-000293,Test Claimant 0293,Home,2024-10-20,2024-10-26,In Progress,319.75,M4 5AF,Fictional portfolio test claim 0293
+NCL-000294,POL-000294,  test   claimant 0294 ,Travel,2024-10-21,2024-10-28,Closed,320.5,M5 6AG,Fictional portfolio test claim 0294
+NCL-000295,POL-000295,Test Claimant 0295,Business,2024-10-22,2024-10-30,Declined,321.25,M1 1AA,Fictional portfolio test claim 0295
+NCL-000296,POL-000296,Test Claimant 0296,Motor,2024-10-23,2024-11-01,Open,322.0,m2 3ab,Fictional portfolio test claim 0296
+ ncl-000297,POL-000297,Test Claimant 0297,Home,2024-10-24,2024-10-25, in progress ,322.75,M3 4AD,Fictional portfolio test claim 0297
+NCL-000298,POL-000298,Test Claimant 0298,Travel,2024-10-25,2024-10-27,Closed,323.5,M4 5AF,Fictional portfolio test claim 0298
+NCL-000299,pol-000299,Test Claimant 0299,Business,2024-10-26,2024-10-29,Declined,324.25,M5 6AG,Fictional portfolio test claim 0299
+NCL-000300,POL-000300,Test Claimant 0300,Motor,2024-01-01,2024-01-05,Open,325.0,M1 1AA,Fictional portfolio test claim 0300
+NCL-000301,POL-000301,  test   claimant 0301 ,Home,2024-01-02,2024-01-07,In Progress,325.75,M2 3AB,Fictional portfolio test claim 0301
+NCL-000302,POL-000302,Test Claimant 0302,Travel,2024-01-03,2024-01-09,Closed,326.5,M3 4AD,Fictional portfolio test claim 0302
+NCL-000303,POL-000303,Test Claimant 0303,Business,2024-01-04,2024-01-11,Declined,327.25,M4 5AF,Fictional portfolio test claim 0303
+NCL-000304,POL-000304,Test Claimant 0304,motor,2024-01-05,2024-01-13,Open,328.0,m5 6ag,Fictional portfolio test claim 0304
+NCL-000305,POL-000305,Test Claimant 0305,Home,2024-01-06,2024-01-15,In Progress,328.75,M1 1AA,Fictional portfolio test claim 0305
+NCL-000306 ,POL-000306,Test Claimant 0306,Travel,2024-01-07,2024-01-08, closed ,329.5,M2 3AB,Fictional portfolio test claim 0306
+NCL-000307,POL-000307,Test Claimant 0307,Business,2024-01-08,2024-01-10,Declined,330.25,M3 4AD,Fictional portfolio test claim 0307
+ ncl-000308,POL-000308,  test   claimant 0308 ,Motor,2024-01-09,2024-01-12,Open,331.0,M4 5AF,Fictional portfolio test claim 0308
+NCL-000309,POL-000309,Test Claimant 0309,Home,2024-01-10,2024-01-14,In Progress,331.75,M5 6AG,Fictional portfolio test claim 0309
+NCL-000310,POL-000310,Test Claimant 0310,Travel,2024-01-11,2024-01-16,Closed,332.5,M1 1AA,Fictional portfolio test claim 0310
+NCL-000311,POL-000311,Test Claimant 0311,Business,2024-01-12,2024-01-18,Declined,333.25,M2 3AB,Fictional portfolio test claim 0311
+NCL-000312,pol-000312,Test Claimant 0312,Motor,2024-01-13,2024-01-20,Open,334.0,m3 4ad,Fictional portfolio test claim 0312
+NCL-000313,POL-000313,Test Claimant 0313,Home,2024-01-14,2024-01-22,In Progress,334.75,M4 5AF,Fictional portfolio test claim 0313
+NCL-000314,POL-000314,Test Claimant 0314,Travel,2024-01-15,2024-01-24,Closed,335.5,M5 6AG,Fictional portfolio test claim 0314
+NCL-000315,POL-000315,  test   claimant 0315 ,Business,2024-01-16,2024-01-17, declined ,336.25,M1 1AA,Fictional portfolio test claim 0315
+NCL-000316,POL-000316,Test Claimant 0316,Motor,2024-01-17,2024-01-19,Open,337.0,M2 3AB,Fictional portfolio test claim 0316
+NCL-000317,POL-000317,Test Claimant 0317,Home,2024-01-18,2024-01-21,In Progress,337.75,M3 4AD,Fictional portfolio test claim 0317
+NCL-000318,POL-000318,Test Claimant 0318,Travel,2024-01-19,2024-01-23,Closed,338.5,M4 5AF,Fictional portfolio test claim 0318
+ ncl-000319,POL-000319,Test Claimant 0319,Business,2024-01-20,2024-01-25,Declined,339.25,M5 6AG,Fictional portfolio test claim 0319
+NCL-000320,POL-000320,Test Claimant 0320,Motor,2024-01-21,2024-01-27,Open,340.0,m1 1aa,Fictional portfolio test claim 0320
+NCL-000321,POL-000321,Test Claimant 0321,Home,2024-01-22,2024-01-29,In Progress,340.75,M2 3AB,Fictional portfolio test claim 0321
+NCL-000322,POL-000322,  test   claimant 0322 ,Travel,2024-01-23,2024-01-31,Closed,341.5,M3 4AD,Fictional portfolio test claim 0322
+NCL-000323 ,POL-000323,Test Claimant 0323,business,2024-01-24,2024-02-02,Declined,342.25,M4 5AF,Fictional portfolio test claim 0323
+NCL-000324,POL-000324,Test Claimant 0324,Motor,2024-01-25,2024-01-26, open ,343.0,M5 6AG,Fictional portfolio test claim 0324
+NCL-000325,pol-000325,Test Claimant 0325,Home,2024-01-26,2024-01-28,In Progress,343.75,M1 1AA,Fictional portfolio test claim 0325
+NCL-000326,POL-000326,Test Claimant 0326,Travel,2024-01-27,2024-01-30,Closed,344.5,M2 3AB,Fictional portfolio test claim 0326
+NCL-000327,POL-000327,Test Claimant 0327,Business,2024-01-28,2024-02-01,Declined,345.25,M3 4AD,Fictional portfolio test claim 0327
+NCL-000328,POL-000328,Test Claimant 0328,Motor,2024-01-29,2024-02-03,Open,346.0,m4 5af,Fictional portfolio test claim 0328
+NCL-000329,POL-000329,  test   claimant 0329 ,Home,2024-01-30,2024-02-05,In Progress,346.75,M5 6AG,Fictional portfolio test claim 0329
+ ncl-000330,POL-000330,Test Claimant 0330,Travel,2024-01-31,2024-02-07,Closed,347.5,M1 1AA,Fictional portfolio test claim 0330
+NCL-000331,POL-000331,Test Claimant 0331,Business,2024-02-01,2024-02-09,Declined,348.25,M2 3AB,Fictional portfolio test claim 0331
+NCL-000332,POL-000332,Test Claimant 0332,Motor,2024-02-02,2024-02-11,Open,349.0,M3 4AD,Fictional portfolio test claim 0332
+NCL-000333,POL-000333,Test Claimant 0333,Home,2024-02-03,2024-02-04, in progress ,349.75,M4 5AF,Fictional portfolio test claim 0333
+NCL-000334,POL-000334,Test Claimant 0334,Travel,2024-02-04,2024-02-06,Closed,350.5,M5 6AG,Fictional portfolio test claim 0334
+NCL-000335,POL-000335,Test Claimant 0335,Business,2024-02-05,2024-02-08,Declined,351.25,M1 1AA,Fictional portfolio test claim 0335
+NCL-000336,POL-000336,  test   claimant 0336 ,Motor,2024-02-06,2024-02-10,Open,352.0,m2 3ab,Fictional portfolio test claim 0336
+NCL-000337,POL-000337,Test Claimant 0337,Home,2024-02-07,2024-02-12,In Progress,352.75,M3 4AD,Fictional portfolio test claim 0337
+NCL-000338,pol-000338,Test Claimant 0338,Travel,2024-02-08,2024-02-14,Closed,353.5,M4 5AF,Fictional portfolio test claim 0338
+NCL-000339,POL-000339,Test Claimant 0339,Business,2024-02-09,2024-02-16,Declined,354.25,M5 6AG,Fictional portfolio test claim 0339
+NCL-000340 ,POL-000340,Test Claimant 0340,Motor,2024-02-10,2024-02-18,Open,355.0,M1 1AA,Fictional portfolio test claim 0340
+ ncl-000341,POL-000341,Test Claimant 0341,Home,2024-02-11,2024-02-20,In Progress,355.75,M2 3AB,Fictional portfolio test claim 0341
+NCL-000342,POL-000342,Test Claimant 0342,travel,2024-02-12,2024-02-13, closed ,356.5,M3 4AD,Fictional portfolio test claim 0342
+NCL-000343,POL-000343,  test   claimant 0343 ,Business,2024-02-13,2024-02-15,Declined,357.25,M4 5AF,Fictional portfolio test claim 0343
+NCL-000344,POL-000344,Test Claimant 0344,Motor,2024-02-14,2024-02-17,Open,358.0,m5 6ag,Fictional portfolio test claim 0344
+NCL-000345,POL-000345,Test Claimant 0345,Home,2024-02-15,2024-02-19,In Progress,358.75,M1 1AA,Fictional portfolio test claim 0345
+NCL-000346,POL-000346,Test Claimant 0346,Travel,2024-02-16,2024-02-21,Closed,359.5,M2 3AB,Fictional portfolio test claim 0346
+NCL-000347,POL-000347,Test Claimant 0347,Business,2024-02-17,2024-02-23,Declined,360.25,M3 4AD,Fictional portfolio test claim 0347
+NCL-000348,POL-000348,Test Claimant 0348,Motor,2024-02-18,2024-02-25,Open,361.0,M4 5AF,Fictional portfolio test claim 0348
+NCL-000349,POL-000349,Test Claimant 0349,Home,2024-02-19,2024-02-27,In Progress,361.75,M5 6AG,Fictional portfolio test claim 0349
+NCL-000350,POL-000350,  test   claimant 0350 ,Travel,2024-02-20,2024-02-29,Closed,362.5,M1 1AA,Fictional portfolio test claim 0350
+NCL-000351,pol-000351,Test Claimant 0351,Business,2024-02-21,2024-02-22, declined ,363.25,M2 3AB,Fictional portfolio test claim 0351
+ ncl-000352,POL-000352,Test Claimant 0352,Motor,2024-02-22,2024-02-24,Open,364.0,m3 4ad,Fictional portfolio test claim 0352
+NCL-000353,POL-000353,Test Claimant 0353,Home,2024-02-23,2024-02-26,In Progress,364.75,M4 5AF,Fictional portfolio test claim 0353
+NCL-000354,POL-000354,Test Claimant 0354,Travel,2024-02-24,2024-02-28,Closed,365.5,M5 6AG,Fictional portfolio test claim 0354
+NCL-000355,POL-000355,Test Claimant 0355,Business,2024-02-25,2024-03-01,Declined,366.25,M1 1AA,Fictional portfolio test claim 0355
+NCL-000356,POL-000356,Test Claimant 0356,Motor,2024-02-26,2024-03-03,Open,367.0,M2 3AB,Fictional portfolio test claim 0356
+NCL-000357 ,POL-000357,  test   claimant 0357 ,Home,2024-02-27,2024-03-05,In Progress,367.75,M3 4AD,Fictional portfolio test claim 0357
+NCL-000358,POL-000358,Test Claimant 0358,Travel,2024-02-28,2024-03-07,Closed,368.5,M4 5AF,Fictional portfolio test claim 0358
+NCL-000359,POL-000359,Test Claimant 0359,Business,2024-02-29,2024-03-09,Declined,369.25,M5 6AG,Fictional portfolio test claim 0359
+NCL-000360,POL-000360,Test Claimant 0360,Motor,2024-03-01,2024-03-02, open ,370.0,m1 1aa,Fictional portfolio test claim 0360
+NCL-000361,POL-000361,Test Claimant 0361,home,2024-03-02,2024-03-04,In Progress,370.75,M2 3AB,Fictional portfolio test claim 0361
+NCL-000362,POL-000362,Test Claimant 0362,Travel,2024-03-03,2024-03-06,Closed,371.5,M3 4AD,Fictional portfolio test claim 0362
+ ncl-000363,POL-000363,Test Claimant 0363,Business,2024-03-04,2024-03-08,Declined,372.25,M4 5AF,Fictional portfolio test claim 0363
+NCL-000364,pol-000364,  test   claimant 0364 ,Motor,2024-03-05,2024-03-10,Open,373.0,M5 6AG,Fictional portfolio test claim 0364
+NCL-000365,POL-000365,Test Claimant 0365,Home,2024-03-06,2024-03-12,In Progress,373.75,M1 1AA,Fictional portfolio test claim 0365
+NCL-000366,POL-000366,Test Claimant 0366,Travel,2024-03-07,2024-03-14,Closed,374.5,M2 3AB,Fictional portfolio test claim 0366
+NCL-000367,POL-000367,Test Claimant 0367,Business,2024-03-08,2024-03-16,Declined,375.25,M3 4AD,Fictional portfolio test claim 0367
+NCL-000368,POL-000368,Test Claimant 0368,Motor,2024-03-09,2024-03-18,Open,376.0,m4 5af,Fictional portfolio test claim 0368
+NCL-000369,POL-000369,Test Claimant 0369,Home,2024-03-10,2024-03-11, in progress ,376.75,M5 6AG,Fictional portfolio test claim 0369
+NCL-000370,POL-000370,Test Claimant 0370,Travel,2024-03-11,2024-03-13,Closed,377.5,M1 1AA,Fictional portfolio test claim 0370
+NCL-000371,POL-000371,  test   claimant 0371 ,Business,2024-03-12,2024-03-15,Declined,378.25,M2 3AB,Fictional portfolio test claim 0371
+NCL-000372,POL-000372,Test Claimant 0372,Motor,2024-03-13,2024-03-17,Open,379.0,M3 4AD,Fictional portfolio test claim 0372
+NCL-000373,POL-000373,Test Claimant 0373,Home,2024-03-14,2024-03-19,In Progress,379.75,M4 5AF,Fictional portfolio test claim 0373
+ ncl-000374 ,POL-000374,Test Claimant 0374,Travel,2024-03-15,2024-03-21,Closed,380.5,M5 6AG,Fictional portfolio test claim 0374
+NCL-000375,POL-000375,Test Claimant 0375,Business,2024-03-16,2024-03-23,Declined,381.25,M1 1AA,Fictional portfolio test claim 0375
+NCL-000376,POL-000376,Test Claimant 0376,Motor,2024-03-17,2024-03-25,Open,382.0,m2 3ab,Fictional portfolio test claim 0376
+NCL-000377,pol-000377,Test Claimant 0377,Home,2024-03-18,2024-03-27,In Progress,382.75,M3 4AD,Fictional portfolio test claim 0377
+NCL-000378,POL-000378,  test   claimant 0378 ,Travel,2024-03-19,2024-03-20, closed ,383.5,M4 5AF,Fictional portfolio test claim 0378
+NCL-000379,POL-000379,Test Claimant 0379,Business,2024-03-20,2024-03-22,Declined,384.25,M5 6AG,Fictional portfolio test claim 0379
+NCL-000380,POL-000380,Test Claimant 0380,motor,2024-03-21,2024-03-24,Open,385.0,M1 1AA,Fictional portfolio test claim 0380
+NCL-000381,POL-000381,Test Claimant 0381,Home,2024-03-22,2024-03-26,In Progress,385.75,M2 3AB,Fictional portfolio test claim 0381
+NCL-000382,POL-000382,Test Claimant 0382,Travel,2024-03-23,2024-03-28,Closed,386.5,M3 4AD,Fictional portfolio test claim 0382
+NCL-000383,POL-000383,Test Claimant 0383,Business,2024-03-24,2024-03-30,Declined,387.25,M4 5AF,Fictional portfolio test claim 0383
+NCL-000384,POL-000384,Test Claimant 0384,Motor,2024-03-25,2024-04-01,Open,388.0,m5 6ag,Fictional portfolio test claim 0384
+ ncl-000385,POL-000385,  test   claimant 0385 ,Home,2024-03-26,2024-04-03,In Progress,388.75,M1 1AA,Fictional portfolio test claim 0385
+NCL-000386,POL-000386,Test Claimant 0386,Travel,2024-03-27,2024-04-05,Closed,389.5,M2 3AB,Fictional portfolio test claim 0386
+NCL-000387,POL-000387,Test Claimant 0387,Business,2024-03-28,2024-03-29, declined ,390.25,M3 4AD,Fictional portfolio test claim 0387
+NCL-000388,POL-000388,Test Claimant 0388,Motor,2024-03-29,2024-03-31,Open,391.0,M4 5AF,Fictional portfolio test claim 0388
+NCL-000389,POL-000389,Test Claimant 0389,Home,2024-03-30,2024-04-02,In Progress,391.75,M5 6AG,Fictional portfolio test claim 0389
+NCL-000390,pol-000390,Test Claimant 0390,Travel,2024-03-31,2024-04-04,Closed,392.5,M1 1AA,Fictional portfolio test claim 0390
+NCL-000391 ,POL-000391,Test Claimant 0391,Business,2024-04-01,2024-04-06,Declined,393.25,M2 3AB,Fictional portfolio test claim 0391
+NCL-000392,POL-000392,  test   claimant 0392 ,Motor,2024-04-02,2024-04-08,Open,394.0,m3 4ad,Fictional portfolio test claim 0392
+NCL-000393,POL-000393,Test Claimant 0393,Home,2024-04-03,2024-04-10,In Progress,394.75,M4 5AF,Fictional portfolio test claim 0393
+NCL-000394,POL-000394,Test Claimant 0394,Travel,2024-04-04,2024-04-12,Closed,395.5,M5 6AG,Fictional portfolio test claim 0394
+NCL-000395,POL-000395,Test Claimant 0395,Business,2024-04-05,2024-04-14,Declined,396.25,M1 1AA,Fictional portfolio test claim 0395
+ ncl-000396,POL-000396,Test Claimant 0396,Motor,2024-04-06,2024-04-07, open ,397.0,M2 3AB,Fictional portfolio test claim 0396
+NCL-000397,POL-000397,Test Claimant 0397,Home,2024-04-07,2024-04-09,In Progress,397.75,M3 4AD,Fictional portfolio test claim 0397
+NCL-000398,POL-000398,Test Claimant 0398,Travel,2024-04-08,2024-04-11,Closed,398.5,M4 5AF,Fictional portfolio test claim 0398
+NCL-000399,POL-000399,  test   claimant 0399 ,business,2024-04-09,2024-04-13,Declined,399.25,M5 6AG,Fictional portfolio test claim 0399
+NCL-000400,POL-000400,Test Claimant 0400,Motor,2024-04-10,2024-04-15,Open,400.0,m1 1aa,Fictional portfolio test claim 0400
+NCL-000401,POL-000401,Test Claimant 0401,Home,2024-04-11,2024-04-17,In Progress,400.75,M2 3AB,Fictional portfolio test claim 0401
+NCL-000402,POL-000402,Test Claimant 0402,Travel,2024-04-12,2024-04-19,Closed,401.5,M3 4AD,Fictional portfolio test claim 0402
+NCL-000403,pol-000403,Test Claimant 0403,Business,2024-04-13,2024-04-21,Declined,402.25,M4 5AF,Fictional portfolio test claim 0403
+NCL-000404,POL-000404,Test Claimant 0404,Motor,2024-04-14,2024-04-23,Open,403.0,M5 6AG,Fictional portfolio test claim 0404
+NCL-000405,POL-000405,Test Claimant 0405,Home,2024-04-15,2024-04-16, in progress ,403.75,M1 1AA,Fictional portfolio test claim 0405
+NCL-000406,POL-000406,  test   claimant 0406 ,Travel,2024-04-16,2024-04-18,Closed,404.5,M2 3AB,Fictional portfolio test claim 0406
+ ncl-000407,POL-000407,Test Claimant 0407,Business,2024-04-17,2024-04-20,Declined,405.25,M3 4AD,Fictional portfolio test claim 0407
+NCL-000408 ,POL-000408,Test Claimant 0408,Motor,2024-04-18,2024-04-22,Open,406.0,m4 5af,Fictional portfolio test claim 0408
+NCL-000409,POL-000409,Test Claimant 0409,Home,2024-04-19,2024-04-24,In Progress,406.75,M5 6AG,Fictional portfolio test claim 0409
+NCL-000410,POL-000410,Test Claimant 0410,Travel,2024-04-20,2024-04-26,Closed,407.5,M1 1AA,Fictional portfolio test claim 0410
+NCL-000411,POL-000411,Test Claimant 0411,Business,2024-04-21,2024-04-28,Declined,408.25,M2 3AB,Fictional portfolio test claim 0411
+NCL-000412,POL-000412,Test Claimant 0412,Motor,2024-04-22,2024-04-30,Open,409.0,M3 4AD,Fictional portfolio test claim 0412
+NCL-000413,POL-000413,  test   claimant 0413 ,Home,2024-04-23,2024-05-02,In Progress,409.75,M4 5AF,Fictional portfolio test claim 0413
+NCL-000414,POL-000414,Test Claimant 0414,Travel,2024-04-24,2024-04-25, closed ,410.5,M5 6AG,Fictional portfolio test claim 0414
+NCL-000415,POL-000415,Test Claimant 0415,Business,2024-04-25,2024-04-27,Declined,411.25,M1 1AA,Fictional portfolio test claim 0415
+NCL-000416,pol-000416,Test Claimant 0416,Motor,2024-04-26,2024-04-29,Open,412.0,m2 3ab,Fictional portfolio test claim 0416
+NCL-000417,POL-000417,Test Claimant 0417,Home,2024-04-27,2024-05-01,In Progress,412.75,M3 4AD,Fictional portfolio test claim 0417
+ ncl-000418,POL-000418,Test Claimant 0418,travel,2024-04-28,2024-05-03,Closed,413.5,M4 5AF,Fictional portfolio test claim 0418
+NCL-000419,POL-000419,Test Claimant 0419,Business,2024-04-29,2024-05-05,Declined,414.25,M5 6AG,Fictional portfolio test claim 0419
+NCL-000420,POL-000420,  test   claimant 0420 ,Motor,2024-04-30,2024-05-07,Open,415.0,M1 1AA,Fictional portfolio test claim 0420
+NCL-000421,POL-000421,Test Claimant 0421,Home,2024-05-01,2024-05-09,In Progress,415.75,M2 3AB,Fictional portfolio test claim 0421
+NCL-000422,POL-000422,Test Claimant 0422,Travel,2024-05-02,2024-05-11,Closed,416.5,M3 4AD,Fictional portfolio test claim 0422
+NCL-000423,POL-000423,Test Claimant 0423,Business,2024-05-03,2024-05-04, declined ,417.25,M4 5AF,Fictional portfolio test claim 0423
+NCL-000424,POL-000424,Test Claimant 0424,Motor,2024-05-04,2024-05-06,Open,418.0,m5 6ag,Fictional portfolio test claim 0424
+NCL-000425 ,POL-000425,Test Claimant 0425,Home,2024-05-05,2024-05-08,In Progress,418.75,M1 1AA,Fictional portfolio test claim 0425
+NCL-000426,POL-000426,Test Claimant 0426,Travel,2024-05-06,2024-05-10,Closed,419.5,M2 3AB,Fictional portfolio test claim 0426
+NCL-000427,POL-000427,  test   claimant 0427 ,Business,2024-05-07,2024-05-12,Declined,420.25,M3 4AD,Fictional portfolio test claim 0427
+NCL-000428,POL-000428,Test Claimant 0428,Motor,2024-05-08,2024-05-14,Open,421.0,M4 5AF,Fictional portfolio test claim 0428
+ ncl-000429,pol-000429,Test Claimant 0429,Home,2024-05-09,2024-05-16,In Progress,421.75,M5 6AG,Fictional portfolio test claim 0429
+NCL-000430,POL-000430,Test Claimant 0430,Travel,2024-05-10,2024-05-18,Closed,422.5,M1 1AA,Fictional portfolio test claim 0430
+NCL-000431,POL-000431,Test Claimant 0431,Business,2024-05-11,2024-05-20,Declined,423.25,M2 3AB,Fictional portfolio test claim 0431
+NCL-000432,POL-000432,Test Claimant 0432,Motor,2024-05-12,2024-05-13, open ,424.0,m3 4ad,Fictional portfolio test claim 0432
+NCL-000433,POL-000433,Test Claimant 0433,Home,2024-05-13,2024-05-15,In Progress,424.75,M4 5AF,Fictional portfolio test claim 0433
+NCL-000434,POL-000434,  test   claimant 0434 ,Travel,2024-05-14,2024-05-17,Closed,425.5,M5 6AG,Fictional portfolio test claim 0434
+NCL-000435,POL-000435,Test Claimant 0435,Business,2024-05-15,2024-05-19,Declined,426.25,M1 1AA,Fictional portfolio test claim 0435
+NCL-000436,POL-000436,Test Claimant 0436,Motor,2024-05-16,2024-05-21,Open,427.0,M2 3AB,Fictional portfolio test claim 0436
+NCL-000437,POL-000437,Test Claimant 0437,home,2024-05-17,2024-05-23,In Progress,427.75,M3 4AD,Fictional portfolio test claim 0437
+NCL-000438,POL-000438,Test Claimant 0438,Travel,2024-05-18,2024-05-25,Closed,428.5,M4 5AF,Fictional portfolio test claim 0438
+NCL-000439,POL-000439,Test Claimant 0439,Business,2024-05-19,2024-05-27,Declined,429.25,M5 6AG,Fictional portfolio test claim 0439
+ ncl-000440,POL-000440,Test Claimant 0440,Motor,2024-05-20,2024-05-29,Open,430.0,m1 1aa,Fictional portfolio test claim 0440
+NCL-000441,POL-000441,  test   claimant 0441 ,Home,2024-05-21,2024-05-22, in progress ,430.75,M2 3AB,Fictional portfolio test claim 0441
+NCL-000442 ,pol-000442,Test Claimant 0442,Travel,2024-05-22,2024-05-24,Closed,431.5,M3 4AD,Fictional portfolio test claim 0442
+NCL-000443,POL-000443,Test Claimant 0443,Business,2024-05-23,2024-05-26,Declined,432.25,M4 5AF,Fictional portfolio test claim 0443
+NCL-000444,POL-000444,Test Claimant 0444,Motor,2024-05-24,2024-05-28,Open,433.0,M5 6AG,Fictional portfolio test claim 0444
+NCL-000445,POL-000445,Test Claimant 0445,Home,2024-05-25,2024-05-30,In Progress,433.75,M1 1AA,Fictional portfolio test claim 0445
+NCL-000446,POL-000446,Test Claimant 0446,Travel,2024-05-26,2024-06-01,Closed,434.5,M2 3AB,Fictional portfolio test claim 0446
+NCL-000447,POL-000447,Test Claimant 0447,Business,2024-05-27,2024-06-03,Declined,435.25,M3 4AD,Fictional portfolio test claim 0447
+NCL-000448,POL-000448,  test   claimant 0448 ,Motor,2024-05-28,2024-06-05,Open,436.0,m4 5af,Fictional portfolio test claim 0448
+NCL-000449,POL-000449,Test Claimant 0449,Home,2024-05-29,2024-06-07,In Progress,436.75,M5 6AG,Fictional portfolio test claim 0449
+NCL-000450,POL-000450,Test Claimant 0450,Travel,2024-05-30,2024-05-31, closed ,437.5,M1 1AA,Fictional portfolio test claim 0450
+ ncl-000451,POL-000451,Test Claimant 0451,Business,2024-05-31,2024-06-02,Declined,438.25,M2 3AB,Fictional portfolio test claim 0451
+NCL-000452,POL-000452,Test Claimant 0452,Motor,2024-06-01,2024-06-04,Open,439.0,M3 4AD,Fictional portfolio test claim 0452
+NCL-000453,POL-000453,Test Claimant 0453,Home,2024-06-02,2024-06-06,In Progress,439.75,M4 5AF,Fictional portfolio test claim 0453
+NCL-000454,POL-000454,Test Claimant 0454,Travel,2024-06-03,2024-06-08,Closed,440.5,M5 6AG,Fictional portfolio test claim 0454
+NCL-000455,pol-000455,  test   claimant 0455 ,Business,2024-06-04,2024-06-10,Declined,441.25,M1 1AA,Fictional portfolio test claim 0455
+NCL-000456,POL-000456,Test Claimant 0456,motor,2024-06-05,2024-06-12,Open,442.0,m2 3ab,Fictional portfolio test claim 0456
+NCL-000457,POL-000457,Test Claimant 0457,Home,2024-06-06,2024-06-14,In Progress,442.75,M3 4AD,Fictional portfolio test claim 0457
+NCL-000458,POL-000458,Test Claimant 0458,Travel,2024-06-07,2024-06-16,Closed,443.5,M4 5AF,Fictional portfolio test claim 0458
+NCL-000459 ,POL-000459,Test Claimant 0459,Business,2024-06-08,2024-06-09, declined ,444.25,M5 6AG,Fictional portfolio test claim 0459
+NCL-000460,POL-000460,Test Claimant 0460,Motor,2024-06-09,2024-06-11,Open,445.0,M1 1AA,Fictional portfolio test claim 0460
+NCL-000461,POL-000461,Test Claimant 0461,Home,2024-06-10,2024-06-13,In Progress,445.75,M2 3AB,Fictional portfolio test claim 0461
+ ncl-000462,POL-000462,  test   claimant 0462 ,Travel,2024-06-11,2024-06-15,Closed,446.5,M3 4AD,Fictional portfolio test claim 0462
+NCL-000463,POL-000463,Test Claimant 0463,Business,2024-06-12,2024-06-17,Declined,447.25,M4 5AF,Fictional portfolio test claim 0463
+NCL-000464,POL-000464,Test Claimant 0464,Motor,2024-06-13,2024-06-19,Open,448.0,m5 6ag,Fictional portfolio test claim 0464
+NCL-000465,POL-000465,Test Claimant 0465,Home,2024-06-14,2024-06-21,In Progress,448.75,M1 1AA,Fictional portfolio test claim 0465
+NCL-000466,POL-000466,Test Claimant 0466,Travel,2024-06-15,2024-06-23,Closed,449.5,M2 3AB,Fictional portfolio test claim 0466
+NCL-000467,POL-000467,Test Claimant 0467,Business,2024-06-16,2024-06-25,Declined,450.25,M3 4AD,Fictional portfolio test claim 0467
+NCL-000468,pol-000468,Test Claimant 0468,Motor,2024-06-17,2024-06-18, open ,451.0,M4 5AF,Fictional portfolio test claim 0468
+NCL-000469,POL-000469,  test   claimant 0469 ,Home,2024-06-18,2024-06-20,In Progress,451.75,M5 6AG,Fictional portfolio test claim 0469
+NCL-000470,POL-000470,Test Claimant 0470,Travel,2024-06-19,2024-06-22,Closed,452.5,M1 1AA,Fictional portfolio test claim 0470
+NCL-000471,POL-000471,Test Claimant 0471,Business,2024-06-20,2024-06-24,Declined,453.25,M2 3AB,Fictional portfolio test claim 0471
+NCL-000472,POL-000472,Test Claimant 0472,Motor,2024-06-21,2024-06-26,Open,454.0,m3 4ad,Fictional portfolio test claim 0472
+ ncl-000473,POL-000473,Test Claimant 0473,Home,2024-06-22,2024-06-28,In Progress,454.75,M4 5AF,Fictional portfolio test claim 0473
+NCL-000474,POL-000474,Test Claimant 0474,Travel,2024-06-23,2024-06-30,Closed,455.5,M5 6AG,Fictional portfolio test claim 0474
+NCL-000475,POL-000475,Test Claimant 0475,business,2024-06-24,2024-07-02,Declined,456.25,M1 1AA,Fictional portfolio test claim 0475
+NCL-000476 ,POL-000476,  test   claimant 0476 ,Motor,2024-06-25,2024-07-04,Open,457.0,M2 3AB,Fictional portfolio test claim 0476
+NCL-000477,POL-000477,Test Claimant 0477,Home,2024-06-26,2024-06-27, in progress ,457.75,M3 4AD,Fictional portfolio test claim 0477
+NCL-000478,POL-000478,Test Claimant 0478,Travel,2024-06-27,2024-06-29,Closed,458.5,M4 5AF,Fictional portfolio test claim 0478
+NCL-000479,POL-000479,Test Claimant 0479,Business,2024-06-28,2024-07-01,Declined,459.25,M5 6AG,Fictional portfolio test claim 0479
+NCL-000480,POL-000480,Test Claimant 0480,Motor,2024-06-29,2024-07-03,Open,460.0,m1 1aa,Fictional portfolio test claim 0480
+NCL-000481,pol-000481,Test Claimant 0481,Home,2024-06-30,2024-07-05,In Progress,460.75,M2 3AB,Fictional portfolio test claim 0481
+NCL-000482,POL-000482,Test Claimant 0482,Travel,2024-07-01,2024-07-07,Closed,461.5,M3 4AD,Fictional portfolio test claim 0482
+NCL-000483,POL-000483,  test   claimant 0483 ,Business,2024-07-02,2024-07-09,Declined,462.25,M4 5AF,Fictional portfolio test claim 0483
+ ncl-000484,POL-000484,Test Claimant 0484,Motor,2024-07-03,2024-07-11,Open,463.0,M5 6AG,Fictional portfolio test claim 0484
+NCL-000485,POL-000485,Test Claimant 0485,Home,2024-07-04,2024-07-13,In Progress,463.75,M1 1AA,Fictional portfolio test claim 0485
+NCL-000486,POL-000486,Test Claimant 0486,Travel,2024-07-05,2024-07-06, closed ,464.5,M2 3AB,Fictional portfolio test claim 0486
+NCL-000487,POL-000487,Test Claimant 0487,Business,2024-07-06,2024-07-08,Declined,465.25,M3 4AD,Fictional portfolio test claim 0487
+NCL-000488,POL-000488,Test Claimant 0488,Motor,2024-07-07,2024-07-10,Open,466.0,m4 5af,Fictional portfolio test claim 0488
+NCL-000489,POL-000489,Test Claimant 0489,Home,2024-07-08,2024-07-12,In Progress,466.75,M5 6AG,Fictional portfolio test claim 0489
+NCL-000490,POL-000490,  test   claimant 0490 ,Travel,2024-07-09,2024-07-14,Closed,467.5,M1 1AA,Fictional portfolio test claim 0490
+NCL-000491,POL-000491,Test Claimant 0491,Business,2024-07-10,2024-07-16,Declined,468.25,M2 3AB,Fictional portfolio test claim 0491
+NCL-000492,POL-000492,Test Claimant 0492,Motor,2024-07-11,2024-07-18,Open,469.0,M3 4AD,Fictional portfolio test claim 0492
+NCL-000493 ,POL-000493,Test Claimant 0493,Home,2024-07-12,2024-07-20,In Progress,469.75,M4 5AF,Fictional portfolio test claim 0493
+NCL-000494,pol-000494,Test Claimant 0494,travel,2024-07-13,2024-07-22,Closed,470.5,M5 6AG,Fictional portfolio test claim 0494
+ ncl-000495,POL-000495,Test Claimant 0495,Business,2024-07-14,2024-07-15, declined ,471.25,M1 1AA,Fictional portfolio test claim 0495
+NCL-000496,POL-000496,Test Claimant 0496,Motor,2024-07-15,2024-07-17,Open,472.0,m2 3ab,Fictional portfolio test claim 0496
+NCL-000497,POL-000497,  test   claimant 0497 ,Home,2024-07-16,2024-07-19,In Progress,472.75,M3 4AD,Fictional portfolio test claim 0497
+NCL-000498,POL-000498,Test Claimant 0498,Travel,2024-07-17,2024-07-21,Closed,473.5,M4 5AF,Fictional portfolio test claim 0498
+NCL-000499,POL-000499,Test Claimant 0499,Business,2024-07-18,2024-07-23,Declined,474.25,M5 6AG,Fictional portfolio test claim 0499
+NCL-000500,POL-000500,Test Claimant 0500,Motor,2024-07-19,2024-07-25,Open,475.0,M1 1AA,Fictional portfolio test claim 0500
+NCL-000501,POL-000501,Test Claimant 0501,Home,2024-07-20,2024-07-27,In Progress,475.75,M2 3AB,Fictional portfolio test claim 0501
+NCL-000502,POL-000502,Test Claimant 0502,Travel,2024-07-21,2024-07-29,Closed,476.5,M3 4AD,Fictional portfolio test claim 0502
+NCL-000503,POL-000503,Test Claimant 0503,Business,2024-07-22,2024-07-31,Declined,477.25,M4 5AF,Fictional portfolio test claim 0503
+NCL-000504,POL-000504,  test   claimant 0504 ,Motor,2024-07-23,2024-07-24, open ,478.0,m5 6ag,Fictional portfolio test claim 0504
+NCL-000505,POL-000505,Test Claimant 0505,Home,2024-07-24,2024-07-26,In Progress,478.75,M1 1AA,Fictional portfolio test claim 0505
+ ncl-000506,POL-000506,Test Claimant 0506,Travel,2024-07-25,2024-07-28,Closed,479.5,M2 3AB,Fictional portfolio test claim 0506
+NCL-000507,pol-000507,Test Claimant 0507,Business,2024-07-26,2024-07-30,Declined,480.25,M3 4AD,Fictional portfolio test claim 0507
+NCL-000508,POL-000508,Test Claimant 0508,Motor,2024-07-27,2024-08-01,Open,481.0,M4 5AF,Fictional portfolio test claim 0508
+NCL-000509,POL-000509,Test Claimant 0509,Home,2024-07-28,2024-08-03,In Progress,481.75,M5 6AG,Fictional portfolio test claim 0509
+NCL-000510 ,POL-000510,Test Claimant 0510,Travel,2024-07-29,2024-08-05,Closed,482.5,M1 1AA,Fictional portfolio test claim 0510
+NCL-000511,POL-000511,  test   claimant 0511 ,Business,2024-07-30,2024-08-07,Declined,483.25,M2 3AB,Fictional portfolio test claim 0511
+NCL-000512,POL-000512,Test Claimant 0512,Motor,2024-07-31,2024-08-09,Open,484.0,m3 4ad,Fictional portfolio test claim 0512
+NCL-000513,POL-000513,Test Claimant 0513,home,2024-08-01,2024-08-02, in progress ,484.75,M4 5AF,Fictional portfolio test claim 0513
+NCL-000514,POL-000514,Test Claimant 0514,Travel,2024-08-02,2024-08-04,Closed,485.5,M5 6AG,Fictional portfolio test claim 0514
+NCL-000515,POL-000515,Test Claimant 0515,Business,2024-08-03,2024-08-06,Declined,486.25,M1 1AA,Fictional portfolio test claim 0515
+NCL-000516,POL-000516,Test Claimant 0516,Motor,2024-08-04,2024-08-08,Open,487.0,M2 3AB,Fictional portfolio test claim 0516
+ ncl-000517,POL-000517,Test Claimant 0517,Home,2024-08-05,2024-08-10,In Progress,487.75,M3 4AD,Fictional portfolio test claim 0517
+NCL-000518,POL-000518,  test   claimant 0518 ,Travel,2024-08-06,2024-08-12,Closed,488.5,M4 5AF,Fictional portfolio test claim 0518
+NCL-000519,POL-000519,Test Claimant 0519,Business,2024-08-07,2024-08-14,Declined,489.25,M5 6AG,Fictional portfolio test claim 0519
+NCL-000520,pol-000520,Test Claimant 0520,Motor,2024-08-08,2024-08-16,Open,490.0,m1 1aa,Fictional portfolio test claim 0520
+NCL-000521,POL-000521,Test Claimant 0521,Home,2024-08-09,2024-08-18,In Progress,490.75,M2 3AB,Fictional portfolio test claim 0521
+NCL-000522,POL-000522,Test Claimant 0522,Travel,2024-08-10,2024-08-11, closed ,491.5,M3 4AD,Fictional portfolio test claim 0522
+NCL-000523,POL-000523,Test Claimant 0523,Business,2024-08-11,2024-08-13,Declined,492.25,M4 5AF,Fictional portfolio test claim 0523
+NCL-000524,POL-000524,Test Claimant 0524,Motor,2024-08-12,2024-08-15,Open,493.0,M5 6AG,Fictional portfolio test claim 0524
+NCL-000525,POL-000525,  test   claimant 0525 ,Home,2024-08-13,2024-08-17,In Progress,493.75,M1 1AA,Fictional portfolio test claim 0525
+NCL-000526,POL-000526,Test Claimant 0526,Travel,2024-08-14,2024-08-19,Closed,494.5,M2 3AB,Fictional portfolio test claim 0526
+NCL-000527 ,POL-000527,Test Claimant 0527,Business,2024-08-15,2024-08-21,Declined,495.25,M3 4AD,Fictional portfolio test claim 0527
+ ncl-000528,POL-000528,Test Claimant 0528,Motor,2024-08-16,2024-08-23,Open,496.0,m4 5af,Fictional portfolio test claim 0528
+NCL-000529,POL-000529,Test Claimant 0529,Home,2024-08-17,2024-08-25,In Progress,496.75,M5 6AG,Fictional portfolio test claim 0529
+NCL-000530,POL-000530,Test Claimant 0530,Travel,2024-08-18,2024-08-27,Closed,497.5,M1 1AA,Fictional portfolio test claim 0530
+NCL-000531,POL-000531,Test Claimant 0531,Business,2024-08-19,2024-08-20, declined ,498.25,M2 3AB,Fictional portfolio test claim 0531
+NCL-000532,POL-000532,  test   claimant 0532 ,motor,2024-08-20,2024-08-22,Open,499.0,M3 4AD,Fictional portfolio test claim 0532
+NCL-000533,pol-000533,Test Claimant 0533,Home,2024-08-21,2024-08-24,In Progress,499.75,M4 5AF,Fictional portfolio test claim 0533
+NCL-000534,POL-000534,Test Claimant 0534,Travel,2024-08-22,2024-08-26,Closed,500.5,M5 6AG,Fictional portfolio test claim 0534
+NCL-000535,POL-000535,Test Claimant 0535,Business,2024-08-23,2024-08-28,Declined,501.25,M1 1AA,Fictional portfolio test claim 0535
+NCL-000536,POL-000536,Test Claimant 0536,Motor,2024-08-24,2024-08-30,Open,502.0,m2 3ab,Fictional portfolio test claim 0536
+NCL-000537,POL-000537,Test Claimant 0537,Home,2024-08-25,2024-09-01,In Progress,502.75,M3 4AD,Fictional portfolio test claim 0537
+NCL-000538,POL-000538,Test Claimant 0538,Travel,2024-08-26,2024-09-03,Closed,503.5,M4 5AF,Fictional portfolio test claim 0538
+ ncl-000539,POL-000539,  test   claimant 0539 ,Business,2024-08-27,2024-09-05,Declined,504.25,M5 6AG,Fictional portfolio test claim 0539
+NCL-000540,POL-000540,Test Claimant 0540,Motor,2024-08-28,2024-08-29, open ,505.0,M1 1AA,Fictional portfolio test claim 0540
+NCL-000541,POL-000541,Test Claimant 0541,Home,2024-08-29,2024-08-31,In Progress,505.75,M2 3AB,Fictional portfolio test claim 0541
+NCL-000542,POL-000542,Test Claimant 0542,Travel,2024-08-30,2024-09-02,Closed,506.5,M3 4AD,Fictional portfolio test claim 0542
+NCL-000543,POL-000543,Test Claimant 0543,Business,2024-08-31,2024-09-04,Declined,507.25,M4 5AF,Fictional portfolio test claim 0543
+NCL-000544 ,POL-000544,Test Claimant 0544,Motor,2024-09-01,2024-09-06,Open,508.0,m5 6ag,Fictional portfolio test claim 0544
+NCL-000545,POL-000545,Test Claimant 0545,Home,2024-09-02,2024-09-08,In Progress,508.75,M1 1AA,Fictional portfolio test claim 0545
+NCL-000546,pol-000546,  test   claimant 0546 ,Travel,2024-09-03,2024-09-10,Closed,509.5,M2 3AB,Fictional portfolio test claim 0546
+NCL-000547,POL-000547,Test Claimant 0547,Business,2024-09-04,2024-09-12,Declined,510.25,M3 4AD,Fictional portfolio test claim 0547
+NCL-000548,POL-000548,Test Claimant 0548,Motor,2024-09-05,2024-09-14,Open,511.0,M4 5AF,Fictional portfolio test claim 0548
+NCL-000549,POL-000549,Test Claimant 0549,Home,2024-09-06,2024-09-07, in progress ,511.75,M5 6AG,Fictional portfolio test claim 0549
+ ncl-000550,POL-000550,Test Claimant 0550,Travel,2024-09-07,2024-09-09,Closed,512.5,M1 1AA,Fictional portfolio test claim 0550
+NCL-000551,POL-000551,Test Claimant 0551,business,2024-09-08,2024-09-11,Declined,513.25,M2 3AB,Fictional portfolio test claim 0551
+NCL-000552,POL-000552,Test Claimant 0552,Motor,2024-09-09,2024-09-13,Open,514.0,m3 4ad,Fictional portfolio test claim 0552
+NCL-000553,POL-000553,  test   claimant 0553 ,Home,2024-09-10,2024-09-15,In Progress,514.75,M4 5AF,Fictional portfolio test claim 0553
+NCL-000554,POL-000554,Test Claimant 0554,Travel,2024-09-11,2024-09-17,Closed,515.5,M5 6AG,Fictional portfolio test claim 0554
+NCL-000555,POL-000555,Test Claimant 0555,Business,2024-09-12,2024-09-19,Declined,516.25,M1 1AA,Fictional portfolio test claim 0555
+NCL-000556,POL-000556,Test Claimant 0556,Motor,2024-09-13,2024-09-21,Open,517.0,M2 3AB,Fictional portfolio test claim 0556
+NCL-000557,POL-000557,Test Claimant 0557,Home,2024-09-14,2024-09-23,In Progress,517.75,M3 4AD,Fictional portfolio test claim 0557
+NCL-000558,POL-000558,Test Claimant 0558,Travel,2024-09-15,2024-09-16, closed ,518.5,M4 5AF,Fictional portfolio test claim 0558
+NCL-000559,pol-000559,Test Claimant 0559,Business,2024-09-16,2024-09-18,Declined,519.25,M5 6AG,Fictional portfolio test claim 0559
+NCL-000560,POL-000560,  test   claimant 0560 ,Motor,2024-09-17,2024-09-20,Open,520.0,m1 1aa,Fictional portfolio test claim 0560
+ ncl-000561 ,POL-000561,Test Claimant 0561,Home,2024-09-18,2024-09-22,In Progress,520.75,M2 3AB,Fictional portfolio test claim 0561
+NCL-000562,POL-000562,Test Claimant 0562,Travel,2024-09-19,2024-09-24,Closed,521.5,M3 4AD,Fictional portfolio test claim 0562
+NCL-000563,POL-000563,Test Claimant 0563,Business,2024-09-20,2024-09-26,Declined,522.25,M4 5AF,Fictional portfolio test claim 0563
+NCL-000564,POL-000564,Test Claimant 0564,Motor,2024-09-21,2024-09-28,Open,523.0,M5 6AG,Fictional portfolio test claim 0564
+NCL-000565,POL-000565,Test Claimant 0565,Home,2024-09-22,2024-09-30,In Progress,523.75,M1 1AA,Fictional portfolio test claim 0565
+NCL-000566,POL-000566,Test Claimant 0566,Travel,2024-09-23,2024-10-02,Closed,524.5,M2 3AB,Fictional portfolio test claim 0566
+NCL-000567,POL-000567,  test   claimant 0567 ,Business,2024-09-24,2024-09-25, declined ,525.25,M3 4AD,Fictional portfolio test claim 0567
+NCL-000568,POL-000568,Test Claimant 0568,Motor,2024-09-25,2024-09-27,Open,526.0,m4 5af,Fictional portfolio test claim 0568
+NCL-000569,POL-000569,Test Claimant 0569,Home,2024-09-26,2024-09-29,In Progress,526.75,M5 6AG,Fictional portfolio test claim 0569
+NCL-000570,POL-000570,Test Claimant 0570,travel,2024-09-27,2024-10-01,Closed,527.5,M1 1AA,Fictional portfolio test claim 0570
+NCL-000571,POL-000571,Test Claimant 0571,Business,2024-09-28,2024-10-03,Declined,528.25,M2 3AB,Fictional portfolio test claim 0571
+ ncl-000572,pol-000572,Test Claimant 0572,Motor,2024-09-29,2024-10-05,Open,529.0,M3 4AD,Fictional portfolio test claim 0572
+NCL-000573,POL-000573,Test Claimant 0573,Home,2024-09-30,2024-10-07,In Progress,529.75,M4 5AF,Fictional portfolio test claim 0573
+NCL-000574,POL-000574,  test   claimant 0574 ,Travel,2024-10-01,2024-10-09,Closed,530.5,M5 6AG,Fictional portfolio test claim 0574
+NCL-000575,POL-000575,Test Claimant 0575,Business,2024-10-02,2024-10-11,Declined,531.25,M1 1AA,Fictional portfolio test claim 0575
+NCL-000576,POL-000576,Test Claimant 0576,Motor,2024-10-03,2024-10-04, open ,532.0,m2 3ab,Fictional portfolio test claim 0576
+NCL-000577,POL-000577,Test Claimant 0577,Home,2024-10-04,2024-10-06,In Progress,532.75,M3 4AD,Fictional portfolio test claim 0577
+NCL-000578 ,POL-000578,Test Claimant 0578,Travel,2024-10-05,2024-10-08,Closed,533.5,M4 5AF,Fictional portfolio test claim 0578
+NCL-000579,POL-000579,Test Claimant 0579,Business,2024-10-06,2024-10-10,Declined,534.25,M5 6AG,Fictional portfolio test claim 0579
+NCL-000580,POL-000580,Test Claimant 0580,Motor,2024-10-07,2024-10-12,Open,535.0,M1 1AA,Fictional portfolio test claim 0580
+NCL-000581,POL-000581,  test   claimant 0581 ,Home,2024-10-08,2024-10-14,In Progress,535.75,M2 3AB,Fictional portfolio test claim 0581
+NCL-000582,POL-000582,Test Claimant 0582,Travel,2024-10-09,2024-10-16,Closed,536.5,M3 4AD,Fictional portfolio test claim 0582
+ ncl-000583,POL-000583,Test Claimant 0583,Business,2024-10-10,2024-10-18,Declined,537.25,M4 5AF,Fictional portfolio test claim 0583
+NCL-000584,POL-000584,Test Claimant 0584,Motor,2024-10-11,2024-10-20,Open,538.0,m5 6ag,Fictional portfolio test claim 0584
+NCL-000585,pol-000585,Test Claimant 0585,Home,2024-10-12,2024-10-13, in progress ,538.75,M1 1AA,Fictional portfolio test claim 0585
+NCL-000586,POL-000586,Test Claimant 0586,Travel,2024-10-13,2024-10-15,Closed,539.5,M2 3AB,Fictional portfolio test claim 0586
+NCL-000587,POL-000587,Test Claimant 0587,Business,2024-10-14,2024-10-17,Declined,540.25,M3 4AD,Fictional portfolio test claim 0587
+NCL-000588,POL-000588,  test   claimant 0588 ,Motor,2024-10-15,2024-10-19,Open,541.0,M4 5AF,Fictional portfolio test claim 0588
+NCL-000589,POL-000589,Test Claimant 0589,home,2024-10-16,2024-10-21,In Progress,541.75,M5 6AG,Fictional portfolio test claim 0589
+NCL-000590,POL-000590,Test Claimant 0590,Travel,2024-10-17,2024-10-23,Closed,542.5,M1 1AA,Fictional portfolio test claim 0590
+NCL-000591,POL-000591,Test Claimant 0591,Business,2024-10-18,2024-10-25,Declined,543.25,M2 3AB,Fictional portfolio test claim 0591
+NCL-000592,POL-000592,Test Claimant 0592,Motor,2024-10-19,2024-10-27,Open,544.0,m3 4ad,Fictional portfolio test claim 0592
+NCL-000593,POL-000593,Test Claimant 0593,Home,2024-10-20,2024-10-29,In Progress,544.75,M4 5AF,Fictional portfolio test claim 0593
+ ncl-000594,POL-000594,Test Claimant 0594,Travel,2024-10-21,2024-10-22, closed ,545.5,M5 6AG,Fictional portfolio test claim 0594
+NCL-000595 ,POL-000595,  test   claimant 0595 ,Business,2024-10-22,2024-10-24,Declined,546.25,M1 1AA,Fictional portfolio test claim 0595
+NCL-000596,POL-000596,Test Claimant 0596,Motor,2024-10-23,2024-10-26,Open,547.0,M2 3AB,Fictional portfolio test claim 0596
+NCL-000597,POL-000597,Test Claimant 0597,Home,2024-10-24,2024-10-28,In Progress,547.75,M3 4AD,Fictional portfolio test claim 0597
+NCL-000598,pol-000598,Test Claimant 0598,Travel,2024-10-25,2024-10-30,Closed,548.5,M4 5AF,Fictional portfolio test claim 0598
+NCL-000599,POL-000599,Test Claimant 0599,Business,2024-10-26,2024-11-01,Declined,549.25,M5 6AG,Fictional portfolio test claim 0599
+NCL-000600,POL-000600,Test Claimant 0600,Motor,2024-01-01,2024-01-08,Open,550.0,m1 1aa,Fictional portfolio test claim 0600
+NCL-000601,POL-000601,Test Claimant 0601,Home,2024-01-02,2024-01-10,In Progress,550.75,M2 3AB,Fictional portfolio test claim 0601
+NCL-000602,POL-000602,  test   claimant 0602 ,Travel,2024-01-03,2024-01-12,Closed,551.5,M3 4AD,Fictional portfolio test claim 0602
+NCL-000603,POL-000603,Test Claimant 0603,Business,2024-01-04,2024-01-05, declined ,552.25,M4 5AF,Fictional portfolio test claim 0603
+NCL-000604,POL-000604,Test Claimant 0604,Motor,2024-01-05,2024-01-07,Open,553.0,M5 6AG,Fictional portfolio test claim 0604
+ ncl-000605,POL-000605,Test Claimant 0605,Home,2024-01-06,2024-01-09,In Progress,553.75,M1 1AA,Fictional portfolio test claim 0605
+NCL-000606,POL-000606,Test Claimant 0606,Travel,2024-01-07,2024-01-11,Closed,554.5,M2 3AB,Fictional portfolio test claim 0606
+NCL-000607,POL-000607,Test Claimant 0607,Business,2024-01-08,2024-01-13,Declined,555.25,M3 4AD,Fictional portfolio test claim 0607
+NCL-000608,POL-000608,Test Claimant 0608,motor,2024-01-09,2024-01-15,Open,556.0,m4 5af,Fictional portfolio test claim 0608
+NCL-000609,POL-000609,  test   claimant 0609 ,Home,2024-01-10,2024-01-17,In Progress,556.75,M5 6AG,Fictional portfolio test claim 0609
+NCL-000610,POL-000610,Test Claimant 0610,Travel,2024-01-11,2024-01-19,Closed,557.5,M1 1AA,Fictional portfolio test claim 0610
+NCL-000611,pol-000611,Test Claimant 0611,Business,2024-01-12,2024-01-21,Declined,558.25,M2 3AB,Fictional portfolio test claim 0611
+NCL-000612 ,POL-000612,Test Claimant 0612,Motor,2024-01-13,2024-01-14, open ,559.0,M3 4AD,Fictional portfolio test claim 0612
+NCL-000613,POL-000613,Test Claimant 0613,Home,2024-01-14,2024-01-16,In Progress,559.75,M4 5AF,Fictional portfolio test claim 0613
+NCL-000614,POL-000614,Test Claimant 0614,Travel,2024-01-15,2024-01-18,Closed,560.5,M5 6AG,Fictional portfolio test claim 0614
+NCL-000615,POL-000615,Test Claimant 0615,Business,2024-01-16,2024-01-20,Declined,561.25,M1 1AA,Fictional portfolio test claim 0615
+ ncl-000616,POL-000616,  test   claimant 0616 ,Motor,2024-01-17,2024-01-22,Open,562.0,m2 3ab,Fictional portfolio test claim 0616
+NCL-000617,POL-000617,Test Claimant 0617,Home,2024-01-18,2024-01-24,In Progress,562.75,M3 4AD,Fictional portfolio test claim 0617
+NCL-000618,POL-000618,Test Claimant 0618,Travel,2024-01-19,2024-01-26,Closed,563.5,M4 5AF,Fictional portfolio test claim 0618
+NCL-000619,POL-000619,Test Claimant 0619,Business,2024-01-20,2024-01-28,Declined,564.25,M5 6AG,Fictional portfolio test claim 0619
+NCL-000620,POL-000620,Test Claimant 0620,Motor,2024-01-21,2024-01-30,Open,565.0,M1 1AA,Fictional portfolio test claim 0620
+NCL-000621,POL-000621,Test Claimant 0621,Home,2024-01-22,2024-01-23, in progress ,565.75,M2 3AB,Fictional portfolio test claim 0621
+NCL-000622,POL-000622,Test Claimant 0622,Travel,2024-01-23,2024-01-25,Closed,566.5,M3 4AD,Fictional portfolio test claim 0622
+NCL-000623,POL-000623,  test   claimant 0623 ,Business,2024-01-24,2024-01-27,Declined,567.25,M4 5AF,Fictional portfolio test claim 0623
+NCL-000624,pol-000624,Test Claimant 0624,Motor,2024-01-25,2024-01-29,Open,568.0,m5 6ag,Fictional portfolio test claim 0624
+NCL-000625,POL-000625,Test Claimant 0625,Home,2024-01-26,2024-01-31,In Progress,568.75,M1 1AA,Fictional portfolio test claim 0625
+NCL-000626,POL-000626,Test Claimant 0626,Travel,2024-01-27,2024-02-02,Closed,569.5,M2 3AB,Fictional portfolio test claim 0626
+ ncl-000627,POL-000627,Test Claimant 0627,business,2024-01-28,2024-02-04,Declined,570.25,M3 4AD,Fictional portfolio test claim 0627
+NCL-000628,POL-000628,Test Claimant 0628,Motor,2024-01-29,2024-02-06,Open,571.0,M4 5AF,Fictional portfolio test claim 0628
+NCL-000629 ,POL-000629,Test Claimant 0629,Home,2024-01-30,2024-02-08,In Progress,571.75,M5 6AG,Fictional portfolio test claim 0629
+NCL-000630,POL-000630,  test   claimant 0630 ,Travel,2024-01-31,2024-02-01, closed ,572.5,M1 1AA,Fictional portfolio test claim 0630
+NCL-000631,POL-000631,Test Claimant 0631,Business,2024-02-01,2024-02-03,Declined,573.25,M2 3AB,Fictional portfolio test claim 0631
+NCL-000632,POL-000632,Test Claimant 0632,Motor,2024-02-02,2024-02-05,Open,574.0,m3 4ad,Fictional portfolio test claim 0632
+NCL-000633,POL-000633,Test Claimant 0633,Home,2024-02-03,2024-02-07,In Progress,574.75,M4 5AF,Fictional portfolio test claim 0633
+NCL-000634,POL-000634,Test Claimant 0634,Travel,2024-02-04,2024-02-09,Closed,575.5,M5 6AG,Fictional portfolio test claim 0634
+NCL-000635,POL-000635,Test Claimant 0635,Business,2024-02-05,2024-02-11,Declined,576.25,M1 1AA,Fictional portfolio test claim 0635
+NCL-000636,POL-000636,Test Claimant 0636,Motor,2024-02-06,2024-02-13,Open,577.0,M2 3AB,Fictional portfolio test claim 0636
+NCL-000637,pol-000637,  test   claimant 0637 ,Home,2024-02-07,2024-02-15,In Progress,577.75,M3 4AD,Fictional portfolio test claim 0637
+ ncl-000638,POL-000638,Test Claimant 0638,Travel,2024-02-08,2024-02-17,Closed,578.5,M4 5AF,Fictional portfolio test claim 0638
+NCL-000639,POL-000639,Test Claimant 0639,Business,2024-02-09,2024-02-10, declined ,579.25,M5 6AG,Fictional portfolio test claim 0639
+NCL-000640,POL-000640,Test Claimant 0640,Motor,2024-02-10,2024-02-12,Open,580.0,m1 1aa,Fictional portfolio test claim 0640
+NCL-000641,POL-000641,Test Claimant 0641,Home,2024-02-11,2024-02-14,In Progress,580.75,M2 3AB,Fictional portfolio test claim 0641
+NCL-000642,POL-000642,Test Claimant 0642,Travel,2024-02-12,2024-02-16,Closed,581.5,M3 4AD,Fictional portfolio test claim 0642
+NCL-000643,POL-000643,Test Claimant 0643,Business,2024-02-13,2024-02-18,Declined,582.25,M4 5AF,Fictional portfolio test claim 0643
+NCL-000644,POL-000644,  test   claimant 0644 ,Motor,2024-02-14,2024-02-20,Open,583.0,M5 6AG,Fictional portfolio test claim 0644
+NCL-000645,POL-000645,Test Claimant 0645,Home,2024-02-15,2024-02-22,In Progress,583.75,M1 1AA,Fictional portfolio test claim 0645
+NCL-000646 ,POL-000646,Test Claimant 0646,travel,2024-02-16,2024-02-24,Closed,584.5,M2 3AB,Fictional portfolio test claim 0646
+NCL-000647,POL-000647,Test Claimant 0647,Business,2024-02-17,2024-02-26,Declined,585.25,M3 4AD,Fictional portfolio test claim 0647
+NCL-000648,POL-000648,Test Claimant 0648,Motor,2024-02-18,2024-02-19, open ,586.0,m4 5af,Fictional portfolio test claim 0648
+ ncl-000649,POL-000649,Test Claimant 0649,Home,2024-02-19,2024-02-21,In Progress,586.75,M5 6AG,Fictional portfolio test claim 0649
+NCL-000650,pol-000650,Test Claimant 0650,Travel,2024-02-20,2024-02-23,Closed,587.5,M1 1AA,Fictional portfolio test claim 0650
+NCL-000651,POL-000651,  test   claimant 0651 ,Business,2024-02-21,2024-02-25,Declined,588.25,M2 3AB,Fictional portfolio test claim 0651
+NCL-000652,POL-000652,Test Claimant 0652,Motor,2024-02-22,2024-02-27,Open,589.0,M3 4AD,Fictional portfolio test claim 0652
+NCL-000653,POL-000653,Test Claimant 0653,Home,2024-02-23,2024-02-29,In Progress,589.75,M4 5AF,Fictional portfolio test claim 0653
+NCL-000654,POL-000654,Test Claimant 0654,Travel,2024-02-24,2024-03-02,Closed,590.5,M5 6AG,Fictional portfolio test claim 0654
+NCL-000655,POL-000655,Test Claimant 0655,Business,2024-02-25,2024-03-04,Declined,591.25,M1 1AA,Fictional portfolio test claim 0655
+NCL-000656,POL-000656,Test Claimant 0656,Motor,2024-02-26,2024-03-06,Open,592.0,m2 3ab,Fictional portfolio test claim 0656
+NCL-000657,POL-000657,Test Claimant 0657,Home,2024-02-27,2024-02-28, in progress ,592.75,M3 4AD,Fictional portfolio test claim 0657
+NCL-000658,POL-000658,  test   claimant 0658 ,Travel,2024-02-28,2024-03-01,Closed,593.5,M4 5AF,Fictional portfolio test claim 0658
+NCL-000659,POL-000659,Test Claimant 0659,Business,2024-02-29,2024-03-03,Declined,594.25,M5 6AG,Fictional portfolio test claim 0659
+ ncl-000660,POL-000660,Test Claimant 0660,Motor,2024-03-01,2024-03-05,Open,595.0,M1 1AA,Fictional portfolio test claim 0660
+NCL-000661,POL-000661,Test Claimant 0661,Home,2024-03-02,2024-03-07,In Progress,595.75,M2 3AB,Fictional portfolio test claim 0661
+NCL-000662,POL-000662,Test Claimant 0662,Travel,2024-03-03,2024-03-09,Closed,596.5,M3 4AD,Fictional portfolio test claim 0662
+NCL-000663 ,pol-000663,Test Claimant 0663,Business,2024-03-04,2024-03-11,Declined,597.25,M4 5AF,Fictional portfolio test claim 0663
+NCL-000664,POL-000664,Test Claimant 0664,Motor,2024-03-05,2024-03-13,Open,598.0,m5 6ag,Fictional portfolio test claim 0664
+NCL-000665,POL-000665,  test   claimant 0665 ,home,2024-03-06,2024-03-15,In Progress,598.75,M1 1AA,Fictional portfolio test claim 0665
+NCL-000666,POL-000666,Test Claimant 0666,Travel,2024-03-07,2024-03-08, closed ,599.5,M2 3AB,Fictional portfolio test claim 0666
+NCL-000667,POL-000667,Test Claimant 0667,Business,2024-03-08,2024-03-10,Declined,600.25,M3 4AD,Fictional portfolio test claim 0667
+NCL-000668,POL-000668,Test Claimant 0668,Motor,2024-03-09,2024-03-12,Open,601.0,M4 5AF,Fictional portfolio test claim 0668
+NCL-000669,POL-000669,Test Claimant 0669,Home,2024-03-10,2024-03-14,In Progress,601.75,M5 6AG,Fictional portfolio test claim 0669
+NCL-000670,POL-000670,Test Claimant 0670,Travel,2024-03-11,2024-03-16,Closed,602.5,M1 1AA,Fictional portfolio test claim 0670
+ ncl-000671,POL-000671,Test Claimant 0671,Business,2024-03-12,2024-03-18,Declined,603.25,M2 3AB,Fictional portfolio test claim 0671
+NCL-000672,POL-000672,  test   claimant 0672 ,Motor,2024-03-13,2024-03-20,Open,604.0,m3 4ad,Fictional portfolio test claim 0672
+NCL-000673,POL-000673,Test Claimant 0673,Home,2024-03-14,2024-03-22,In Progress,604.75,M4 5AF,Fictional portfolio test claim 0673
+NCL-000674,POL-000674,Test Claimant 0674,Travel,2024-03-15,2024-03-24,Closed,605.5,M5 6AG,Fictional portfolio test claim 0674
+NCL-000675,POL-000675,Test Claimant 0675,Business,2024-03-16,2024-03-17, declined ,606.25,M1 1AA,Fictional portfolio test claim 0675
+NCL-000676,pol-000676,Test Claimant 0676,Motor,2024-03-17,2024-03-19,Open,607.0,M2 3AB,Fictional portfolio test claim 0676
+NCL-000677,POL-000677,Test Claimant 0677,Home,2024-03-18,2024-03-21,In Progress,607.75,M3 4AD,Fictional portfolio test claim 0677
+NCL-000678,POL-000678,Test Claimant 0678,Travel,2024-03-19,2024-03-23,Closed,608.5,M4 5AF,Fictional portfolio test claim 0678
+NCL-000679,POL-000679,  test   claimant 0679 ,Business,2024-03-20,2024-03-25,Declined,609.25,M5 6AG,Fictional portfolio test claim 0679
+NCL-000680 ,POL-000680,Test Claimant 0680,Motor,2024-03-21,2024-03-27,Open,610.0,m1 1aa,Fictional portfolio test claim 0680
+NCL-000681,POL-000681,Test Claimant 0681,Home,2024-03-22,2024-03-29,In Progress,610.75,M2 3AB,Fictional portfolio test claim 0681
+ ncl-000682,POL-000682,Test Claimant 0682,Travel,2024-03-23,2024-03-31,Closed,611.5,M3 4AD,Fictional portfolio test claim 0682
+NCL-000683,POL-000683,Test Claimant 0683,Business,2024-03-24,2024-04-02,Declined,612.25,M4 5AF,Fictional portfolio test claim 0683
+NCL-000684,POL-000684,Test Claimant 0684,motor,2024-03-25,2024-03-26, open ,613.0,M5 6AG,Fictional portfolio test claim 0684
+NCL-000685,POL-000685,Test Claimant 0685,Home,2024-03-26,2024-03-28,In Progress,613.75,M1 1AA,Fictional portfolio test claim 0685
+NCL-000686,POL-000686,  test   claimant 0686 ,Travel,2024-03-27,2024-03-30,Closed,614.5,M2 3AB,Fictional portfolio test claim 0686
+NCL-000687,POL-000687,Test Claimant 0687,Business,2024-03-28,2024-04-01,Declined,615.25,M3 4AD,Fictional portfolio test claim 0687
+NCL-000688,POL-000688,Test Claimant 0688,Motor,2024-03-29,2024-04-03,Open,616.0,m4 5af,Fictional portfolio test claim 0688
+NCL-000689,pol-000689,Test Claimant 0689,Home,2024-03-30,2024-04-05,In Progress,616.75,M5 6AG,Fictional portfolio test claim 0689
+NCL-000690,POL-000690,Test Claimant 0690,Travel,2024-03-31,2024-04-07,Closed,617.5,M1 1AA,Fictional portfolio test claim 0690
+NCL-000691,POL-000691,Test Claimant 0691,Business,2024-04-01,2024-04-09,Declined,618.25,M2 3AB,Fictional portfolio test claim 0691
+NCL-000692,POL-000692,Test Claimant 0692,Motor,2024-04-02,2024-04-11,Open,619.0,M3 4AD,Fictional portfolio test claim 0692
+ ncl-000693,POL-000693,  test   claimant 0693 ,Home,2024-04-03,2024-04-04, in progress ,619.75,M4 5AF,Fictional portfolio test claim 0693
+NCL-000694,POL-000694,Test Claimant 0694,Travel,2024-04-04,2024-04-06,Closed,620.5,M5 6AG,Fictional portfolio test claim 0694
+NCL-000695,POL-000695,Test Claimant 0695,Business,2024-04-05,2024-04-08,Declined,621.25,M1 1AA,Fictional portfolio test claim 0695
+NCL-000696,POL-000696,Test Claimant 0696,Motor,2024-04-06,2024-04-10,Open,622.0,m2 3ab,Fictional portfolio test claim 0696
+NCL-000697 ,POL-000697,Test Claimant 0697,Home,2024-04-07,2024-04-12,In Progress,622.75,M3 4AD,Fictional portfolio test claim 0697
+NCL-000698,POL-000698,Test Claimant 0698,Travel,2024-04-08,2024-04-14,Closed,623.5,M4 5AF,Fictional portfolio test claim 0698
+NCL-000699,POL-000699,Test Claimant 0699,Business,2024-04-09,2024-04-16,Declined,624.25,M5 6AG,Fictional portfolio test claim 0699
+NCL-000700,POL-000700,  test   claimant 0700 ,Motor,2024-04-10,2024-04-18,Open,625.0,M1 1AA,Fictional portfolio test claim 0700
+NCL-000701,POL-000701,Test Claimant 0701,Home,2024-04-11,2024-04-20,In Progress,625.75,M2 3AB,Fictional portfolio test claim 0701
+NCL-000702,pol-000702,Test Claimant 0702,Travel,2024-04-12,2024-04-13, closed ,626.5,M3 4AD,Fictional portfolio test claim 0702
+NCL-000703,POL-000703,Test Claimant 0703,business,2024-04-13,2024-04-15,Declined,627.25,M4 5AF,Fictional portfolio test claim 0703
+ ncl-000704,POL-000704,Test Claimant 0704,Motor,2024-04-14,2024-04-17,Open,628.0,m5 6ag,Fictional portfolio test claim 0704
+NCL-000705,POL-000705,Test Claimant 0705,Home,2024-04-15,2024-04-19,In Progress,628.75,M1 1AA,Fictional portfolio test claim 0705
+NCL-000706,POL-000706,Test Claimant 0706,Travel,2024-04-16,2024-04-21,Closed,629.5,M2 3AB,Fictional portfolio test claim 0706
+NCL-000707,POL-000707,  test   claimant 0707 ,Business,2024-04-17,2024-04-23,Declined,630.25,M3 4AD,Fictional portfolio test claim 0707
+NCL-000708,POL-000708,Test Claimant 0708,Motor,2024-04-18,2024-04-25,Open,631.0,M4 5AF,Fictional portfolio test claim 0708
+NCL-000709,POL-000709,Test Claimant 0709,Home,2024-04-19,2024-04-27,In Progress,631.75,M5 6AG,Fictional portfolio test claim 0709
+NCL-000710,POL-000710,Test Claimant 0710,Travel,2024-04-20,2024-04-29,Closed,632.5,M1 1AA,Fictional portfolio test claim 0710
+NCL-000711,POL-000711,Test Claimant 0711,Business,2024-04-21,2024-04-22, declined ,633.25,M2 3AB,Fictional portfolio test claim 0711
+NCL-000712,POL-000712,Test Claimant 0712,Motor,2024-04-22,2024-04-24,Open,634.0,m3 4ad,Fictional portfolio test claim 0712
+NCL-000713,POL-000713,Test Claimant 0713,Home,2024-04-23,2024-04-26,In Progress,634.75,M4 5AF,Fictional portfolio test claim 0713
+NCL-000714 ,POL-000714,  test   claimant 0714 ,Travel,2024-04-24,2024-04-28,Closed,635.5,M5 6AG,Fictional portfolio test claim 0714
+ ncl-000715,pol-000715,Test Claimant 0715,Business,2024-04-25,2024-04-30,Declined,636.25,M1 1AA,Fictional portfolio test claim 0715
+NCL-000716,POL-000716,Test Claimant 0716,Motor,2024-04-26,2024-05-02,Open,637.0,M2 3AB,Fictional portfolio test claim 0716
+NCL-000717,POL-000717,Test Claimant 0717,Home,2024-04-27,2024-05-04,In Progress,637.75,M3 4AD,Fictional portfolio test claim 0717
+NCL-000718,POL-000718,Test Claimant 0718,Travel,2024-04-28,2024-05-06,Closed,638.5,M4 5AF,Fictional portfolio test claim 0718
+NCL-000719,POL-000719,Test Claimant 0719,Business,2024-04-29,2024-05-08,Declined,639.25,M5 6AG,Fictional portfolio test claim 0719
+NCL-000720,POL-000720,Test Claimant 0720,Motor,2024-04-30,2024-05-01, open ,640.0,m1 1aa,Fictional portfolio test claim 0720
+NCL-000721,POL-000721,  test   claimant 0721 ,Home,2024-05-01,2024-05-03,In Progress,640.75,M2 3AB,Fictional portfolio test claim 0721
+NCL-000722,POL-000722,Test Claimant 0722,travel,2024-05-02,2024-05-05,Closed,641.5,M3 4AD,Fictional portfolio test claim 0722
+NCL-000723,POL-000723,Test Claimant 0723,Business,2024-05-03,2024-05-07,Declined,642.25,M4 5AF,Fictional portfolio test claim 0723
+NCL-000724,POL-000724,Test Claimant 0724,Motor,2024-05-04,2024-05-09,Open,643.0,M5 6AG,Fictional portfolio test claim 0724
+NCL-000725,POL-000725,Test Claimant 0725,Home,2024-05-05,2024-05-11,In Progress,643.75,M1 1AA,Fictional portfolio test claim 0725
+ ncl-000726,POL-000726,Test Claimant 0726,Travel,2024-05-06,2024-05-13,Closed,644.5,M2 3AB,Fictional portfolio test claim 0726
+NCL-000727,POL-000727,Test Claimant 0727,Business,2024-05-07,2024-05-15,Declined,645.25,M3 4AD,Fictional portfolio test claim 0727
+NCL-000728,pol-000728,  test   claimant 0728 ,Motor,2024-05-08,2024-05-17,Open,646.0,m4 5af,Fictional portfolio test claim 0728
+NCL-000729,POL-000729,Test Claimant 0729,Home,2024-05-09,2024-05-10, in progress ,646.75,M5 6AG,Fictional portfolio test claim 0729
+NCL-000730,POL-000730,Test Claimant 0730,Travel,2024-05-10,2024-05-12,Closed,647.5,M1 1AA,Fictional portfolio test claim 0730
+NCL-000731 ,POL-000731,Test Claimant 0731,Business,2024-05-11,2024-05-14,Declined,648.25,M2 3AB,Fictional portfolio test claim 0731
+NCL-000732,POL-000732,Test Claimant 0732,Motor,2024-05-12,2024-05-16,Open,649.0,M3 4AD,Fictional portfolio test claim 0732
+NCL-000733,POL-000733,Test Claimant 0733,Home,2024-05-13,2024-05-18,In Progress,649.75,M4 5AF,Fictional portfolio test claim 0733
+NCL-000734,POL-000734,Test Claimant 0734,Travel,2024-05-14,2024-05-20,Closed,650.5,M5 6AG,Fictional portfolio test claim 0734
+NCL-000735,POL-000735,  test   claimant 0735 ,Business,2024-05-15,2024-05-22,Declined,651.25,M1 1AA,Fictional portfolio test claim 0735
+NCL-000736,POL-000736,Test Claimant 0736,Motor,2024-05-16,2024-05-24,Open,652.0,m2 3ab,Fictional portfolio test claim 0736
+ ncl-000737,POL-000737,Test Claimant 0737,Home,2024-05-17,2024-05-26,In Progress,652.75,M3 4AD,Fictional portfolio test claim 0737
+NCL-000738,POL-000738,Test Claimant 0738,Travel,2024-05-18,2024-05-19, closed ,653.5,M4 5AF,Fictional portfolio test claim 0738
+NCL-000739,POL-000739,Test Claimant 0739,Business,2024-05-19,2024-05-21,Declined,654.25,M5 6AG,Fictional portfolio test claim 0739
+NCL-000740,POL-000740,Test Claimant 0740,Motor,2024-05-20,2024-05-23,Open,655.0,M1 1AA,Fictional portfolio test claim 0740
+NCL-000741,pol-000741,Test Claimant 0741,home,2024-05-21,2024-05-25,In Progress,655.75,M2 3AB,Fictional portfolio test claim 0741
+NCL-000742,POL-000742,  test   claimant 0742 ,Travel,2024-05-22,2024-05-27,Closed,656.5,M3 4AD,Fictional portfolio test claim 0742
+NCL-000743,POL-000743,Test Claimant 0743,Business,2024-05-23,2024-05-29,Declined,657.25,M4 5AF,Fictional portfolio test claim 0743
+NCL-000744,POL-000744,Test Claimant 0744,Motor,2024-05-24,2024-05-31,Open,658.0,m5 6ag,Fictional portfolio test claim 0744
+NCL-000745,POL-000745,Test Claimant 0745,Home,2024-05-25,2024-06-02,In Progress,658.75,M1 1AA,Fictional portfolio test claim 0745
+NCL-000746,POL-000746,Test Claimant 0746,Travel,2024-05-26,2024-06-04,Closed,659.5,M2 3AB,Fictional portfolio test claim 0746
+NCL-000747,POL-000747,Test Claimant 0747,Business,2024-05-27,2024-05-28, declined ,660.25,M3 4AD,Fictional portfolio test claim 0747
+ ncl-000748 ,POL-000748,Test Claimant 0748,Motor,2024-05-28,2024-05-30,Open,661.0,M4 5AF,Fictional portfolio test claim 0748
+NCL-000749,POL-000749,  test   claimant 0749 ,Home,2024-05-29,2024-06-01,In Progress,661.75,M5 6AG,Fictional portfolio test claim 0749
+NCL-000750,POL-000750,Test Claimant 0750,Travel,2024-05-30,2024-06-03,Closed,662.5,M1 1AA,Fictional portfolio test claim 0750
+NCL-000751,POL-000751,Test Claimant 0751,Business,2024-05-31,2024-06-05,Declined,663.25,M2 3AB,Fictional portfolio test claim 0751
+NCL-000752,POL-000752,Test Claimant 0752,Motor,2024-06-01,2024-06-07,Open,664.0,m3 4ad,Fictional portfolio test claim 0752
+NCL-000753,POL-000753,Test Claimant 0753,Home,2024-06-02,2024-06-09,In Progress,664.75,M4 5AF,Fictional portfolio test claim 0753
+NCL-000754,pol-000754,Test Claimant 0754,Travel,2024-06-03,2024-06-11,Closed,665.5,M5 6AG,Fictional portfolio test claim 0754
+NCL-000755,POL-000755,Test Claimant 0755,Business,2024-06-04,2024-06-13,Declined,666.25,M1 1AA,Fictional portfolio test claim 0755
+NCL-000756,POL-000756,  test   claimant 0756 ,Motor,2024-06-05,2024-06-06, open ,667.0,M2 3AB,Fictional portfolio test claim 0756
+NCL-000757,POL-000757,Test Claimant 0757,Home,2024-06-06,2024-06-08,In Progress,667.75,M3 4AD,Fictional portfolio test claim 0757
+NCL-000758,POL-000758,Test Claimant 0758,Travel,2024-06-07,2024-06-10,Closed,668.5,M4 5AF,Fictional portfolio test claim 0758
+ ncl-000759,POL-000759,Test Claimant 0759,Business,2024-06-08,2024-06-12,Declined,669.25,M5 6AG,Fictional portfolio test claim 0759
+NCL-000760,POL-000760,Test Claimant 0760,motor,2024-06-09,2024-06-14,Open,670.0,m1 1aa,Fictional portfolio test claim 0760
+NCL-000761,POL-000761,Test Claimant 0761,Home,2024-06-10,2024-06-16,In Progress,670.75,M2 3AB,Fictional portfolio test claim 0761
+NCL-000762,POL-000762,Test Claimant 0762,Travel,2024-06-11,2024-06-18,Closed,671.5,M3 4AD,Fictional portfolio test claim 0762
+NCL-000763,POL-000763,  test   claimant 0763 ,Business,2024-06-12,2024-06-20,Declined,672.25,M4 5AF,Fictional portfolio test claim 0763
+NCL-000764,POL-000764,Test Claimant 0764,Motor,2024-06-13,2024-06-22,Open,673.0,M5 6AG,Fictional portfolio test claim 0764
+NCL-000765 ,POL-000765,Test Claimant 0765,Home,2024-06-14,2024-06-15, in progress ,673.75,M1 1AA,Fictional portfolio test claim 0765
+NCL-000766,POL-000766,Test Claimant 0766,Travel,2024-06-15,2024-06-17,Closed,674.5,M2 3AB,Fictional portfolio test claim 0766
+NCL-000767,pol-000767,Test Claimant 0767,Business,2024-06-16,2024-06-19,Declined,675.25,M3 4AD,Fictional portfolio test claim 0767
+NCL-000768,POL-000768,Test Claimant 0768,Motor,2024-06-17,2024-06-21,Open,676.0,m4 5af,Fictional portfolio test claim 0768
+NCL-000769,POL-000769,Test Claimant 0769,Home,2024-06-18,2024-06-23,In Progress,676.75,M5 6AG,Fictional portfolio test claim 0769
+ ncl-000770,POL-000770,  test   claimant 0770 ,Travel,2024-06-19,2024-06-25,Closed,677.5,M1 1AA,Fictional portfolio test claim 0770
+NCL-000771,POL-000771,Test Claimant 0771,Business,2024-06-20,2024-06-27,Declined,678.25,M2 3AB,Fictional portfolio test claim 0771
+NCL-000772,POL-000772,Test Claimant 0772,Motor,2024-06-21,2024-06-29,Open,679.0,M3 4AD,Fictional portfolio test claim 0772
+NCL-000773,POL-000773,Test Claimant 0773,Home,2024-06-22,2024-07-01,In Progress,679.75,M4 5AF,Fictional portfolio test claim 0773
+NCL-000774,POL-000774,Test Claimant 0774,Travel,2024-06-23,2024-06-24, closed ,680.5,M5 6AG,Fictional portfolio test claim 0774
+NCL-000775,POL-000775,Test Claimant 0775,Business,2024-06-24,2024-06-26,Declined,681.25,M1 1AA,Fictional portfolio test claim 0775
+NCL-000776,POL-000776,Test Claimant 0776,Motor,2024-06-25,2024-06-28,Open,682.0,m2 3ab,Fictional portfolio test claim 0776
+NCL-000777,POL-000777,  test   claimant 0777 ,Home,2024-06-26,2024-06-30,In Progress,682.75,M3 4AD,Fictional portfolio test claim 0777
+NCL-000778,POL-000778,Test Claimant 0778,Travel,2024-06-27,2024-07-02,Closed,683.5,M4 5AF,Fictional portfolio test claim 0778
+NCL-000779,POL-000779,Test Claimant 0779,business,2024-06-28,2024-07-04,Declined,684.25,M5 6AG,Fictional portfolio test claim 0779
+NCL-000780,pol-000780,Test Claimant 0780,Motor,2024-06-29,2024-07-06,Open,685.0,M1 1AA,Fictional portfolio test claim 0780
+ ncl-000781,POL-000781,Test Claimant 0781,Home,2024-06-30,2024-07-08,In Progress,685.75,M2 3AB,Fictional portfolio test claim 0781
+NCL-000782 ,POL-000782,Test Claimant 0782,Travel,2024-07-01,2024-07-10,Closed,686.5,M3 4AD,Fictional portfolio test claim 0782
+NCL-000783,POL-000783,Test Claimant 0783,Business,2024-07-02,2024-07-03, declined ,687.25,M4 5AF,Fictional portfolio test claim 0783
+NCL-000784,POL-000784,  test   claimant 0784 ,Motor,2024-07-03,2024-07-05,Open,688.0,m5 6ag,Fictional portfolio test claim 0784
+NCL-000785,POL-000785,Test Claimant 0785,Home,2024-07-04,2024-07-07,In Progress,688.75,M1 1AA,Fictional portfolio test claim 0785
+NCL-000786,POL-000786,Test Claimant 0786,Travel,2024-07-05,2024-07-09,Closed,689.5,M2 3AB,Fictional portfolio test claim 0786
+NCL-000787,POL-000787,Test Claimant 0787,Business,2024-07-06,2024-07-11,Declined,690.25,M3 4AD,Fictional portfolio test claim 0787
+NCL-000788,POL-000788,Test Claimant 0788,Motor,2024-07-07,2024-07-13,Open,691.0,M4 5AF,Fictional portfolio test claim 0788
+NCL-000789,POL-000789,Test Claimant 0789,Home,2024-07-08,2024-07-15,In Progress,691.75,M5 6AG,Fictional portfolio test claim 0789
+NCL-000790,POL-000790,Test Claimant 0790,Travel,2024-07-09,2024-07-17,Closed,692.5,M1 1AA,Fictional portfolio test claim 0790
+NCL-000791,POL-000791,  test   claimant 0791 ,Business,2024-07-10,2024-07-19,Declined,693.25,M2 3AB,Fictional portfolio test claim 0791
+ ncl-000792,POL-000792,Test Claimant 0792,Motor,2024-07-11,2024-07-12, open ,694.0,m3 4ad,Fictional portfolio test claim 0792
+NCL-000793,pol-000793,Test Claimant 0793,Home,2024-07-12,2024-07-14,In Progress,694.75,M4 5AF,Fictional portfolio test claim 0793
+NCL-000794,POL-000794,Test Claimant 0794,Travel,2024-07-13,2024-07-16,Closed,695.5,M5 6AG,Fictional portfolio test claim 0794
+NCL-000795,POL-000795,Test Claimant 0795,Business,2024-07-14,2024-07-18,Declined,696.25,M1 1AA,Fictional portfolio test claim 0795
+NCL-000796,POL-000796,Test Claimant 0796,Motor,2024-07-15,2024-07-20,Open,697.0,M2 3AB,Fictional portfolio test claim 0796
+NCL-000797,POL-000797,Test Claimant 0797,Home,2024-07-16,2024-07-22,In Progress,697.75,M3 4AD,Fictional portfolio test claim 0797
+NCL-000798,POL-000798,  test   claimant 0798 ,travel,2024-07-17,2024-07-24,Closed,698.5,M4 5AF,Fictional portfolio test claim 0798
+NCL-000799 ,POL-000799,Test Claimant 0799,Business,2024-07-18,2024-07-26,Declined,699.25,M5 6AG,Fictional portfolio test claim 0799
+NCL-000800,POL-000800,Test Claimant 0800,Motor,2024-07-19,2024-07-28,Open,700.0,m1 1aa,Fictional portfolio test claim 0800
+NCL-000801,POL-000801,Test Claimant 0801,Home,2024-07-20,2024-07-21, in progress ,700.75,M2 3AB,Fictional portfolio test claim 0801
+NCL-000802,POL-000802,Test Claimant 0802,Travel,2024-07-21,2024-07-23,Closed,701.5,M3 4AD,Fictional portfolio test claim 0802
+ ncl-000803,POL-000803,Test Claimant 0803,Business,2024-07-22,2024-07-25,Declined,702.25,M4 5AF,Fictional portfolio test claim 0803
+NCL-000804,POL-000804,Test Claimant 0804,Motor,2024-07-23,2024-07-27,Open,703.0,M5 6AG,Fictional portfolio test claim 0804
+NCL-000805,POL-000805,  test   claimant 0805 ,Home,2024-07-24,2024-07-29,In Progress,703.75,M1 1AA,Fictional portfolio test claim 0805
+NCL-000806,pol-000806,Test Claimant 0806,Travel,2024-07-25,2024-07-31,Closed,704.5,M2 3AB,Fictional portfolio test claim 0806
+NCL-000807,POL-000807,Test Claimant 0807,Business,2024-07-26,2024-08-02,Declined,705.25,M3 4AD,Fictional portfolio test claim 0807
+NCL-000808,POL-000808,Test Claimant 0808,Motor,2024-07-27,2024-08-04,Open,706.0,m4 5af,Fictional portfolio test claim 0808
+NCL-000809,POL-000809,Test Claimant 0809,Home,2024-07-28,2024-08-06,In Progress,706.75,M5 6AG,Fictional portfolio test claim 0809
+NCL-000810,POL-000810,Test Claimant 0810,Travel,2024-07-29,2024-07-30, closed ,707.5,M1 1AA,Fictional portfolio test claim 0810
+NCL-000811,POL-000811,Test Claimant 0811,Business,2024-07-30,2024-08-01,Declined,708.25,M2 3AB,Fictional portfolio test claim 0811
+NCL-000812,POL-000812,  test   claimant 0812 ,Motor,2024-07-31,2024-08-03,Open,709.0,M3 4AD,Fictional portfolio test claim 0812
+NCL-000813,POL-000813,Test Claimant 0813,Home,2024-08-01,2024-08-05,In Progress,709.75,M4 5AF,Fictional portfolio test claim 0813
+ ncl-000814,POL-000814,Test Claimant 0814,Travel,2024-08-02,2024-08-07,Closed,710.5,M5 6AG,Fictional portfolio test claim 0814
+NCL-000815,POL-000815,Test Claimant 0815,Business,2024-08-03,2024-08-09,Declined,711.25,M1 1AA,Fictional portfolio test claim 0815
+NCL-000816 ,POL-000816,Test Claimant 0816,Motor,2024-08-04,2024-08-11,Open,712.0,m2 3ab,Fictional portfolio test claim 0816
+NCL-000817,POL-000817,Test Claimant 0817,home,2024-08-05,2024-08-13,In Progress,712.75,M3 4AD,Fictional portfolio test claim 0817
+NCL-000818,POL-000818,Test Claimant 0818,Travel,2024-08-06,2024-08-15,Closed,713.5,M4 5AF,Fictional portfolio test claim 0818
+NCL-000819,pol-000819,  test   claimant 0819 ,Business,2024-08-07,2024-08-08, declined ,714.25,M5 6AG,Fictional portfolio test claim 0819
+NCL-000820,POL-000820,Test Claimant 0820,Motor,2024-08-08,2024-08-10,Open,715.0,M1 1AA,Fictional portfolio test claim 0820
+NCL-000821,POL-000821,Test Claimant 0821,Home,2024-08-09,2024-08-12,In Progress,715.75,M2 3AB,Fictional portfolio test claim 0821
+NCL-000822,POL-000822,Test Claimant 0822,Travel,2024-08-10,2024-08-14,Closed,716.5,M3 4AD,Fictional portfolio test claim 0822
+NCL-000823,POL-000823,Test Claimant 0823,Business,2024-08-11,2024-08-16,Declined,717.25,M4 5AF,Fictional portfolio test claim 0823
+NCL-000824,POL-000824,Test Claimant 0824,Motor,2024-08-12,2024-08-18,Open,718.0,m5 6ag,Fictional portfolio test claim 0824
+ ncl-000825,POL-000825,Test Claimant 0825,Home,2024-08-13,2024-08-20,In Progress,718.75,M1 1AA,Fictional portfolio test claim 0825
+NCL-000826,POL-000826,  test   claimant 0826 ,Travel,2024-08-14,2024-08-22,Closed,719.5,M2 3AB,Fictional portfolio test claim 0826
+NCL-000827,POL-000827,Test Claimant 0827,Business,2024-08-15,2024-08-24,Declined,720.25,M3 4AD,Fictional portfolio test claim 0827
+NCL-000828,POL-000828,Test Claimant 0828,Motor,2024-08-16,2024-08-17, open ,721.0,M4 5AF,Fictional portfolio test claim 0828
+NCL-000829,POL-000829,Test Claimant 0829,Home,2024-08-17,2024-08-19,In Progress,721.75,M5 6AG,Fictional portfolio test claim 0829
+NCL-000830,POL-000830,Test Claimant 0830,Travel,2024-08-18,2024-08-21,Closed,722.5,M1 1AA,Fictional portfolio test claim 0830
+NCL-000831,POL-000831,Test Claimant 0831,Business,2024-08-19,2024-08-23,Declined,723.25,M2 3AB,Fictional portfolio test claim 0831
+NCL-000832,pol-000832,Test Claimant 0832,Motor,2024-08-20,2024-08-25,Open,724.0,m3 4ad,Fictional portfolio test claim 0832
+NCL-000833 ,POL-000833,  test   claimant 0833 ,Home,2024-08-21,2024-08-27,In Progress,724.75,M4 5AF,Fictional portfolio test claim 0833
+NCL-000834,POL-000834,Test Claimant 0834,Travel,2024-08-22,2024-08-29,Closed,725.5,M5 6AG,Fictional portfolio test claim 0834
+NCL-000835,POL-000835,Test Claimant 0835,Business,2024-08-23,2024-08-31,Declined,726.25,M1 1AA,Fictional portfolio test claim 0835
+ ncl-000836,POL-000836,Test Claimant 0836,motor,2024-08-24,2024-09-02,Open,727.0,M2 3AB,Fictional portfolio test claim 0836
+NCL-000837,POL-000837,Test Claimant 0837,Home,2024-08-25,2024-08-26, in progress ,727.75,M3 4AD,Fictional portfolio test claim 0837
+NCL-000838,POL-000838,Test Claimant 0838,Travel,2024-08-26,2024-08-28,Closed,728.5,M4 5AF,Fictional portfolio test claim 0838
+NCL-000839,POL-000839,Test Claimant 0839,Business,2024-08-27,2024-08-30,Declined,729.25,M5 6AG,Fictional portfolio test claim 0839
+NCL-000840,POL-000840,  test   claimant 0840 ,Motor,2024-08-28,2024-09-01,Open,730.0,m1 1aa,Fictional portfolio test claim 0840
+NCL-000841,POL-000841,Test Claimant 0841,Home,2024-08-29,2024-09-03,In Progress,730.75,M2 3AB,Fictional portfolio test claim 0841
+NCL-000842,POL-000842,Test Claimant 0842,Travel,2024-08-30,2024-09-05,Closed,731.5,M3 4AD,Fictional portfolio test claim 0842
+NCL-000843,POL-000843,Test Claimant 0843,Business,2024-08-31,2024-09-07,Declined,732.25,M4 5AF,Fictional portfolio test claim 0843
+NCL-000844,POL-000844,Test Claimant 0844,Motor,2024-09-01,2024-09-09,Open,733.0,M5 6AG,Fictional portfolio test claim 0844
+NCL-000845,pol-000845,Test Claimant 0845,Home,2024-09-02,2024-09-11,In Progress,733.75,M1 1AA,Fictional portfolio test claim 0845
+NCL-000846,POL-000846,Test Claimant 0846,Travel,2024-09-03,2024-09-04, closed ,734.5,M2 3AB,Fictional portfolio test claim 0846
+ ncl-000847,POL-000847,  test   claimant 0847 ,Business,2024-09-04,2024-09-06,Declined,735.25,M3 4AD,Fictional portfolio test claim 0847
+NCL-000848,POL-000848,Test Claimant 0848,Motor,2024-09-05,2024-09-08,Open,736.0,m4 5af,Fictional portfolio test claim 0848
+NCL-000849,POL-000849,Test Claimant 0849,Home,2024-09-06,2024-09-10,In Progress,736.75,M5 6AG,Fictional portfolio test claim 0849
+NCL-000850 ,POL-000850,Test Claimant 0850,Travel,2024-09-07,2024-09-12,Closed,737.5,M1 1AA,Fictional portfolio test claim 0850
+NCL-000851,POL-000851,Test Claimant 0851,Business,2024-09-08,2024-09-14,Declined,738.25,M2 3AB,Fictional portfolio test claim 0851
+NCL-000852,POL-000852,Test Claimant 0852,Motor,2024-09-09,2024-09-16,Open,739.0,M3 4AD,Fictional portfolio test claim 0852
+NCL-000853,POL-000853,Test Claimant 0853,Home,2024-09-10,2024-09-18,In Progress,739.75,M4 5AF,Fictional portfolio test claim 0853
+NCL-000854,POL-000854,  test   claimant 0854 ,Travel,2024-09-11,2024-09-20,Closed,740.5,M5 6AG,Fictional portfolio test claim 0854
+NCL-000855,POL-000855,Test Claimant 0855,business,2024-09-12,2024-09-13, declined ,741.25,M1 1AA,Fictional portfolio test claim 0855
+NCL-000856,POL-000856,Test Claimant 0856,Motor,2024-09-13,2024-09-15,Open,742.0,m2 3ab,Fictional portfolio test claim 0856
+NCL-000857,POL-000857,Test Claimant 0857,Home,2024-09-14,2024-09-17,In Progress,742.75,M3 4AD,Fictional portfolio test claim 0857
+ ncl-000858,pol-000858,Test Claimant 0858,Travel,2024-09-15,2024-09-19,Closed,743.5,M4 5AF,Fictional portfolio test claim 0858
+NCL-000859,POL-000859,Test Claimant 0859,Business,2024-09-16,2024-09-21,Declined,744.25,M5 6AG,Fictional portfolio test claim 0859
+NCL-000860,POL-000860,Test Claimant 0860,Motor,2024-09-17,2024-09-23,Open,745.0,M1 1AA,Fictional portfolio test claim 0860
+NCL-000861,POL-000861,  test   claimant 0861 ,Home,2024-09-18,2024-09-25,In Progress,745.75,M2 3AB,Fictional portfolio test claim 0861
+NCL-000862,POL-000862,Test Claimant 0862,Travel,2024-09-19,2024-09-27,Closed,746.5,M3 4AD,Fictional portfolio test claim 0862
+NCL-000863,POL-000863,Test Claimant 0863,Business,2024-09-20,2024-09-29,Declined,747.25,M4 5AF,Fictional portfolio test claim 0863
+NCL-000864,POL-000864,Test Claimant 0864,Motor,2024-09-21,2024-09-22, open ,748.0,m5 6ag,Fictional portfolio test claim 0864
+NCL-000865,POL-000865,Test Claimant 0865,Home,2024-09-22,2024-09-24,In Progress,748.75,M1 1AA,Fictional portfolio test claim 0865
+NCL-000866,POL-000866,Test Claimant 0866,Travel,2024-09-23,2024-09-26,Closed,749.5,M2 3AB,Fictional portfolio test claim 0866
+NCL-000867 ,POL-000867,Test Claimant 0867,Business,2024-09-24,2024-09-28,Declined,750.25,M3 4AD,Fictional portfolio test claim 0867
+NCL-000868,POL-000868,  test   claimant 0868 ,Motor,2024-09-25,2024-09-30,Open,751.0,M4 5AF,Fictional portfolio test claim 0868
+ ncl-000869,POL-000869,Test Claimant 0869,Home,2024-09-26,2024-10-02,In Progress,751.75,M5 6AG,Fictional portfolio test claim 0869
+NCL-000870,POL-000870,Test Claimant 0870,Travel,2024-09-27,2024-10-04,Closed,752.5,M1 1AA,Fictional portfolio test claim 0870
+NCL-000871,pol-000871,Test Claimant 0871,Business,2024-09-28,2024-10-06,Declined,753.25,M2 3AB,Fictional portfolio test claim 0871
+NCL-000872,POL-000872,Test Claimant 0872,Motor,2024-09-29,2024-10-08,Open,754.0,m3 4ad,Fictional portfolio test claim 0872
+NCL-000873,POL-000873,Test Claimant 0873,Home,2024-09-30,2024-10-01, in progress ,754.75,M4 5AF,Fictional portfolio test claim 0873
+NCL-000874,POL-000874,Test Claimant 0874,travel,2024-10-01,2024-10-03,Closed,755.5,M5 6AG,Fictional portfolio test claim 0874
+NCL-000875,POL-000875,  test   claimant 0875 ,Business,2024-10-02,2024-10-05,Declined,756.25,M1 1AA,Fictional portfolio test claim 0875
+NCL-000876,POL-000876,Test Claimant 0876,Motor,2024-10-03,2024-10-07,Open,757.0,M2 3AB,Fictional portfolio test claim 0876
+NCL-000877,POL-000877,Test Claimant 0877,Home,2024-10-04,2024-10-09,In Progress,757.75,M3 4AD,Fictional portfolio test claim 0877
+NCL-000878,POL-000878,Test Claimant 0878,Travel,2024-10-05,2024-10-11,Closed,758.5,M4 5AF,Fictional portfolio test claim 0878
+NCL-000879,POL-000879,Test Claimant 0879,Business,2024-10-06,2024-10-13,Declined,759.25,M5 6AG,Fictional portfolio test claim 0879
+ ncl-000880,POL-000880,Test Claimant 0880,Motor,2024-10-07,2024-10-15,Open,760.0,m1 1aa,Fictional portfolio test claim 0880
+NCL-000881,POL-000881,Test Claimant 0881,Home,2024-10-08,2024-10-17,In Progress,760.75,M2 3AB,Fictional portfolio test claim 0881
+NCL-000882,POL-000882,  test   claimant 0882 ,Travel,2024-10-09,2024-10-10, closed ,761.5,M3 4AD,Fictional portfolio test claim 0882
+NCL-000883,POL-000883,Test Claimant 0883,Business,2024-10-10,2024-10-12,Declined,762.25,M4 5AF,Fictional portfolio test claim 0883
+NCL-000884 ,pol-000884,Test Claimant 0884,Motor,2024-10-11,2024-10-14,Open,763.0,M5 6AG,Fictional portfolio test claim 0884
+NCL-000885,POL-000885,Test Claimant 0885,Home,2024-10-12,2024-10-16,In Progress,763.75,M1 1AA,Fictional portfolio test claim 0885
+NCL-000886,POL-000886,Test Claimant 0886,Travel,2024-10-13,2024-10-18,Closed,764.5,M2 3AB,Fictional portfolio test claim 0886
+NCL-000887,POL-000887,Test Claimant 0887,Business,2024-10-14,2024-10-20,Declined,765.25,M3 4AD,Fictional portfolio test claim 0887
+NCL-000888,POL-000888,Test Claimant 0888,Motor,2024-10-15,2024-10-22,Open,766.0,m4 5af,Fictional portfolio test claim 0888
+NCL-000889,POL-000889,  test   claimant 0889 ,Home,2024-10-16,2024-10-24,In Progress,766.75,M5 6AG,Fictional portfolio test claim 0889
+NCL-000890,POL-000890,Test Claimant 0890,Travel,2024-10-17,2024-10-26,Closed,767.5,M1 1AA,Fictional portfolio test claim 0890
+ ncl-000891,POL-000891,Test Claimant 0891,Business,2024-10-18,2024-10-19, declined ,768.25,M2 3AB,Fictional portfolio test claim 0891
+NCL-000892,POL-000892,Test Claimant 0892,Motor,2024-10-19,2024-10-21,Open,769.0,M3 4AD,Fictional portfolio test claim 0892
+NCL-000893,POL-000893,Test Claimant 0893,home,2024-10-20,2024-10-23,In Progress,769.75,M4 5AF,Fictional portfolio test claim 0893
+NCL-000894,POL-000894,Test Claimant 0894,Travel,2024-10-21,2024-10-25,Closed,770.5,M5 6AG,Fictional portfolio test claim 0894
+NCL-000895,POL-000895,Test Claimant 0895,Business,2024-10-22,2024-10-27,Declined,771.25,M1 1AA,Fictional portfolio test claim 0895
+NCL-000896,POL-000896,  test   claimant 0896 ,Motor,2024-10-23,2024-10-29,Open,772.0,m2 3ab,Fictional portfolio test claim 0896
+NCL-000897,pol-000897,Test Claimant 0897,Home,2024-10-24,2024-10-31,In Progress,772.75,M3 4AD,Fictional portfolio test claim 0897
+NCL-000898,POL-000898,Test Claimant 0898,Travel,2024-10-25,2024-11-02,Closed,773.5,M4 5AF,Fictional portfolio test claim 0898
+NCL-000899,POL-000899,Test Claimant 0899,Business,2024-10-26,2024-11-04,Declined,774.25,M5 6AG,Fictional portfolio test claim 0899
+NCL-000900,POL-000900,Test Claimant 0900,Motor,2024-01-01,2024-01-02, open ,775.0,M1 1AA,Fictional portfolio test claim 0900
+NCL-000001,POL-000001,Test Claimant 0001,Home,2024-01-02,2024-01-04,In Progress,100.75,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0001
+NCL-000002,POL-000002,Test Claimant 0002,Travel,2024-01-03,2024-01-06,Closed,101.5,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0002
+NCL-000003,POL-000003,Test Claimant 0003,Business,2024-01-04,2024-01-08,Declined,102.25,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0003
+NCL-000004,POL-000004,Test Claimant 0004,Motor,2024-01-05,2024-01-10,Open,103.0,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0004
+NCL-000005,POL-000005,Test Claimant 0005,Home,2024-01-06,2024-01-12,In Progress,103.75,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0005
+NCL-000006,POL-000006,Test Claimant 0006,Travel,2024-01-07,2024-01-14,Closed,104.5,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0006
+NCL-000007,POL-000007,  test   claimant 0007 ,Business,2024-01-08,2024-01-16,Declined,105.25,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0007
+NCL-000008,POL-000008,Test Claimant 0008,Motor,2024-01-09,2024-01-18,Open,106.0,m4 5af,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0008
+NCL-000009,POL-000009,Test Claimant 0009,Home,2024-01-10,2024-01-11, in progress ,106.75,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0009
+NCL-000010,POL-000010,Test Claimant 0010,Travel,2024-01-11,2024-01-13,Closed,107.5,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0010
+ ncl-000011,POL-000011,Test Claimant 0011,Business,2024-01-12,2024-01-15,Declined,108.25,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0011
+NCL-000012,POL-000012,Test Claimant 0012,Motor,2024-01-13,2024-01-17,Open,109.0,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0012
+NCL-000013,pol-000013,Test Claimant 0013,Home,2024-01-14,2024-01-19,In Progress,109.75,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0013
+NCL-000014,POL-000014,  test   claimant 0014 ,Travel,2024-01-15,2024-01-21,Closed,110.5,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0014
+NCL-000015,POL-000015,Test Claimant 0015,Business,2024-01-16,2024-01-23,Declined,111.25,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0015
+NCL-000016,POL-000016,Test Claimant 0016,Motor,2024-01-17,2024-01-25,Open,112.0,m2 3ab,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0016
+NCL-000017 ,POL-000017,Test Claimant 0017,Home,2024-01-18,2024-01-27,In Progress,112.75,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0017
+NCL-000018,POL-000018,Test Claimant 0018,Travel,2024-01-19,2024-01-20, closed ,113.5,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0018
+NCL-000019,POL-000019,Test Claimant 0019,business,2024-01-20,2024-01-22,Declined,114.25,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0019
+NCL-000020,POL-000020,Test Claimant 0020,Motor,2024-01-21,2024-01-24,Open,115.0,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0020
+NCL-000021,POL-000021,  test   claimant 0021 ,Home,2024-01-22,2024-01-26,In Progress,115.75,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0021
+ ncl-000022,POL-000022,Test Claimant 0022,Travel,2024-01-23,2024-01-28,Closed,116.5,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0022
+NCL-000023,POL-000023,Test Claimant 0023,Business,2024-01-24,2024-01-30,Declined,117.25,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0023
+NCL-000024,POL-000024,Test Claimant 0024,Motor,2024-01-25,2024-02-01,Open,118.0,m5 6ag,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0024
+NCL-000025,POL-000025,Test Claimant 0025,Home,2024-01-26,2024-02-03,In Progress,118.75,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0025
+NCL-000026,pol-000026,Test Claimant 0026,Travel,2024-01-27,2024-02-05,Closed,119.5,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0026
+NCL-000027,POL-000027,Test Claimant 0027,Business,2024-01-28,2024-01-29, declined ,120.25,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0027
+NCL-000028,POL-000028,  test   claimant 0028 ,Motor,2024-01-29,2024-01-31,Open,121.0,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0028
+NCL-000029,POL-000029,Test Claimant 0029,Home,2024-01-30,2024-02-02,In Progress,121.75,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0029
+NCL-000030,POL-000030,Test Claimant 0030,Travel,2024-01-31,2024-02-04,Closed,122.5,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0030
+NCL-000031,POL-000031,Test Claimant 0031,Business,2024-02-01,2024-02-06,Declined,123.25,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0031
+NCL-000032,POL-000032,Test Claimant 0032,Motor,2024-02-02,2024-02-08,Open,124.0,m3 4ad,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0032
+ ncl-000033,POL-000033,Test Claimant 0033,Home,2024-02-03,2024-02-10,In Progress,124.75,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0033
+NCL-000034 ,POL-000034,Test Claimant 0034,Travel,2024-02-04,2024-02-12,Closed,125.5,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0034
+NCL-000035,POL-000035,  test   claimant 0035 ,Business,2024-02-05,2024-02-14,Declined,126.25,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0035
+NCL-000036,POL-000036,Test Claimant 0036,Motor,2024-02-06,2024-02-07, open ,127.0,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0036
+NCL-000037,POL-000037,Test Claimant 0037,Home,2024-02-07,2024-02-09,In Progress,127.75,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0037
+NCL-000038,POL-000038,Test Claimant 0038,travel,2024-02-08,2024-02-11,Closed,128.5,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0038
+NCL-000039,pol-000039,Test Claimant 0039,Business,2024-02-09,2024-02-13,Declined,129.25,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0039
+NCL-000040,POL-000040,Test Claimant 0040,Motor,2024-02-10,2024-02-15,Open,130.0,m1 1aa,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0040
+INVALID-ID,POL-000101,Test Claimant 0101,Home,2024-04-11,2024-04-14,In Progress,175.75,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0101
+INVALID-ID,POL-000102,Test Claimant 0102,Travel,2024-04-12,2024-04-16,Closed,176.5,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0102
+INVALID-ID,POL-000103,Test Claimant 0103,Business,2024-04-13,2024-04-18,Declined,177.25,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0103
+INVALID-ID,pol-000104,Test Claimant 0104,Motor,2024-04-14,2024-04-20,Open,178.0,m5 6ag,INTENTIONAL INVALID: Fictional portfolio test claim 0104
+INVALID-ID,POL-000105,  test   claimant 0105 ,Home,2024-04-15,2024-04-22,In Progress,178.75,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0105
+INVALID-ID,POL-000106,Test Claimant 0106,Travel,2024-04-16,2024-04-24,Closed,179.5,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0106
+INVALID-ID,POL-000107,Test Claimant 0107,Business,2024-04-17,2024-04-26,Declined,180.25,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0107
+INVALID-ID,POL-000108,Test Claimant 0108,Motor,2024-04-18,2024-04-19, open ,181.0,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0108
+INVALID-ID,POL-000109,Test Claimant 0109,Home,2024-04-19,2024-04-21,In Progress,181.75,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0109
+INVALID-ID,POL-000110,Test Claimant 0110,Travel,2024-04-20,2024-04-23,Closed,182.5,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0110
+INVALID-ID,POL-000111,Test Claimant 0111,Business,2024-04-21,2024-04-25,Declined,183.25,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0111
+INVALID-ID,POL-000112,  test   claimant 0112 ,Motor,2024-04-22,2024-04-27,Open,184.0,m3 4ad,INTENTIONAL INVALID: Fictional portfolio test claim 0112
+NCL-000913,POL-000113,Test Claimant 0113,Home,2024-04-23,31/02/2025,In Progress,184.75,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0113
+NCL-000914,POL-000114,Test Claimant 0114,travel,2024-04-24,31/02/2025,Closed,185.5,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0114
+NCL-000915,POL-000115,Test Claimant 0115,Business,2024-04-25,31/02/2025,Declined,186.25,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0115
+NCL-000916,POL-000116,Test Claimant 0116,Motor,2024-04-26,31/02/2025,Open,187.0,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0116
+NCL-000917,pol-000117,Test Claimant 0117,Home,2024-04-27,31/02/2025, in progress ,187.75,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0117
+NCL-000918,POL-000118,Test Claimant 0118,Travel,2024-04-28,31/02/2025,Closed,188.5,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0118
+NCL-000919,POL-000119,  test   claimant 0119 ,Business,2024-04-29,31/02/2025,Declined,189.25,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0119
+NCL-000920,POL-000120,Test Claimant 0120,Motor,2024-04-30,31/02/2025,Open,190.0,m1 1aa,INTENTIONAL INVALID: Fictional portfolio test claim 0120
+NCL-000921,POL-000121,Test Claimant 0121,Home,2024-05-01,31/02/2025,In Progress,190.75,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0121
+NCL-000922,POL-000122,Test Claimant 0122,Travel,2024-05-02,31/02/2025,Closed,191.5,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0122
+NCL-000923,POL-000123,Test Claimant 0123,Business,2024-05-03,31/02/2025,Declined,192.25,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0123
+NCL-000924,POL-000124,Test Claimant 0124,Motor,2024-05-04,31/02/2025,Open,193.0,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0124
+NCL-000925,POL-000125,Test Claimant 0125,Home,2024-05-05,2024-05-14,In Progress,-50.00,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0125
+NCL-000926,POL-000126,  test   claimant 0126 ,Travel,2024-05-06,2024-05-07, closed ,-50.00,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0126
+NCL-000927,POL-000127,Test Claimant 0127,Business,2024-05-07,2024-05-09,Declined,-50.00,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0127
+NCL-000928,POL-000128,Test Claimant 0128,Motor,2024-05-08,2024-05-11,Open,-50.00,m4 5af,INTENTIONAL INVALID: Fictional portfolio test claim 0128
+NCL-000929,POL-000129,Test Claimant 0129,Home,2024-05-09,2024-05-13,In Progress,-50.00,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0129
+NCL-000930,pol-000130,Test Claimant 0130,Travel,2024-05-10,2024-05-15,Closed,-50.00,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0130
+NCL-000931,POL-000131,Test Claimant 0131,Business,2024-05-11,2024-05-17,Declined,-50.00,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0131
+NCL-000932,POL-000132,Test Claimant 0132,Motor,2024-05-12,2024-05-19,Open,-50.00,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0132
+NCL-000933,POL-000133,  test   claimant 0133 ,home,2024-05-13,2024-05-21,In Progress,-50.00,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0133
+NCL-000934,POL-000134,Test Claimant 0134,Travel,2024-05-14,2024-05-23,Closed,-50.00,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0134
+NCL-000935,POL-000135,Test Claimant 0135,Business,2024-05-15,2024-05-16, declined ,-50.00,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0135
+NCL-000936,POL-000136,Test Claimant 0136,Motor,2024-05-16,2024-05-18,Open,-50.00,m2 3ab,INTENTIONAL INVALID: Fictional portfolio test claim 0136
+NCL-000937,POL-000137,Test Claimant 0137,Home,2024-05-17,2024-05-20,Pending unknown,202.75,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0137
+NCL-000938,POL-000138,Test Claimant 0138,Travel,2024-05-18,2024-05-22,Pending unknown,203.5,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0138
+NCL-000939,POL-000139,Test Claimant 0139,Business,2024-05-19,2024-05-24,Pending unknown,204.25,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0139
+NCL-000940,POL-000140,  test   claimant 0140 ,Motor,2024-05-20,2024-05-26,Pending unknown,205.0,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0140
+NCL-000941,POL-000141,Test Claimant 0141,Home,2024-05-21,2024-05-28,Pending unknown,205.75,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0141
+NCL-000942,POL-000142,Test Claimant 0142,Travel,2024-05-22,2024-05-30,Pending unknown,206.5,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0142
+NCL-000943,pol-000143,Test Claimant 0143,Business,2024-05-23,2024-06-01,Pending unknown,207.25,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0143
+NCL-000944,POL-000144,Test Claimant 0144,Motor,2024-05-24,2024-05-25,Pending unknown,208.0,m5 6ag,INTENTIONAL INVALID: Fictional portfolio test claim 0144
+NCL-000945,POL-000145,Test Claimant 0145,Home,2024-05-25,2024-05-27,Pending unknown,208.75,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0145
+NCL-000946,POL-000146,Test Claimant 0146,Travel,2024-05-26,2024-05-29,Pending unknown,209.5,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0146
+NCL-000947,POL-000147,  test   claimant 0147 ,Business,2024-05-27,2024-05-31,Pending unknown,210.25,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0147
+NCL-000948,POL-000148,Test Claimant 0148,Motor,2024-05-28,2024-06-02,Pending unknown,211.0,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0148
+NCL-000949,POL-000149,Test Claimant 0149,Home,2024-05-29,2024-06-04,In Progress,211.75,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0149
+NCL-000950,POL-000150,Test Claimant 0150,Travel,2024-05-30,2024-06-06,Closed,212.5,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0150
+NCL-000951,POL-000151,Test Claimant 0151,Business,2024-05-31,2024-06-08,Declined,213.25,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0151
+NCL-000952,POL-000152,Test Claimant 0152,motor,2024-06-01,2024-06-10,Open,214.0,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0152
+NCL-000953,POL-000153,Test Claimant 0153,Home,2024-06-02,2024-06-03, in progress ,214.75,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0153
+NCL-000954,POL-000154,  test   claimant 0154 ,Travel,2024-06-03,2024-06-05,Closed,215.5,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0154
+NCL-000955,POL-000155,Test Claimant 0155,Business,2024-06-04,2024-06-07,Declined,216.25,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0155
+NCL-000956,pol-000156,Test Claimant 0156,Motor,2024-06-05,2024-06-09,Open,217.0,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0156
+NCL-000957,POL-000157,Test Claimant 0157,Home,2024-06-06,2024-06-11,In Progress,217.75,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0157
+NCL-000958,POL-000158,Test Claimant 0158,Travel,2024-06-07,2024-06-13,Closed,218.5,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0158
+NCL-000959,POL-000159,Test Claimant 0159,Business,2024-06-08,2024-06-15,Declined,219.25,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0159
+NCL-000960,POL-000160,Test Claimant 0160,Motor,2024-06-09,2024-06-17,Open,220.0,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0160

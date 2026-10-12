@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block title %}Claim Communications{% endblock %}
+{% block content %}<h1>Communication Templates</h1><p class="muted">Only safe, known placeholders are supported. Preview only: no messages are sent.</p>
+<section class="card"><label>Preview claim reference <input id="claim" value="NCL-009999"></label><div id="result" aria-live="polite"></div></section>
+{% for t in templates %}<section class="card"><h2>{{ t.kind | replace('_',' ') | title }}</h2><form class="template" data-kind="{{ t.kind }}"><label>Subject <input name="subject" value="{{ t.subject }}" required></label><label>Body <textarea name="body" rows="4" required>{{ t.body }}</textarea></label><div class="actions"><button type="submit">Save template</button><button type="button" class="alt" onclick="previewTemplate('{{ t.kind }}')">Preview</button></div></form></section>{% else %}<p>Run the Task 4 seed command to install four templates.</p>{% endfor %}
+{% endblock %}{% block scripts %}<script>
+document.querySelectorAll('.template').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();execute(async()=>{const payload=formObject(form);const r=await requestJSON('/api/workflows/templates/'+form.dataset.kind,'PUT',payload);showResult(JSON.stringify(r));});}));
+function previewTemplate(kind){execute(async()=>{const reference=document.querySelector('#claim').value;const r=await requestJSON('/api/workflows/templates/'+kind+'/preview/'+encodeURIComponent(reference));showResult(r.subject+'\n'+r.body+'\n(Not sent)');});}
+</script>{% endblock %}

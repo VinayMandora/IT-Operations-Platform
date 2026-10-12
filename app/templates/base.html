@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en-GB">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Northstar Claims Ltd{% endblock %}</title>
+<link rel="stylesheet" href="/static/app.css"></head>
+<body>
+<header class="top"><span class="brand">Northstar Claims Ltd</span>
+<nav><a href="/">Dashboard</a>{% if user %}
+<a href="/tickets">Tickets</a><a href="/tickets/new">Report an issue</a>
+{% if user.role in ('Admin','Technician') %}<a href="/assets">Inventory</a><a href="/employees">Employee management</a><a href="/operations">Operations</a>{% endif %}
+{% if user.role == 'Admin' %}<a href="/claims-management">Claims CRM</a><a href="/workflow-logs">Workflow logs</a><a href="/communication-templates">Templates</a><a href="/users">Accounts</a>{% endif %}
+<a href="/docs">API docs</a>{% endif %}</nav>
+<div class="identity">{% if user %}{{ user.full_name }} · {{ user.role }} <button class="button alt" type="button" onclick="logout()">Log out</button>{% else %}<a href="/login">Log in</a>{% endif %}</div>
+</header><main>{% block content %}{% endblock %}
+<footer class="footer">Fictional company and demonstration data · Local portfolio environment · Time stamps stored in UTC</footer></main>
+<script>window.csrfToken={{ csrf|default('')|tojson }};</script>
+<script src="/static/app.js"></script>{% block scripts %}{% endblock %}
+</body></html>

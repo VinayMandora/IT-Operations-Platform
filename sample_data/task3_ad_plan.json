@@ -1,0 +1,12 @@
+{
+  "mode": "DryRun",
+  "operation": "PrepareAccount",
+  "domain": "northstar.lab",
+  "samAccountName": "nc000001",
+  "name": "Alex Morgan",
+  "email": "nc000001@northstar.example",
+  "department": "Claims",
+  "title": "Claims Handler",
+  "manager": "Sarah Bennett",
+  "groups": ["SG-Claims-Read"]
+}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}New ticket · Northstar Claims Ltd{% endblock %}
+{% block content %}<section class="card narrow"><h1>Report an IT problem</h1>
+<form id="newTicket"><label for="title">Problem title</label><input id="title" name="title" required minlength="5" maxlength="160" style="width:100%">
+<label for="description">Detailed problem description</label><textarea id="description" name="description" required minlength="10"></textarea>
+<div class="form-grid"><div><label for="category">Category</label><select id="category" name="category">{% for item in ('Hardware','Software','Network','Printer','Account Access','Other') %}<option>{{ item }}</option>{% endfor %}</select></div>
+<div><label for="priority">Priority</label><select id="priority" name="priority">{% for item in ('Low','Medium','High','Critical') %}<option{% if item == 'Medium' %} selected{% endif %}>{{ item }}</option>{% endfor %}</select></div></div>
+<label for="affected_asset_id">Affected device (optional)</label><select id="affected_asset_id" name="affected_asset_id"><option value="">No device / unknown</option>{% for a in assets %}<option value="{{ a.id }}">{{ a.asset_tag }} · {{ a.model }}</option>{% endfor %}</select>
+{% if user.role == 'Admin' %}<label for="employee_id">Submit for employee</label><select id="employee_id" name="employee_id"><option value="">Myself</option>{% for e in employees %}<option value="{{ e.id }}">{{ e.full_name }}</option>{% endfor %}</select>{% endif %}
+<p><button>Create ticket</button></p></form><div id="result" aria-live="polite"></div></section>{% endblock %}
+{% block scripts %}<script>
+document.getElementById('newTicket').addEventListener('submit',async e=>{
+ e.preventDefault();const b=formObject(e.target);b.affected_asset_id=optionalInteger(b.affected_asset_id);if('employee_id' in b)b.employee_id=optionalInteger(b.employee_id);
+ await execute(async()=>{const t=await requestJSON('/api/tickets','POST',b);location.assign(`/tickets/${t.id}`);});
+});</script>{% endblock %}

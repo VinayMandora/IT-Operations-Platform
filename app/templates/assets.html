@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% block title %}Inventory · Northstar Claims Ltd{% endblock %}
+{% block content %}<h1>IT Asset Inventory</h1><div class="actions"><a class="button alt" href="/api/reports/inventory.xlsx">Export inventory</a><a class="button alt" href="/api/reports/workload.xlsx">Technician workload (Admin)</a></div>
+<section class="card"><h2>Register a device</h2><form id="create" class="form-grid">
+<div><label>Asset tag</label><input name="asset_tag" required placeholder="NS-LAP-007"></div><div><label>Serial number</label><input name="serial_number" required></div>
+<div><label>Device type</label><select name="device_type">{% for d in ('Laptop','Desktop','Printer','Router','Switch') %}<option>{{ d }}</option>{% endfor %}</select></div>
+<div><label>Manufacturer</label><input name="manufacturer" required></div><div><label>Model</label><input name="model" required></div>
+<div><label>Operating system</label><input name="operating_system" placeholder="Windows 11"></div>
+<div><label>Purchase date</label><input name="purchase_date" type="date" required></div><div><label>Warranty expiry</label><input name="warranty_expiry" type="date"></div>
+<div><label>Notes</label><input name="notes"></div><div><label>&nbsp;</label><button>Register device</button></div></form></section>
+<section class="card"><h2>Search and filter</h2><div class="actions"><input id="search" placeholder="Tag, serial or model"><select id="filter"><option value="">Any status</option>{% for s in ('Available','Assigned','Maintenance','Retired') %}<option>{{ s }}</option>{% endfor %}</select><button onclick="filterAssets()">Search</button><button class="button alt" onclick="location.reload()">Clear</button></div></section>
+<section class="card scroll"><h2>Registered devices</h2><table><thead><tr><th>Tag</th><th>Type / model</th><th>Serial</th><th>Status</th><th>Assigned employee</th><th>Warranty</th><th>Actions</th></tr></thead>
+<tbody>{% for a in assets %}<tr data-search="{{ (a.asset_tag ~ ' ' ~ a.serial_number ~ ' ' ~ a.model)|lower }}" data-status="{{ a.status }}"><td>{{ a.asset_tag }}</td>
+<td>{{ a.device_type }} · {{ a.model }}</td><td>{{ a.serial_number }}</td><td>{{ a.status }}</td><td>{{ a.assigned_employee.full_name if a.assigned_employee else '—' }}</td><td>{{ a.warranty_expiry or '—' }}</td>
+<td><div class="actions">{% if a.status == 'Available' %}<select id="emp{{ a.id }}"><option value="">Select employee</option>{% for e in employees %}<option value="{{ e.id }}">{{ e.full_name }}</option>{% endfor %}</select><button onclick="assignDevice({{ a.id }})">Assign</button>
+{% elif a.status == 'Assigned' %}<button class="button warn" onclick="returnDevice({{ a.id }})">Return</button>{% endif %}
+<button class="button alt" onclick="editDevice({{ a.id }})">Edit</button></div></td></tr>{% else %}<tr><td colspan="7">No registered assets</td></tr>{% endfor %}</tbody></table>
+<div id="result" aria-live="polite"></div></section>
+{% endblock %}{% block scripts %}<script>
+document.getElementById('create').addEventListener('submit',async e=>{
+ e.preventDefault();let b=formObject(e.target);b.warranty_expiry=b.warranty_expiry||null;b.operating_system=b.operating_system||null;
+ await execute(async()=>{await requestJSON('/api/assets','POST',b);location.reload()});
+});
+function filterAssets(){const q=document.getElementById('search').value.toLowerCase(),status=document.getElementById('filter').value;
+ document.querySelectorAll('tr[data-search]').forEach(r=>r.hidden=!!(q&&!r.dataset.search.includes(q))||!!(status&&r.dataset.status!==status));}
+function assignDevice(id){const input=document.getElementById('emp'+id);if(!input.value){showResult('Select an employee',true);return;}
+ execute(async()=>{await requestJSON(`/api/assets/${id}/assign`,'POST',{employee_id:Number(input.value)});location.reload()});}
+function returnDevice(id){execute(async()=>{await requestJSON(`/api/assets/${id}/return`,'POST');location.reload()});}
+function editDevice(id){const status=prompt('New status: Available, Maintenance or Retired (leave blank to skip)');if(status===null)return;
+ const notes=prompt('New inventory note (leave blank to preserve existing)');if(notes===null)return;
+ const body={};if(status.trim())body.status=status.trim();if(notes.trim())body.notes=notes.trim();if(!Object.keys(body).length)return;
+ execute(async()=>{await requestJSON(`/api/assets/${id}`,'PATCH',body);location.reload()});}
+</script>{% endblock %}

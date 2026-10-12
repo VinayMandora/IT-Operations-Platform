@@ -1,0 +1,49 @@
+# Virtual environments and Python execution artifacts
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Private authentication, credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key
+*service-account*.json
+*oauth*token*.json
+*.secrets.*
+
+# Recovery exports and SQL Server backups: NEVER commit data or backup sets
+backups/
+*.bak
+*.trn
+*.bkp
+*.bacpac
+*.dacpac
+recovery_exports/
+
+# Local databases, runtime files and logs
+*.db
+*.sqlite
+*.sqlite3
+*.log
+logs/
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Task 1-5 fictional fixture files in sample_data/ ARE intentionally tracked.

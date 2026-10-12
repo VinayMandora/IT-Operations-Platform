@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mock-1001",
+    "Claim_Reference": "NCL-000001",
+    "Claimant_Name": "Alex Morgan",
+    "Claim_Type": "Motor",
+    "Status": "Open",
+    "Missing_Documents": false,
+    "Submission_Date": "2026-09-10"
+  },
+  {
+    "id": "mock-1002",
+    "Claim_Reference": "NCL-000002",
+    "Claimant_Name": "Jamie Taylor",
+    "Claim_Type": "Home",
+    "Status": "Evidence Required",
+    "Missing_Documents": true,
+    "Submission_Date": "2026-09-11"
+  },
+  {
+    "id": "mock-9999",
+    "Claim_Reference": "NCL-009999",
+    "Claimant_Name": "Alex Finch",
+    "Claim_Type": "Motor",
+    "Status": "Open",
+    "Missing_Documents": false,
+    "Submission_Date": "2025-04-07"
+  },
+  {
+    "id": "mock-9998",
+    "Claim_Reference": "NCL-009998",
+    "Claimant_Name": "Jordan Wells",
+    "Claim_Type": "Home",
+    "Status": "Open",
+    "Missing_Documents": false,
+    "Submission_Date": "2025-03-16"
+  }
+]

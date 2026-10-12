@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}Sign in · Northstar Claims Ltd{% endblock %}
+{% block content %}
+<section class="card narrow"><h1>IT Operations Platform</h1><p class="muted">Local demonstration sign-in. Ask the local administrator for a demo account.</p>
+<form id="login"><label for="username">Username</label><input id="username" name="username" required autocomplete="username">
+<label for="password">Password</label><input id="password" type="password" name="password" required autocomplete="current-password">
+<p><button type="submit">Sign in</button></p></form><div id="result" aria-live="polite"></div></section>
+{% endblock %}{% block scripts %}<script>
+document.getElementById('login').addEventListener('submit',async e=>{
+ e.preventDefault();const b=e.target.querySelector('button');b.disabled=true;
+ try{const body=formObject(e.target);const res=await requestJSON('/api/auth/login','POST',body);window.csrfToken=res.csrf_token;location.assign('/');}
+ catch(err){showResult(err.message,true);b.disabled=false;}
+});</script>{% endblock %}

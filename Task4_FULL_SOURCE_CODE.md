@@ -1,0 +1,8470 @@
+# Northstar Claims Ltd — Task 4 Complete Source Code
+
+This is the complete runnable Tasks 1–4 source tree. All code blocks contain exact file contents with no omissions. Files marked **New**, **Modified**, or **Preserved** are compared with the existing Task 3 baseline. Binary Excel workbooks are included in the ZIP rather than printed. CSV source is printed below.
+
+Total repository files: **104** (new 23, modified 6, preserved 75).
+
+## All relative paths and directory tree
+
+```text
+it-operations-platform/.env.example
+it-operations-platform/.gitignore
+it-operations-platform/README.md
+it-operations-platform/app/__init__.py
+it-operations-platform/app/config.py
+it-operations-platform/app/db.py
+it-operations-platform/app/employee_schemas.py
+it-operations-platform/app/main.py
+it-operations-platform/app/models.py
+it-operations-platform/app/routers/__init__.py
+it-operations-platform/app/routers/assets.py
+it-operations-platform/app/routers/auth.py
+it-operations-platform/app/routers/claim_pages.py
+it-operations-platform/app/routers/claim_report.py
+it-operations-platform/app/routers/claim_workflows.py
+it-operations-platform/app/routers/claims.py
+it-operations-platform/app/routers/claims_crm.py
+it-operations-platform/app/routers/dashboard.py
+it-operations-platform/app/routers/employee_pages.py
+it-operations-platform/app/routers/employees.py
+it-operations-platform/app/routers/imports.py
+it-operations-platform/app/routers/it_reports.py
+it-operations-platform/app/routers/pages.py
+it-operations-platform/app/routers/reports.py
+it-operations-platform/app/routers/tickets.py
+it-operations-platform/app/schemas.py
+it-operations-platform/app/security.py
+it-operations-platform/app/services/__init__.py
+it-operations-platform/app/services/asset_service.py
+it-operations-platform/app/services/claim_report_service.py
+it-operations-platform/app/services/claim_templates.py
+it-operations-platform/app/services/claims_workflow.py
+it-operations-platform/app/services/crm_sync.py
+it-operations-platform/app/services/employee_service.py
+it-operations-platform/app/services/google_directory.py
+it-operations-platform/app/services/helpdesk_service.py
+it-operations-platform/app/services/import_service.py
+it-operations-platform/app/services/it_report_service.py
+it-operations-platform/app/services/report_service.py
+it-operations-platform/app/services/validation.py
+it-operations-platform/app/services/zoho_client.py
+it-operations-platform/app/static/app.css
+it-operations-platform/app/static/app.js
+it-operations-platform/app/templates/assets.html
+it-operations-platform/app/templates/base.html
+it-operations-platform/app/templates/claims_management.html
+it-operations-platform/app/templates/communication_templates.html
+it-operations-platform/app/templates/dashboard.html
+it-operations-platform/app/templates/employees.html
+it-operations-platform/app/templates/login.html
+it-operations-platform/app/templates/ticket_detail.html
+it-operations-platform/app/templates/ticket_new.html
+it-operations-platform/app/templates/tickets.html
+it-operations-platform/app/templates/users.html
+it-operations-platform/app/templates/workflow_logs.html
+it-operations-platform/app/workflow_schemas.py
+it-operations-platform/docs/TASK2_ARCHITECTURE.md
+it-operations-platform/docs/TASK3_ARCHITECTURE.md
+it-operations-platform/docs/TASK4_ARCHITECTURE.md
+it-operations-platform/powershell/Invoke-NorthstarAD.ps1
+it-operations-platform/pytest.ini
+it-operations-platform/requirements-google-lab.txt
+it-operations-platform/requirements.txt
+it-operations-platform/sample_data/northstar_claims_1000.csv
+it-operations-platform/sample_data/northstar_claims_1000.xlsx
+it-operations-platform/sample_data/task2_inventory_example.xlsx
+it-operations-platform/sample_data/task2_tickets_example.xlsx
+it-operations-platform/sample_data/task2_workload_example.xlsx
+it-operations-platform/sample_data/task3_ad_plan.json
+it-operations-platform/sample_data/task4_demo_claims.csv
+it-operations-platform/sample_data/task4_zoho_mock.json
+it-operations-platform/scripts/01_create_database.sql
+it-operations-platform/scripts/02_reporting_queries.sql
+it-operations-platform/scripts/03_task2_migration.sql
+it-operations-platform/scripts/04_task2_checks.sql
+it-operations-platform/scripts/05_task3_migration.sql
+it-operations-platform/scripts/06_task3_checks.sql
+it-operations-platform/scripts/07_task4_migration.sql
+it-operations-platform/scripts/08_task4_checks.sql
+it-operations-platform/scripts/__init__.py
+it-operations-platform/scripts/configure_local.py
+it-operations-platform/scripts/demo_task4.ps1
+it-operations-platform/scripts/generate_sample_data.py
+it-operations-platform/scripts/google_workspace_lab.py
+it-operations-platform/scripts/init_schema.py
+it-operations-platform/scripts/migrate_task2.py
+it-operations-platform/scripts/migrate_task3.py
+it-operations-platform/scripts/migrate_task4.py
+it-operations-platform/scripts/seed_task2.py
+it-operations-platform/scripts/seed_task3.py
+it-operations-platform/scripts/seed_task4.py
+it-operations-platform/tests/__init__.py
+it-operations-platform/tests/conftest.py
+it-operations-platform/tests/test_api.py
+it-operations-platform/tests/test_assets.py
+it-operations-platform/tests/test_employee_lifecycle.py
+it-operations-platform/tests/test_helpdesk.py
+it-operations-platform/tests/test_import_service.py
+it-operations-platform/tests/test_laptop_walkthrough.py
+it-operations-platform/tests/test_seed.py
+it-operations-platform/tests/test_session_navigation.py
+it-operations-platform/tests/test_task4_workflows.py
+it-operations-platform/tests/test_task4_zoho.py
+it-operations-platform/tests/test_validation.py
+```
+
+## Every source file — exact relative paths and complete contents
+
+### `.env.example` — MODIFIED
+
+Exact location in VS Code: `it-operations-platform/.env.example`. Purpose: # Local development only. Copy to .env; never commit .env..
+
+~~~~~~~text
+# Local development only. Copy to .env; never commit .env.
+DB_SERVER=localhost\SQLEXPRESS
+DB_NAME=ClaimsITOpsDemo
+DB_ODBC_DRIVER=ODBC Driver 18 for SQL Server
+DB_ENCRYPT=yes
+# Only yes for a trusted local development SQL Server with a self-signed certificate.
+DB_TRUST_SERVER_CERTIFICATE=yes
+MAX_UPLOAD_MB=5
+# Run python -m scripts.configure_local to generate a unique key in .env.
+APP_SECRET_KEY=
+APP_COOKIE_SECURE=false
+
+# Task 3 external integrations are never invoked from API routes.
+# These variables apply only to the optional standalone Google lab utility.
+GOOGLE_LAB_ENABLED=NO
+# GOOGLE_SERVICE_ACCOUNT_FILE=C:\\lab-secrets\\workspace-service-account.json
+# GOOGLE_DELEGATED_ADMIN=lab-admin@isolated-lab.example
+# GOOGLE_LAB_DOMAIN=isolated-lab.example
+
+# Task 4 Zoho CRM V8 — all routes use MOCK unless BOTH switches are set.
+ZOHO_MODE=mock
+ZOHO_REAL_ENABLED=NO
+ZOHO_REGION=EU
+ZOHO_API_BASE_URL=https://www.zohoapis.eu
+ZOHO_MODULE=Claims
+ZOHO_FIELD_REFERENCE=Claim_Reference
+ZOHO_FIELD_CLAIMANT=Claimant_Name
+ZOHO_FIELD_TYPE=Claim_Type
+ZOHO_FIELD_STATUS=Status
+ZOHO_FIELD_SUBMITTED=Submission_Date
+ZOHO_FIELD_MISSING=Missing_Documents
+# Keep credentials OUT of source code; supply via environment variables / secret store only.
+# ZOHO_CLIENT_ID=
+# ZOHO_CLIENT_SECRET=
+# ZOHO_REFRESH_TOKEN=
+~~~~~~~
+
+### `.gitignore` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/.gitignore`. Purpose: .venv/.
+
+~~~~~~~text
+.venv/
+.env
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.db
+.DS_Store
+.vscode/
+~~~~~~~
+
+### `README.md` — MODIFIED
+
+Exact location in VS Code: `it-operations-platform/README.md`. Purpose: # Northstar Claims Ltd — IT Operations Automation & Support Management Platform.
+
+~~~~~~~markdown
+# Northstar Claims Ltd — IT Operations Automation & Support Management Platform
+
+**Fictional UK company · Local Windows 11 portfolio project · Tasks 1, 2 and 3 in one repository**
+
+Task 1 remains intact: SQL Server claims data, Excel/CSV import, rejected-row diagnostics, audit events and formula-driven Excel reporting. Task 2 **extends those same files and the same `ClaimsITOpsDemo` database** with accounts, tickets, technician workflow, SLA monitoring, device lifecycle, audit records, Excel exports and browser screens.
+
+**Task 2 baseline:** 26 automated tests passed in an isolated SQLite test environment. SQL Server DDL and live ODBC integration must be verified on the local Windows machine; no destructive migration commands are used.
+
+## Architecture and file responsibilities
+
+| File | Purpose / interaction |
+| --- | --- |
+| `app/main.py` (updated) | One FastAPI application; registers both Tasks 1 and 2 routers, mounts static files. |
+| `app/models.py` (updated) | Keeps original models and adds `User`, `Ticket`, `TicketHistory`, `Asset`, `AssetMovement`; extends `AuditEvent`. |
+| `app/config.py`, `app/db.py` (unchanged) | Loads `.env`; creates the existing `mssql+pyodbc` engine and dependency-injected sessions. |
+| `app/security.py` (new) | Argon2id password hashing, signed HttpOnly cookies, 8-hour expiry, CSRF tokens and role checks. |
+| `app/schemas.py` (new) | Strict Pydantic validation for users, assets, tickets, workflow transitions. |
+| `app/routers/auth.py` (new) | Login/logout/me and administrator CRUD account endpoints. |
+| `app/routers/tickets.py` (new) | Ticket create, list, details, technician assignment, notes and state transitions. |
+| `app/routers/assets.py` (new) | Asset registration, search/filter, edits, assignment and return. |
+| `app/routers/it_reports.py` (new) | Ticket, inventory and workload `.xlsx` downloads. |
+| `app/routers/pages.py` (new) | HTML pages with RBAC enforcement on every route. |
+| `app/routers/dashboard.py` (updated) | Unified claims + IT-support KPI dashboard; data scoped by role. |
+| `app/routers/claims.py`, `imports.py`, `reports.py` (updated) | Existing Task 1 logic/endpoints preserved; add Admin checks and CSRF on imports. |
+| `app/services/helpdesk_service.py` (new) | SLA rules, valid ticket state transitions, ticket history and shared `AuditEvent` writes. |
+| `app/services/asset_service.py` (new) | Atomic assignment / return and an append-only movement history. |
+| `app/services/it_report_service.py` (new) | Excel files styled with Task 1 `excel_safe()` and `style_header()`. |
+| `app/services/import_service.py`, `validation.py`, `report_service.py` (unchanged) | Original Task 1 import, validation and Excel logic. |
+| `app/templates/` | New `base`, `login`, `tickets`, `ticket_new`, `ticket_detail`, `assets`, `users` pages; original dashboard extended. |
+| `app/static/app.css`, `app/static/app.js` (new) | Shared responsive design and same-origin JSON requests with CSRF. |
+| `scripts/03_task2_migration.sql` (new) | Non-destructive, repeatable SQL Server DDL migration; preserves claims/audit rows. |
+| `scripts/migrate_task2.py` (new) | Executes same migration batches through existing SQLAlchemy engine. |
+| `scripts/configure_local.py` (new) | Creates `.env` with cryptographically random session signing key; preserves existing values. |
+| `scripts/seed_task2.py` (new) | Five fictional demo users, six devices and four sample tickets; idempotent. |
+| `scripts/04_task2_checks.sql` (new) | SSMS ticket, device, audit, duplication and overdue reports. |
+| `tests/test_helpdesk.py`, `test_assets.py`, `test_seed.py`, `test_laptop_walkthrough.py` (new) | Roles, validation, workflows, conflicting assignments, exports and seed repeatability. |
+| `tests/conftest.py`, `test_api.py` (updated) | Existing regression tests now sign in where authentication is required. |
+| `requirements.txt`, `.env.example` (updated) | Adds Argon2id and timed signer dependencies; no secrets in committed settings. |
+
+Files not named above are carried over byte-for-byte from Task 1, including both sample claims files. For every text file's full source code and exact paste path, see `Task2_FULL_SOURCE_CODE.md` adjacent to the ZIP. File paths in that document are relative to `it-operations-platform/`.
+
+## 1. Windows 11 prerequisites
+
+Reuse the installations from Task 1: Python **3.12 x64**, Visual Studio Code + Python extension, Microsoft SQL Server Express instance `SQLEXPRESS`, SQL Server Management Studio (SSMS), and Microsoft ODBC Driver **18** for SQL Server. VS Code should select the project's virtual environment.
+
+Open **the existing `it-operations-platform` folder** in VS Code; replace/merge its source files from the Task 2 ZIP *after making a copy of the current folder*. **Do not delete the SQL Server database or use `DROP DATABASE`, `TRUNCATE` or `Base.metadata.drop_all()`**. The SQL Server database is external to the source ZIP.
+
+In VS Code's **PowerShell** terminal (`Terminal > New Terminal`), starting at the project root:
+
+```powershell
+py -3.12 --version
+# If you do not already have the Task 1 virtual environment:
+py -3.12 -m venv .venv
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -c "import pyodbc; print(pyodbc.drivers())"
+python -m scripts.configure_local
+```
+
+`configure_local` copies `.env.example` to `.env` if needed and inserts a random 48-byte URL-safe signing key. If `.env` already exists, its DB configuration and existing nonempty key are preserved. **Never add `.env` to version control.** For localhost HTTP, `APP_COOKIE_SECURE=false`; for a real HTTPS deployment use `true`, validated SQL TLS certificates and a full security review. Never publish this demo with publicly known accounts.
+
+## 2. Back up and migrate the existing Task 1 database
+
+1. Open SSMS. Connect using Server name `.\SQLEXPRESS` and **Windows Authentication**. Confirm `Databases > ClaimsITOpsDemo` and `Tables > dbo.claims`, `dbo.audit_events` exist; make a **full backup** using right-click database > Tasks > Back Up. Confirm the `.bak` succeeded.
+2. In SSMS choose File > Open > File and select **`scripts/03_task2_migration.sql`** from this repository.
+3. Confirm the script begins `USE ClaimsITOpsDemo;`. Press **F5** (Execute). The migration runs in a SQL Server transaction. It creates five Task 2 tables if absent; adjusts the `audit_events` nullable import-batch field and adds `actor_user_id`; expands the allowed audit event types. It **does not modify claim data**.
+4. Refresh the Tables list. You should now have **nine tables**: `import_batches`, `claims`, `rejected_rows`, `audit_events`, `users`, `tickets`, `ticket_history`, `assets`, `asset_movements`.
+5. Execute **`scripts/04_task2_checks.sql`** in SSMS to verify your old claims rows, new tables and duplicate checks.
+
+**Alternative to steps 2–3:** Run `python -m scripts.migrate_task2` in VS Code PowerShell. Do not execute `scripts/init_schema.py` *instead* of the Task 2 migration on an existing Task 1 database; `create_all()` doesn't alter the old `audit_events` table. The migration script is repeatable and runs without deleting rows.
+
+On a **brand-new installation**, first run Task 1 `scripts/01_create_database.sql` in SSMS, then `python -m scripts.init_schema`, and finally the Task 2 migration. On a pre-existing Task 1 installation, run only the new migration.
+
+To confirm old rows survived, run in SSMS:
+
+```sql
+USE ClaimsITOpsDemo;
+SELECT COUNT(*) AS claims_count FROM dbo.claims;
+SELECT COUNT(*) AS imported_events FROM dbo.audit_events WHERE event_type='IMPORT_COMPLETED';
+SELECT name FROM sys.tables ORDER BY name;
+```
+
+## 3. Add fictional demo accounts, inventory and a starter ticket
+
+```powershell
+python -m scripts.seed_task2
+```
+
+This adds missing rows only; it does **not** overwrite existing accounts, assets or tickets. Passwords are Argon2id-hashed. Use these **local training-only** credentials:
+
+| Username | Role | Demo password |
+| --- | --- | --- |
+| `admin` | Admin | `NorthstarAdmin!2026` |
+| `tech.owen` | Technician | `NorthstarTech!2026` |
+| `tech.maya` | Technician | `NorthstarTech!2026` |
+| `employee.ellie` | Employee | `NorthstarStaff!2026` |
+| `employee.jamie` | Employee | `NorthstarStaff!2026` |
+
+Sample assets: `NS-LAP-001` (Dell Latitude 5440 laptop), `NS-LAP-002` (Lenovo ThinkPad T14 laptop), `NS-DES-001` (HP ProDesk desktop), `NS-PRN-001` (Brother printer, Maintenance), `NS-RTR-001` (Cisco router) and `NS-SWT-001` (Cisco switch). The four initial tickets cover a VPN issue (Open), a printer jam (Assigned), account lockouts (In Progress) and an Outlook add-in fault (Resolved). All users/devices are fictional. User accounts are **not created automatically on app start**: run the explicit seed command once.
+
+## 4. Launch and demonstrate the browser screens
+
+```powershell
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+| Browser URL | Function and access |
+| --- | --- |
+| http://127.0.0.1:8000/ | Unified dashboard; sign-in form for visitors. |
+| http://127.0.0.1:8000/login | Demo login page. |
+| http://127.0.0.1:8000/tickets | Role-filtered tickets list. |
+| http://127.0.0.1:8000/tickets/new | File a ticket and associate an assigned device. |
+| http://127.0.0.1:8000/tickets/1 | Ticket history/status/actions (example; use real ticket ID). |
+| http://127.0.0.1:8000/assets | Register/assign/return/edit/search devices; Admin/Technician only. |
+| http://127.0.0.1:8000/users | Account creation, role changes, password reset, deactivation; Admin only. |
+| http://127.0.0.1:8000/docs | FastAPI Swagger API docs. |
+| http://127.0.0.1:8000/health | Health status, no auth. |
+
+To see different permissions, log out, then log in as a different demo user. Employees see **their own tickets** only and cannot view inventory, user administration, or claims. Technicians can update **their own assigned tickets** and manage devices; they can claim unassigned tickets for themselves. Admins can see all tickets, assign any technician, update accounts and download all reports.
+
+**SLA policy for the demo** (not a legally agreed SLA): Low = 72 h, Medium = 24 h, High = 8 h, Critical = 2 h from ticket creation. A ticket is overdue if the current UTC time passes its due date before resolution. After resolution, SLA status is `Met`/`Breached` based on the resolution timestamp. Status flow: `Open -> Assigned -> In Progress -> Resolved -> Closed`; `Assigned -> Resolved` is also permitted with a resolution note, and `Resolved -> In Progress` reopens work.
+
+## 5. Practical laptop-fault demonstration (5-minute portfolio walkthrough)
+
+1. **Sign in as Technician Owen** (`tech.owen`) at `/login`. Go to `/assets`. Confirm `NS-LAP-001` is Available; from its row choose **Ellie Carter** and click **Assign**. You should see `Assigned`, employee Ellie, and a new `ASSET_ASSIGNED` audit event.
+2. **Log out; sign in as Ellie** (`employee.ellie`). Go to `/tickets/new`. Enter title **Laptop crashes on startup**, description **The Latitude 5440 blue-screens when I sign in and cannot access the claims application.**, category **Hardware**, priority **High**, asset **NS-LAP-001**. Submit. A new `TKT-00000x` reference appears; status is **Open** and SLA deadline is 8 hours after creation.
+3. **Log out; sign in as Admin** (`admin`). Go to `/tickets`, select the new reference, then assign to **Owen Hughes**. The assignment and timestamp appear in the ticket history; status becomes **Assigned**.
+4. **Log out; sign in as Owen**. Open the ticket, set status to **In Progress**, then add troubleshooting note **Reviewed Event Viewer and crash dumps; graphics driver caused repeated bug checks.**
+5. Set status to **Resolved** and enter **Installed the approved graphics driver, completed three restarts and confirmed the claims application launches.** The ticket now has `resolved_at`, full history, and `Met`/`Breached` SLA outcome.
+6. **Log out; sign in as Admin**, reopen the ticket and set status **Closed**. Download `/api/reports/tickets.xlsx`, `/api/reports/inventory.xlsx`, and `/api/reports/workload.xlsx`. Confirm the original claims Excel report still works.
+7. In SSMS execute `scripts/04_task2_checks.sql`; look for `TICKET_CREATED`, `TICKET_ASSIGNED`, `TICKET_UPDATED`, `TICKET_NOTE` audit records, plus `asset_movements`. Finally re-importing an existing claims sample as Admin should retain Task 1 SHA-256 idempotency and data integrity.
+
+## 6. REST endpoints
+
+| Method | Endpoint | Access / details |
+| --- | --- | --- |
+| POST | `/api/auth/login` | Public JSON username/password; sets signed `nc_session` cookie and returns `csrf_token`. |
+| POST | `/api/auth/logout` | Authenticated + `X-CSRF-Token`; clears browser cookie. |
+| GET | `/api/auth/me` | Current user details (never password hashes). |
+| GET/POST | `/api/users` | Admin list/create accounts; admin-created passwords are hashed. |
+| PATCH | `/api/users/{id}` | Admin changes name/email/role/active status/password; validates last-admin and active assignments. |
+| GET/POST | `/api/tickets` | User's scoped list / submit ticket (request body below). |
+| GET | `/api/tickets/{id}` | Owned/assigned ticket with timeline and SLA. |
+| POST | `/api/tickets/{id}/assign` | Admin assigns any tech; tech claims own unassigned tickets. |
+| PATCH | `/api/tickets/{id}` | Admin/assigned tech changes status; resolution details required for Resolved. |
+| POST | `/api/tickets/{id}/notes` | Admin/assigned tech adds troubleshooting note. |
+| GET/POST | `/api/assets` | Admin/Technician search + register (`q`, `status`, `device_type`, `offset`, `limit`). |
+| GET/PATCH | `/api/assets/{id}` | Admin/Technician view/edit details/status. |
+| POST | `/api/assets/{id}/assign` | Atomically assign Available device to active Employee. |
+| POST | `/api/assets/{id}/return` | Atomically return an Assigned device to Available. |
+| GET | `/api/reports/tickets.xlsx` | Admin/Technician ticket report with Excel formulas. |
+| GET | `/api/reports/inventory.xlsx` | Admin/Technician inventory export and summary formulas. |
+| GET | `/api/reports/workload.xlsx` | Admin-only technician assignment/workload spreadsheet. |
+| POST | `/api/claims/import` | **Task 1** import, now Admin + CSRF; same file format and response. |
+| GET | `/api/claims`, `/api/imports`, `/api/imports/{id}/rejections` | **Task 1** existing retrieval APIs, now Admin-only. |
+| GET | `/api/reports/claims.xlsx` | **Task 1** original formula-driven report, Admin-only. |
+
+**PowerShell API example** (run in a separate terminal while Uvicorn is running):
+
+```powershell
+$base = 'http://127.0.0.1:8000'
+$webSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$loginBody = @{username='admin';password='NorthstarAdmin!2026'} | ConvertTo-Json
+$login = Invoke-RestMethod -Uri "$base/api/auth/login" -Method Post -WebSession $webSession -ContentType 'application/json' -Body $loginBody
+$headers = @{ 'X-CSRF-Token' = $login.csrf_token }
+Invoke-RestMethod -Uri "$base/api/auth/me" -WebSession $webSession
+
+# Existing Task 1 report (same URL, now authenticated):
+Invoke-WebRequest -Uri "$base/api/reports/claims.xlsx" -WebSession $webSession -OutFile claims_report.xlsx
+
+# Admin assigns an open ticket to Owen. Replace 1 with the actual ticket ID:
+$assignBody = @{technician_id=2} | ConvertTo-Json
+Invoke-RestMethod -Uri "$base/api/tickets/1/assign" -Method Post -WebSession $webSession -Headers $headers -ContentType 'application/json' -Body $assignBody
+
+# Search laptop inventory:
+Invoke-RestMethod -Uri "$base/api/assets?q=Latitude" -WebSession $webSession
+
+# Download technician workload:
+Invoke-WebRequest -Uri "$base/api/reports/workload.xlsx" -WebSession $webSession -OutFile technician_workload.xlsx
+```
+
+If the seeded database contains pre-existing users, don't assume ID `2` is Owen: `GET /api/users` as Admin to find his real ID. Prefer the browser form, which populates real IDs automatically.
+
+**JSON ticket example:**
+
+```json
+{
+  "title": "Laptop crashes on startup",
+  "description": "Latitude 5440 shows a blue screen immediately after Windows sign-in.",
+  "category": "Hardware",
+  "priority": "High",
+  "affected_asset_id": null
+}
+```
+
+**JSON device example:**
+
+```json
+{
+  "asset_tag": "NS-LAP-007",
+  "serial_number": "NS-DELL-1007",
+  "device_type": "Laptop",
+  "manufacturer": "Dell",
+  "model": "Latitude 5440",
+  "operating_system": "Windows 11",
+  "purchase_date": "2025-06-01",
+  "warranty_expiry": "2028-06-01",
+  "notes": "Fictional IT equipment"
+}
+```
+
+For API POST/PATCH, send JSON plus the `X-CSRF-Token` returned by login and preserve the `nc_session` cookie. The browser forms handle this automatically. Passwords never appear in API output or audit details. Cookie has HttpOnly and SameSite=Strict; user roles are checked against the database **on every request**.
+
+## 7. Verify the tests and SQL integrity
+
+```powershell
+python -m pytest -v
+python -m compileall -q app scripts tests
+```
+
+Expected: **26 passed** (the suite originally had 14 Task 1 tests; 12 new tests validate Task 2). Test fixtures create all nine tables in isolated SQLite, while the real application continues to use SQL Server Express. Running pytest **does not modify the production/demo SQL Server database**.
+
+After you have imported 1,000 rows from Task 1 once, `dbo.claims` should still contain **900 valid unique claims**, with **100 rejected rows**. The Task 2 migration must not change either count. In SQL Server, the `asset_tag` duplicate check returns **zero rows**; assigned assets always have exactly one assigned employee, checked with `ck_assets_assignment`.
+
+## 8. Troubleshooting
+
+| Error | Explanation / fix |
+| --- | --- |
+| `401 Login required` | Sign in via `/login`; cookies must be enabled. |
+| `403 Missing or incorrect CSRF token` | Re-login, read the new `csrf_token`, and send `X-CSRF-Token` with write operations. Browser forms do this. |
+| `403 Insufficient permissions` | Use the correct role. Employee cannot view other tickets/claims/assets; technician cannot update someone else's assigned ticket. |
+| `409 Assignment conflict` | Device already Assigned, in Maintenance/Retired, or changed concurrently. Return device before reassigning. |
+| `409 Invalid status transition` | Follow Open → Assigned → In Progress → Resolved → Closed. |
+| `422` response with validation detail | Inspect required fields/allowed categories/priorities, dates and resolution text length. |
+| `500 Invalid column actor_user_id` or `Invalid object name users` | Run `scripts/03_task2_migration.sql` in **ClaimsITOpsDemo**, then refresh SSMS. |
+| SQL Server `08001` or `18456` | Check SQL Server (SQLEXPRESS) running, Windows Authentication, `.env` server and ODBC Driver 18. |
+| Can't activate `.venv` | `Set-ExecutionPolicy -Scope Process Bypass`, then ` .\.venv\Scripts\Activate.ps1`. |
+| `APP_SECRET_KEY not configured` | Run `python -m scripts.configure_local`, then restart Uvicorn. |
+| Login returns `401` with seeded details | Run `python -m scripts.seed_task2`, ensure you selected `ClaimsITOpsDemo`, or use the current account password. |
+| Workbook `XLOOKUP` not supported | Original Task 1 report needs Microsoft 365 or Excel 2021+. |
+| Browser `net::ERR_CONNECTION_REFUSED` | Start Uvicorn on localhost port 8000. |
+| `/api/tickets/1` not your ticket | Use `/tickets` to locate the ID allowed for your role. Other-user tickets intentionally return 404. |
+
+**Security scope:** This is a localhost portfolio demo, not a production-ready helpdesk. Do not expose it on a public network. The seed passwords are published for training; use unique private passwords, add rate limiting, security headers, real SSO/MFA, secure HTTPS, access reviews, secret storage, backup testing and operational monitoring before deployment. When changing the signing key, existing login cookies expire. The login session is a signed cookie; a production platform should add server-side revocable sessions.
+
+## 9. Extension boundary for Task 3
+
+Keep the same `app/config.py`, `app/db.py`, `Base`, claims services and `ClaimsITOpsDemo` database. Future extensions belong in `app/routers/`, `app/services/`, `app/templates/`, and **new incremental migration scripts**. Never rebuild the project from scratch or discard claims, tickets or asset movement history.
+
+### Browser displays `401 Login required` after signing in
+
+Keep the hostname consistent: use **`http://127.0.0.1:8000`** for both sign-in and all app routes. Do not switch to `localhost`. For local HTTP confirm `.env` has `APP_COOKIE_SECURE=false`, then restart Uvicorn and sign in again. Browser developer tools -> Application/Storage -> Cookies -> `http://127.0.0.1:8000` should show an HttpOnly cookie named `nc_session`.
+
+The original Task 2 release set `SameSite=Strict`; this prevented the session cookie from being sent when following links to localhost from external websites, including ChatGPT. The login fix changes that option to `SameSite=Lax`, so top-level GET navigations can send the session cookie. CSRF tokens remain mandatory for mutating API requests and role checks are unchanged.
+
+Visit `http://127.0.0.1:8000/api/auth/me` after sign-in. It should show JSON with `"role": "Admin"`. If it says `401 Login required`, inspect the browser request's Cookie header and response's Set-Cookie header. `/docs` is a public Swagger UI page, but invoking protected API operations there without the `nc_session` cookie returns 401.
+
+
+---
+
+# Task 3 — Employee onboarding and offboarding (AD + Google Workspace mock)
+
+**Do not use this against real staff.** The FastAPI server never makes live AD or Google Workspace changes. All HR records are fictional, and local `Active` / `Offboarded` indicates a **simulation**. Task 1 claims, Task 2 tickets/assets/login and the original audit table remain intact. Refer to `docs/TASK3_ARCHITECTURE.md` for table, module and function-level descriptions.
+
+## 1. Files to add or replace in VS Code
+
+Start from the **Task 2 login-fixed source** and merge the Task 3 ZIP into the existing `it-operations-platform` folder. New files: `app/employee_schemas.py`, `app/routers/employees.py`, `app/routers/employee_pages.py`, `app/services/employee_service.py`, `app/services/google_directory.py`, `app/templates/employees.html`, `powershell/Invoke-NorthstarAD.ps1`, `scripts/05_task3_migration.sql`, `scripts/06_task3_checks.sql`, `scripts/migrate_task3.py`, `scripts/seed_task3.py`, `scripts/google_workspace_lab.py`, `requirements-google-lab.txt`, `sample_data/task3_ad_plan.json`, `tests/test_employee_lifecycle.py`, and this architecture guide. Modified files: `app/models.py`, `app/main.py`, `app/routers/assets.py`, `app/schemas.py`, `app/templates/base.html`, `app/templates/dashboard.html`, `.env.example`, and this `README.md`. Existing connection and authentication files are preserved; no SQL Server credentials are placed in the source.
+
+## 2. Exact commands — VS Code terminal (PowerShell on Windows 11)
+
+```powershell
+cd C:\Path\To\it-operations-platform
+py -3.12 --version
+if (!(Test-Path .venv)) { py -3.12 -m venv .venv }
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m scripts.configure_local
+python -c "import pyodbc; print(pyodbc.drivers())"
+python -m pytest -q
+```
+
+Do not overwrite your existing `.env`. Confirm it points at `localhost\SQLEXPRESS` or your named SQL Server instance and that `APP_SECRET_KEY` is set privately. The `GOOGLE_LAB_ENABLED` example defaults to `NO`.
+
+## 3. Exact steps — SSMS, SQL Server Express
+
+1. **Back up** `ClaimsITOpsDemo` in SSMS: right-click database > Tasks > Back Up > Full.
+2. Check existing `dbo.claims`, `dbo.tickets`, `dbo.assets`, `dbo.users`, `dbo.audit_events` are present. Complete Task 2 migration first if missing.
+3. File > Open > File > `scripts/05_task3_migration.sql` > **F5**. The script adds six new tables, expands the two CHECK constraints on `assets` and `audit_events`, and preserves every Task 1/2 row. It is wrapped in a T-SQL transaction and safe to rerun.
+4. File > Open > File > `scripts/06_task3_checks.sql` > **F5**. Verify the new tables, old claims count, asset reservations and audit events. The SQL duplicate-reservation query should return **zero** rows.
+
+As an alternative to step 3, from the activated VS Code terminal:
+
+```powershell
+python -m scripts.migrate_task3
+```
+
+**Do not** use `Base.metadata.drop_all()`, `DROP DATABASE`, or re-run a destructive database setup command. This migration changes the **existing** database, not a replacement database. It must still be verified on your actual SQL Server instance; SQLite tests do not validate Microsoft SQL Server DDL.
+
+## 4. Seed the two-person reviewer and start web application
+
+```powershell
+python -m scripts.seed_task3
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Use existing local Task 2 Admin account `admin` / `NorthstarAdmin!2026` and separate fictional reviewer `admin.reviewer` / `NorthstarReview!2026`. Both passwords are TEST-ONLY; do not expose the web app to external networks. Run `python -m scripts.seed_task2` only when Task 2 sample users and laptops are missing. `seed_task3` is repeatable and does not replace existing users or invent employee data.
+
+### Browser URLs
+
+| URL | Permissions and purpose |
+|---|---|
+| `http://127.0.0.1:8000/login` | Local session sign-in |
+| `http://127.0.0.1:8000/` | Existing Tasks 1/2 dashboard, now with Employee Management link |
+| `http://127.0.0.1:8000/employees` | Admin/Technician employee statuses, actions, approvals |
+| `http://127.0.0.1:8000/assets` | Task 2 asset inventory, including `Reserved` status |
+| `http://127.0.0.1:8000/tickets` | Unchanged Task 2 ticket workflow |
+| `http://127.0.0.1:8000/docs` | Swagger API calls for all three tasks |
+| `http://127.0.0.1:8000/health` | Server health |
+
+### Task 3 API endpoints
+
+| Method | Endpoint | Role and effect |
+|---|---|---|
+| GET | `/api/employees` | Admin/Technician: list current HR simulation records |
+| GET | `/api/employees/metrics` | Admin/Technician: operational statistics |
+| POST | `/api/employees/onboarding` | Admin: validate, plan AD, mock Google, reserve laptop, audit |
+| GET | `/api/employees/{id}` | Admin/Technician: details plus checklist |
+| GET | `/api/employees/{id}/ad-plan` | Admin: dry-run plan JSON (no credentials) |
+| POST | `/api/employees/{id}/activate` | Admin: mark local simulation Active |
+| POST | `/api/employees/{id}/offboarding` | Admin/Technician: departure request; no suspension |
+| GET | `/api/employees/offboarding` | Admin/Technician: approval queue |
+| POST | `/api/employees/offboarding/{request_id}/approve` | Different Admin: simulated suspend/return flag/audit |
+
+Session authentication uses Task 2's signed cookie; mutating HTTP endpoints require `X-CSRF-Token`. Employee logins cannot access these operations. Two-person approval is enforced server-side: requester cannot approve their own request even if Admin.
+
+## 5. Practical test — onboard and offboard fictitious claims handler
+
+1. Open `/login`, sign in `admin` and visit `/employees`.
+2. Enter **Alex Morgan**, **Claims**, **Claims Handler**, manager **Sarah Bennett**, start date within the next month, group **SG-Claims-Read**, and device **Laptop**. Submit. Expected: an `EMPLOYEE_CREATED` / `ONBOARDING_PREPARED` event, a generated `nc000001`-style AD name, AD `Prepared` actions, Google `Mocked` actions and the next **Available** Task 2 laptop now `Reserved`. If no free laptop exists, the request status is `Attention`, and `LAPTOP_RESERVE` records `Failed`. No remote account exists.
+3. On the employee row, select **AD plan JSON**. Save the response as a `.json` file if you want to test PowerShell using that specific employee; the provided static `sample_data/task3_ad_plan.json` works without signing in.
+4. Select **Checklist** to see every operation; then **Activate (mock)**. The local HR employee becomes `Active` but still has **no real AD or Google account**.
+5. As Admin, choose **Request offboarding** for Alex Morgan, provide a departure reason and ISO last-working-day. The status is `PendingApproval`; no suspension or reservation release occurs at this point.
+6. Try approving as the same `admin`: the API returns HTTP **403**. Sign out and sign in as **`admin.reviewer`**. Select **Approve mock suspension**, type a justification and confirm.
+7. Expected: `Offboarded` local state, AD `Prepared` disable/group review, Google `Mocked` suspension, reservation `Released` (asset returns to `Available`), `ManualRequired` device collection, an `approval_records` row and `OFFBOARDING_COMPLETED` audit event. **No actual user is disabled in Google or AD.**
+8. Run `scripts/06_task3_checks.sql` in SSMS to verify employee, approval, actions, reservation history and the original claims/ticket counts.
+
+### PowerShell REST API alternative
+
+Run in a second VS Code terminal while Uvicorn runs. Login **session cookie** and returned CSRF must both be preserved:
+
+```powershell
+$base = 'http://127.0.0.1:8000'
+$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$body = @{ username='admin'; password='NorthstarAdmin!2026' } | ConvertTo-Json
+$login = Invoke-RestMethod "$base/api/auth/login" -Method Post -WebSession $session -ContentType 'application/json' -Body $body
+$headers = @{ 'X-CSRF-Token' = $login.csrf_token }
+$newEmployee = @{
+  full_name='Alex Morgan'; department='Claims'; job_title='Claims Handler';
+  manager_name='Sarah Bennett'; start_date=(Get-Date).AddDays(14).ToString('yyyy-MM-dd');
+  required_groups=@('SG-Claims-Read'); device_requirements=@('Laptop')
+} | ConvertTo-Json
+$new = Invoke-RestMethod "$base/api/employees/onboarding" -Method Post -WebSession $session -Headers $headers -ContentType 'application/json' -Body $newEmployee
+$new | Format-List
+Invoke-RestMethod "$base/api/employees/$($new.id)/ad-plan" -WebSession $session | ConvertTo-Json -Depth 8 | Out-File -Encoding utf8 .\sample_data\task3_generated_ad_plan.json
+Invoke-RestMethod "$base/api/employees/$($new.id)/activate" -Method Post -WebSession $session -Headers $headers
+$departure = @{ last_working_date=(Get-Date).ToString('yyyy-MM-dd'); reason='Fictional contract completed' } | ConvertTo-Json
+$request = Invoke-RestMethod "$base/api/employees/$($new.id)/offboarding" -Method Post -WebSession $session -Headers $headers -ContentType 'application/json' -Body $departure
+# Approver MUST sign in separately. Do not reuse the requester session.
+$reviewerSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$reviewerLogin = Invoke-RestMethod "$base/api/auth/login" -Method Post -WebSession $reviewerSession -ContentType 'application/json' -Body (@{username='admin.reviewer';password='NorthstarReview!2026'} | ConvertTo-Json)
+$approvalBody = @{confirm=$true;comment='Approved for the fictional offboarding lab'} | ConvertTo-Json
+Invoke-RestMethod "$base/api/employees/offboarding/$($request.id)/approve" -Method Post -WebSession $reviewerSession -Headers @{'X-CSRF-Token'=$reviewerLogin.csrf_token} -ContentType 'application/json' -Body $approvalBody
+```
+
+## 6. Windows PowerShell automation (NO domain needed by default)
+
+`powershell/Invoke-NorthstarAD.ps1` demonstrates the literal Microsoft cmdlets `New-ADUser`, `Get-ADUser`, `Add-ADGroupMember`, `Get-ADGroupMember`, and `Disable-ADAccount`. On Windows 11 in an ordinary terminal:
+
+```powershell
+.\powershell\Invoke-NorthstarAD.ps1 -PlanPath .\sample_data\task3_ad_plan.json
+.\powershell\Invoke-NorthstarAD.ps1 -PlanPath .\sample_data\task3_ad_plan.json -Action InspectUser
+.\powershell\Invoke-NorthstarAD.ps1 -PlanPath .\sample_data\task3_ad_plan.json -Action InspectGroups
+.\powershell\Invoke-NorthstarAD.ps1 -PlanPath .\sample_data\task3_ad_plan.json -Action DisableAccount
+```
+
+Expected: `DRY RUN. No AD module, network connection or account changes.` followed by `WOULD: New-ADUser`, `WOULD: Add-ADGroupMember`, `WOULD: Get-ADUser`, `WOULD: Get-ADGroupMember` or `WOULD: Disable-ADAccount`. The dry-run has no AD module import and needs **no domain credentials**.
+
+### Optional and separate Windows Server AD lab
+
+Only on an **isolated** `northstar.lab` AD DS domain with domain controller `dc1.northstar.lab` and OU `OU=LabUsers,DC=northstar,DC=lab`:
+
+1. Install AD DS and create those names in your lab; ensure the security groups exist. On a Windows 11 admin VM, add RSAT using an elevated session:
+
+   ```powershell
+   Get-WindowsCapability -Online -Name RSAT.ActiveDirectory.DS-LDS.Tools*
+   Add-WindowsCapability -Online -Name RSAT.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0
+   Import-Module ActiveDirectory
+   Get-Command New-ADUser,Get-ADUser,Add-ADGroupMember,Disable-ADAccount,Get-ADGroupMember
+   ```
+2. Sign in as a delegated lab administrator with only create-user and approved group permissions; avoid Domain Admin rights. Ensure DNS resolves and the VM can reach the isolated lab DC.
+3. Inspect first, without modifying: `.\powershell\Invoke-NorthstarAD.ps1 -PlanPath .\sample_data\task3_ad_plan.json -LabLive -Action PrepareAccount` — defaults to **`-WhatIf`** on changes.
+4. **Only if explicitly authorised in your isolated lab**, to create the test account: set `$env:NORTHSTAR_AD_LAB_ALLOWED='YES'` in that session, add both `-LabLive -CommitLabChanges`, type the requested confirmation and enter a unique temporary lab password at the secure prompt. This mode calls actual AD cmdlets and can make changes; it is never part of the local demo. Offboarding can be tested analogously with `-Action DisableAccount` after verifying the test account is lab-only. Remove the opt-in environment variable afterward.
+
+Never use production controllers, OUs, users or security groups with this training script.
+
+## 7. Google Workspace Directory (mock; optional lab only)
+
+The API uses `app/services/google_directory.py:MockDirectory` to create, list, add groups, update and suspend fictional users in process. Run all five from VS Code without external credentials:
+
+```powershell
+python -m scripts.google_workspace_lab --action create
+python -m scripts.google_workspace_lab --action list
+python -m scripts.google_workspace_lab --action group
+python -m scripts.google_workspace_lab --action update
+python -m scripts.google_workspace_lab --action suspend
+```
+
+Each CLI invocation starts its own in-memory mock, so actions are demonstrative rather than persisted across processes. Example: `MOCK suspend: completed`.
+
+**Separate optional real Google lab**: requires a Google Workspace sandbox domain, enabled Admin SDK Directory API, a service account authorised for **domain-wide delegation** by a Google administrator, and delegated least-privilege rights. Grant the exact OAuth scopes `https://www.googleapis.com/auth/admin.directory.user` and `https://www.googleapis.com/auth/admin.directory.group.member` to the service account in your test domain. Protect the service-account JSON outside the repository, set paths and delegated admin privately in your terminal, and install the optional library:
+
+```powershell
+python -m pip install -r requirements-google-lab.txt
+$env:GOOGLE_LAB_ENABLED='YES'
+$env:GOOGLE_SERVICE_ACCOUNT_FILE='C:\lab-secrets\workspace-service-account.json'
+$env:GOOGLE_DELEGATED_ADMIN='lab-admin@isolated-lab.example'
+$env:GOOGLE_LAB_DOMAIN='isolated-lab.example'
+python -m scripts.google_workspace_lab --lab-live --action list
+```
+
+Read-only `list` above accesses real lab data. Any write operation also requires `--commit-lab-changes` and an interactive typed acknowledgement, with user/group addresses restricted to the configured lab domain. **The FastAPI application never uses this real adapter, regardless of these environment values.** Do not store the credentials or token files inside this repository. Real `create` prompts for a temporary password without logging it. No real API access is needed for tests or local onboarding.
+
+Authoritative reference: https://developers.google.com/workspace/admin/directory/reference/rest and https://developers.google.com/workspace/admin/directory/v1/guides/manage-users.
+
+## 8. Verification / troubleshooting
+
+```powershell
+python -m pytest -q
+python -m pytest tests/test_employee_lifecycle.py -v
+python -m scripts.google_workspace_lab --action suspend
+```
+
+Expected: **37 tests passed** on the finished ZIP (Tasks 1–3). Note that this tests Python/SQLite only, not SSMS migrations, PowerShell syntax or external providers.
+
+| Error | Resolution |
+|---|---|
+| `401 Login required` | Log in using Task 2 demo credentials. |
+| `403 Insufficient permissions` | Employee roles cannot view HR; only Admin can onboard/activate/approve. |
+| `403 Missing or incorrect CSRF token` | Use the browser, or send the header from the current signed session login. |
+| `403 Second-person approval required` | Log in as `admin.reviewer`, not the original requestor. |
+| `409 Onboarding is not fully prepared` | Inspect checklist; likely no Available laptop, `Attention`/`Failed`. |
+| `409 Assignment conflict` | Laptop may already be `Reserved` by an onboarding request. |
+| `Invalid object name 'employees'` | Back up, then run `05_task3_migration.sql` in correct SQL Server database. |
+| `Invalid column or CHECK constraint violation` | Ensure migrations 03 then 05 were applied; compare model and SQL schema. |
+| `ActiveDirectory module was not loaded` | It is needed only with `-LabLive`; install RSAT on an isolated admin VM. |
+| `GOOGLE_LAB_ENABLED disabled` | Expected unless deliberately performing a standalone Google lab exercise. |
+| `No Available laptop` | Register or return a fictional laptop in Task 2 inventory before submitting a new onboarding request. |
+
+**Task 3 done when:** SSMS shows original claims and helpdesk rows plus six new tables; login and CSRF work; `admin` can onboard, reserve and view operations; a second Admin can approve offboarding; inventory reservation returns to Available; Task 1 imports and Task 2 tickets still work; `python -m pytest -q` passes.
+
+---
+
+# Task 4 — Zoho CRM Claims Workflows (additive)
+
+Task 4 adds **claims CRM staging, deterministic workflow rules, helpdesk escalation, communication previews, audit logs, safe CRM retry and Excel reports** to the existing Tasks 1–3 system. It does not replace `app/db.py` or rewrite the original `claims` table. No external CRM credentials are required by default.
+
+## 1. Installation — Windows 11 / VS Code
+
+1. Back up your working `it-operations-platform` repository and your `ClaimsITOpsDemo` database in SQL Server Management Studio. Extract the Task 4 ZIP and merge its *contents* into that repository; do not replace `.env` with the example file.
+2. In VS Code choose **File → Open Folder → it-operations-platform**. Use PowerShell in VS Code, in the repository root:
+
+```powershell
+py -3.12 --version
+if (-not (Test-Path .venv)) { py -3.12 -m venv .venv }
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m scripts.configure_local
+```
+
+3. The existing `.env` must contain the current `DB_SERVER`, `DB_NAME`, ODBC configuration and `APP_SECRET_KEY`. Use `.env.example` for the new `ZOHO_*` keys **only if you need them**. The defaults select `mock` and disable real access.
+
+## 2. SSMS — non-destructive Task 4 schema upgrade
+
+1. Connect in SSMS to `localhost\SQLEXPRESS` with Windows Authentication. Back up `ClaimsITOpsDemo` (**Tasks → Back Up**).
+2. Open **scripts/07_task4_migration.sql**, select the existing database and press **F5**. The script checks that earlier tables exist, creates six new Task 4 tables, extends the allowed `audit_events.event_type` values and commits. It can be re-run.
+3. Alternatively, run from VS Code after database backup:
+
+```powershell
+python -m scripts.migrate_task4
+```
+
+4. In SSMS open **scripts/08_task4_checks.sql** and press **F5** to view new tables, claim counts, ticket counts, workflow history, missing documents and duplicate-event checks. Existing data is never dropped.
+
+New tables are `claim_crm_states`, `workflow_rules`, `workflow_executions`, `workflow_transitions`, `crm_operations`, and `communication_templates`. Existing `claims`, `tickets`, `users`, `employees`, `assets`, and `audit_events` stay in place.
+
+## 3. Initialise rules and template previews
+
+```powershell
+python -m scripts.seed_task4
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Expected seed message:
+
+```text
+Task 4: four workflow rules and four editable templates available (idempotent).
+```
+
+Visit **http://127.0.0.1:8000/login**; use the existing Task 2 Admin demonstration credentials, `admin` / `NorthstarAdmin!2026` (localhost training only). Use the Task 1 claims import form at **http://127.0.0.1:8000/** to upload `sample_data/task4_demo_claims.csv`. Expected first-time upload: `2 imported; 0 rejected`; repeating an identical file reports `replayed=true`. The two new fictional references are `NCL-009999` and `NCL-009998`. This does not alter existing 1,000 Task 1 claim rows.
+
+### Browser URLs
+
+| Page | Local address |
+|---|---|
+| Existing dashboard / claims import | http://127.0.0.1:8000/ |
+| Claims management + workflow trigger + mock CRM pull | http://127.0.0.1:8000/claims-management |
+| Failed workflow logs and editable rule actions | http://127.0.0.1:8000/workflow-logs |
+| Communication templates and preview | http://127.0.0.1:8000/communication-templates |
+| Original helpdesk | http://127.0.0.1:8000/tickets |
+| Existing employee lifecycle | http://127.0.0.1:8000/employees |
+| Swagger UI | http://127.0.0.1:8000/docs |
+| Download Task 4 Excel | http://127.0.0.1:8000/api/reports/claims-workflows.xlsx |
+
+All Task 4 business pages and APIs require **Admin** rights; GETs require a valid login cookie and POST/PATCH/PUT require a valid `X-CSRF-Token` header. Other roles receive HTTP 403.
+
+## 4. Complete lifecycle demo — one fictional claim
+
+Run after the sample CSV is imported, the Task 4 seed has completed, and Uvicorn is running. The PowerShell script prompts for your local demonstration Admin password, authenticates with the existing cookie session, and never talks to a real CRM:
+
+```powershell
+.\scripts\demo_task4.ps1
+```
+
+The script demonstrates:
+
+1. Pull `NCL-009999` from the local mock CRM and persist its CRM record ID and sync status.
+2. `submitted` event: allocate Claims Team and move from New → Assigned.
+3. Replay the identical event key: response says `replayed=True`, no second transition.
+4. `missing_documents` event: stage becomes Evidence Required, `missing_documents=True`; Task 1 status maps to In Progress.
+5. `evidence_received` event: stage becomes Ready for Review, documentation flag clears.
+6. `resolved` event: stage becomes Resolved and `completed_at` is recorded; Task 1 status maps to Closed.
+7. Explicit CRM mock `push` updates the local in-memory Zoho test record to `Resolved`.
+8. A separate `NCL-009998` scenario creates a `demo_fail` rule. The failed execution records the error, and creates one Task 2 High-priority Software ticket. Update the broken rule to `evidence_required`, retry with the Admin API, and observe a successful retry without a second support ticket.
+
+Expected key messages include:
+
+```text
+CRM integration: Success
+submitted => Success
+Duplicate event recognised: True
+missing_documents => Success
+evidence_received => Success
+resolved => Success
+Final stage: Resolved; original claim status: Closed
+Failed workflow #...; support ticket #...
+Retry status: Success; retry count: 1
+```
+
+The original dataset is not erased. To rerun the *whole* demonstration from New, import another unique fictional claim and use new idempotency keys; do not delete or reset live claim data. The sample script refuses to reprocess an already-started demonstration reference.
+
+## 5. Manual API requests — PowerShell
+
+The existing browser authentication uses an HTTP-only session cookie and a CSRF token. In **PowerShell**:
+
+```powershell
+$base = 'http://127.0.0.1:8000'
+$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$login = Invoke-RestMethod -Uri "$base/api/auth/login" -Method Post -WebSession $session `
+  -ContentType 'application/json' `
+  -Body '{"username":"admin","password":"NorthstarAdmin!2026"}'
+$headers = @{ 'X-CSRF-Token' = $login.csrf_token }
+
+Invoke-RestMethod "$base/api/crm/claims?limit=10" -WebSession $session
+Invoke-RestMethod "$base/api/workflows/rules" -WebSession $session
+Invoke-RestMethod "$base/api/workflows/executions" -WebSession $session
+Invoke-RestMethod "$base/api/crm/remote" -WebSession $session
+
+$body = @{claim_id='NCL-009999'; event_type='submitted'; event_key='manual-submission-001'} | ConvertTo-Json
+Invoke-RestMethod "$base/api/workflows/events" -Method Post -ContentType 'application/json' `
+  -Headers $headers -WebSession $session -Body $body
+```
+
+The manual `submitted` event above must target a **New** demonstration claim. Use a unique immutable key for each different source event; reuse the **same** key only when intentionally replaying one event.
+
+Other relevant APIs:
+
+| Method | Path | Description |
+|---|---|---|
+| GET | `/api/crm/claims` | Paginated Task 1 claims with Task 4 stage, handler, documentation and sync status |
+| GET | `/api/crm/claims/{reference}` | One local claim and CRM state |
+| GET | `/api/crm/remote` | Mock or real CRM list |
+| GET | `/api/crm/remote/{record_id}` | Retrieve one CRM record |
+| POST | `/api/crm/claims/{reference}/sync` | Pull CRM status to SQL Server (`operation_key` JSON) |
+| POST | `/api/crm/claims/{reference}/push` | Push local workflow stage to CRM (`operation_key` JSON) |
+| GET | `/api/crm/operations` | CRM results, failures and retry counts |
+| POST | `/api/crm/operations/{id}/retry` | Admin-only retry of a failed CRM operation |
+| GET | `/api/workflows/rules` | Rules and parameters |
+| POST | `/api/workflows/rules` | Create validated rule (`RuleIn`) |
+| PATCH | `/api/workflows/rules/{id}` | Enable/disable or edit action/handler |
+| POST | `/api/workflows/events` | Process idempotent event (`WorkflowEventIn`) |
+| GET | `/api/workflows/executions` | Time, claim, transition, result, error and retry count |
+| POST | `/api/workflows/executions/{id}/retry` | Admin-only retry, maximum three retries |
+| GET | `/api/workflows/transitions` | Successful stage transitions |
+| GET | `/api/workflows/templates` | All four editable templates |
+| PUT | `/api/workflows/templates/{kind}` | Admin-only safe subject/body update |
+| GET | `/api/workflows/templates/{kind}/preview/{reference}` | Render preview, never send |
+| GET | `/api/reports/claims-workflows.xlsx` | Excel report |
+
+### Communication placeholders
+
+Only `{claim_id}`, `{claimant_name}`, `{claim_type}`, `{claim_status}`, `{handler}`, and `{submission_date}` are accepted. Property access, indexing, and formatting instructions are blocked. HTML/Jinja escapes preview text on pages. No SMTP or other delivery integration exists in Task 4.
+
+### Excel reporting
+
+Download the workbook from the Claims Management page. It contains `Summary`, `Claims by Status`, `Status Summary`, `Missing Documents`, `Failed Workflows`, `Processing Time`, and `Intervention` worksheets. The summary uses live Excel COUNTA and AVERAGE formulas; the data sheets include the requested status, missing evidence, errors, averages and action-required information.
+
+## 6. Optional **real** Zoho CRM integration (DO NOT enable for local demonstration)
+
+The real adapter uses the **official Zoho CRM V8 REST API** through HTTPX. To use it against an **authorised Zoho sandbox/test organisation only**, you need: a Zoho OAuth client ID, client secret and refresh token; scopes permitting module READ and UPDATE; your organisation's regional Zoho Accounts host and `zohoapis` host; a custom claims module and its *actual* API names (use the Zoho Modules/Fields metadata APIs to discover them). See:
+
+- https://www.zoho.com/crm/developer/docs/api/v8/get-records.html
+- https://www.zoho.com/crm/developer/docs/api/v8/update-records.html
+- https://www.zoho.com/crm/developer/docs/api/v8/refresh.html
+
+Keep the credentials only in a local environment variable/secret store (never source, repository, screenshots, or logs). Review `.env.example` for `ZOHO_REGION`, `ZOHO_MODULE`, `ZOHO_FIELD_*` and `ZOHO_API_BASE_URL`. By default `ZOHO_MODE=mock` and `ZOHO_REAL_ENABLED=NO`; **both** must be changed to `real` and `YES` for the network client to activate. The regional API URL must match the configured region and use HTTPS. Do not enable it during local training, to avoid changes to external accounts.
+
+OAuth refresh sends credentials in an HTTPS POST form to the regional `/oauth/v2/token` endpoint. The access token is held in memory only, and the client retries once on HTTP 401 with a newly refreshed token. HTTP 429/5xx and connection problems produce sanitised retryable error records; application logs do not include tokens. The tests simulate token refresh using HTTPX MockTransport and never contact Zoho. A production rollout should add scheduler-driven pagination, granular rate limiting, distributed locks/queueing and operational alerting.
+
+## 7. Test and troubleshoot
+
+```powershell
+python -m pytest -q
+python -m pytest tests/test_task4_workflows.py tests/test_task4_zoho.py -v
+```
+
+Expected current output: **49 passed** (including original Tasks 1–3 tests). Tests use isolated SQLite and HTTP request mocks; **not your live SQL Server or Zoho instance**.
+
+| Problem | Diagnosis / correction |
+|---|---|
+| HTTP 401 | Sign in through `/login` or `/api/auth/login`; verify `nc_session` cookie |
+| HTTP 403 on POST | Send valid login cookie and `X-CSRF-Token`; Admin role required |
+| HTTP 404 claim not found | Import `sample_data/task4_demo_claims.csv` using Task 1 dashboard |
+| HTTP 409 no workflow rule | Run `python -m scripts.seed_task4` and check rule enabled |
+| Failed stage transition | Inspect `/workflow-logs`; check predecessor status and requested evidence |
+| Failed workflow escalated ticket | Open `/tickets/{id}` from log, correct rule, then retry; escalation remains auditable |
+| Duplicate event | Replayed key is intentional; generate a fresh key only for a genuinely new event |
+| CRM sync Failed | Check `/api/crm/operations`, region/mapping/reference; fix root cause and use Admin retry |
+| Zoho OAuth error | Leave `ZOHO_MODE=mock` for demo; real mode requires valid authorisation and domain-scoped token |
+| SQL Server invalid object name | Run `07_task4_migration.sql` on `ClaimsITOpsDemo`; verify Tables in SSMS |
+| SQL Server UNIQUE violation | Confirm Task 4 filtered CRM ID index; do not initialise the DB from scratch |
+| Excel formulas not evaluated yet | Open the downloaded workbook in Excel to recalculate |
+| PowerShell unsigned-script error | `Set-ExecutionPolicy -Scope Process Bypass` in a trusted local terminal |
+
+## 8. Module boundaries for later tasks
+
+The ZIP is now the **Task 4 baseline**. Keep future modules inside this same repository. New SQL objects should be created using incremental migration scripts (`09_...sql` and beyond) against the same database. Task 4 does not remove Task 1 imports or reports, Task 2 helpdesk and assets, or Task 3 employee automation.
+
+See `docs/TASK4_ARCHITECTURE.md` and the bundled `Task4_FULL_SOURCE_CODE.md` for every new/modified file and function.
+~~~~~~~
+
+### `app/__init__.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/__init__.py`. Purpose: """Northstar Claims IT operations demonstration package.""".
+
+~~~~~~~python
+"""Northstar Claims IT operations demonstration package."""
+~~~~~~~
+
+### `app/config.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/config.py`. Purpose: """Local environment settings. Windows integrated authentication only.""".
+
+~~~~~~~python
+"""Local environment settings. Windows integrated authentication only."""
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+load_dotenv(ROOT_DIR / ".env")
+
+DB_SERVER = os.getenv("DB_SERVER", r"localhost\SQLEXPRESS")
+DB_NAME = os.getenv("DB_NAME", "ClaimsITOpsDemo")
+DB_ODBC_DRIVER = os.getenv("DB_ODBC_DRIVER", "ODBC Driver 18 for SQL Server")
+DB_ENCRYPT = os.getenv("DB_ENCRYPT", "yes")
+DB_TRUST_SERVER_CERTIFICATE = os.getenv("DB_TRUST_SERVER_CERTIFICATE", "yes")
+MAX_UPLOAD_BYTES = int(os.getenv("MAX_UPLOAD_MB", "5")) * 1024 * 1024
+MAX_IMPORT_ROWS = 10_000
+~~~~~~~
+
+### `app/db.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/db.py`. Purpose: """SQL Server engine and a request-scoped SQLAlchemy session.""".
+
+~~~~~~~python
+"""SQL Server engine and a request-scoped SQLAlchemy session."""
+from collections.abc import Generator
+from functools import lru_cache
+
+from sqlalchemy import create_engine
+from sqlalchemy.engine import URL
+from sqlalchemy.orm import Session
+
+from app.config import (
+    DB_ENCRYPT,
+    DB_NAME,
+    DB_ODBC_DRIVER,
+    DB_SERVER,
+    DB_TRUST_SERVER_CERTIFICATE,
+)
+
+# URL.create safely encodes the ODBC connection string, including the backslash.
+odbc_string = (
+    f"DRIVER={{{DB_ODBC_DRIVER}}};"
+    f"SERVER={DB_SERVER};DATABASE={DB_NAME};"
+    "Trusted_Connection=yes;"
+    f"Encrypt={DB_ENCRYPT};"
+    f"TrustServerCertificate={DB_TRUST_SERVER_CERTIFICATE};"
+)
+@lru_cache(maxsize=1)
+def get_engine():
+    # Lazy construction keeps SQLite-based unit tests independent of pyodbc.
+    return create_engine(
+        URL.create("mssql+pyodbc", query={"odbc_connect": odbc_string}),
+        pool_pre_ping=True,
+    )
+
+
+def get_db() -> Generator[Session, None, None]:
+    """Provide a new session. Import service owns its transaction boundary."""
+    with Session(get_engine()) as session:
+        yield session
+~~~~~~~
+
+### `app/employee_schemas.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/employee_schemas.py`. Purpose: """Strict browser/API contracts for mock employee lifecycle.""".
+
+~~~~~~~python
+"""Strict browser/API contracts for mock employee lifecycle."""
+from datetime import date, timedelta
+from typing import Literal
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+
+Department = Literal['Claims','Operations','Finance','HR','IT']
+
+
+class Strict(BaseModel):
+    model_config = ConfigDict(extra='forbid', str_strip_whitespace=True)
+
+
+class OnboardIn(Strict):
+    full_name: str = Field(min_length=5, max_length=120)
+    department: Department
+    job_title: str = Field(min_length=3, max_length=120)
+    manager_name: str = Field(min_length=5, max_length=120)
+    start_date: date
+    required_groups: list[str] = Field(default_factory=list, max_length=4)
+    device_requirements: list[Literal['Laptop','Monitor','Headset']] = Field(default_factory=list, max_length=3)
+
+    @field_validator('full_name', 'manager_name')
+    @classmethod
+    def name_format(cls, value):
+        cleaned = ' '.join(value.split())
+        if len(cleaned.split()) < 2 or not all(c.isalpha() or c in " -'" for c in cleaned):
+            raise ValueError('Use first and surname (letters, spaces, apostrophes or hyphens)')
+        return cleaned
+
+    @field_validator('required_groups', 'device_requirements')
+    @classmethod
+    def unique_options(cls, values):
+        if len(values) != len(set(values)):
+            raise ValueError('Duplicate group or device requirement')
+        return values
+
+    @field_validator('start_date')
+    @classmethod
+    def reasonable_start(cls, value):
+        if not date.today() - timedelta(days=365) <= value <= date.today() + timedelta(days=730):
+            raise ValueError('Start date must be within one year past or two years future')
+        return value
+
+
+class OffboardIn(Strict):
+    last_working_date: date
+    reason: str = Field(min_length=10, max_length=500)
+
+
+class ApprovalIn(Strict):
+    confirm: Literal[True]
+    comment: str = Field(min_length=10, max_length=500)
+~~~~~~~
+
+### `app/main.py` — MODIFIED
+
+Exact location in VS Code: `it-operations-platform/app/main.py`. Purpose: """Northstar Claims Ltd: Task 1 claims + Task 2 IT helpdesk and assets.""".
+
+~~~~~~~python
+"""Northstar Claims Ltd: Task 1 claims + Task 2 IT helpdesk and assets."""
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+from app.routers import (claim_report, claims_crm, claim_workflows, claim_pages, assets, auth, claims, dashboard, imports, it_reports,
+                         pages, reports, tickets, employees, employee_pages)
+
+app = FastAPI(title='Northstar Claims — IT Operations Platform',
+              description='Task 1 claims intake + Task 2 helpdesk and asset inventory',
+              version='0.4.0')
+app.mount('/static', StaticFiles(directory=Path(__file__).parent / 'static'), name='static')
+app.include_router(dashboard.router)
+app.include_router(pages.router)
+app.include_router(auth.router)
+app.include_router(auth.users_router)
+app.include_router(tickets.router)
+app.include_router(assets.router)
+app.include_router(claims.router)
+app.include_router(imports.router)
+app.include_router(reports.router)
+app.include_router(it_reports.router)
+app.include_router(employees.router)
+app.include_router(employee_pages.router)
+app.include_router(claims_crm.router)
+app.include_router(claim_workflows.router)
+app.include_router(claim_pages.router)
+app.include_router(claim_report.router)
+
+
+@app.get('/health', tags=['operations'])
+def health():
+    return {'status': 'ok', 'service': 'northstar-claims-task4'}
+~~~~~~~
+
+### `app/models.py` — MODIFIED
+
+Exact location in VS Code: `it-operations-platform/app/models.py`. Purpose: """Existing Task 1 entities plus Task 2 IT helpdesk, users and asset inventory.""".
+
+~~~~~~~python
+"""Existing Task 1 entities plus Task 2 IT helpdesk, users and asset inventory."""
+from datetime import date, datetime, timezone
+from decimal import Decimal
+
+from sqlalchemy import (Boolean, CheckConstraint, Date, DateTime, ForeignKey, Index, text,
+                        Integer, Numeric, String, UniqueConstraint, Unicode, UnicodeText)
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+
+
+def utc_now() -> datetime:
+    return datetime.now(timezone.utc).replace(tzinfo=None)
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+class ImportBatch(Base):
+    __tablename__ = "import_batches"
+    __table_args__ = (
+        UniqueConstraint("file_sha256", name="uq_import_batches_sha256"),
+        CheckConstraint("total_rows >= 0 AND imported_rows >= 0 AND rejected_rows >= 0", name="ck_import_batches_nonnegative"),
+        CheckConstraint("total_rows = imported_rows + rejected_rows", name="ck_import_batches_balance"),
+        CheckConstraint("status IN ('Completed')", name="ck_import_batches_status"),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    filename: Mapped[str] = mapped_column(Unicode(255), nullable=False)
+    file_sha256: Mapped[str] = mapped_column(String(64), nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default="Completed")
+    total_rows: Mapped[int] = mapped_column(Integer, nullable=False)
+    imported_rows: Mapped[int] = mapped_column(Integer, nullable=False)
+    rejected_rows: Mapped[int] = mapped_column(Integer, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    claims: Mapped[list["Claim"]] = relationship(back_populates="batch")
+    rejects: Mapped[list["RejectedRow"]] = relationship(back_populates="batch")
+
+
+class Claim(Base):
+    __tablename__ = "claims"
+    __table_args__ = (
+        UniqueConstraint("claim_id", name="uq_claims_claim_id"),
+        CheckConstraint("amount_gbp >= 0 AND amount_gbp <= 1000000", name="ck_claims_amount_range"),
+        CheckConstraint("incident_date <= reported_date", name="ck_claims_date_order"),
+        CheckConstraint("status IN ('Open','In Progress','Closed','Declined')", name="ck_claims_status"),
+        CheckConstraint("claim_type IN ('Motor','Home','Travel','Business')", name="ck_claims_type"),
+        Index("ix_claims_status", "status"), Index("ix_claims_reported_date", "reported_date"),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    claim_id: Mapped[str] = mapped_column(String(10), nullable=False)
+    policy_number: Mapped[str] = mapped_column(String(10), nullable=False)
+    claimant_name: Mapped[str] = mapped_column(Unicode(100), nullable=False)
+    claim_type: Mapped[str] = mapped_column(String(20), nullable=False)
+    incident_date: Mapped[date] = mapped_column(Date, nullable=False)
+    reported_date: Mapped[date] = mapped_column(Date, nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False)
+    amount_gbp: Mapped[Decimal] = mapped_column(Numeric(12, 2), nullable=False)
+    postcode: Mapped[str] = mapped_column(String(8), nullable=False)
+    description: Mapped[str] = mapped_column(Unicode(500), nullable=False, default="")
+    import_batch_id: Mapped[int] = mapped_column(ForeignKey("import_batches.id"), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    batch: Mapped[ImportBatch] = relationship(back_populates="claims")
+
+
+class RejectedRow(Base):
+    __tablename__ = "rejected_rows"
+    __table_args__ = (CheckConstraint("source_row_number >= 2", name="ck_rejected_rows_source_row"),
+                      Index("ix_rejected_rows_batch_id", "import_batch_id"))
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    import_batch_id: Mapped[int] = mapped_column(ForeignKey("import_batches.id"), nullable=False)
+    source_row_number: Mapped[int] = mapped_column(Integer, nullable=False)
+    claim_id: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    failure_reason: Mapped[str] = mapped_column(Unicode(1000), nullable=False)
+    raw_data_json: Mapped[str] = mapped_column(UnicodeText, nullable=False)
+    batch: Mapped[ImportBatch] = relationship(back_populates="rejects")
+
+
+class User(Base):
+    __tablename__ = "users"
+    __table_args__ = (
+        UniqueConstraint("username", name="uq_users_username"),
+        UniqueConstraint("email", name="uq_users_email"),
+        CheckConstraint("role IN ('Admin','Technician','Employee')", name="ck_users_role"),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    username: Mapped[str] = mapped_column(String(60), nullable=False)
+    full_name: Mapped[str] = mapped_column(Unicode(120), nullable=False)
+    email: Mapped[str] = mapped_column(String(180), nullable=False)
+    password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
+    role: Mapped[str] = mapped_column(String(20), nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+
+
+class Asset(Base):
+    __tablename__ = "assets"
+    __table_args__ = (
+        UniqueConstraint("asset_tag", name="uq_assets_tag"),
+        UniqueConstraint("serial_number", name="uq_assets_serial"),
+        CheckConstraint("device_type IN ('Laptop','Desktop','Printer','Router','Switch')", name="ck_assets_type"),
+        CheckConstraint("status IN ('Available','Assigned','Reserved','Maintenance','Retired')", name="ck_assets_status"),
+        CheckConstraint("warranty_expiry IS NULL OR warranty_expiry >= purchase_date", name="ck_assets_warranty"),
+        CheckConstraint("(status = 'Assigned' AND assigned_employee_id IS NOT NULL) OR (status <> 'Assigned' AND assigned_employee_id IS NULL)", name="ck_assets_assignment"),
+        Index("ix_assets_status", "status"),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    asset_tag: Mapped[str] = mapped_column(String(40), nullable=False)
+    serial_number: Mapped[str] = mapped_column(String(100), nullable=False)
+    device_type: Mapped[str] = mapped_column(String(20), nullable=False)
+    manufacturer: Mapped[str] = mapped_column(Unicode(80), nullable=False)
+    model: Mapped[str] = mapped_column(Unicode(120), nullable=False)
+    operating_system: Mapped[str | None] = mapped_column(Unicode(100))
+    purchase_date: Mapped[date] = mapped_column(Date, nullable=False)
+    warranty_expiry: Mapped[date | None] = mapped_column(Date)
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default="Available")
+    assigned_employee_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"), nullable=True)
+    assigned_at: Mapped[datetime | None] = mapped_column(DateTime)
+    notes: Mapped[str] = mapped_column(Unicode(1000), nullable=False, default="")
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    assigned_employee: Mapped[User | None] = relationship(foreign_keys=[assigned_employee_id])
+
+
+class Ticket(Base):
+    __tablename__ = "tickets"
+    __table_args__ = (
+        CheckConstraint("category IN ('Hardware','Software','Network','Printer','Account Access','Other')", name="ck_tickets_category"),
+        CheckConstraint("priority IN ('Low','Medium','High','Critical')", name="ck_tickets_priority"),
+        CheckConstraint("status IN ('Open','Assigned','In Progress','Resolved','Closed')", name="ck_tickets_status"),
+        Index("ix_tickets_status_due", "status", "sla_due_at"),
+        Index("ix_tickets_assignee", "assigned_technician_id"),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    employee_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    assigned_technician_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"))
+    affected_asset_id: Mapped[int | None] = mapped_column(ForeignKey("assets.id"))
+    title: Mapped[str] = mapped_column(Unicode(160), nullable=False)
+    description: Mapped[str] = mapped_column(Unicode(3000), nullable=False)
+    category: Mapped[str] = mapped_column(String(30), nullable=False)
+    priority: Mapped[str] = mapped_column(String(10), nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default="Open")
+    resolution_details: Mapped[str | None] = mapped_column(Unicode(3000))
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    assigned_at: Mapped[datetime | None] = mapped_column(DateTime)
+    resolved_at: Mapped[datetime | None] = mapped_column(DateTime)
+    closed_at: Mapped[datetime | None] = mapped_column(DateTime)
+    sla_due_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    employee: Mapped[User] = relationship(foreign_keys=[employee_id])
+    technician: Mapped[User | None] = relationship(foreign_keys=[assigned_technician_id])
+    asset: Mapped[Asset | None] = relationship()
+    history: Mapped[list["TicketHistory"]] = relationship(back_populates="ticket", order_by="TicketHistory.id")
+
+    @property
+    def reference(self) -> str:
+        # A reference backed by the SQL IDENTITY primary key cannot collide.
+        return f"TKT-{self.id:06d}"
+
+
+class TicketHistory(Base):
+    __tablename__ = "ticket_history"
+    __table_args__ = (Index("ix_ticket_history_ticket", "ticket_id"),)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    ticket_id: Mapped[int] = mapped_column(ForeignKey("tickets.id"), nullable=False)
+    actor_user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    action: Mapped[str] = mapped_column(String(30), nullable=False)
+    previous_status: Mapped[str | None] = mapped_column(String(20))
+    new_status: Mapped[str | None] = mapped_column(String(20))
+    note: Mapped[str] = mapped_column(Unicode(3000), nullable=False, default="")
+    occurred_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    ticket: Mapped[Ticket] = relationship(back_populates="history")
+    actor: Mapped[User] = relationship()
+
+
+class AssetMovement(Base):
+    __tablename__ = "asset_movements"
+    __table_args__ = (Index("ix_asset_movements_asset", "asset_id"),)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    asset_id: Mapped[int] = mapped_column(ForeignKey("assets.id"), nullable=False)
+    employee_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    actor_user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    action: Mapped[str] = mapped_column(String(15), nullable=False)
+    occurred_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    asset: Mapped[Asset] = relationship()
+
+
+class AuditEvent(Base):
+    __tablename__ = "audit_events"
+    __table_args__ = (
+        CheckConstraint("event_type IN ('IMPORT_COMPLETED','TICKET_CREATED','TICKET_UPDATED','TICKET_ASSIGNED','TICKET_NOTE','ASSET_CREATED','ASSET_UPDATED','ASSET_ASSIGNED','ASSET_RETURNED','USER_CREATED','USER_UPDATED','EMPLOYEE_CREATED','EMPLOYEE_ACTIVATED','ONBOARDING_PREPARED','OFFBOARDING_REQUESTED','OFFBOARDING_APPROVED','OFFBOARDING_COMPLETED','ASSET_RESERVED','ASSET_RESERVATION_RELEASED','CLAIM_WORKFLOW','CLAIM_CRM_SYNC','CLAIM_TEMPLATE_UPDATED','CLAIM_WORKFLOW_FAILED')", name="ck_audit_events_type"),
+        Index("ix_audit_events_batch_id", "import_batch_id"),
+        Index("ix_audit_events_actor", "actor_user_id"),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    event_type: Mapped[str] = mapped_column(String(40), nullable=False)
+    import_batch_id: Mapped[int | None] = mapped_column(ForeignKey("import_batches.id"), nullable=True)
+    actor_user_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"), nullable=True)
+    details_json: Mapped[str] = mapped_column(UnicodeText, nullable=False)
+    occurred_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+
+
+class Employee(Base):
+    """HR-facing record; separate from local helpdesk login accounts."""
+    __tablename__ = 'employees'
+    __table_args__ = (
+        UniqueConstraint('work_email', name='uq_employees_work_email'),
+        UniqueConstraint('ad_username', name='uq_employees_ad_username'),
+        CheckConstraint("department IN ('Claims','Operations','Finance','HR','IT')", name='ck_employees_department'),
+        CheckConstraint("status IN ('Prepared','Active','Offboarding','Offboarded')", name='ck_employees_status'),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    full_name: Mapped[str] = mapped_column(Unicode(120), nullable=False)
+    department: Mapped[str] = mapped_column(String(30), nullable=False)
+    job_title: Mapped[str] = mapped_column(Unicode(120), nullable=False)
+    manager_name: Mapped[str] = mapped_column(Unicode(120), nullable=False)
+    start_date: Mapped[date] = mapped_column(Date, nullable=False)
+    work_email: Mapped[str] = mapped_column(String(180), nullable=False)
+    ad_username: Mapped[str] = mapped_column(String(20), nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default='Prepared')
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utc_now, nullable=False)
+
+
+class OnboardingRequest(Base):
+    __tablename__ = 'onboarding_requests'
+    __table_args__ = (
+        UniqueConstraint('employee_id', name='uq_onboarding_employee'),
+        CheckConstraint("status IN ('Prepared','Attention','Activated')", name='ck_onboarding_status'),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    employee_id: Mapped[int] = mapped_column(ForeignKey('employees.id'), nullable=False)
+    requested_by: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False)
+    requested_groups_json: Mapped[str] = mapped_column(UnicodeText, nullable=False)
+    device_requirements_json: Mapped[str] = mapped_column(UnicodeText, nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default='Prepared')
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    activated_at: Mapped[datetime | None] = mapped_column(DateTime)
+    employee: Mapped[Employee] = relationship()
+
+
+class OffboardingRequest(Base):
+    __tablename__ = 'offboarding_requests'
+    __table_args__ = (
+        CheckConstraint("status IN ('PendingApproval','Approved','Completed','Attention')", name='ck_offboarding_status'),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    employee_id: Mapped[int] = mapped_column(ForeignKey('employees.id'), nullable=False)
+    requested_by: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False)
+    approved_by: Mapped[int | None] = mapped_column(ForeignKey('users.id'))
+    last_working_date: Mapped[date] = mapped_column(Date, nullable=False)
+    reason: Mapped[str] = mapped_column(Unicode(500), nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default='PendingApproval')
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    approved_at: Mapped[datetime | None] = mapped_column(DateTime)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime)
+    employee: Mapped[Employee] = relationship()
+
+
+class ProvisioningAction(Base):
+    __tablename__ = 'provisioning_actions'
+    __table_args__ = (
+        CheckConstraint("status IN ('Prepared','Mocked','Failed','ManualRequired')", name='ck_provisioning_status'),
+        CheckConstraint('((onboarding_request_id IS NOT NULL AND offboarding_request_id IS NULL) OR (onboarding_request_id IS NULL AND offboarding_request_id IS NOT NULL))', name='ck_provisioning_one_request'),
+        Index('ix_provisioning_employee', 'employee_id'),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    employee_id: Mapped[int] = mapped_column(ForeignKey('employees.id'), nullable=False)
+    onboarding_request_id: Mapped[int | None] = mapped_column(ForeignKey('onboarding_requests.id'))
+    offboarding_request_id: Mapped[int | None] = mapped_column(ForeignKey('offboarding_requests.id'))
+    action_type: Mapped[str] = mapped_column(String(40), nullable=False)
+    target: Mapped[str] = mapped_column(Unicode(200), nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False)
+    result_detail: Mapped[str] = mapped_column(Unicode(1000), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+
+
+class ApprovalRecord(Base):
+    __tablename__ = 'approval_records'
+    __table_args__ = (
+        UniqueConstraint('offboarding_request_id', name='uq_approval_offboarding'),
+        CheckConstraint("decision IN ('Approved','Rejected')", name='ck_approval_decision'),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    offboarding_request_id: Mapped[int] = mapped_column(ForeignKey('offboarding_requests.id'), nullable=False)
+    approver_user_id: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False)
+    decision: Mapped[str] = mapped_column(String(20), nullable=False)
+    comment: Mapped[str] = mapped_column(Unicode(500), nullable=False)
+    decided_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+
+
+class AssetReservation(Base):
+    __tablename__ = 'asset_reservations'
+    __table_args__ = (
+        CheckConstraint("status IN ('Reserved','Released')", name='ck_reservation_status'),
+        Index('uq_asset_active_reservation', 'asset_id', unique=True,
+              sqlite_where=text("status = 'Reserved'"), mssql_where=text("status = 'Reserved'")),
+        Index('uq_onboarding_active_reservation', 'onboarding_request_id', unique=True,
+              sqlite_where=text("status = 'Reserved'"), mssql_where=text("status = 'Reserved'")),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    asset_id: Mapped[int] = mapped_column(ForeignKey('assets.id'), nullable=False)
+    employee_id: Mapped[int] = mapped_column(ForeignKey('employees.id'), nullable=False)
+    onboarding_request_id: Mapped[int] = mapped_column(ForeignKey('onboarding_requests.id'), nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default='Reserved')
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    released_at: Mapped[datetime | None] = mapped_column(DateTime)
+    asset: Mapped[Asset] = relationship()
+
+
+# Task 4 is additive: Claim and all original status constraints remain unchanged.
+class ClaimCRMState(Base):
+    __tablename__ = 'claim_crm_states'
+    __table_args__ = (
+        UniqueConstraint('claim_id', name='uq_claim_crm_claim'),
+        Index('uq_claim_crm_zoho', 'zoho_record_id', unique=True,
+              sqlite_where=text('zoho_record_id IS NOT NULL'),
+              mssql_where=text('zoho_record_id IS NOT NULL')),
+        CheckConstraint("stage IN ('New','Assigned','Evidence Required','Ready for Review','Resolved')", name='ck_crm_stage'),
+        CheckConstraint("integration_status IN ('Not Synced','Synced','Failed')", name='ck_crm_integration'),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    claim_id: Mapped[int] = mapped_column(ForeignKey('claims.id'), nullable=False)
+    zoho_record_id: Mapped[str | None] = mapped_column(String(80))
+    stage: Mapped[str] = mapped_column(String(30), nullable=False, default='New')
+    assigned_handler: Mapped[str | None] = mapped_column(Unicode(120))
+    missing_documents: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    integration_status: Mapped[str] = mapped_column(String(20), nullable=False, default='Not Synced')
+    last_updated: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    synced_at: Mapped[datetime | None] = mapped_column(DateTime)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime)
+    claim: Mapped[Claim] = relationship()
+
+
+class WorkflowRule(Base):
+    __tablename__ = 'workflow_rules'
+    __table_args__ = (
+        UniqueConstraint('name', name='uq_workflow_rule_name'),
+        CheckConstraint("event_type IN ('submitted','missing_documents','evidence_received','resolved')", name='ck_workflow_rule_event'),
+        CheckConstraint("action_type IN ('assign_team','evidence_required','ready_for_review','resolve','demo_fail')", name='ck_workflow_rule_action'),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(Unicode(120), nullable=False)
+    event_type: Mapped[str] = mapped_column(String(30), nullable=False)
+    action_type: Mapped[str] = mapped_column(String(30), nullable=False)
+    parameters_json: Mapped[str] = mapped_column(UnicodeText, nullable=False, default='{}')
+    enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+
+
+class WorkflowExecution(Base):
+    __tablename__ = 'workflow_executions'
+    __table_args__ = (
+        UniqueConstraint('claim_id', 'rule_id', 'event_key', name='uq_workflow_exact_event'),
+        CheckConstraint("status IN ('Success','Failed')", name='ck_workflow_execution_status'),
+        CheckConstraint('retry_count >= 0 AND retry_count <= 3', name='ck_workflow_retry_count'),
+        Index('ix_workflow_status', 'status', 'started_at'),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    claim_id: Mapped[int] = mapped_column(ForeignKey('claims.id'), nullable=False)
+    rule_id: Mapped[int] = mapped_column(ForeignKey('workflow_rules.id'), nullable=False)
+    event_key: Mapped[str] = mapped_column(String(100), nullable=False)
+    status: Mapped[str] = mapped_column(String(15), nullable=False)
+    input_status: Mapped[str] = mapped_column(String(30), nullable=False)
+    output_status: Mapped[str | None] = mapped_column(String(30))
+    error_reason: Mapped[str | None] = mapped_column(Unicode(1000))
+    retry_count: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    support_ticket_id: Mapped[int | None] = mapped_column(ForeignKey('tickets.id'))
+    started_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    finished_at: Mapped[datetime | None] = mapped_column(DateTime)
+    claim: Mapped[Claim] = relationship()
+    rule: Mapped[WorkflowRule] = relationship()
+
+
+class WorkflowTransition(Base):
+    __tablename__ = 'workflow_transitions'
+    __table_args__ = (UniqueConstraint('execution_id', name='uq_transition_execution'),)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    execution_id: Mapped[int] = mapped_column(ForeignKey('workflow_executions.id'), nullable=False)
+    claim_id: Mapped[int] = mapped_column(ForeignKey('claims.id'), nullable=False)
+    from_stage: Mapped[str] = mapped_column(String(30), nullable=False)
+    to_stage: Mapped[str] = mapped_column(String(30), nullable=False)
+    occurred_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+
+
+class CRMOperation(Base):
+    __tablename__ = 'crm_operations'
+    __table_args__ = (
+        UniqueConstraint('operation_key', name='uq_crm_operation_key'),
+        CheckConstraint("status IN ('Success','Failed')", name='ck_crm_operation_status'),
+        CheckConstraint('retry_count >= 0 AND retry_count <= 3', name='ck_crm_operation_retry'),
+    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    operation_key: Mapped[str] = mapped_column(String(100), nullable=False)
+    claim_id: Mapped[int] = mapped_column(ForeignKey('claims.id'), nullable=False)
+    operation: Mapped[str] = mapped_column(String(30), nullable=False)
+    payload_json: Mapped[str] = mapped_column(UnicodeText, nullable=False)
+    status: Mapped[str] = mapped_column(String(15), nullable=False)
+    retry_count: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    error_reason: Mapped[str | None] = mapped_column(Unicode(1000))
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    finished_at: Mapped[datetime | None] = mapped_column(DateTime)
+
+
+class CommunicationTemplate(Base):
+    __tablename__ = 'communication_templates'
+    __table_args__ = (UniqueConstraint('kind', name='uq_communication_kind'),)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    kind: Mapped[str] = mapped_column(String(30), nullable=False)
+    subject: Mapped[str] = mapped_column(Unicode(200), nullable=False)
+    body: Mapped[str] = mapped_column(Unicode(4000), nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=utc_now)
+    updated_by: Mapped[int | None] = mapped_column(ForeignKey('users.id'))
+~~~~~~~
+
+### `app/routers/__init__.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/__init__.py`. Purpose: """Northstar Claims IT operations demonstration package.""".
+
+~~~~~~~python
+"""Northstar Claims IT operations demonstration package."""
+~~~~~~~
+
+### `app/routers/assets.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/assets.py`. Purpose: """Inventory CRUD, searching/filtering, assignment and return tracking.""".
+
+~~~~~~~python
+"""Inventory CRUD, searching/filtering, assignment and return tracking."""
+from datetime import date
+
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import or_, select
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session, selectinload
+
+from app.db import get_db
+from app.models import Asset, User
+from app.schemas import AssetAssign, AssetCreate, AssetEdit
+from app.security import require_roles
+from app.services.asset_service import asset_dict, change_assignment
+from app.services.helpdesk_service import log_event
+
+router = APIRouter(prefix='/api/assets', tags=['asset inventory'])
+
+
+def asset_query():
+    return select(Asset).options(selectinload(Asset.assigned_employee))
+
+
+@router.get('')
+def list_assets(q: str = Query('', max_length=100), status: str | None = None,
+                device_type: str | None = None, offset: int = Query(0, ge=0),
+                limit: int = Query(100, ge=1, le=500), db: Session = Depends(get_db),
+                _user: User = Depends(require_roles('Admin','Technician'))):
+    query = asset_query()
+    if q:
+        pattern = '%' + q.replace('%', r'\%').replace('_', r'\_') + '%'
+        query = query.where(or_(Asset.asset_tag.ilike(pattern, escape='\\'),
+                                Asset.serial_number.ilike(pattern, escape='\\'),
+                                Asset.model.ilike(pattern, escape='\\')))
+    if status:
+        query = query.where(Asset.status == status)
+    if device_type:
+        query = query.where(Asset.device_type == device_type)
+    return {'items': [asset_dict(a) for a in db.scalars(query.order_by(Asset.id).offset(offset).limit(limit))],
+            'offset': offset, 'limit': limit}
+
+
+@router.post('', status_code=201)
+def create_asset(body: AssetCreate, db: Session = Depends(get_db),
+                 user: User = Depends(require_roles('Admin','Technician'))):
+    asset = Asset(**body.model_dump(), status='Available')
+    try:
+        db.add(asset)
+        db.flush()
+        log_event(db, 'ASSET_CREATED', user, asset_id=asset.id, asset_tag=asset.asset_tag)
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(409, 'Asset tag or serial number already exists') from exc
+    return asset_dict(db.scalar(asset_query().where(Asset.id == asset.id)))
+
+
+@router.get('/{asset_id}')
+def get_asset(asset_id: int, db: Session = Depends(get_db),
+              _user: User = Depends(require_roles('Admin','Technician'))):
+    asset = db.scalar(asset_query().where(Asset.id == asset_id))
+    if not asset:
+        raise HTTPException(404, 'Asset not found')
+    return asset_dict(asset)
+
+
+@router.patch('/{asset_id}')
+def edit_asset(asset_id: int, body: AssetEdit, db: Session = Depends(get_db),
+               user: User = Depends(require_roles('Admin','Technician'))):
+    asset = db.get(Asset, asset_id)
+    if not asset:
+        raise HTTPException(404, 'Asset not found')
+    changes = body.model_dump(exclude_unset=True)
+    if changes.get('status') and (asset.assigned_employee_id is not None or asset.status == 'Reserved'):
+        raise HTTPException(409, 'Return the assigned device before changing status')
+    if changes.get('warranty_expiry') and changes['warranty_expiry'] < asset.purchase_date:
+        raise HTTPException(422, 'Warranty expiry is earlier than purchase date')
+    for field, value in changes.items():
+        setattr(asset, field, value)
+    log_event(db, 'ASSET_UPDATED', user, asset_id=asset.id, changes=changes)
+    db.commit()
+    return asset_dict(db.scalar(asset_query().where(Asset.id == asset_id)))
+
+
+@router.post('/{asset_id}/assign')
+def assign_asset(asset_id: int, body: AssetAssign, db: Session = Depends(get_db),
+                 user: User = Depends(require_roles('Admin','Technician'))):
+    asset = db.get(Asset, asset_id)
+    if not asset:
+        raise HTTPException(404, 'Asset not found')
+    employee = db.get(User, body.employee_id)
+    if not employee or employee.role != 'Employee' or not employee.is_active:
+        raise HTTPException(422, 'An active Employee is required')
+    change_assignment(db, asset, employee, user)
+    db.commit()
+    return asset_dict(db.scalar(asset_query().where(Asset.id == asset_id)))
+
+
+@router.post('/{asset_id}/return')
+def return_asset(asset_id: int, db: Session = Depends(get_db),
+                 user: User = Depends(require_roles('Admin','Technician'))):
+    asset = db.get(Asset, asset_id)
+    if not asset:
+        raise HTTPException(404, 'Asset not found')
+    change_assignment(db, asset, None, user)
+    db.commit()
+    return asset_dict(db.scalar(asset_query().where(Asset.id == asset_id)))
+~~~~~~~
+
+### `app/routers/auth.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/auth.py`. Purpose: """Local demonstration authentication and administrator user management.""".
+
+~~~~~~~python
+"""Local demonstration authentication and administrator user management."""
+from fastapi import APIRouter, Depends, HTTPException, Response
+from sqlalchemy import func, select
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
+
+from app.db import get_db
+from app.models import Asset, Ticket, User
+from app.schemas import LoginIn, UserCreate, UserEdit
+from app.security import (COOKIE_NAME, SESSION_AGE_SECONDS, cookie_secure, create_session,
+                          current_user, hash_password, require_roles, verify_password)
+from app.services.helpdesk_service import log_event
+
+router = APIRouter(prefix='/api/auth', tags=['authentication'])
+users_router = APIRouter(prefix='/api/users', tags=['user administration'])
+
+
+def public_user(user: User) -> dict:
+    return {'id': user.id, 'username': user.username, 'full_name': user.full_name,
+            'email': user.email, 'role': user.role, 'is_active': user.is_active}
+
+
+@router.post('/login')
+def login(body: LoginIn, response: Response, db: Session = Depends(get_db)):
+    user = db.scalar(select(User).where(User.username == body.username.lower()))
+    if not user or not user.is_active or not verify_password(user.password_hash, body.password):
+        raise HTTPException(401, 'Invalid username or password')
+    token, csrf = create_session(user)
+    response.set_cookie(COOKIE_NAME, token, max_age=SESSION_AGE_SECONDS,
+                        httponly=True, secure=cookie_secure(), samesite='lax', path='/')
+    return {'user': public_user(user), 'csrf_token': csrf}
+
+
+@router.post('/logout')
+def logout(response: Response, _user: User = Depends(current_user)):
+    response.delete_cookie(COOKIE_NAME, path='/')
+    return {'logged_out': True}
+
+
+@router.get('/me')
+def me(user: User = Depends(current_user)):
+    # CSRF token is provided to same-origin browser JavaScript, never to third-party origins.
+    # The browser sends it as X-CSRF-Token on write requests.
+    return public_user(user)
+
+
+@users_router.get('')
+def list_users(db: Session = Depends(get_db), _admin: User = Depends(require_roles('Admin'))):
+    return {'items': [public_user(x) for x in db.scalars(select(User).order_by(User.id))]}
+
+
+@users_router.post('', status_code=201)
+def create_user(body: UserCreate, db: Session = Depends(get_db),
+                admin: User = Depends(require_roles('Admin'))):
+    user = User(username=body.username.lower(), full_name=body.full_name, email=body.email.lower(),
+                role=body.role, password_hash=hash_password(body.password), is_active=True)
+    try:
+        db.add(user)
+        db.flush()
+        log_event(db, 'USER_CREATED', admin, user_id=user.id, role=user.role)
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(409, 'Username or email already exists') from exc
+    db.refresh(user)
+    return public_user(user)
+
+
+@users_router.patch('/{user_id}')
+def edit_user(user_id: int, body: UserEdit, db: Session = Depends(get_db),
+              admin: User = Depends(require_roles('Admin'))):
+    target = db.get(User, user_id)
+    if not target:
+        raise HTTPException(404, 'User not found')
+    changes = body.model_dump(exclude_unset=True)
+    if not changes:
+        raise HTTPException(422, 'Supply one or more fields to change')
+    if ('role' in changes or changes.get('is_active') is False) and target.id == admin.id:
+        raise HTTPException(409, 'Cannot change your own admin role or disable your own account')
+    if target.role == 'Admin' and (changes.get('is_active') is False or (changes.get('role') and changes['role'] != 'Admin')):
+        active_admins = db.scalar(select(func.count()).select_from(User).where(User.role=='Admin', User.is_active==True))
+        if target.is_active and active_admins <= 1:
+            raise HTTPException(409, 'Cannot remove the last active admin')
+    if changes.get('role') and changes['role'] != target.role:
+        if db.scalar(select(func.count()).select_from(Asset).where(Asset.assigned_employee_id==target.id)):
+            raise HTTPException(409, 'Return this user\'s devices before changing role')
+        if db.scalar(select(func.count()).select_from(Ticket).where(Ticket.assigned_technician_id==target.id, Ticket.status.notin_(['Resolved','Closed']))):
+            raise HTTPException(409, 'Resolve or reassign assigned tickets before changing role')
+    if 'password' in changes:
+        changes['password_hash'] = hash_password(changes.pop('password'))
+    if 'email' in changes:
+        changes['email'] = changes['email'].lower()
+    for field, value in changes.items():
+        setattr(target, field, value)
+    try:
+        log_event(db, 'USER_UPDATED', admin, user_id=target.id,
+                  changed_fields=sorted(changes.keys()))
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(409, 'Email address already in use') from exc
+    db.refresh(target)
+    return public_user(target)
+~~~~~~~
+
+### `app/routers/claim_pages.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/routers/claim_pages.py`. Purpose: """Task 4 pages reuse Task 2/3 session, CSRF and Jinja2 layout.""".
+
+~~~~~~~python
+"""Task 4 pages reuse Task 2/3 session, CSRF and Jinja2 layout."""
+from fastapi import APIRouter, Depends, Request
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from app.db import get_db
+from app.models import Claim, ClaimCRMState, CommunicationTemplate, WorkflowExecution, WorkflowRule
+from app.routers.pages import render
+from app.security import require_roles
+
+router = APIRouter(tags=['claims workflow browser'])
+
+
+@router.get('/claims-management')
+def claims_dashboard(request: Request, db: Session = Depends(get_db),
+                     _user=Depends(require_roles('Admin'))):
+    rows = db.execute(select(Claim, ClaimCRMState).outerjoin(ClaimCRMState,
+                        ClaimCRMState.claim_id == Claim.id).order_by(Claim.id.desc()).limit(100)).all()
+    from app.services.claims_workflow import claim_details
+    return render(request, 'claims_management.html', db,
+                  claims=[claim_details(c,s) for c,s in rows])
+
+
+@router.get('/workflow-logs')
+def workflow_page(request: Request, db: Session = Depends(get_db),
+                  _user=Depends(require_roles('Admin'))):
+    rows = db.scalars(select(WorkflowExecution).order_by(WorkflowExecution.id.desc()).limit(200)).all()
+    return render(request, 'workflow_logs.html', db, executions=rows,
+                  rules=db.scalars(select(WorkflowRule).order_by(WorkflowRule.id)).all())
+
+
+@router.get('/communication-templates')
+def templates_page(request: Request, db: Session = Depends(get_db),
+                   _user=Depends(require_roles('Admin'))):
+    rows = db.scalars(select(CommunicationTemplate).order_by(CommunicationTemplate.kind)).all()
+    return render(request, 'communication_templates.html', db, templates=rows)
+~~~~~~~
+
+### `app/routers/claim_report.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/routers/claim_report.py`. Purpose: """Task 4 Excel reporting endpoint; administrator only.""".
+
+~~~~~~~python
+"""Task 4 Excel reporting endpoint; administrator only."""
+from io import BytesIO
+from fastapi import APIRouter, Depends
+from fastapi.responses import StreamingResponse
+from sqlalchemy.orm import Session
+from app.db import get_db
+from app.models import User
+from app.security import require_roles
+from app.services.claim_report_service import build_report
+
+router = APIRouter(tags=['Task 4 reports'])
+
+
+@router.get('/api/reports/claims-workflows.xlsx')
+def claims_workflow_report(db: Session = Depends(get_db),
+                           _user: User = Depends(require_roles('Admin'))):
+    return StreamingResponse(BytesIO(build_report(db)),
+        media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        headers={'Content-Disposition':'attachment; filename="northstar-claims-workflows.xlsx"'})
+~~~~~~~
+
+### `app/routers/claim_workflows.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/routers/claim_workflows.py`. Purpose: """Workflow rules, idempotent events, admin retry, and safe preview-only templates.""".
+
+~~~~~~~python
+"""Workflow rules, idempotent events, admin retry, and safe preview-only templates."""
+import json
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
+from app.db import get_db
+from app.models import (Claim, ClaimCRMState, CommunicationTemplate, User,
+                        WorkflowExecution, WorkflowRule, WorkflowTransition, utc_now)
+from app.security import require_roles
+from app.services.claims_workflow import audit, process_event, retry_execution
+from app.services.claim_templates import DEFAULTS, preview, validate_template
+from app.workflow_schemas import RuleIn, RulePatch, TemplateUpdate, WorkflowEventIn
+
+router = APIRouter(prefix='/api/workflows', tags=['claims workflow automation'])
+
+
+@router.get('/rules')
+def rules(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin'))):
+    rows = db.scalars(select(WorkflowRule).order_by(WorkflowRule.id)).all()
+    return {'items':[{'id':r.id,'name':r.name,'event_type':r.event_type,
+                      'action_type':r.action_type,'parameters':json.loads(r.parameters_json),
+                      'enabled':r.enabled} for r in rows]}
+
+
+@router.post('/rules', status_code=201)
+def add_rule(body: RuleIn, db: Session = Depends(get_db),
+             _user: User = Depends(require_roles('Admin'))):
+    if db.scalar(select(WorkflowRule.id).where(WorkflowRule.name == body.name)):
+        raise HTTPException(409, 'Rule name is already in use')
+    row = WorkflowRule(name=body.name, event_type=body.event_type, action_type=body.action_type,
+                       parameters_json=json.dumps({'handler': body.handler or 'Claims Team'}
+                                                   if body.action_type == 'assign_team' else {}), enabled=True)
+    db.add(row)
+    db.commit()
+    return {'id':row.id,'name':row.name}
+
+
+@router.patch('/rules/{rule_id}')
+def toggle_rule(rule_id: int, body: RulePatch, db: Session = Depends(get_db),
+                _user: User = Depends(require_roles('Admin'))):
+    rule = db.get(WorkflowRule, rule_id)
+    if not rule:
+        raise HTTPException(404, 'Rule not found')
+    if not body.model_fields_set:
+        raise HTTPException(422, 'Provide at least one rule change')
+    if body.enabled is not None:
+        rule.enabled = body.enabled
+    if body.action_type is not None:
+        rule.action_type = body.action_type
+    if body.handler is not None or body.action_type == 'assign_team':
+        rule.parameters_json = json.dumps({'handler': body.handler or 'Claims Team'})
+    db.commit()
+    return {'id':rule.id,'enabled':rule.enabled,'action_type':rule.action_type}
+
+
+@router.post('/events')
+def trigger(body: WorkflowEventIn, db: Session = Depends(get_db),
+            user: User = Depends(require_roles('Admin'))):
+    return process_event(db, body.claim_id, body.event_type, body.event_key, user.id)
+
+
+@router.get('/executions')
+def executions(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin'))):
+    items = db.scalars(select(WorkflowExecution).order_by(WorkflowExecution.id.desc()).limit(250)).all()
+    return {'items': [{'id':e.id, 'workflow':e.rule.name, 'claim_id':e.claim.claim_id,
+            'timestamp':e.started_at.isoformat()+'Z', 'input_status':e.input_status,
+            'output_status':e.output_status, 'status':e.status,
+            'error':e.error_reason,'retry_count':e.retry_count,
+            'support_ticket_id':e.support_ticket_id} for e in items]}
+
+
+@router.post('/executions/{execution_id}/retry')
+def retry(execution_id: int, db: Session = Depends(get_db),
+          user: User = Depends(require_roles('Admin'))):
+    return retry_execution(db, execution_id, user.id)
+
+
+@router.get('/transitions')
+def transitions(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin'))):
+    rows = db.scalars(select(WorkflowTransition).order_by(WorkflowTransition.id.desc()).limit(200)).all()
+    return {'items':[{'claim_id':t.claim_id,'from_stage':t.from_stage,
+                      'to_stage':t.to_stage,'occurred_at':t.occurred_at.isoformat()+'Z'} for t in rows]}
+
+
+@router.get('/templates')
+def templates(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin'))):
+    return {'items':[{'kind':t.kind,'subject':t.subject,'body':t.body} for t in
+                     db.scalars(select(CommunicationTemplate).order_by(CommunicationTemplate.kind)).all()]}
+
+
+@router.put('/templates/{kind}')
+def update_template(kind: str, body: TemplateUpdate, db: Session = Depends(get_db),
+                    user: User = Depends(require_roles('Admin'))):
+    if kind not in DEFAULTS:
+        raise HTTPException(404, 'Unknown template type')
+    record = db.scalar(select(CommunicationTemplate).where(CommunicationTemplate.kind == kind))
+    if not record:
+        raise HTTPException(404, 'Seed the communication templates first')
+    record.subject = validate_template(body.subject)
+    record.body = validate_template(body.body)
+    record.updated_by = user.id
+    record.updated_at = utc_now()
+    audit(db, 'CLAIM_TEMPLATE_UPDATED', user.id, kind=kind)
+    db.commit()
+    return {'kind':kind, 'updated':True}
+
+
+@router.get('/templates/{kind}/preview/{reference}')
+def template_preview(kind: str, reference: str, db: Session = Depends(get_db),
+                     _user: User = Depends(require_roles('Admin'))):
+    template = db.scalar(select(CommunicationTemplate).where(CommunicationTemplate.kind == kind))
+    claim = db.scalar(select(Claim).where(Claim.claim_id == reference))
+    if not template or not claim:
+        raise HTTPException(404, 'Template or claim not found')
+    state = db.scalar(select(ClaimCRMState).where(ClaimCRMState.claim_id == claim.id))
+    return preview(template, claim, state)
+~~~~~~~
+
+### `app/routers/claims.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/claims.py`. Purpose: """Claims import and paginated claims list endpoints.""".
+
+~~~~~~~python
+"""Claims import and paginated claims list endpoints."""
+from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile
+from sqlalchemy import func, select
+from sqlalchemy.orm import Session
+
+from app.config import MAX_UPLOAD_BYTES
+from app.db import get_db
+from app.models import Claim, User
+from app.security import require_roles
+from app.services.import_service import ImportConflictError, import_claims
+from app.services.validation import FileValidationError
+
+router = APIRouter(prefix="/api/claims", tags=["claims"])
+
+
+@router.post("/import")
+async def upload_claims(file: UploadFile = File(...), db: Session = Depends(get_db),
+                        _admin: User = Depends(require_roles('Admin'))):
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="A filename is required")
+    data = await file.read(MAX_UPLOAD_BYTES + 1)
+    await file.close()
+    if len(data) > MAX_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="Upload exceeds configured maximum size")
+    try:
+        # Authorization performed a read and started SQLAlchemy autobegin; Task 1's
+        # import service deliberately owns its transaction boundary.
+        db.rollback()
+        return import_claims(db, file.filename, data)
+    except FileValidationError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except ImportConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+
+@router.get("")
+def get_claims(
+    offset: int = Query(0, ge=0),
+    limit: int = Query(50, ge=1, le=500),
+    db: Session = Depends(get_db),
+    _admin: User = Depends(require_roles('Admin')),
+):
+    total = db.scalar(select(func.count()).select_from(Claim)) or 0
+    claims = db.scalars(select(Claim).order_by(Claim.id).offset(offset).limit(limit)).all()
+    return {
+        "total": total, "offset": offset, "limit": limit,
+        "items": [{
+            "claim_id": claim.claim_id,
+            "policy_number": claim.policy_number,
+            "claimant_name": claim.claimant_name,
+            "claim_type": claim.claim_type,
+            "incident_date": claim.incident_date.isoformat(),
+            "reported_date": claim.reported_date.isoformat(),
+            "status": claim.status,
+            "amount_gbp": str(claim.amount_gbp),
+            "postcode": claim.postcode,
+            "description": claim.description,
+            "import_batch_id": claim.import_batch_id,
+        } for claim in claims],
+    }
+~~~~~~~
+
+### `app/routers/claims_crm.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/routers/claims_crm.py`. Purpose: """Role-protected task 4 claims dashboard and CRM sync endpoints.""".
+
+~~~~~~~python
+"""Role-protected task 4 claims dashboard and CRM sync endpoints."""
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from app.db import get_db
+from app.models import Claim, ClaimCRMState, CRMOperation, User
+from app.security import require_roles
+from app.services.claims_workflow import claim_details
+from app.services.crm_sync import retry_sync, run_sync
+from app.services.zoho_client import CRMError, make_client
+from app.workflow_schemas import SyncIn
+
+router = APIRouter(prefix='/api/crm', tags=['claims CRM integration'])
+
+
+def get_zoho():
+    return make_client()
+
+
+@router.get('/claims')
+def claims_list(limit: int = Query(100, ge=1, le=500), offset: int = Query(0, ge=0),
+                stage: str | None = None, db: Session = Depends(get_db),
+                _user: User = Depends(require_roles('Admin'))):
+    statement = select(Claim, ClaimCRMState).outerjoin(ClaimCRMState, ClaimCRMState.claim_id == Claim.id)
+    if stage:
+        statement = statement.where(ClaimCRMState.stage == stage)
+    rows = db.execute(statement.order_by(Claim.id.desc()).offset(offset).limit(limit)).all()
+    return {'items':[claim_details(c,s) for c,s in rows], 'count':len(rows), 'limit':limit, 'offset':offset}
+
+
+@router.get('/claims/{reference}')
+def claims_detail(reference: str, db: Session = Depends(get_db),
+                  _user: User = Depends(require_roles('Admin'))):
+    row = db.execute(select(Claim, ClaimCRMState).outerjoin(ClaimCRMState,
+                     ClaimCRMState.claim_id == Claim.id).where(Claim.claim_id == reference)).first()
+    if not row:
+        raise HTTPException(404, 'Claim not found')
+    return claim_details(*row)
+
+
+@router.get('/remote')
+def remote_list(_user: User = Depends(require_roles('Admin')), client=Depends(get_zoho)):
+    try:
+        return {'items': client.list_claims()}
+    except CRMError as exc:
+        raise HTTPException(503 if exc.retryable else 422, str(exc)) from None
+
+
+@router.get('/remote/{record_id}')
+def remote_one(record_id: str, _user: User = Depends(require_roles('Admin')),
+               client=Depends(get_zoho)):
+    try:
+        return client.get_claim(record_id)
+    except CRMError as exc:
+        raise HTTPException(503 if exc.retryable else 404, str(exc)) from None
+
+
+@router.post('/claims/{reference}/sync')
+def pull(reference: str, body: SyncIn, db: Session = Depends(get_db),
+         user: User = Depends(require_roles('Admin')), client=Depends(get_zoho)):
+    return run_sync(db, reference, 'pull', body.operation_key, user.id, client)
+
+
+@router.post('/claims/{reference}/push')
+def push(reference: str, body: SyncIn, db: Session = Depends(get_db),
+         user: User = Depends(require_roles('Admin')), client=Depends(get_zoho)):
+    return run_sync(db, reference, 'push', body.operation_key, user.id, client)
+
+
+@router.get('/operations')
+def operations(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin'))):
+    rows = db.scalars(select(CRMOperation).order_by(CRMOperation.id.desc()).limit(200)).all()
+    return {'items':[{'id':v.id,'key':v.operation_key,'operation':v.operation,
+                      'status':v.status,'retry_count':v.retry_count,'error':v.error_reason}
+                     for v in rows]}
+
+
+@router.post('/operations/{operation_id}/retry')
+def retry(operation_id: int, db: Session = Depends(get_db),
+          user: User = Depends(require_roles('Admin')), client=Depends(get_zoho)):
+    return retry_sync(db, operation_id, user.id, client)
+~~~~~~~
+
+### `app/routers/dashboard.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/dashboard.py`. Purpose: """Unified Task 1 claims and Task 2 helpdesk operations dashboard.""".
+
+~~~~~~~python
+"""Unified Task 1 claims and Task 2 helpdesk operations dashboard."""
+from datetime import date
+from pathlib import Path
+from fastapi import APIRouter, Depends, Request
+from fastapi.templating import Jinja2Templates
+from sqlalchemy import func, select
+from sqlalchemy.orm import Session
+
+from app.db import get_db
+from app.models import Asset, AuditEvent, Claim, ImportBatch, Ticket, User, utc_now
+from app.security import html_context
+
+templates = Jinja2Templates(directory=str(Path(__file__).resolve().parents[1] / 'templates'))
+router = APIRouter(tags=['dashboard'])
+
+
+@router.get('/')
+def dashboard(request: Request, db: Session = Depends(get_db)):
+    ctx = html_context(request, db)
+    user = ctx['user']
+    if not user:
+        return templates.TemplateResponse(request, 'login.html', ctx)
+    scoped = select(Ticket)
+    if user.role == 'Employee':
+        scoped = scoped.where(Ticket.employee_id == user.id)
+    elif user.role == 'Technician':
+        scoped = scoped.where((Ticket.assigned_technician_id == user.id) | (Ticket.employee_id == user.id))
+    ticket_rows = db.scalars(scoped).all()
+    unresolved = [t for t in ticket_rows if t.status not in {'Resolved','Closed'}]
+    it_stats = {
+        'open_tickets': len(unresolved),
+        'resolved_tickets': sum(t.status in {'Resolved','Closed'} for t in ticket_rows),
+        'high_priority': sum(t.priority in {'High','Critical'} for t in unresolved),
+        'overdue_tickets': sum(t.sla_due_at < utc_now() for t in unresolved),
+        'assigned_devices': 0,
+        'maintenance_devices': 0,
+    }
+    if user.role in {'Admin','Technician'}:
+        it_stats['assigned_devices'] = db.scalar(select(func.count()).select_from(Asset).where(Asset.status == 'Assigned')) or 0
+        it_stats['maintenance_devices'] = db.scalar(select(func.count()).select_from(Asset).where(Asset.status == 'Maintenance')) or 0
+    else:
+        it_stats['assigned_devices'] = db.scalar(select(func.count()).select_from(Asset).where(Asset.assigned_employee_id == user.id)) or 0
+    events = []
+    if user.role in {'Admin','Technician'}:
+        # Limit metadata to the last 10 technical actions; never leak passwords.
+        stmt = (select(AuditEvent, User.full_name).join(User, User.id == AuditEvent.actor_user_id)
+                .where(User.role == 'Technician').order_by(AuditEvent.id.desc()).limit(10))
+        events = [{'type': ev.event_type, 'technician': name, 'when': ev.occurred_at}
+                  for ev, name in db.execute(stmt)]
+    if user.role == 'Admin':
+        claims = db.scalars(select(Claim).order_by(Claim.id.desc()).limit(20)).all()
+        batches = db.scalars(select(ImportBatch).order_by(ImportBatch.id.desc()).limit(10)).all()
+        total_claims = db.scalar(select(func.count()).select_from(Claim)) or 0
+        total_claimed = db.scalar(select(func.sum(Claim.amount_gbp))) or 0
+    else:
+        claims, batches, total_claims, total_claimed = [], [], 0, 0
+    return templates.TemplateResponse(request, 'dashboard.html', {
+        **ctx, 'stats': it_stats, 'events': events, 'recent_tickets': ticket_rows[-10:][::-1],
+        'claims': claims, 'batches': batches, 'total_claims': total_claims,
+        'total_amount': f'{total_claimed:,.2f}',
+    })
+~~~~~~~
+
+### `app/routers/employee_pages.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/employee_pages.py`. Purpose: """Browser pages reuse the existing session and role permissions.""".
+
+~~~~~~~python
+"""Browser pages reuse the existing session and role permissions."""
+from fastapi import APIRouter, Depends, Request
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from app.db import get_db
+from app.models import Asset, AssetReservation, Employee, OffboardingRequest, ProvisioningAction, User
+from app.routers.pages import render
+from app.security import require_roles
+from app.services.employee_service import DEPARTMENT_GROUPS
+
+router = APIRouter(tags=['employee browser pages'])
+
+
+@router.get('/employees')
+def index(request: Request, db: Session = Depends(get_db),
+          user: User = Depends(require_roles('Admin','Technician'))):
+    employees = db.scalars(select(Employee).order_by(Employee.id.desc()).limit(200)).all()
+    offboards = db.scalars(select(OffboardingRequest).order_by(OffboardingRequest.id.desc()).limit(100)).all()
+    actions = db.scalars(select(ProvisioningAction).order_by(ProvisioningAction.id.desc()).limit(100)).all()
+    reservations = db.scalars(select(AssetReservation).where(AssetReservation.status == 'Reserved')).all()
+    assigned_assets = db.scalars(select(Asset).where(Asset.status == 'Assigned').order_by(Asset.asset_tag)).all()
+    stats = {
+        'active': sum(e.status == 'Active' for e in employees),
+        'pending_onboarding': sum(e.status == 'Prepared' for e in employees),
+        'pending_offboarding': sum(r.status == 'PendingApproval' for r in offboards),
+        'failed': sum(a.status == 'Failed' for a in actions),
+        'reserved': len(reservations),
+        'assigned_devices': len(assigned_assets),
+    }
+    return render(request, 'employees.html', db, employees=employees, offboards=offboards,
+                  activities=actions[:20], stats=stats, groups=DEPARTMENT_GROUPS,
+                  assigned_assets=assigned_assets, admin=(user.role == 'Admin'))
+~~~~~~~
+
+### `app/routers/employees.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/employees.py`. Purpose: """Authenticated employee lifecycle API; all external provisioning remains mocked.""".
+
+~~~~~~~python
+"""Authenticated employee lifecycle API; all external provisioning remains mocked."""
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import func, select
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
+
+from app.db import get_db
+from app.employee_schemas import ApprovalIn, OffboardIn, OnboardIn
+from app.models import Employee, OffboardingRequest, OnboardingRequest, ProvisioningAction, User
+from app.security import require_roles
+from app.services.employee_service import (activate, ad_plan, approve_offboarding,
+    create_onboarding, employee_dict, request_offboarding)
+
+router = APIRouter(prefix='/api/employees', tags=['employee lifecycle'])
+
+
+@router.get('')
+def list_employees(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin','Technician'))):
+    return {'items': [employee_dict(db, e) for e in db.scalars(select(Employee).order_by(Employee.id.desc()).limit(200))]}
+
+
+@router.get('/metrics')
+def metrics(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin','Technician'))):
+    return {
+        'active_employees': db.scalar(select(func.count()).select_from(Employee).where(Employee.status == 'Active')) or 0,
+        'pending_onboarding': db.scalar(select(func.count()).select_from(OnboardingRequest).where(OnboardingRequest.status.in_(['Prepared','Attention']))) or 0,
+        'pending_offboarding': db.scalar(select(func.count()).select_from(OffboardingRequest).where(OffboardingRequest.status == 'PendingApproval')) or 0,
+        'failed_operations': db.scalar(select(func.count()).select_from(ProvisioningAction).where(ProvisioningAction.status == 'Failed')) or 0,
+    }
+
+
+@router.post('/onboarding', status_code=201)
+def submit_onboarding(body: OnboardIn, db: Session = Depends(get_db),
+                      user: User = Depends(require_roles('Admin'))):
+    try:
+        return create_onboarding(db, body, user)
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(409, 'Employee identity or reservation conflict') from exc
+
+
+@router.get('/offboarding')
+def list_offboarding(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin','Technician'))):
+    return {'items': [{'id': r.id, 'employee_id': r.employee_id, 'employee': r.employee.full_name,
+                       'status': r.status, 'requested_by': r.requested_by,
+                       'approved_by': r.approved_by, 'reason': r.reason}
+                      for r in db.scalars(select(OffboardingRequest).order_by(OffboardingRequest.id.desc()).limit(200))]}
+
+
+@router.get('/{employee_id}')
+def get_employee(employee_id: int, db: Session = Depends(get_db),
+                 _user: User = Depends(require_roles('Admin','Technician'))):
+    employee = db.get(Employee, employee_id)
+    if not employee:
+        raise HTTPException(404, 'Employee not found')
+    return employee_dict(db, employee)
+
+
+@router.get('/{employee_id}/ad-plan')
+def get_ad_plan(employee_id: int, db: Session = Depends(get_db),
+                _user: User = Depends(require_roles('Admin'))):
+    employee = db.get(Employee, employee_id)
+    if not employee:
+        raise HTTPException(404, 'Employee not found')
+    return ad_plan(employee, db)
+
+
+@router.post('/{employee_id}/activate')
+def activate_employee(employee_id: int, db: Session = Depends(get_db),
+                      user: User = Depends(require_roles('Admin'))):
+    employee = db.get(Employee, employee_id)
+    if not employee:
+        raise HTTPException(404, 'Employee not found')
+    return activate(db, employee, user)
+
+
+@router.post('/{employee_id}/offboarding', status_code=201)
+def submit_offboarding(employee_id: int, body: OffboardIn, db: Session = Depends(get_db),
+                       user: User = Depends(require_roles('Admin','Technician'))):
+    employee = db.get(Employee, employee_id)
+    if not employee:
+        raise HTTPException(404, 'Employee not found')
+    request = request_offboarding(db, employee, body, user)
+    return {'id': request.id, 'employee_id': employee_id, 'status': request.status,
+            'message': 'Awaiting a different administrator\'s approval; no external account changes'}
+
+
+@router.post('/offboarding/{request_id}/approve')
+def approve_request(request_id: int, body: ApprovalIn, db: Session = Depends(get_db),
+                    user: User = Depends(require_roles('Admin'))):
+    request = db.get(OffboardingRequest, request_id)
+    if not request:
+        raise HTTPException(404, 'Offboarding request not found')
+    try:
+        request = approve_offboarding(db, request, user, body.comment)
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(409, 'Offboarding approval conflict') from exc
+    return {'id': request.id, 'status': request.status, 'employee_id': request.employee_id,
+            'simulation': True, 'message': 'Mock suspension complete; real accounts unchanged'}
+~~~~~~~
+
+### `app/routers/imports.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/imports.py`. Purpose: """Read recent import batches and their rejected row diagnostics.""".
+
+~~~~~~~python
+"""Read recent import batches and their rejected row diagnostics."""
+from fastapi import APIRouter, Depends, Query
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from app.db import get_db
+from app.models import ImportBatch, RejectedRow, User
+from app.security import require_roles
+from app.services.import_service import batch_to_dict
+
+router = APIRouter(prefix="/api/imports", tags=["imports"])
+
+
+@router.get("")
+def list_imports(limit: int = Query(50, ge=1, le=100), db: Session = Depends(get_db),
+                 _admin: User = Depends(require_roles('Admin'))):
+    batches = db.scalars(select(ImportBatch).order_by(ImportBatch.id.desc()).limit(limit)).all()
+    return {"items": [batch_to_dict(batch) for batch in batches]}
+
+
+@router.get("/{batch_id}/rejections")
+def list_rejections(batch_id: int, db: Session = Depends(get_db),
+                 _admin: User = Depends(require_roles('Admin'))):
+    rows = db.scalars(select(RejectedRow).where(RejectedRow.import_batch_id == batch_id).order_by(RejectedRow.source_row_number)).all()
+    return {"batch_id": batch_id, "items": [{
+        "source_row_number": row.source_row_number,
+        "claim_id": row.claim_id,
+        "reason": row.failure_reason,
+        "raw_data_json": row.raw_data_json,
+    } for row in rows]}
+~~~~~~~
+
+### `app/routers/it_reports.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/it_reports.py`. Purpose: """Excel report downloads for staff with IT operational reporting access.""".
+
+~~~~~~~python
+"""Excel report downloads for staff with IT operational reporting access."""
+from fastapi import APIRouter, Depends
+from fastapi.responses import StreamingResponse
+from sqlalchemy.orm import Session
+
+from app.db import get_db
+from app.models import User
+from app.security import require_roles
+from app.services.it_report_service import inventory_report, tickets_report, workload_report
+
+router = APIRouter(prefix='/api/reports', tags=['IT reports'])
+
+
+def stream(workbook, name):
+    return StreamingResponse(workbook,
+       media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+       headers={'Content-Disposition': f'attachment; filename="northstar_{name}.xlsx"'})
+
+
+@router.get('/tickets.xlsx')
+def export_tickets(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin','Technician'))):
+    return stream(tickets_report(db), 'tickets')
+
+
+@router.get('/inventory.xlsx')
+def export_assets(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin','Technician'))):
+    return stream(inventory_report(db), 'inventory')
+
+
+@router.get('/workload.xlsx')
+def export_workload(db: Session = Depends(get_db), _user: User = Depends(require_roles('Admin'))):
+    return stream(workload_report(db), 'technician_workload')
+~~~~~~~
+
+### `app/routers/pages.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/pages.py`. Purpose: """Jinja2 browser pages for Task 2, sharing the Task 1 dashboard.""".
+
+~~~~~~~python
+"""Jinja2 browser pages for Task 2, sharing the Task 1 dashboard."""
+from pathlib import Path
+from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi.templating import Jinja2Templates
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from app.db import get_db
+from app.models import Asset, Ticket, User
+from app.security import current_user, html_context, require_roles
+from app.services.helpdesk_service import require_ticket
+
+router = APIRouter(tags=['browser pages'])
+templates = Jinja2Templates(directory=str(Path(__file__).resolve().parents[1] / 'templates'))
+
+
+def render(request, name, db, **data):
+    return templates.TemplateResponse(request, name, {**html_context(request, db), **data})
+
+
+@router.get('/login')
+def login_page(request: Request, db: Session = Depends(get_db)):
+    return render(request, 'login.html', db)
+
+
+@router.get('/tickets')
+def tickets_page(request: Request, db: Session = Depends(get_db), user: User = Depends(current_user)):
+    query = select(Ticket).order_by(Ticket.id.desc()).limit(100)
+    if user.role == 'Employee':
+        query = query.where(Ticket.employee_id == user.id)
+    elif user.role == 'Technician':
+        query = query.where((Ticket.assigned_technician_id == user.id) | (Ticket.employee_id == user.id))
+    return render(request, 'tickets.html', db, tickets=db.scalars(query).all())
+
+
+@router.get('/tickets/new')
+def new_ticket_page(request: Request, db: Session = Depends(get_db), user: User = Depends(current_user)):
+    assets = db.scalars(select(Asset).where(Asset.assigned_employee_id == user.id)).all() if user.role == 'Employee' else db.scalars(select(Asset)).all()
+    employees = db.scalars(select(User).where(User.role == 'Employee', User.is_active == True)).all() if user.role == 'Admin' else []
+    return render(request, 'ticket_new.html', db, assets=assets, employees=employees)
+
+
+@router.get('/tickets/{ticket_id}')
+def ticket_page(ticket_id: int, request: Request, db: Session = Depends(get_db),
+                user: User = Depends(current_user)):
+    ticket = require_ticket(user, db.get(Ticket, ticket_id))
+    technicians = db.scalars(select(User).where(User.role == 'Technician', User.is_active == True)).all() if user.role == 'Admin' else []
+    can_update = user.role == 'Admin' or (user.role == 'Technician' and ticket.assigned_technician_id == user.id)
+    can_assign = user.role == 'Admin' or (user.role == 'Technician' and ticket.assigned_technician_id in (None, user.id))
+    return render(request, 'ticket_detail.html', db, ticket=ticket,
+                  technicians=technicians, can_update=can_update, can_assign=can_assign)
+
+
+@router.get('/assets')
+def assets_page(request: Request, db: Session = Depends(get_db),
+                _user: User = Depends(require_roles('Admin','Technician'))):
+    assets = db.scalars(select(Asset).order_by(Asset.asset_tag)).all()
+    employees = db.scalars(select(User).where(User.role == 'Employee', User.is_active == True)).all()
+    return render(request, 'assets.html', db, assets=assets, employees=employees)
+
+
+@router.get('/users')
+def users_page(request: Request, db: Session = Depends(get_db),
+               _user: User = Depends(require_roles('Admin'))):
+    return render(request, 'users.html', db, users=db.scalars(select(User).order_by(User.id)).all())
+~~~~~~~
+
+### `app/routers/reports.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/reports.py`. Purpose: """Downloadable formula-driven Excel workbook.""".
+
+~~~~~~~python
+"""Downloadable formula-driven Excel workbook."""
+from fastapi import APIRouter, Depends
+from fastapi.responses import StreamingResponse
+from sqlalchemy.orm import Session
+
+from app.db import get_db
+from app.models import User
+from app.security import require_roles
+from app.services.report_service import create_claims_workbook
+
+router = APIRouter(prefix="/api/reports", tags=["reports"])
+
+
+@router.get("/claims.xlsx")
+def download_claims_report(db: Session = Depends(get_db),
+                           _admin: User = Depends(require_roles('Admin'))):
+    report = create_claims_workbook(db)
+    return StreamingResponse(
+        report,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": 'attachment; filename="northstar_claims_report.xlsx"'},
+    )
+~~~~~~~
+
+### `app/routers/tickets.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/routers/tickets.py`. Purpose: """Ticket submission, ownership filters, technician workflow and immutable history.""".
+
+~~~~~~~python
+"""Ticket submission, ownership filters, technician workflow and immutable history."""
+from datetime import timedelta
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import func, select, update
+from sqlalchemy.orm import Session, selectinload
+
+from app.db import get_db
+from app.models import Asset, Ticket, TicketHistory, User, utc_now
+from app.schemas import TicketAssign, TicketCreate, TicketNote, TicketUpdate
+from app.security import current_user, require_roles
+from app.services.helpdesk_service import (SLA_HOURS, TRANSITIONS, log_event,
+                                           require_ticket, ticket_dict, ticket_history)
+
+router = APIRouter(prefix='/api/tickets', tags=['helpdesk tickets'])
+
+
+def ticket_query():
+    return select(Ticket).options(selectinload(Ticket.employee), selectinload(Ticket.technician),
+                                  selectinload(Ticket.asset),
+                                  selectinload(Ticket.history).selectinload(TicketHistory.actor))
+
+
+@router.post('', status_code=201)
+def create_ticket(body: TicketCreate, db: Session = Depends(get_db), user: User = Depends(current_user)):
+    employee_id = user.id
+    if body.employee_id is not None:
+        if user.role != 'Admin':
+            raise HTTPException(403, 'Only admins can submit on behalf of an employee')
+        target = db.get(User, body.employee_id)
+        if not target or not target.is_active or target.role != 'Employee':
+            raise HTTPException(422, 'employee_id must refer to an active Employee')
+        employee_id = target.id
+    if body.affected_asset_id:
+        asset = db.get(Asset, body.affected_asset_id)
+        if not asset:
+            raise HTTPException(422, 'Asset not found')
+        if user.role == 'Employee' and asset.assigned_employee_id != user.id:
+            raise HTTPException(403, 'You may only report a device assigned to you')
+    now = utc_now()
+    ticket = Ticket(employee_id=employee_id, affected_asset_id=body.affected_asset_id,
+                    title=body.title, description=body.description, category=body.category,
+                    priority=body.priority, status='Open', created_at=now,
+                    sla_due_at=now + timedelta(hours=SLA_HOURS[body.priority]))
+    db.add(ticket)
+    db.flush()
+    ticket_history(db, ticket, user, 'Created', note=body.description, new='Open')
+    log_event(db, 'TICKET_CREATED', user, ticket_id=ticket.id, reference=ticket.reference)
+    db.commit()
+    return ticket_dict(db.scalar(ticket_query().where(Ticket.id == ticket.id)), with_history=True)
+
+
+@router.get('')
+def list_tickets(status: str | None = None, priority: str | None = None,
+                 limit: int = Query(100, ge=1, le=500), offset: int = Query(0, ge=0),
+                 db: Session = Depends(get_db), user: User = Depends(current_user)):
+    query = ticket_query()
+    if user.role == 'Employee':
+        query = query.where(Ticket.employee_id == user.id)
+    elif user.role == 'Technician':
+        query = query.where((Ticket.assigned_technician_id == user.id) | (Ticket.employee_id == user.id))
+    if status:
+        query = query.where(Ticket.status == status)
+    if priority:
+        query = query.where(Ticket.priority == priority)
+    tickets = db.scalars(query.order_by(Ticket.id.desc()).offset(offset).limit(limit)).all()
+    return {'items': [ticket_dict(t) for t in tickets], 'count': len(tickets),
+            'offset': offset, 'limit': limit}
+
+
+@router.get('/{ticket_id}')
+def detail(ticket_id: int, db: Session = Depends(get_db), user: User = Depends(current_user)):
+    ticket = require_ticket(user, db.scalar(ticket_query().where(Ticket.id == ticket_id)))
+    return ticket_dict(ticket, with_history=True)
+
+
+@router.post('/{ticket_id}/assign')
+def assign(ticket_id: int, body: TicketAssign, db: Session = Depends(get_db),
+           user: User = Depends(require_roles('Admin','Technician'))):
+    ticket = db.get(Ticket, ticket_id)
+    if not ticket:
+        raise HTTPException(404, 'Ticket not found')
+    if user.role == 'Technician' and body.technician_id != user.id:
+        raise HTTPException(403, 'Technicians may only claim tickets for themselves')
+    if ticket.status not in {'Open', 'Assigned'}:
+        raise HTTPException(409, 'Only Open or Assigned tickets can be assigned')
+    if user.role == 'Technician' and ticket.assigned_technician_id not in {None, user.id}:
+        raise HTTPException(409, 'Ticket is already assigned to another technician')
+    technician = db.get(User, body.technician_id)
+    if not technician or technician.role != 'Technician' or not technician.is_active:
+        raise HTTPException(422, 'An active Technician is required')
+    previous = ticket.status
+    # Compare-and-swap assignment also prevents concurrent self-claim collisions.
+    stmt = update(Ticket).where(Ticket.id == ticket.id, Ticket.status.in_(['Open','Assigned']))
+    if user.role == 'Technician':
+        stmt = stmt.where((Ticket.assigned_technician_id.is_(None)) |
+                          (Ticket.assigned_technician_id == user.id))
+    result = db.execute(stmt.values(assigned_technician_id=technician.id, status='Assigned',
+                                    assigned_at=utc_now()).execution_options(synchronize_session=False))
+    if result.rowcount != 1:
+        raise HTTPException(409, 'Ticket assignment changed concurrently')
+    db.expire(ticket)
+    ticket_history(db, ticket, user, 'Assigned', f'Assigned to {technician.full_name}', previous, 'Assigned')
+    log_event(db, 'TICKET_ASSIGNED', user, ticket_id=ticket.id, technician_id=technician.id)
+    db.commit()
+    return ticket_dict(db.scalar(ticket_query().where(Ticket.id == ticket_id)), with_history=True)
+
+
+@router.patch('/{ticket_id}')
+def update_ticket(ticket_id: int, body: TicketUpdate, db: Session = Depends(get_db),
+                  user: User = Depends(require_roles('Admin','Technician'))):
+    ticket = require_ticket(user, db.get(Ticket, ticket_id), write=True)
+    if body.status not in TRANSITIONS[ticket.status]:
+        raise HTTPException(409, f'Invalid status transition: {ticket.status} -> {body.status}')
+    if body.status in {'Assigned', 'In Progress', 'Resolved', 'Closed'} and not ticket.assigned_technician_id:
+        raise HTTPException(409, 'Ticket needs an assigned technician')
+    if body.status == 'Resolved' and (not body.resolution_details or len(body.resolution_details.strip()) < 10):
+        raise HTTPException(422, 'Provide at least 10 characters of resolution_details')
+    previous = ticket.status
+    ticket.status = body.status
+    if body.status == 'Resolved':
+        ticket.resolved_at = utc_now()
+        ticket.resolution_details = body.resolution_details
+    if body.status == 'In Progress' and previous == 'Resolved':
+        ticket.resolved_at = None
+        ticket.resolution_details = None
+    if body.status == 'Closed':
+        ticket.closed_at = utc_now()
+    ticket_history(db, ticket, user, 'Status change', body.resolution_details or '', previous, body.status)
+    log_event(db, 'TICKET_UPDATED', user, ticket_id=ticket.id, from_status=previous, to_status=body.status)
+    db.commit()
+    return ticket_dict(db.scalar(ticket_query().where(Ticket.id == ticket_id)), with_history=True)
+
+
+@router.post('/{ticket_id}/notes', status_code=201)
+def add_note(ticket_id: int, body: TicketNote, db: Session = Depends(get_db),
+             user: User = Depends(require_roles('Admin','Technician'))):
+    ticket = require_ticket(user, db.get(Ticket, ticket_id), write=True)
+    if ticket.status == 'Closed':
+        raise HTTPException(409, 'Closed tickets are read-only')
+    ticket_history(db, ticket, user, 'Troubleshooting note', body.note)
+    log_event(db, 'TICKET_NOTE', user, ticket_id=ticket.id)
+    db.commit()
+    return ticket_dict(db.scalar(ticket_query().where(Ticket.id == ticket_id)), with_history=True)
+~~~~~~~
+
+### `app/schemas.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/schemas.py`. Purpose: """HTTP validation contracts. Reject unknown fields instead of silently ignoring them.""".
+
+~~~~~~~python
+"""HTTP validation contracts. Reject unknown fields instead of silently ignoring them."""
+from datetime import date
+from typing import Literal
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+
+Category = Literal['Hardware','Software','Network','Printer','Account Access','Other']
+Priority = Literal['Low','Medium','High','Critical']
+Status = Literal['Open','Assigned','In Progress','Resolved','Closed']
+AssetType = Literal['Laptop','Desktop','Printer','Router','Switch']
+AssetStatus = Literal['Available','Assigned','Reserved','Maintenance','Retired']
+
+
+def clean(value: str) -> str:
+    return ' '.join(value.split())
+
+
+class StrictModel(BaseModel):
+    model_config = ConfigDict(extra='forbid', str_strip_whitespace=True)
+
+
+class LoginIn(StrictModel):
+    username: str = Field(min_length=2, max_length=60)
+    password: str = Field(min_length=1)
+
+
+class UserCreate(StrictModel):
+    username: str = Field(pattern=r'^[a-z0-9._-]{3,60}$')
+    full_name: str = Field(min_length=2, max_length=120)
+    email: str = Field(pattern=r'^[^\s@]+@[^\s@]+\.[^\s@]+$', max_length=180)
+    role: Literal['Admin','Technician','Employee']
+    password: str = Field(min_length=12, max_length=128)
+
+
+class TicketCreate(StrictModel):
+    title: str = Field(min_length=5, max_length=160)
+    description: str = Field(min_length=10, max_length=3000)
+    category: Category
+    priority: Priority = 'Medium'
+    affected_asset_id: int | None = Field(default=None, gt=0)
+    employee_id: int | None = Field(default=None, gt=0)  # admin may file for employee
+
+
+class TicketAssign(StrictModel):
+    technician_id: int = Field(gt=0)
+
+
+class TicketUpdate(StrictModel):
+    status: Status
+    resolution_details: str | None = Field(default=None, max_length=3000)
+
+
+class TicketNote(StrictModel):
+    note: str = Field(min_length=2, max_length=3000)
+
+
+class AssetCreate(StrictModel):
+    asset_tag: str = Field(pattern=r'^[A-Z0-9-]{3,40}$')
+    serial_number: str = Field(min_length=3, max_length=100)
+    device_type: AssetType
+    manufacturer: str = Field(min_length=2, max_length=80)
+    model: str = Field(min_length=2, max_length=120)
+    operating_system: str | None = Field(default=None, max_length=100)
+    purchase_date: date
+    warranty_expiry: date | None = None
+    notes: str = Field(default='', max_length=1000)
+
+    @model_validator(mode='after')
+    def validate_dates(self):
+        if self.purchase_date > date.today():
+            raise ValueError('purchase_date cannot be in the future')
+        if self.warranty_expiry and self.warranty_expiry < self.purchase_date:
+            raise ValueError('warranty_expiry must be after purchase_date')
+        return self
+
+
+class AssetEdit(StrictModel):
+    manufacturer: str | None = Field(default=None, min_length=2, max_length=80)
+    model: str | None = Field(default=None, min_length=2, max_length=120)
+    operating_system: str | None = Field(default=None, max_length=100)
+    warranty_expiry: date | None = None
+    notes: str | None = Field(default=None, max_length=1000)
+    status: Literal['Available','Maintenance','Retired'] | None = None
+
+
+class AssetAssign(StrictModel):
+    employee_id: int = Field(gt=0)
+
+
+class UserEdit(StrictModel):
+    full_name: str | None = Field(default=None, min_length=2, max_length=120)
+    email: str | None = Field(default=None, pattern=r"^[^\s@]+@[^\s@]+\.[^\s@]+$", max_length=180)
+    role: Literal['Admin','Technician','Employee'] | None = None
+    is_active: bool | None = None
+    password: str | None = Field(default=None, min_length=12, max_length=128)
+~~~~~~~
+
+### `app/security.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/security.py`. Purpose: """Argon2id password hashes, 8-hour signed browser sessions, CSRF and RBAC.""".
+
+~~~~~~~python
+"""Argon2id password hashes, 8-hour signed browser sessions, CSRF and RBAC."""
+import os
+import secrets
+from functools import lru_cache
+
+from argon2 import PasswordHasher, exceptions as argon_errors
+from fastapi import Depends, HTTPException, Request
+from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
+from sqlalchemy.orm import Session
+
+from app.db import get_db
+from app.models import User
+
+COOKIE_NAME = 'nc_session'
+SESSION_AGE_SECONDS = 8 * 60 * 60
+password_hasher = PasswordHasher(time_cost=2, memory_cost=19456, parallelism=2)
+
+
+def hash_password(password: str) -> str:
+    return password_hasher.hash(password)
+
+
+def verify_password(hash_value: str, password: str) -> bool:
+    try:
+        return password_hasher.verify(hash_value, password)
+    except (argon_errors.VerifyMismatchError, argon_errors.VerificationError, argon_errors.InvalidHashError):
+        return False
+
+
+def signer() -> URLSafeTimedSerializer:
+    # Obtain at runtime, not import time; makes tests and configuration predictable.
+    key = os.getenv('APP_SECRET_KEY', '').strip()
+    if len(key) < 40:
+        raise RuntimeError('APP_SECRET_KEY not configured: run python -m scripts.configure_local')
+    return URLSafeTimedSerializer(key, salt='northstar-helpdesk-session-v1')
+
+
+def create_session(user: User) -> tuple[str, str]:
+    csrf = secrets.token_urlsafe(32)
+    token = signer().dumps({'uid': user.id, 'csrf': csrf})
+    return token, csrf
+
+
+def cookie_secure() -> bool:
+    return os.getenv('APP_COOKIE_SECURE', 'false').lower() == 'true'
+
+
+def session_data(request: Request) -> dict | None:
+    raw = request.cookies.get(COOKIE_NAME)
+    if not raw:
+        return None
+    try:
+        data = signer().loads(raw, max_age=SESSION_AGE_SECONDS)
+        if not isinstance(data.get('uid'), int) or not isinstance(data.get('csrf'), str):
+            return None
+        return data
+    except (BadSignature, SignatureExpired):
+        return None
+
+
+def current_user(request: Request, db: Session = Depends(get_db)) -> User:
+    data = session_data(request)
+    if not data:
+        raise HTTPException(401, 'Login required')
+    user = db.get(User, data['uid'])
+    if not user or not user.is_active:
+        raise HTTPException(401, 'Account is disabled or session invalid')
+    if request.method not in {'GET','HEAD','OPTIONS'}:
+        if not secrets.compare_digest(request.headers.get('X-CSRF-Token', ''), data['csrf']):
+            raise HTTPException(403, 'Missing or incorrect CSRF token')
+    return user
+
+
+def require_roles(*roles):
+    def check(user: User = Depends(current_user)) -> User:
+        if user.role not in roles:
+            raise HTTPException(403, 'Insufficient permissions')
+        return user
+    return check
+
+
+def html_context(request: Request, db: Session) -> dict:
+    data = session_data(request)
+    user = db.get(User, data['uid']) if data else None
+    if user and not user.is_active:
+        user = None
+    return {'user': user, 'csrf': data['csrf'] if user else ''}
+~~~~~~~
+
+### `app/services/__init__.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/services/__init__.py`. Purpose: """Northstar Claims IT operations demonstration package.""".
+
+~~~~~~~python
+"""Northstar Claims IT operations demonstration package."""
+~~~~~~~
+
+### `app/services/asset_service.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/services/asset_service.py`. Purpose: """Device lifecycle helpers and optimistic conditional updates for assignments.""".
+
+~~~~~~~python
+"""Device lifecycle helpers and optimistic conditional updates for assignments."""
+from fastapi import HTTPException
+from sqlalchemy import update
+from sqlalchemy.orm import Session
+
+from app.models import Asset, AssetMovement, User, utc_now
+from app.services.helpdesk_service import log_event
+
+
+def asset_dict(asset: Asset) -> dict:
+    return {
+        'id': asset.id, 'asset_tag': asset.asset_tag, 'serial_number': asset.serial_number,
+        'device_type': asset.device_type, 'manufacturer': asset.manufacturer,
+        'model': asset.model, 'operating_system': asset.operating_system,
+        'purchase_date': asset.purchase_date.isoformat(),
+        'warranty_expiry': asset.warranty_expiry.isoformat() if asset.warranty_expiry else None,
+        'assigned_employee_id': asset.assigned_employee_id,
+        'assigned_employee': asset.assigned_employee.full_name if asset.assigned_employee else None,
+        'assigned_at': asset.assigned_at.isoformat() + 'Z' if asset.assigned_at else None,
+        'status': asset.status, 'notes': asset.notes,
+    }
+
+
+def change_assignment(db: Session, asset: Asset, employee: User | None, actor: User):
+    # A single UPDATE with a WHERE condition is atomic on SQL Server and prevents
+    # two concurrent technicians from assigning one device to different employees.
+    if employee:
+        stmt = (update(Asset).where(Asset.id == asset.id, Asset.status == 'Available',
+                                  Asset.assigned_employee_id.is_(None))
+                .values(status='Assigned', assigned_employee_id=employee.id, assigned_at=utc_now()))
+        verb, action = 'ASSIGNED', 'ASSET_ASSIGNED'
+    else:
+        if asset.assigned_employee_id is None:
+            raise HTTPException(409, 'Asset is not assigned')
+        prior_id = asset.assigned_employee_id
+        stmt = (update(Asset).where(Asset.id == asset.id, Asset.status == 'Assigned',
+                                  Asset.assigned_employee_id == prior_id)
+                .values(status='Available', assigned_employee_id=None, assigned_at=None))
+        verb, action = 'RETURNED', 'ASSET_RETURNED'
+    # SQLAlchemy's synchronize_session=False prevents stale in-memory status updates.
+    result = db.execute(stmt.execution_options(synchronize_session=False))
+    if result.rowcount != 1:
+        raise HTTPException(409, 'Assignment conflict: asset state changed or is unavailable')
+    employee_id = employee.id if employee else prior_id
+    db.add(AssetMovement(asset_id=asset.id, employee_id=employee_id, actor_user_id=actor.id, action=verb))
+    log_event(db, action, actor, asset_id=asset.id, employee_id=employee_id)
+    db.flush()
+    db.expire(asset)
+    return asset
+~~~~~~~
+
+### `app/services/claim_report_service.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/services/claim_report_service.py`. Purpose: """Five-sheet Excel export aligned with Tasks 1/2 openpyxl report implementation.""".
+
+~~~~~~~python
+"""Five-sheet Excel export aligned with Tasks 1/2 openpyxl report implementation."""
+from io import BytesIO
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
+from openpyxl.utils import get_column_letter
+
+from app.models import Claim, ClaimCRMState, WorkflowExecution
+from app.services.report_service import excel_safe
+
+
+def add_sheet(wb, title, headers, data):
+    ws = wb.create_sheet(title)
+    ws.append(headers)
+    for row in data:
+        ws.append([excel_safe(str(v)) if isinstance(v, str) else v for v in row])
+    for cell in ws[1]:
+        cell.font = Font(bold=True, color='FFFFFF')
+        cell.fill = PatternFill('solid', fgColor='123C5C')
+    ws.freeze_panes = 'A2'
+    ws.auto_filter.ref = ws.dimensions
+    for i, header in enumerate(headers, 1):
+        ws.column_dimensions[get_column_letter(i)].width = min(38, max(15, len(header) + 4))
+    return ws
+
+
+def build_report(db: Session) -> bytes:
+    rows = db.execute(select(Claim, ClaimCRMState).outerjoin(ClaimCRMState,
+                     ClaimCRMState.claim_id == Claim.id).order_by(Claim.id)).all()
+    executions = db.scalars(select(WorkflowExecution).order_by(WorkflowExecution.id)).all()
+    wb = Workbook()
+    wb.remove(wb.active)
+    add_sheet(wb, 'Claims by Status', ['Reference', 'Claimant', 'Type', 'Stage', 'Original status', 'Handler'],
+        [(c.claim_id, c.claimant_name, c.claim_type, s.stage if s else 'New',
+          c.status, s.assigned_handler if s else None) for c, s in rows])
+    counts = add_sheet(wb, 'Status Summary', ['Workflow stage', 'Claim count'],
+        [(name, None) for name in ('New','Assigned','Evidence Required','Ready for Review','Resolved')])
+    for rownum in range(2, 7):
+        counts.cell(rownum, 2).value = f"=COUNTIF('Claims by Status'!$D$2:$D$100001,A{rownum})"
+    add_sheet(wb, 'Missing Documents', ['Reference', 'Claimant', 'Stage', 'Submitted'],
+        [(c.claim_id, c.claimant_name, s.stage, c.reported_date)
+         for c, s in rows if s and s.missing_documents])
+    add_sheet(wb, 'Failed Workflows', ['Reference', 'Workflow', 'Error', 'Retries', 'Created UTC'],
+        [(e.claim.claim_id, e.rule.name, e.error_reason, e.retry_count, e.started_at)
+         for e in executions if e.status == 'Failed'])
+    add_sheet(wb, 'Processing Time', ['Reference', 'Submitted', 'Resolved', 'Days to resolve'],
+        [(c.claim_id, c.reported_date, s.completed_at if s else None,
+          ((s.completed_at.date() - c.reported_date).days if s and s.completed_at else None))
+         for c,s in rows])
+    failed_claim_ids = {e.claim_id for e in executions if e.status == 'Failed'}
+    add_sheet(wb, 'Intervention', ['Reference','Claimant','Stage','Integration status','Action'],
+        [(c.claim_id, c.claimant_name, s.stage, s.integration_status,
+          ('Review workflow failure' if c.id in failed_claim_ids else
+           'Review failed CRM sync' if s.integration_status == 'Failed' else 'Request evidence'))
+         for c,s in rows if s and (s.integration_status == 'Failed' or s.missing_documents or c.id in failed_claim_ids)])
+    summary = wb.create_sheet('Summary', 0)
+    summary.append(['Northstar Claims Ltd — Task 4 workflow report', 'Value'])
+    summary.append(['Total claims', "=COUNTA('Claims by Status'!A2:A100001)"])
+    summary.append(['Evidence required', '=COUNTA(\'Missing Documents\'!A2:A100001)'])
+    summary.append(['Failed workflows', "=COUNTA('Failed Workflows'!A2:A100001)"])
+    summary.append(['Average processing days', '=IFERROR(AVERAGE(\'Processing Time\'!D2:D100001),0)'])
+    summary.append(['Requiring intervention', "=COUNTA('Intervention'!A2:A100001)"])
+    summary.column_dimensions['A'].width = 48
+    summary.column_dimensions['B'].width = 24
+    for cell in summary[1]:
+        cell.font = Font(bold=True, color='FFFFFF')
+        cell.fill = PatternFill('solid', fgColor='123C5C')
+    wb.calculation.fullCalcOnLoad = True
+    wb.calculation.forceFullCalc = True
+    stream = BytesIO()
+    wb.save(stream)
+    return stream.getvalue()
+~~~~~~~
+
+### `app/services/claim_templates.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/services/claim_templates.py`. Purpose: """Validated single-value formatting only; no Jinja evaluation or email delivery.""".
+
+~~~~~~~python
+"""Validated single-value formatting only; no Jinja evaluation or email delivery."""
+from string import Formatter
+from fastapi import HTTPException
+from sqlalchemy import select
+from app.models import CommunicationTemplate, Claim, ClaimCRMState, utc_now
+
+ALLOWED = {'claim_id','claimant_name','claim_type','claim_status','handler','submission_date'}
+DEFAULTS = {
+  'acknowledgement': ('We received claim {claim_id}', 'Hello {claimant_name}, we have received your {claim_type} claim {claim_id} on {submission_date}.'),
+  'missing_documents': ('Documents required for {claim_id}', 'Hello {claimant_name}, additional documents are needed for claim {claim_id}. Please contact the claims team.'),
+  'progress': ('Update on {claim_id}', 'Hello {claimant_name}, claim {claim_id} is now at status {claim_status}. Assigned handler: {handler}.'),
+  'completion': ('Claim {claim_id} completed', 'Hello {claimant_name}, claim {claim_id} has reached the {claim_status} stage.'),
+}
+
+
+def validate_template(text):
+    if not isinstance(text, str) or not 1 <= len(text) <= 4000:
+        raise HTTPException(422, 'Template text length must be 1–4000')
+    try:
+        for _literal, field, spec, conversion in Formatter().parse(text):
+            if field is not None and (field not in ALLOWED or spec or conversion):
+                raise HTTPException(422, 'Only predefined simple placeholders are permitted')
+    except ValueError:
+        raise HTTPException(422, 'Malformed placeholder syntax') from None
+    return text
+
+
+def seed_templates(db):
+    for kind, (subject, body) in DEFAULTS.items():
+        if not db.scalar(select(CommunicationTemplate.id).where(CommunicationTemplate.kind == kind)):
+            db.add(CommunicationTemplate(kind=kind, subject=subject, body=body))
+    db.commit()
+
+
+def preview(template, claim, state):
+    variables = {'claim_id':claim.claim_id, 'claimant_name':claim.claimant_name,
+                 'claim_type':claim.claim_type, 'claim_status':state.stage if state else claim.status,
+                 'handler':(state.assigned_handler if state else None) or 'Claims Team',
+                 'submission_date':claim.reported_date.isoformat()}
+    return {'kind':template.kind, 'subject':validate_template(template.subject).format_map(variables),
+            'body':validate_template(template.body).format_map(variables), 'sent':False}
+~~~~~~~
+
+### `app/services/claims_workflow.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/services/claims_workflow.py`. Purpose: """Task 4 transactional workflows over original claims; no change to Task 1 schema.""".
+
+~~~~~~~python
+"""Task 4 transactional workflows over original claims; no change to Task 1 schema."""
+import json
+from datetime import timedelta
+from fastapi import HTTPException
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from app.models import (AuditEvent, Claim, ClaimCRMState, Ticket, TicketHistory,
+                        WorkflowRule, WorkflowExecution, WorkflowTransition, utc_now)
+
+STAGES = ('New', 'Assigned', 'Evidence Required', 'Ready for Review', 'Resolved')
+EVENTS = ('submitted','missing_documents','evidence_received','resolved')
+ACTIONS = ('assign_team','evidence_required','ready_for_review','resolve','demo_fail')
+RULES = (
+    ('Assign new claim to claims team','submitted','assign_team',{'handler': 'Claims Team'}),
+    ('Request missing evidence','missing_documents','evidence_required',{}),
+    ('Evidence arrived','evidence_received','ready_for_review',{}),
+    ('Complete claim','resolved','resolve',{}),
+)
+
+
+def audit(db, event, actor_id, **details):
+    db.add(AuditEvent(event_type=event, actor_user_id=actor_id,
+                      details_json=json.dumps(details, ensure_ascii=False, default=str)))
+
+
+def seed_rules(db: Session):
+    for name, event, action, params in RULES:
+        if not db.scalar(select(WorkflowRule.id).where(WorkflowRule.name == name)):
+            db.add(WorkflowRule(name=name, event_type=event, action_type=action,
+                                parameters_json=json.dumps(params), enabled=True))
+    db.commit()
+
+
+def state_for(db, claim):
+    state = db.scalar(select(ClaimCRMState).where(ClaimCRMState.claim_id == claim.id))
+    if state is None:
+        state = ClaimCRMState(claim_id=claim.id, stage='New', missing_documents=False,
+                              integration_status='Not Synced', last_updated=utc_now())
+        db.add(state)
+        db.flush()
+    return state
+
+
+def claim_details(claim, state):
+    return {
+        'claim_id': claim.claim_id, 'claimant_name': claim.claimant_name,
+        'claim_type': claim.claim_type, 'claim_status': claim.status,
+        'handler': state.assigned_handler if state else None,
+        'submission_date': claim.reported_date.isoformat(),
+        'missing_documentation': state.missing_documents if state else False,
+        'stage': state.stage if state else 'New',
+        'last_update': state.last_updated.isoformat() + 'Z' if state else claim.created_at.isoformat() + 'Z',
+        'integration_status': state.integration_status if state else 'Not Synced',
+        'zoho_record_id': state.zoho_record_id if state else None,
+        'completed_at': state.completed_at.isoformat() + 'Z' if state and state.completed_at else None,
+        'amount_gbp': str(claim.amount_gbp),
+    }
+
+
+def _apply(claim, state, rule):
+    before = state.stage
+    params = json.loads(rule.parameters_json)
+    if rule.action_type == 'demo_fail':
+        raise ValueError('Demonstration validation failure: check the configured workflow action')
+    if rule.action_type == 'assign_team':
+        if before != 'New':
+            raise ValueError('Only new claims can be assigned')
+        handler = params.get('handler', 'Claims Team')
+        if not isinstance(handler, str) or not 2 <= len(handler) <= 120:
+            raise ValueError('Invalid claims handler')
+        state.assigned_handler = handler
+        state.stage = 'Assigned'
+    elif rule.action_type == 'evidence_required':
+        if before not in ('New','Assigned','Ready for Review'):
+            raise ValueError('Cannot request evidence in this stage')
+        state.missing_documents = True
+        state.stage = 'Evidence Required'
+        claim.status = 'In Progress'
+    elif rule.action_type == 'ready_for_review':
+        if before != 'Evidence Required':
+            raise ValueError('Evidence was not previously requested')
+        state.missing_documents = False
+        state.stage = 'Ready for Review'
+        claim.status = 'In Progress'
+    elif rule.action_type == 'resolve':
+        if before not in ('Ready for Review','Assigned') or state.missing_documents:
+            raise ValueError('Resolve only after required evidence is supplied')
+        state.stage = 'Resolved'
+        claim.status = 'Closed'
+        state.completed_at = utc_now()
+    else:
+        raise ValueError('Unsupported action')
+    state.last_updated = utc_now()
+    return before, state.stage
+
+
+def _failure_ticket(db, actor_id, claim, reason):
+    now = utc_now()
+    ticket = Ticket(employee_id=actor_id, title=f'Claims workflow failed: {claim.claim_id}',
+                    description=f'Workflow action failed for {claim.claim_id}: {reason[:600]}',
+                    category='Software', priority='High', status='Open', created_at=now,
+                    sla_due_at=now + timedelta(hours=8))
+    db.add(ticket)
+    db.flush()
+    db.add(TicketHistory(ticket_id=ticket.id, actor_user_id=actor_id, action='Created',
+                         note='Automatically opened by Task 4 workflow engine', new_status='Open'))
+    audit(db, 'TICKET_CREATED', actor_id, ticket_id=ticket.id, source='claims_workflow')
+    return ticket.id
+
+
+def _execute_rule(db, claim, state, rule, event_key, actor_id, existing=None):
+    if existing and existing.status == 'Success':
+        return {'execution_id': existing.id, 'status': 'Success', 'replayed': True}
+    execution = existing or WorkflowExecution(claim_id=claim.id, rule_id=rule.id,
+                event_key=event_key, status='Failed', input_status=state.stage,
+                retry_count=0, started_at=utc_now())
+    if not existing:
+        db.add(execution)
+        db.flush()
+    else:
+        if execution.retry_count >= 3:
+            raise HTTPException(409, 'Maximum retry count reached')
+        execution.retry_count += 1
+    execution.started_at = utc_now()
+    execution.input_status = state.stage
+    try:
+        # All validations in _apply run before any substantive change for each action.
+        previous, current = _apply(claim, state, rule)
+        execution.status = 'Success'
+        execution.output_status = current
+        execution.error_reason = None
+        db.add(WorkflowTransition(execution_id=execution.id, claim_id=claim.id,
+                                  from_stage=previous, to_stage=current))
+        audit(db, 'CLAIM_WORKFLOW', actor_id, claim_id=claim.claim_id,
+              workflow=rule.name, before=previous, after=current)
+    except (ValueError, TypeError) as error:
+        # Do not persist secrets or exception tracebacks in database or UI.
+        execution.status = 'Failed'
+        execution.output_status = state.stage
+        execution.error_reason = str(error)[:1000]
+        if not execution.support_ticket_id:
+            execution.support_ticket_id = _failure_ticket(db, actor_id, claim, str(error))
+        audit(db, 'CLAIM_WORKFLOW_FAILED', actor_id, claim_id=claim.claim_id,
+              workflow=rule.name, execution_id=execution.id)
+    execution.finished_at = utc_now()
+    return {'execution_id': execution.id, 'status': execution.status,
+            'replayed': False, 'input_status': execution.input_status,
+            'output_status': execution.output_status, 'error': execution.error_reason,
+            'support_ticket_id': execution.support_ticket_id,
+            'retry_count': execution.retry_count}
+
+
+def process_event(db, claim_reference: str, event_type: str, event_key: str, actor_id: int):
+    claim = db.scalar(select(Claim).where(Claim.claim_id == claim_reference))
+    if not claim:
+        raise HTTPException(404, 'Claim not found')
+    rules = db.scalars(select(WorkflowRule).where(WorkflowRule.event_type == event_type,
+                            WorkflowRule.enabled.is_(True)).order_by(WorkflowRule.id)).all()
+    if not rules:
+        raise HTTPException(409, 'No enabled workflow rule for this event')
+    state = state_for(db, claim)
+    results = []
+    for rule in rules:
+        previous = db.scalar(select(WorkflowExecution).where(
+            WorkflowExecution.claim_id == claim.id, WorkflowExecution.rule_id == rule.id,
+            WorkflowExecution.event_key == event_key))
+        if previous:
+            results.append({'execution_id': previous.id, 'status': previous.status,
+                            'replayed': True, 'retry_count': previous.retry_count})
+        else:
+            results.append(_execute_rule(db, claim, state, rule, event_key, actor_id))
+    db.commit()
+    return {'claim_id': claim_reference, 'event_type': event_type, 'results': results}
+
+
+def retry_execution(db, execution_id: int, actor_id: int):
+    exe = db.get(WorkflowExecution, execution_id)
+    if not exe:
+        raise HTTPException(404, 'Execution not found')
+    if exe.status != 'Failed':
+        raise HTTPException(409, 'Only failed workflows can be retried')
+    claim = db.get(Claim, exe.claim_id)
+    state = state_for(db, claim)
+    result = _execute_rule(db, claim, state, exe.rule, exe.event_key, actor_id, existing=exe)
+    db.commit()
+    return result
+~~~~~~~
+
+### `app/services/crm_sync.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/services/crm_sync.py`. Purpose: """CRM pull/push operations with per-operation idempotency and durable failure records.""".
+
+~~~~~~~python
+"""CRM pull/push operations with per-operation idempotency and durable failure records."""
+import json
+from fastapi import HTTPException
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from app.models import Claim, ClaimCRMState, CRMOperation, utc_now
+from app.services.claims_workflow import audit, state_for
+from app.services.zoho_client import CRMError
+
+REMOTE_STAGES = {
+    'Open': 'New', 'Assigned': 'Assigned', 'Evidence Required': 'Evidence Required',
+    'Ready for Review': 'Ready for Review', 'Resolved': 'Resolved', 'Closed': 'Resolved',
+}
+
+
+def run_sync(db: Session, claim_reference: str, operation: str, operation_key: str, actor_id: int,
+             client, existing=None):
+    claim = db.scalar(select(Claim).where(Claim.claim_id == claim_reference))
+    if not claim:
+        raise HTTPException(404, 'Claim not found')
+    prior = existing or db.scalar(select(CRMOperation).where(CRMOperation.operation_key == operation_key))
+    if prior and (prior.claim_id != claim.id or prior.operation != operation):
+        raise HTTPException(409, 'Operation key already belongs to another request')
+    if prior and prior.status == 'Success':
+        return {'operation_id': prior.id, 'status': 'Success', 'replayed': True}
+    if prior and not existing:
+        return {'operation_id': prior.id, 'status': 'Failed', 'replayed': True,
+                'retry_count': prior.retry_count, 'error': prior.error_reason}
+    state = state_for(db, claim)
+    op = prior or CRMOperation(operation_key=operation_key, claim_id=claim.id,
+            operation=operation, payload_json=json.dumps({'reference': claim_reference}),
+            status='Failed', retry_count=0)
+    if not prior:
+        db.add(op)
+        db.flush()
+    elif op.retry_count >= 3:
+        raise HTTPException(409, 'Maximum CRM retries reached')
+    else:
+        op.retry_count += 1
+    try:
+        if operation == 'pull':
+            records = client.list_claims()
+            matching = [r for r in records if str(r.get('Claim_Reference')) == claim.claim_id]
+            if len(matching) != 1:
+                raise CRMError('CRM record not uniquely matched to local claim')
+            remote = client.get_claim(str(matching[0]['id']))
+            stage = REMOTE_STAGES.get(remote.get('Status'))
+            if not stage:
+                raise CRMError('CRM status mapping not configured for this record')
+            remote_id = str(remote['id'])
+            collision = db.scalar(select(ClaimCRMState).where(ClaimCRMState.zoho_record_id == remote_id,
+                                                            ClaimCRMState.claim_id != claim.id))
+            if collision:
+                raise CRMError('CRM record is already linked to another claim')
+            state.zoho_record_id = remote_id
+            state.stage = stage
+            state.missing_documents = stage == 'Evidence Required' or remote.get('Missing_Documents') is True
+            if stage == 'Resolved':
+                state.completed_at = state.completed_at or utc_now()
+            if stage in {'Evidence Required', 'Ready for Review'}:
+                claim.status = 'In Progress'
+            elif stage == 'Resolved':
+                claim.status = 'Closed'
+        elif operation == 'push':
+            if not state.zoho_record_id:
+                raise CRMError('Link CRM record via pull before pushing')
+            client.update_status(state.zoho_record_id, state.stage)
+        else:
+            raise CRMError('Unsupported CRM operation')
+        state.integration_status = 'Synced'
+        state.last_updated = utc_now()
+        state.synced_at = utc_now()
+        op.status = 'Success'
+        op.error_reason = None
+        audit(db, 'CLAIM_CRM_SYNC', actor_id, claim_id=claim_reference, operation=operation)
+    except CRMError as exc:
+        state.integration_status = 'Failed'
+        op.status = 'Failed'
+        op.error_reason = str(exc)[:1000]
+    op.finished_at = utc_now()
+    db.commit()
+    return {'operation_id': op.id, 'status': op.status, 'replayed': False,
+            'error': op.error_reason, 'retry_count': op.retry_count,
+            'retryable': op.status == 'Failed' and op.retry_count < 3}
+
+
+def retry_sync(db, operation_id: int, actor_id: int, client):
+    op = db.get(CRMOperation, operation_id)
+    if not op:
+        raise HTTPException(404, 'CRM operation not found')
+    if op.status != 'Failed':
+        raise HTTPException(409, 'Only failed CRM operations may be retried')
+    claim = db.get(Claim, op.claim_id)
+    return run_sync(db, claim.claim_id, op.operation, op.operation_key, actor_id, client, existing=op)
+~~~~~~~
+
+### `app/services/employee_service.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/services/employee_service.py`. Purpose: """Employee lifecycle: safe plans, mock-only provisioning, asset reservation and approvals.""".
+
+~~~~~~~python
+"""Employee lifecycle: safe plans, mock-only provisioning, asset reservation and approvals."""
+import json
+from datetime import date
+from fastapi import HTTPException
+from sqlalchemy import and_, select, update
+from sqlalchemy.orm import Session
+
+from app.models import (Employee, OnboardingRequest, OffboardingRequest, ProvisioningAction,
+                        ApprovalRecord, Asset, AssetReservation, User, utc_now)
+from app.services.google_directory import MockDirectory
+from app.services.helpdesk_service import log_event
+
+DEPARTMENT_GROUPS = {
+    'Claims': ['SG-Claims-Read', 'SG-Claims-Write'],
+    'Operations': ['SG-Operations-Read'],
+    'Finance': ['SG-Finance-Read'],
+    'HR': ['SG-HR-Read'],
+    'IT': ['SG-IT-Helpdesk'],
+}
+GOOGLE_GROUPS = {
+    'Claims': 'claims-team@northstar.example',
+    'Operations': 'operations-team@northstar.example',
+    'Finance': 'finance-team@northstar.example',
+    'HR': 'hr-team@northstar.example',
+    'IT': 'it-team@northstar.example',
+}
+
+
+def record(db, employee_id, kind, target, status, detail, *, onboard_id=None, offboard_id=None):
+    item = ProvisioningAction(employee_id=employee_id, onboarding_request_id=onboard_id,
+                              offboarding_request_id=offboard_id, action_type=kind,
+                              target=target, status=status, result_detail=detail)
+    db.add(item)
+    return item
+
+
+def employee_dict(db: Session, employee: Employee):
+    onboarding = db.scalar(select(OnboardingRequest).where(OnboardingRequest.employee_id == employee.id))
+    reservation = db.scalar(select(AssetReservation).where(
+        AssetReservation.employee_id == employee.id, AssetReservation.status == 'Reserved'))
+    actions = db.scalars(select(ProvisioningAction).where(ProvisioningAction.employee_id == employee.id)
+                         .order_by(ProvisioningAction.id)).all()
+    return {
+        'id': employee.id, 'full_name': employee.full_name,
+        'department': employee.department, 'job_title': employee.job_title,
+        'manager_name': employee.manager_name, 'start_date': employee.start_date.isoformat(),
+        'work_email': employee.work_email, 'ad_username': employee.ad_username,
+        'status': employee.status, 'onboarding_status': onboarding.status if onboarding else None,
+        'reserved_asset_tag': reservation.asset.asset_tag if reservation else None,
+        'actions': [{'id': a.id, 'type': a.action_type, 'target': a.target,
+                     'status': a.status, 'detail': a.result_detail} for a in actions],
+    }
+
+
+def create_onboarding(db: Session, form, actor: User):
+    allowed = set(DEPARTMENT_GROUPS[form.department])
+    if any(g not in allowed for g in form.required_groups):
+        raise HTTPException(422, 'Requested groups exceed approved department access')
+    groups = list(dict.fromkeys([DEPARTMENT_GROUPS[form.department][0], *form.required_groups]))
+    employee = Employee(full_name=form.full_name, department=form.department, job_title=form.job_title,
+                        manager_name=form.manager_name, start_date=form.start_date,
+                        work_email='pending@invalid.example', ad_username='pending', status='Prepared')
+    db.add(employee)
+    db.flush()
+    employee.ad_username = f'nc{employee.id:06d}'
+    employee.work_email = f'{employee.ad_username}@northstar.example'
+    onboard = OnboardingRequest(employee_id=employee.id, requested_by=actor.id,
+                                requested_groups_json=json.dumps(groups),
+                                device_requirements_json=json.dumps(form.device_requirements), status='Prepared')
+    db.add(onboard)
+    db.flush()
+    record(db, employee.id, 'VALIDATE', employee.work_email, 'Mocked', 'Validated identity, department and least-privilege groups', onboard_id=onboard.id)
+    record(db, employee.id, 'AD_CREATE', employee.ad_username, 'Prepared', 'PowerShell lab plan generated; no AD changes', onboard_id=onboard.id)
+    for group in groups:
+        record(db, employee.id, 'AD_GROUP', group, 'Prepared', 'Group assignment prepared for lab review', onboard_id=onboard.id)
+    # Mock external Google operations are never persisted to real services.
+    google = MockDirectory()
+    first, last = employee.full_name.split(' ', 1)
+    google.create_user(employee.work_email, first, last)
+    google.assign_group(employee.work_email, GOOGLE_GROUPS[employee.department])
+    record(db, employee.id, 'GOOGLE_CREATE', employee.work_email, 'Mocked', 'Google Directory mock create succeeded (not a real account)', onboard_id=onboard.id)
+    record(db, employee.id, 'GOOGLE_GROUP', GOOGLE_GROUPS[employee.department], 'Mocked', 'Google group membership simulated', onboard_id=onboard.id)
+    if 'Laptop' in form.device_requirements:
+        # SQL Server locks the selected row through UPDATE; concurrent reservations
+        # cannot both transition the asset from Available to Reserved.
+        choices = db.scalars(select(Asset).where(Asset.device_type == 'Laptop', Asset.status == 'Available')
+                             .order_by(Asset.id)).all()
+        reserved = None
+        for candidate in choices:
+            result = db.execute(update(Asset).where(Asset.id == candidate.id, Asset.status == 'Available')
+                                .values(status='Reserved').execution_options(synchronize_session=False))
+            if result.rowcount == 1:
+                reserved = candidate
+                break
+        if reserved:
+            db.add(AssetReservation(asset_id=reserved.id, employee_id=employee.id,
+                                    onboarding_request_id=onboard.id, status='Reserved'))
+            record(db, employee.id, 'LAPTOP_RESERVE', reserved.asset_tag, 'Mocked',
+                   'Reserved in existing Task 2 inventory; not physically issued', onboard_id=onboard.id)
+            log_event(db, 'ASSET_RESERVED', actor, employee_id=employee.id, asset_id=reserved.id)
+        else:
+            onboard.status = 'Attention'
+            record(db, employee.id, 'LAPTOP_RESERVE', 'Laptop', 'Failed',
+                   'No Available laptop; assign stock and retry via new request policy', onboard_id=onboard.id)
+    else:
+        record(db, employee.id, 'DEVICE_CHECK', 'None', 'Prepared', 'No laptop requested', onboard_id=onboard.id)
+    for device in form.device_requirements:
+        if device != 'Laptop':
+            record(db, employee.id, 'DEVICE_REQUEST', device, 'ManualRequired',
+                   'Manual issue required; inventory does not track this device category', onboard_id=onboard.id)
+    log_event(db, 'EMPLOYEE_CREATED', actor, employee_id=employee.id)
+    log_event(db, 'ONBOARDING_PREPARED', actor, employee_id=employee.id, onboarding_id=onboard.id)
+    db.commit()
+    return employee_dict(db, employee)
+
+
+def activate(db: Session, employee: Employee, actor: User):
+    onboard = db.scalar(select(OnboardingRequest).where(OnboardingRequest.employee_id == employee.id))
+    if not onboard or employee.status != 'Prepared' or onboard.status != 'Prepared':
+        raise HTTPException(409, 'Onboarding is not fully prepared or is already activated')
+    employee.status = 'Active'  # SIMULATED local lifecycle; no remote AD/Google changes
+    onboard.status = 'Activated'
+    onboard.activated_at = utc_now()
+    log_event(db, 'EMPLOYEE_ACTIVATED', actor, employee_id=employee.id, mode='mock')
+    db.commit()
+    return employee_dict(db, employee)
+
+
+def request_offboarding(db: Session, employee: Employee, form, actor: User):
+    if employee.status not in ('Active', 'Prepared'):
+        raise HTTPException(409, 'Employee not eligible for offboarding')
+    prior = db.scalar(select(OffboardingRequest).where(OffboardingRequest.employee_id == employee.id,
+                     OffboardingRequest.status.in_(['PendingApproval','Approved','Completed'])))
+    if prior:
+        raise HTTPException(409, 'Offboarding already requested for this employee')
+    item = OffboardingRequest(employee_id=employee.id, requested_by=actor.id,
+                              last_working_date=form.last_working_date, reason=form.reason,
+                              status='PendingApproval')
+    db.add(item)
+    db.flush()
+    record(db, employee.id, 'REQUEST_APPROVAL', 'Admin reviewer', 'Prepared',
+           'Waiting for a different administrator to approve', offboard_id=item.id)
+    log_event(db, 'OFFBOARDING_REQUESTED', actor, employee_id=employee.id, offboarding_id=item.id)
+    db.commit()
+    return item
+
+
+def approve_offboarding(db: Session, item: OffboardingRequest, actor: User, comment: str):
+    if item.status != 'PendingApproval':
+        raise HTTPException(409, 'Request is not pending approval')
+    if item.requested_by == actor.id:
+        raise HTTPException(403, 'Second-person approval required; requester cannot approve')
+    employee = db.get(Employee, item.employee_id)
+    item.status = 'Approved'
+    item.approved_by = actor.id
+    item.approved_at = utc_now()
+    db.add(ApprovalRecord(offboarding_request_id=item.id, approver_user_id=actor.id,
+                          decision='Approved', comment=comment))
+    log_event(db, 'OFFBOARDING_APPROVED', actor, employee_id=employee.id, offboarding_id=item.id)
+    # All actions below are MOCK/PREPARED. No live AD or Google calls.
+    record(db, employee.id, 'AD_DISABLE', employee.ad_username, 'Prepared',
+           'Disable-ADAccount plan only; no live directory connection', offboard_id=item.id)
+    record(db, employee.id, 'AD_REVOKE_GROUPS', employee.ad_username, 'Prepared',
+           'Flag access groups for removal after directory administrator review', offboard_id=item.id)
+    google = MockDirectory()
+    first, last = employee.full_name.split(' ', 1)
+    google.create_user(employee.work_email, first, last)
+    google.suspend_user(employee.work_email)
+    record(db, employee.id, 'GOOGLE_SUSPEND', employee.work_email, 'Mocked',
+           'Mock suspended=True; real Google account unaffected', offboard_id=item.id)
+    record(db, employee.id, 'GOOGLE_REVOKE_GROUPS', GOOGLE_GROUPS[employee.department], 'Prepared',
+           'Flagged for group review; membership not deleted', offboard_id=item.id)
+    reservations = db.scalars(select(AssetReservation).where(
+        AssetReservation.employee_id == employee.id, AssetReservation.status == 'Reserved')).all()
+    for reservation in reservations:
+        result = db.execute(update(Asset).where(Asset.id == reservation.asset_id, Asset.status == 'Reserved')
+                            .values(status='Available').execution_options(synchronize_session=False))
+        if result.rowcount != 1:
+            raise HTTPException(409, 'Reserved asset changed unexpectedly; approval aborted')
+        reservation.status = 'Released'
+        reservation.released_at = utc_now()
+        record(db, employee.id, 'RESERVATION_RELEASED', reservation.asset.asset_tag,
+               'Mocked', 'Laptop reservation released to inventory', offboard_id=item.id)
+        log_event(db, 'ASSET_RESERVATION_RELEASED', actor, employee_id=employee.id,
+                  asset_id=reservation.asset_id)
+    # HR records aren't Task 2 local User rows. Existing issued assets are not
+    # silently returned; explicitly flag for the technician to collect.
+    record(db, employee.id, 'DEVICE_RETURN', 'Task 2 inventory', 'ManualRequired',
+           'Collect equipment; do not automatically mark physically returned', offboard_id=item.id)
+    employee.status = 'Offboarded'
+    item.status = 'Completed'
+    item.completed_at = utc_now()
+    log_event(db, 'OFFBOARDING_COMPLETED', actor, employee_id=employee.id,
+              offboarding_id=item.id, mode='mock')
+    db.commit()
+    return item
+
+
+def ad_plan(employee: Employee, db: Session):
+    onboard = db.scalar(select(OnboardingRequest).where(OnboardingRequest.employee_id == employee.id))
+    if not onboard:
+        raise HTTPException(404, 'Onboarding request missing')
+    return {'mode': 'DryRun', 'samAccountName': employee.ad_username,
+            'name': employee.full_name, 'email': employee.work_email,
+            'department': employee.department, 'title': employee.job_title,
+            'manager': employee.manager_name, 'groups': json.loads(onboard.requested_groups_json),
+            'domain': 'northstar.lab', 'operation': 'PrepareAccount'}
+~~~~~~~
+
+### `app/services/google_directory.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/services/google_directory.py`. Purpose: """Google Workspace Directory adapters. Application always uses MockDirectory.""".
+
+~~~~~~~python
+"""Google Workspace Directory adapters. Application always uses MockDirectory."""
+import os
+from dataclasses import dataclass, field
+
+SCOPES = [
+    'https://www.googleapis.com/auth/admin.directory.user',
+    'https://www.googleapis.com/auth/admin.directory.group.member',
+]
+
+
+@dataclass
+class MockDirectory:
+    users: dict = field(default_factory=dict)
+    groups: dict = field(default_factory=dict)
+
+    def create_user(self, email, given_name, family_name, password=None):
+        if email in self.users:
+            raise ValueError('Mock Google user already exists')
+        entry = {'primaryEmail': email, 'name': {'givenName': given_name, 'familyName': family_name}, 'suspended': False}
+        self.users[email] = entry
+        return entry.copy()
+
+    def list_users(self):
+        return list(self.users.values())
+
+    def assign_group(self, email, group):
+        if email not in self.users:
+            raise ValueError('Mock Google user does not exist')
+        self.groups.setdefault(group, set()).add(email)
+        return {'group': group, 'email': email, 'role': 'MEMBER'}
+
+    def update_user(self, email, changes):
+        if email not in self.users:
+            raise ValueError('Mock Google user does not exist')
+        allowed = {'orgUnitPath', 'suspended'}
+        if not set(changes).issubset(allowed):
+            raise ValueError('Unsupported mock update fields')
+        self.users[email].update(changes)
+        return self.users[email].copy()
+
+    def suspend_user(self, email):
+        return self.update_user(email, {'suspended': True})
+
+
+class RealGoogleDirectory:
+    """Separate opt-in lab adapter, NEVER instantiated by application routes."""
+    def __init__(self, *, confirmed_lab=False):
+        if not confirmed_lab or os.getenv('GOOGLE_LAB_ENABLED') != 'YES':
+            raise RuntimeError('Live Google integration disabled; explicit lab opt-in required')
+        service_account_file = os.environ.get('GOOGLE_SERVICE_ACCOUNT_FILE', '')
+        delegated_admin = os.environ.get('GOOGLE_DELEGATED_ADMIN', '')
+        allowed_domain = os.environ.get('GOOGLE_LAB_DOMAIN', '')
+        if not service_account_file or not delegated_admin or not allowed_domain:
+            raise RuntimeError('Missing lab credential path, delegated admin, or allowed domain')
+        self.domain = allowed_domain.lower()
+        # google-api-python-client and google-auth are OPTIONAL lab dependencies.
+        from google.oauth2 import service_account
+        from googleapiclient.discovery import build
+        credentials = service_account.Credentials.from_service_account_file(
+            service_account_file, scopes=SCOPES).with_subject(delegated_admin)
+        self.service = build('admin', 'directory_v1', credentials=credentials, cache_discovery=False)
+
+    def _email(self, email):
+        if not email.lower().endswith('@' + self.domain):
+            raise ValueError('Outside explicitly allowed lab domain')
+        return email
+
+    def create_user(self, email, given_name, family_name, password=None):
+        if not password or len(password) < 16:
+            raise ValueError('A temporary password of at least 16 characters is required')
+        return self.service.users().insert(body={
+            'primaryEmail': self._email(email),
+            'name': {'givenName': given_name, 'familyName': family_name},
+            'password': password, 'changePasswordAtNextLogin': True,
+        }).execute()
+
+    def list_users(self):
+        result, page = [], None
+        while True:
+            response = self.service.users().list(domain=self.domain, maxResults=100,
+                                                  pageToken=page).execute()
+            result.extend(response.get('users', []))
+            page = response.get('nextPageToken')
+            if not page:
+                return result
+
+    def assign_group(self, email, group):
+        self._email(email)
+        self._email(group)
+        return self.service.members().insert(groupKey=group, body={'email': email, 'role': 'MEMBER'}).execute()
+
+    def update_user(self, email, changes):
+        if not set(changes).issubset({'orgUnitPath', 'suspended'}):
+            raise ValueError('Unsupported user update')
+        return self.service.users().patch(userKey=self._email(email), body=changes).execute()
+
+    def suspend_user(self, email):
+        return self.update_user(email, {'suspended': True})
+~~~~~~~
+
+### `app/services/helpdesk_service.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/services/helpdesk_service.py`. Purpose: """Ticket state machine, SLA computation, audit and serialization.""".
+
+~~~~~~~python
+"""Ticket state machine, SLA computation, audit and serialization."""
+import json
+from datetime import timedelta
+
+from fastapi import HTTPException
+from sqlalchemy.orm import Session
+
+from app.models import AuditEvent, Ticket, TicketHistory, User, utc_now
+
+SLA_HOURS = {'Low': 72, 'Medium': 24, 'High': 8, 'Critical': 2}
+TRANSITIONS = {
+    'Open': {'Assigned'}, 'Assigned': {'In Progress','Resolved'},
+    'In Progress': {'Resolved'}, 'Resolved': {'Closed','In Progress'},
+    'Closed': set(),
+}
+
+
+def log_event(db: Session, event: str, actor: User, **details) -> None:
+    db.add(AuditEvent(event_type=event, actor_user_id=actor.id,
+                      details_json=json.dumps(details, ensure_ascii=False, default=str)))
+
+
+def ticket_history(db: Session, ticket: Ticket, actor: User, action: str,
+                   note: str = '', previous: str | None = None, new: str | None = None):
+    db.add(TicketHistory(ticket_id=ticket.id, actor_user_id=actor.id, action=action,
+                         previous_status=previous, new_status=new, note=note))
+
+
+def allowed_ticket(user: User, ticket: Ticket, *, write: bool = False) -> bool:
+    if user.role == 'Admin':
+        return True
+    if user.role == 'Employee':
+        return not write and ticket.employee_id == user.id
+    if user.role == 'Technician':
+        return ticket.assigned_technician_id == user.id if write else (
+            ticket.assigned_technician_id == user.id or ticket.employee_id == user.id)
+    return False
+
+
+def require_ticket(user: User, ticket: Ticket | None, *, write: bool = False) -> Ticket:
+    # Do not reveal another employee's ticket existence.
+    if not ticket or not allowed_ticket(user, ticket, write=write):
+        raise HTTPException(404, 'Ticket not found')
+    return ticket
+
+
+def sla_status(ticket: Ticket) -> str:
+    if ticket.resolved_at:
+        return 'Met' if ticket.resolved_at <= ticket.sla_due_at else 'Breached'
+    if ticket.status == 'Closed':
+        return 'Closed'
+    return 'Overdue' if utc_now() > ticket.sla_due_at else 'On track'
+
+
+def ticket_dict(ticket: Ticket, *, with_history: bool = False) -> dict:
+    value = {
+        'id': ticket.id, 'reference': ticket.reference, 'title': ticket.title,
+        'description': ticket.description, 'category': ticket.category,
+        'priority': ticket.priority, 'status': ticket.status,
+        'employee_id': ticket.employee_id, 'employee': ticket.employee.full_name,
+        'assigned_technician_id': ticket.assigned_technician_id,
+        'technician': ticket.technician.full_name if ticket.technician else None,
+        'affected_asset_id': ticket.affected_asset_id,
+        'asset_tag': ticket.asset.asset_tag if ticket.asset else None,
+        'resolution_details': ticket.resolution_details,
+        'created_at': ticket.created_at.isoformat() + 'Z',
+        'assigned_at': ticket.assigned_at.isoformat() + 'Z' if ticket.assigned_at else None,
+        'resolved_at': ticket.resolved_at.isoformat() + 'Z' if ticket.resolved_at else None,
+        'closed_at': ticket.closed_at.isoformat() + 'Z' if ticket.closed_at else None,
+        'sla_due_at': ticket.sla_due_at.isoformat() + 'Z', 'sla_status': sla_status(ticket),
+    }
+    if with_history:
+        value['history'] = [{
+            'action': h.action, 'actor': h.actor.full_name, 'note': h.note,
+            'previous_status': h.previous_status, 'new_status': h.new_status,
+            'occurred_at': h.occurred_at.isoformat() + 'Z',
+        } for h in ticket.history]
+    return value
+~~~~~~~
+
+### `app/services/import_service.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/services/import_service.py`. Purpose: """Atomic, SHA-256-idempotent claims import with per-row rejection records.""".
+
+~~~~~~~python
+"""Atomic, SHA-256-idempotent claims import with per-row rejection records."""
+import hashlib
+import json
+from pathlib import Path
+
+from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
+
+from app.models import AuditEvent, Claim, ImportBatch, RejectedRow
+from app.services.validation import FailedRow, load_dataframe, validate_rows
+
+
+class ImportConflictError(RuntimeError):
+    """Another transaction inserted a conflicting ID concurrently."""
+
+
+def batch_to_dict(batch: ImportBatch, replayed: bool = False) -> dict:
+    return {
+        "batch_id": batch.id,
+        "filename": batch.filename,
+        "sha256": batch.file_sha256,
+        "status": batch.status,
+        "total_rows": batch.total_rows,
+        "imported_rows": batch.imported_rows,
+        "rejected_rows": batch.rejected_rows,
+        "replayed": replayed,
+        "created_at_utc": batch.created_at.isoformat() + "Z",
+    }
+
+
+def import_claims(session: Session, filename: str, content: bytes) -> dict:
+    """Validate outside the transaction, then commit claims/rejections/audit together."""
+    # Filename is for display only, never used as a filesystem destination.
+    safe_filename = Path(filename.replace("\\", "/")).name[:255]
+    frame = load_dataframe(safe_filename, content)
+    accepted, failed = validate_rows(frame)
+    sha256 = hashlib.sha256(content).hexdigest()
+
+    try:
+        with session.begin():
+            previous = session.scalar(select(ImportBatch).where(ImportBatch.file_sha256 == sha256))
+            if previous is not None:
+                return batch_to_dict(previous, replayed=True)
+
+            input_ids = [row.values["claim_id"] for row in accepted]
+            existing_ids: set[str] = set()
+            # SQL Server has a 2,100-parameter limit; keep IN lists well below it.
+            for start in range(0, len(input_ids), 500):
+                chunk = input_ids[start:start + 500]
+                existing_ids.update(session.scalars(select(Claim.claim_id).where(Claim.claim_id.in_(chunk))))
+
+            new_rows = [row for row in accepted if row.values["claim_id"] not in existing_ids]
+            for row in accepted:
+                if row.values["claim_id"] in existing_ids:
+                    failed.append(FailedRow(
+                        row.source_row_number,
+                        row.values["claim_id"],
+                        "claim_id already exists in database",
+                        {k: str(v) for k, v in row.values.items()},
+                    ))
+
+            batch = ImportBatch(
+                filename=safe_filename,
+                file_sha256=sha256,
+                status="Completed",
+                total_rows=len(frame),
+                imported_rows=len(new_rows),
+                rejected_rows=len(failed),
+            )
+            session.add(batch)
+            session.flush()  # Get batch.id while retaining one atomic transaction.
+
+            session.add_all(Claim(**row.values, import_batch_id=batch.id) for row in new_rows)
+            session.add_all(
+                RejectedRow(
+                    import_batch_id=batch.id,
+                    source_row_number=row.source_row_number,
+                    claim_id=row.claim_id,
+                    failure_reason=row.reason,
+                    raw_data_json=json.dumps(row.raw, ensure_ascii=False, default=str),
+                )
+                for row in sorted(failed, key=lambda item: item.source_row_number)
+            )
+            session.add(AuditEvent(
+                event_type="IMPORT_COMPLETED",
+                import_batch_id=batch.id,
+                details_json=json.dumps({
+                    "filename": safe_filename,
+                    "total_rows": len(frame),
+                    "imported_rows": len(new_rows),
+                    "rejected_rows": len(failed),
+                }),
+            ))
+        return batch_to_dict(batch)
+    except IntegrityError as exc:
+        session.rollback()
+        # A concurrent same-file upload could have won the unique SHA-256 race.
+        previous = session.scalar(select(ImportBatch).where(ImportBatch.file_sha256 == sha256))
+        if previous is not None:
+            return batch_to_dict(previous, replayed=True)
+        raise ImportConflictError("A concurrent import conflicted with existing claim IDs; retry upload") from exc
+~~~~~~~
+
+### `app/services/it_report_service.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/services/it_report_service.py`. Purpose: """Three Task 2 Excel exports, following Task 1 workbook/header styling.""".
+
+~~~~~~~python
+"""Three Task 2 Excel exports, following Task 1 workbook/header styling."""
+from io import BytesIO
+from openpyxl import Workbook
+from openpyxl.utils import get_column_letter
+from openpyxl.workbook.properties import CalcProperties
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from app.models import Asset, Ticket, User
+from app.services.helpdesk_service import sla_status
+from app.services.report_service import excel_safe, style_header
+
+
+def finish(wb: Workbook) -> BytesIO:
+    for sheet in wb:
+        sheet.freeze_panes = 'A2'
+        sheet.auto_filter.ref = sheet.dimensions
+        style_header(sheet, 1, sheet.max_column)
+        for idx in range(1, sheet.max_column + 1):
+            sheet.column_dimensions[get_column_letter(idx)].width = 23 if idx < 7 else 29
+    wb.calculation = CalcProperties(calcMode='auto', fullCalcOnLoad=True, forceFullCalc=True)
+    output = BytesIO()
+    wb.save(output)
+    output.seek(0)
+    return output
+
+
+def tickets_report(db: Session) -> BytesIO:
+    wb = Workbook()
+    sheet = wb.active
+    sheet.title = 'Tickets'
+    sheet.append(['Reference','Title','Employee','Technician','Category','Priority','Status',
+                  'SLA','Created UTC','SLA due UTC','Resolved UTC','Resolution','Asset tag'])
+    for t in db.scalars(select(Ticket).order_by(Ticket.id)):
+        sheet.append([t.reference, excel_safe(t.title), excel_safe(t.employee.full_name),
+                      excel_safe(t.technician.full_name) if t.technician else '', t.category,
+                      t.priority, t.status, sla_status(t), t.created_at, t.sla_due_at,
+                      t.resolved_at, excel_safe(t.resolution_details or ''),
+                      excel_safe(t.asset.asset_tag) if t.asset else ''])
+    summary = wb.create_sheet('Summary')
+    summary.append(['Metric', 'Value'])
+    summary.append(['Open / unresolved', '=COUNTIF(Tickets!G:G,"Open")+COUNTIF(Tickets!G:G,"Assigned")+COUNTIF(Tickets!G:G,"In Progress")'])
+    summary.append(['Resolved', '=COUNTIF(Tickets!G:G,"Resolved")'])
+    summary.append(['Critical', '=COUNTIF(Tickets!F:F,"Critical")'])
+    return finish(wb)
+
+
+def inventory_report(db: Session) -> BytesIO:
+    wb = Workbook()
+    sheet = wb.active
+    sheet.title = 'Inventory'
+    sheet.append(['Asset Tag','Serial','Device','Manufacturer','Model','OS','Status',
+                  'Employee','Purchase date','Warranty expiry','Notes'])
+    for a in db.scalars(select(Asset).order_by(Asset.asset_tag)):
+        sheet.append([excel_safe(a.asset_tag), excel_safe(a.serial_number), a.device_type,
+                      excel_safe(a.manufacturer), excel_safe(a.model),
+                      excel_safe(a.operating_system or ''), a.status,
+                      excel_safe(a.assigned_employee.full_name) if a.assigned_employee else '',
+                      a.purchase_date, a.warranty_expiry, excel_safe(a.notes)])
+    summary = wb.create_sheet('Summary')
+    summary.append(['Metric', 'Value'])
+    summary.append(['Assigned devices', '=COUNTIF(Inventory!G:G,"Assigned")'])
+    summary.append(['Maintenance devices', '=COUNTIF(Inventory!G:G,"Maintenance")'])
+    return finish(wb)
+
+
+def workload_report(db: Session) -> BytesIO:
+    wb = Workbook()
+    sheet = wb.active
+    sheet.title = 'Workload'
+    sheet.append(['Technician', 'Assigned tickets', 'In Progress', 'Resolved', 'Closed', 'Open workload'])
+    technicians = db.scalars(select(User).where(User.role == 'Technician').order_by(User.id)).all()
+    for t in technicians:
+        assigned = db.scalars(select(Ticket).where(Ticket.assigned_technician_id == t.id)).all()
+        sheet.append([excel_safe(t.full_name), len(assigned),
+                      sum(x.status == 'In Progress' for x in assigned),
+                      sum(x.status == 'Resolved' for x in assigned),
+                      sum(x.status == 'Closed' for x in assigned),
+                      sum(x.status not in {'Resolved','Closed'} for x in assigned)])
+    return finish(wb)
+~~~~~~~
+
+### `app/services/report_service.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/services/report_service.py`. Purpose: """Build a styled Excel workbook with claim-level data and live Excel formulas.""".
+
+~~~~~~~python
+"""Build a styled Excel workbook with claim-level data and live Excel formulas."""
+from datetime import datetime, timezone
+from io import BytesIO
+
+from openpyxl import Workbook
+from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.utils import get_column_letter
+from openpyxl.workbook.properties import CalcProperties
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from app.models import Claim
+
+
+REPORT_HEADERS = (
+    "Claim ID", "Policy Number", "Claimant Name", "Claim Type",
+    "Incident Date", "Reported Date", "Status", "Amount GBP",
+    "Postcode", "Description",
+)
+
+
+def excel_safe(value: str) -> str:
+    """Prevent untrusted text from being interpreted as an Excel formula."""
+    return "'" + value if value.lstrip().startswith(("=", "+", "-", "@")) else value
+
+
+def style_header(sheet, row: int, columns: int) -> None:
+    for cell in sheet[row][:columns]:
+        cell.fill = PatternFill("solid", fgColor="17365D")
+        cell.font = Font(name="Aptos", color="FFFFFF", bold=True)
+        cell.alignment = Alignment(vertical="center")
+    sheet.row_dimensions[row].height = 24
+
+
+def create_claims_workbook(session: Session) -> BytesIO:
+    claims = session.scalars(select(Claim).order_by(Claim.claim_id)).all()
+    wb = Workbook()
+    details = wb.active
+    details.title = "Claims"
+    details.append(REPORT_HEADERS)
+    for claim in claims:
+        details.append((
+            excel_safe(claim.claim_id), excel_safe(claim.policy_number),
+            excel_safe(claim.claimant_name), claim.claim_type,
+            claim.incident_date, claim.reported_date, claim.status,
+            float(claim.amount_gbp), excel_safe(claim.postcode), excel_safe(claim.description),
+        ))
+    style_header(details, 1, len(REPORT_HEADERS))
+    details.freeze_panes = "A2"
+    details.auto_filter.ref = f"A1:J{max(len(claims) + 1, 2)}"
+    for index, width in enumerate((18, 20, 25, 16, 18, 18, 18, 19, 13, 42), 1):
+        details.column_dimensions[get_column_letter(index)].width = width
+    for row in details.iter_rows(min_row=2, min_col=5, max_col=6):
+        for cell in row:
+            cell.number_format = "dd mmm yyyy"
+    for cell in details["H"][1:]:
+        cell.number_format = '"£"#,##0.00'
+
+    last_row = max(2, len(claims) + 1)
+    lookup_range = f"Claims!$A$2:$A${last_row}"
+    name_range = f"Claims!$C$2:$C${last_row}"
+    status_range = f"Claims!$G$2:$G${last_row}"
+    amount_range = f"Claims!$H$2:$H${last_row}"
+
+    summary = wb.create_sheet("Summary")
+    summary.append(("Northstar Claims Ltd — Claims Report", "Value"))
+    summary.append(("Total claims", f"=COUNTA({lookup_range})"))
+    summary.append(("Total claimed (GBP)", f"=SUM({amount_range})"))
+    summary.append(("Generated UTC", datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")))
+    summary["A8"] = "Status"
+    summary["B8"] = "Claim count"
+    summary["C8"] = "Total (GBP)"
+    for row, status in enumerate(("Open", "In Progress", "Closed", "Declined"), start=9):
+        summary.cell(row, 1, status)
+        summary.cell(row, 2, f"=COUNTIF({status_range},A{row})")
+        summary.cell(row, 3, f"=SUMIFS({amount_range},{status_range},A{row})")
+        summary.cell(row, 3).number_format = '"£"#,##0.00'
+    summary["B3"].number_format = '"£"#,##0.00'
+    summary.column_dimensions["A"].width = 45
+    summary.column_dimensions["B"].width = 24
+    summary.column_dimensions["C"].width = 22
+    style_header(summary, 1, 2)
+    style_header(summary, 8, 3)
+
+    lookup = wb.create_sheet("Claim Lookup")
+    lookup["A1"] = "Claim Lookup (Microsoft 365 / Excel 2021+)"
+    lookup["A2"], lookup["B2"] = "Claim ID (edit this)", claims[0].claim_id if claims else ""
+    lookup["A3"] = "Claimant"
+    lookup["A4"] = "Status"
+    lookup["A5"] = "Amount GBP"
+    lookup["B3"] = f'=_xlfn.XLOOKUP(B2,{lookup_range},{name_range},"Not found")'
+    lookup["B4"] = f'=_xlfn.XLOOKUP(B2,{lookup_range},{status_range},"Not found")'
+    lookup["B5"] = f'=_xlfn.XLOOKUP(B2,{lookup_range},{amount_range},"Not found")'
+    lookup["B5"].number_format = '"£"#,##0.00'
+    lookup.column_dimensions["A"].width = 43
+    lookup.column_dimensions["B"].width = 36
+    style_header(lookup, 1, 2)
+
+    # openpyxl writes formulas but cannot calculate them; Excel recalculates on open.
+    wb.calculation = CalcProperties(calcMode="auto", fullCalcOnLoad=True, forceFullCalc=True)
+    output = BytesIO()
+    wb.save(output)
+    output.seek(0)
+    return output
+~~~~~~~
+
+### `app/services/validation.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/services/validation.py`. Purpose: """Read a claims spreadsheet and normalise/validate each data row.""".
+
+~~~~~~~python
+"""Read a claims spreadsheet and normalise/validate each data row."""
+from dataclasses import dataclass
+from datetime import date, datetime
+from decimal import Decimal, InvalidOperation
+from io import BytesIO
+from pathlib import Path
+import re
+
+import pandas as pd
+
+from app.config import MAX_IMPORT_ROWS
+
+HEADERS = (
+    "claim_id", "policy_number", "claimant_name", "claim_type",
+    "incident_date", "reported_date", "status", "amount_gbp",
+    "postcode", "description",
+)
+CLAIM_TYPES = {name.casefold(): name for name in ("Motor", "Home", "Travel", "Business")}
+STATUSES = {name.casefold(): name for name in ("Open", "In Progress", "Closed", "Declined")}
+POSTCODE_RE = re.compile(r"^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$")
+
+
+class FileValidationError(ValueError):
+    """The supplied file cannot be parsed or has an invalid structure."""
+
+
+@dataclass(frozen=True)
+class AcceptedRow:
+    source_row_number: int
+    values: dict
+
+
+@dataclass(frozen=True)
+class FailedRow:
+    source_row_number: int
+    claim_id: str | None
+    reason: str
+    raw: dict
+
+
+def clean_text(value: object) -> str:
+    if value is None or (not isinstance(value, str) and pd.isna(value)):
+        return ""
+    return " ".join(str(value).split())
+
+
+def parse_date(value: object) -> date:
+    if isinstance(value, (datetime, pd.Timestamp)):
+        return value.date()
+    if isinstance(value, date):
+        return value
+    value = clean_text(value)
+    for pattern in ("%Y-%m-%d", "%d/%m/%Y"):
+        try:
+            return datetime.strptime(value, pattern).date()
+        except ValueError:
+            pass
+    raise ValueError("must be a valid YYYY-MM-DD or DD/MM/YYYY date")
+
+
+def parse_amount(value: object) -> Decimal:
+    raw = clean_text(value).replace("£", "").replace(",", "")
+    try:
+        amount = Decimal(raw)
+    except (InvalidOperation, ValueError):
+        raise ValueError("must be a valid GBP amount") from None
+    if not amount.is_finite() or amount.as_tuple().exponent < -2:
+        raise ValueError("must contain no more than 2 decimal places")
+    if amount < 0 or amount > Decimal("1000000"):
+        raise ValueError("must be between £0 and £1,000,000")
+    return amount.quantize(Decimal("0.01"))
+
+
+def load_dataframe(filename: str, content: bytes) -> pd.DataFrame:
+    extension = Path(filename).suffix.lower()
+    if extension not in (".xlsx", ".csv"):
+        raise FileValidationError("Only .xlsx and .csv files are supported")
+    try:
+        if extension == ".xlsx":
+            frame = pd.read_excel(BytesIO(content), sheet_name=0, dtype=object, engine="openpyxl", keep_default_na=False)
+        else:
+            frame = pd.read_csv(BytesIO(content), dtype=str, encoding="utf-8-sig", keep_default_na=False)
+    except Exception as exc:
+        # Convert file-parser diagnostics to a safe, consistent client response.
+        raise FileValidationError(f"Could not read {extension} file: {type(exc).__name__}") from exc
+    if frame.empty:
+        raise FileValidationError("The file contains no data rows")
+    if len(frame) > MAX_IMPORT_ROWS:
+        raise FileValidationError(f"A file may contain at most {MAX_IMPORT_ROWS:,} rows")
+    renamed = {column: re.sub(r"\W+", "_", clean_text(column).strip().lower()).strip("_") for column in frame.columns}
+    normalised = list(renamed.values())
+    if len(set(normalised)) != len(normalised):
+        raise FileValidationError("File has duplicate column names after normalisation")
+    frame = frame.rename(columns=renamed)
+    missing = sorted(set(HEADERS) - set(frame.columns))
+    if missing:
+        raise FileValidationError("Missing required columns: " + ", ".join(missing))
+    return frame[list(HEADERS)]
+
+
+def validate_rows(frame: pd.DataFrame, today: date | None = None) -> tuple[list[AcceptedRow], list[FailedRow]]:
+    today = today or date.today()
+    seen_ids: set[str] = set()
+    accepted: list[AcceptedRow] = []
+    failed: list[FailedRow] = []
+
+    for row_number, row in enumerate(frame.to_dict(orient="records"), start=2):
+        raw = {key: clean_text(value)[:500] for key, value in row.items()}
+        errors: list[str] = []
+        claim_id = clean_text(row["claim_id"]).upper()
+        if not re.fullmatch(r"NCL-\d{6}", claim_id):
+            errors.append("claim_id must have format NCL-000001")
+        elif claim_id in seen_ids:
+            errors.append("duplicate claim_id within file")
+        else:
+            seen_ids.add(claim_id)
+
+        policy = clean_text(row["policy_number"]).upper()
+        if not re.fullmatch(r"POL-\d{6}", policy):
+            errors.append("policy_number must have format POL-000001")
+
+        claimant = clean_text(row["claimant_name"]).title()
+        if not 1 <= len(claimant) <= 100:
+            errors.append("claimant_name must be 1 to 100 characters")
+
+        claim_type_text = clean_text(row["claim_type"])
+        claim_type = CLAIM_TYPES.get(claim_type_text.casefold())
+        if claim_type is None:
+            errors.append("claim_type must be Motor, Home, Travel or Business")
+
+        status_text = clean_text(row["status"])
+        status = STATUSES.get(status_text.casefold())
+        if status is None:
+            errors.append("status must be Open, In Progress, Closed or Declined")
+
+        incident = reported = None
+        try:
+            incident = parse_date(row["incident_date"])
+            if not date(2000, 1, 1) <= incident <= today:
+                errors.append("incident_date must be between 2000-01-01 and today")
+        except ValueError as exc:
+            errors.append("incident_date " + str(exc))
+        try:
+            reported = parse_date(row["reported_date"])
+            if not date(2000, 1, 1) <= reported <= today:
+                errors.append("reported_date must be between 2000-01-01 and today")
+        except ValueError as exc:
+            errors.append("reported_date " + str(exc))
+        if incident is not None and reported is not None and incident > reported:
+            errors.append("incident_date cannot be after reported_date")
+
+        amount = None
+        try:
+            amount = parse_amount(row["amount_gbp"])
+        except ValueError as exc:
+            errors.append("amount_gbp " + str(exc))
+
+        postcode_compact = re.sub(r"\s+", "", clean_text(row["postcode"])).upper()
+        postcode = postcode_compact[:-3] + " " + postcode_compact[-3:] if len(postcode_compact) > 3 else postcode_compact
+        if not POSTCODE_RE.fullmatch(postcode):
+            errors.append("postcode is not a valid UK postcode format")
+
+        description = clean_text(row["description"])
+        if len(description) > 500:
+            errors.append("description cannot exceed 500 characters")
+
+        if errors:
+            failed.append(FailedRow(row_number, claim_id or None, "; ".join(errors), raw))
+        else:
+            accepted.append(AcceptedRow(row_number, {
+                "claim_id": claim_id, "policy_number": policy,
+                "claimant_name": claimant, "claim_type": claim_type,
+                "incident_date": incident, "reported_date": reported,
+                "status": status, "amount_gbp": amount,
+                "postcode": postcode, "description": description,
+            }))
+    return accepted, failed
+~~~~~~~
+
+### `app/services/zoho_client.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/services/zoho_client.py`. Purpose: """Zoho CRM V8 client interface, persistent demonstration mock and opt-in OAuth client..
+
+~~~~~~~python
+"""Zoho CRM V8 client interface, persistent demonstration mock and opt-in OAuth client.
+
+Never log tokens or server response bodies; never send requests in mock mode.
+"""
+import json
+import os
+import re
+from pathlib import Path
+from urllib.parse import urlparse
+
+import httpx
+
+from app.config import ROOT_DIR
+
+REGIONS = {
+    'US': ('https://accounts.zoho.com', 'https://www.zohoapis.com'),
+    'EU': ('https://accounts.zoho.eu', 'https://www.zohoapis.eu'),
+    'IN': ('https://accounts.zoho.in', 'https://www.zohoapis.in'),
+    'AU': ('https://accounts.zoho.com.au', 'https://www.zohoapis.com.au'),
+    'JP': ('https://accounts.zoho.jp', 'https://www.zohoapis.jp'),
+    'CA': ('https://accounts.zohocloud.ca', 'https://www.zohoapis.ca'),
+    'CN': ('https://accounts.zoho.com.cn', 'https://www.zohoapis.com.cn'),
+}
+
+
+class CRMError(Exception):
+    def __init__(self, message: str, retryable: bool = False):
+        self.retryable = retryable
+        super().__init__(message)
+
+
+def _identifier(value: str) -> str:
+    if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_]{0,59}', value):
+        raise ValueError('CRM module/field API names must be valid identifiers')
+    return value
+
+
+class MockZohoClient:
+    """In-memory deterministic records, no credentials. Seeded once per process."""
+    def __init__(self, records=None):
+        path = ROOT_DIR / 'sample_data' / 'task4_zoho_mock.json'
+        self.records = {str(r['id']): dict(r) for r in (records if records is not None
+                        else json.loads(path.read_text(encoding='utf-8')))}
+
+    def list_claims(self):
+        return [dict(v) for v in self.records.values()]
+
+    def get_claim(self, record_id: str):
+        if record_id not in self.records:
+            raise CRMError('CRM record not found')
+        return dict(self.records[record_id])
+
+    def update_status(self, record_id: str, status: str):
+        if record_id not in self.records:
+            raise CRMError('CRM record not found')
+        self.records[record_id]['Status'] = status
+        return dict(self.records[record_id])
+
+
+class RealZohoClient:
+    """Strict opt-in; application must explicitly select real mode using ZOHO_MODE=real."""
+    def __init__(self, http_client=None):
+        if os.getenv('ZOHO_MODE', 'mock').lower() != 'real' or os.getenv('ZOHO_REAL_ENABLED') != 'YES':
+            raise RuntimeError('Real Zoho integration is disabled')
+        region = os.getenv('ZOHO_REGION', 'EU').upper()
+        if region not in REGIONS:
+            raise ValueError('Unsupported Zoho region')
+        self.accounts_url, expected_api = REGIONS[region]
+        self.api_base = os.getenv('ZOHO_API_BASE_URL', expected_api).rstrip('/')
+        parsed = urlparse(self.api_base)
+        if parsed.scheme != 'https' or self.api_base != expected_api:
+            raise ValueError('Zoho API base URL must match the selected region HTTPS endpoint')
+        self.module = _identifier(os.getenv('ZOHO_MODULE', 'Claims'))
+        self.status_field = _identifier(os.getenv('ZOHO_FIELD_STATUS', 'Status'))
+        self.fields = {key: _identifier(os.getenv(env, default)) for key, env, default in [
+            ('reference','ZOHO_FIELD_REFERENCE','Claim_Reference'),
+            ('claimant','ZOHO_FIELD_CLAIMANT','Claimant_Name'),
+            ('type','ZOHO_FIELD_TYPE','Claim_Type'),
+            ('submitted','ZOHO_FIELD_SUBMITTED','Submission_Date'),
+            ('missing','ZOHO_FIELD_MISSING','Missing_Documents'),
+        ]}
+        self.client_id = os.getenv('ZOHO_CLIENT_ID', '')
+        self.client_secret = os.getenv('ZOHO_CLIENT_SECRET', '')
+        self.refresh_token = os.getenv('ZOHO_REFRESH_TOKEN', '')
+        if not all([self.client_id, self.client_secret, self.refresh_token]):
+            raise RuntimeError('Zoho OAuth values are not configured')
+        self.http = http_client or httpx.Client(timeout=15, follow_redirects=False)
+        self._access_token = None
+
+    def _refresh(self):
+        try:
+            response = self.http.post(self.accounts_url + '/oauth/v2/token', data={
+                'refresh_token': self.refresh_token, 'client_id': self.client_id,
+                'client_secret': self.client_secret, 'grant_type': 'refresh_token'})
+            if response.status_code != 200:
+                raise CRMError('OAuth refresh failed', response.status_code in (429, 500, 502, 503, 504))
+            token = response.json().get('access_token')
+            if not token:
+                raise CRMError('OAuth response has no access token')
+            self._access_token = token
+        except httpx.RequestError:
+            raise CRMError('OAuth network error', True) from None
+
+    def _call(self, method, suffix, **kwargs):
+        if not self._access_token:
+            self._refresh()
+        for attempt in range(2):
+            try:
+                response = self.http.request(method, f'{self.api_base}/crm/v8/{self.module}{suffix}',
+                    headers={'Authorization': f'Zoho-oauthtoken {self._access_token}'}, **kwargs)
+            except httpx.RequestError:
+                raise CRMError('Zoho network error', True) from None
+            if response.status_code == 401 and attempt == 0:
+                self._refresh()
+                continue
+            if response.status_code >= 400:
+                raise CRMError(f'Zoho returned HTTP {response.status_code}',
+                               response.status_code in (429, 500, 502, 503, 504))
+            try:
+                data = response.json()
+            except ValueError:
+                raise CRMError('Invalid Zoho JSON response', True) from None
+            if method == 'PUT':
+                item = data.get('data', [{}])[0]
+                if item.get('code') != 'SUCCESS':
+                    raise CRMError('Zoho declined the record update')
+            return data
+        raise CRMError('Zoho authorization failed')
+
+    def _normalise(self, item):
+        return {'id': str(item.get('id', '')),
+                'Claim_Reference': item.get(self.fields['reference']),
+                'Claimant_Name': item.get(self.fields['claimant']),
+                'Claim_Type': item.get(self.fields['type']),
+                'Submission_Date': item.get(self.fields['submitted']),
+                'Missing_Documents': item.get(self.fields['missing']),
+                'Status': item.get(self.status_field)}
+
+    def list_claims(self):
+        # Limited pagination is explicit (max 2,000). Schedule subsequent pulls for larger estates.
+        items = []
+        for page in range(1, 11):
+            result = self._call('GET', '', params={'per_page': 200, 'page': page})
+            items.extend(self._normalise(item) for item in result.get('data', []))
+            if not result.get('info', {}).get('more_records', False):
+                break
+        return items
+
+    def get_claim(self, record_id):
+        if not re.fullmatch(r'[0-9]{1,30}', str(record_id)):
+            raise CRMError('Invalid Zoho record ID')
+        data = self._call('GET', '/' + str(record_id)).get('data', [])
+        if not data:
+            raise CRMError('CRM record not found')
+        return self._normalise(data[0])
+
+    def update_status(self, record_id, status):
+        if not re.fullmatch(r'[0-9]{1,30}', str(record_id)):
+            raise CRMError('Invalid Zoho record ID')
+        self._call('PUT', '/' + str(record_id), json={'data': [{self.status_field: status}]})
+        return self.get_claim(record_id)
+
+
+def make_client():
+    return RealZohoClient() if os.getenv('ZOHO_MODE', 'mock').lower() == 'real' else _mock_singleton()
+
+
+_cached_mock = None
+
+
+def _mock_singleton():
+    global _cached_mock
+    if _cached_mock is None:
+        _cached_mock = MockZohoClient()
+    return _cached_mock
+~~~~~~~
+
+### `app/static/app.css` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/static/app.css`. Purpose: :root{font-family:Segoe UI,Arial,sans-serif;color:#20354b;background:#f3f6fa}*{box-sizing:border-box}.
+
+~~~~~~~css
+:root{font-family:Segoe UI,Arial,sans-serif;color:#20354b;background:#f3f6fa}*{box-sizing:border-box}
+body{margin:0}main{max-width:1250px;margin:24px auto;padding:0 20px}.top{background:#152f4e;color:#fff;padding:18px 24px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}.top .brand{font-weight:750;font-size:21px}.top nav{display:flex;gap:18px;flex-wrap:wrap;align-items:center}.top a{color:#f2f7ff;text-decoration:none}.top a:hover{text-decoration:underline}.top .identity{margin-left:auto;color:#cbd9e9;font-size:14px}
+h1{font-size:27px;margin:10px 0}h2{font-size:20px;margin-top:2px}.muted{color:#64778a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px}.card{background:white;border:1px solid #dce4ec;border-radius:12px;padding:20px;margin:16px 0;box-shadow:0 2px 7px #142b4410}.value{font-size:30px;font-weight:750;margin:8px 0}.danger{color:#b42318}.good{color:#177450}.tag{padding:4px 8px;border-radius:7px;background:#ecf2f8;white-space:nowrap;font-size:13px}
+button,.button{border:0;background:#175bb4;color:white;display:inline-block;padding:10px 15px;border-radius:7px;cursor:pointer;text-decoration:none;font-size:14px;font-weight:600}button:hover,.button:hover{background:#0f468e}button:disabled{opacity:.55;cursor:wait}.button.alt{background:#edf3fa;color:#144a88}.button.warn{background:#99572a}input,select,textarea{font:inherit;padding:10px;border:1px solid #b8c6d4;border-radius:7px;background:white;max-width:100%}textarea{width:100%;min-height:100px}label{display:block;font-size:14px;font-weight:650;margin:10px 0 5px}.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.form-grid input,.form-grid select{width:100%}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:12px;text-align:left;border-bottom:1px solid #e6edf3;vertical-align:top}th{background:#f0f4fa}tr:hover td{background:#fafcff}.scroll{overflow-x:auto}.actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.message{white-space:pre-wrap;border-left:4px solid #1c6bb2;padding:10px;margin:10px 0;background:#edf4fc}.alert{border-color:#b42318;background:#fff0ef}.history{border-left:3px solid #c1d4ed;padding-left:15px}.history li{margin:12px 0}.narrow{max-width:650px}.stats{font-size:13px}.footer{color:#64778a;font-size:12px;margin:25px 0}
+~~~~~~~
+
+### `app/static/app.js` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/static/app.js`. Purpose: 'use strict';.
+
+~~~~~~~javascript
+'use strict';
+async function requestJSON(url, method='GET', body=null){
+  const headers={'Accept':'application/json'};
+  if(method!=='GET'){headers['X-CSRF-Token']=window.csrfToken||'';if(body!==null)headers['Content-Type']='application/json';}
+  const response=await fetch(url,{method,headers,credentials:'same-origin',body:body===null?undefined:JSON.stringify(body)});
+  let payload;try{payload=await response.json();}catch{payload={detail:`HTTP ${response.status}`};}
+  if(!response.ok){const detail=payload.detail;throw Error(typeof detail==='string'?detail:JSON.stringify(detail||payload));}
+  return payload;
+}
+function showResult(text,bad=false,id='result'){
+  const element=document.getElementById(id);if(!element)return;
+  element.textContent=text;element.className=bad?'message alert':'message';
+}
+function formObject(form){return Object.fromEntries(new FormData(form).entries());}
+function optionalInteger(value){return value?Number(value):null;}
+async function execute(action){try{await action();}catch(err){showResult(err.message,true);}}
+async function logout(){await execute(async()=>{await requestJSON('/api/auth/logout','POST');location.assign('/');});}
+~~~~~~~
+
+### `app/templates/assets.html` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/templates/assets.html`. Purpose: {% extends "base.html" %}{% block title %}Inventory · Northstar Claims Ltd{% endblock %}.
+
+~~~~~~~html
+{% extends "base.html" %}{% block title %}Inventory · Northstar Claims Ltd{% endblock %}
+{% block content %}<h1>IT Asset Inventory</h1><div class="actions"><a class="button alt" href="/api/reports/inventory.xlsx">Export inventory</a><a class="button alt" href="/api/reports/workload.xlsx">Technician workload (Admin)</a></div>
+<section class="card"><h2>Register a device</h2><form id="create" class="form-grid">
+<div><label>Asset tag</label><input name="asset_tag" required placeholder="NS-LAP-007"></div><div><label>Serial number</label><input name="serial_number" required></div>
+<div><label>Device type</label><select name="device_type">{% for d in ('Laptop','Desktop','Printer','Router','Switch') %}<option>{{ d }}</option>{% endfor %}</select></div>
+<div><label>Manufacturer</label><input name="manufacturer" required></div><div><label>Model</label><input name="model" required></div>
+<div><label>Operating system</label><input name="operating_system" placeholder="Windows 11"></div>
+<div><label>Purchase date</label><input name="purchase_date" type="date" required></div><div><label>Warranty expiry</label><input name="warranty_expiry" type="date"></div>
+<div><label>Notes</label><input name="notes"></div><div><label>&nbsp;</label><button>Register device</button></div></form></section>
+<section class="card"><h2>Search and filter</h2><div class="actions"><input id="search" placeholder="Tag, serial or model"><select id="filter"><option value="">Any status</option>{% for s in ('Available','Assigned','Maintenance','Retired') %}<option>{{ s }}</option>{% endfor %}</select><button onclick="filterAssets()">Search</button><button class="button alt" onclick="location.reload()">Clear</button></div></section>
+<section class="card scroll"><h2>Registered devices</h2><table><thead><tr><th>Tag</th><th>Type / model</th><th>Serial</th><th>Status</th><th>Assigned employee</th><th>Warranty</th><th>Actions</th></tr></thead>
+<tbody>{% for a in assets %}<tr data-search="{{ (a.asset_tag ~ ' ' ~ a.serial_number ~ ' ' ~ a.model)|lower }}" data-status="{{ a.status }}"><td>{{ a.asset_tag }}</td>
+<td>{{ a.device_type }} · {{ a.model }}</td><td>{{ a.serial_number }}</td><td>{{ a.status }}</td><td>{{ a.assigned_employee.full_name if a.assigned_employee else '—' }}</td><td>{{ a.warranty_expiry or '—' }}</td>
+<td><div class="actions">{% if a.status == 'Available' %}<select id="emp{{ a.id }}"><option value="">Select employee</option>{% for e in employees %}<option value="{{ e.id }}">{{ e.full_name }}</option>{% endfor %}</select><button onclick="assignDevice({{ a.id }})">Assign</button>
+{% elif a.status == 'Assigned' %}<button class="button warn" onclick="returnDevice({{ a.id }})">Return</button>{% endif %}
+<button class="button alt" onclick="editDevice({{ a.id }})">Edit</button></div></td></tr>{% else %}<tr><td colspan="7">No registered assets</td></tr>{% endfor %}</tbody></table>
+<div id="result" aria-live="polite"></div></section>
+{% endblock %}{% block scripts %}<script>
+document.getElementById('create').addEventListener('submit',async e=>{
+ e.preventDefault();let b=formObject(e.target);b.warranty_expiry=b.warranty_expiry||null;b.operating_system=b.operating_system||null;
+ await execute(async()=>{await requestJSON('/api/assets','POST',b);location.reload()});
+});
+function filterAssets(){const q=document.getElementById('search').value.toLowerCase(),status=document.getElementById('filter').value;
+ document.querySelectorAll('tr[data-search]').forEach(r=>r.hidden=!!(q&&!r.dataset.search.includes(q))||!!(status&&r.dataset.status!==status));}
+function assignDevice(id){const input=document.getElementById('emp'+id);if(!input.value){showResult('Select an employee',true);return;}
+ execute(async()=>{await requestJSON(`/api/assets/${id}/assign`,'POST',{employee_id:Number(input.value)});location.reload()});}
+function returnDevice(id){execute(async()=>{await requestJSON(`/api/assets/${id}/return`,'POST');location.reload()});}
+function editDevice(id){const status=prompt('New status: Available, Maintenance or Retired (leave blank to skip)');if(status===null)return;
+ const notes=prompt('New inventory note (leave blank to preserve existing)');if(notes===null)return;
+ const body={};if(status.trim())body.status=status.trim();if(notes.trim())body.notes=notes.trim();if(!Object.keys(body).length)return;
+ execute(async()=>{await requestJSON(`/api/assets/${id}`,'PATCH',body);location.reload()});}
+</script>{% endblock %}
+~~~~~~~
+
+### `app/templates/base.html` — MODIFIED
+
+Exact location in VS Code: `it-operations-platform/app/templates/base.html`. Purpose: <!doctype html>.
+
+~~~~~~~html
+<!doctype html>
+<html lang="en-GB">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Northstar Claims Ltd{% endblock %}</title>
+<link rel="stylesheet" href="/static/app.css"></head>
+<body>
+<header class="top"><span class="brand">Northstar Claims Ltd</span>
+<nav><a href="/">Dashboard</a>{% if user %}
+<a href="/tickets">Tickets</a><a href="/tickets/new">Report an issue</a>
+{% if user.role in ('Admin','Technician') %}<a href="/assets">Inventory</a><a href="/employees">Employee management</a>{% endif %}
+{% if user.role == 'Admin' %}<a href="/claims-management">Claims CRM</a><a href="/workflow-logs">Workflow logs</a><a href="/communication-templates">Templates</a><a href="/users">Accounts</a>{% endif %}
+<a href="/docs">API docs</a>{% endif %}</nav>
+<div class="identity">{% if user %}{{ user.full_name }} · {{ user.role }} <button class="button alt" type="button" onclick="logout()">Log out</button>{% else %}<a href="/login">Log in</a>{% endif %}</div>
+</header><main>{% block content %}{% endblock %}
+<footer class="footer">Fictional company and demonstration data · Local portfolio environment · Time stamps stored in UTC</footer></main>
+<script>window.csrfToken={{ csrf|default('')|tojson }};</script>
+<script src="/static/app.js"></script>{% block scripts %}{% endblock %}
+</body></html>
+~~~~~~~
+
+### `app/templates/claims_management.html` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/templates/claims_management.html`. Purpose: {% extends 'base.html' %}{% block title %}Claims CRM · Northstar Claims{% endblock %}.
+
+~~~~~~~html
+{% extends 'base.html' %}{% block title %}Claims CRM · Northstar Claims{% endblock %}
+{% block content %}<h1>Claims Management &amp; Zoho CRM (mock by default)</h1>
+<p class="muted">Imported claims are never replaced. Workflow stage and CRM integration metadata are stored separately.</p>
+<div class="actions"><a class="button alt" href="/api/reports/claims-workflows.xlsx">Export workflow reports</a><a class="button alt" href="/workflow-logs">Workflow logs</a><a class="button alt" href="/communication-templates">Template previews</a></div>
+<section class="card scroll"><h2>Recent claims</h2><table><thead><tr><th>Reference</th><th>Claimant</th><th>Type</th><th>Stage</th><th>Handler</th><th>Submitted</th><th>Missing docs</th><th>Last update</th><th>Integration</th></tr></thead><tbody>
+{% for c in claims %}<tr><td>{{ c.claim_id }}</td><td>{{ c.claimant_name }}</td><td>{{ c.claim_type }}</td><td>{{ c.stage }}</td><td>{{ c.handler or 'Unassigned' }}</td><td>{{ c.submission_date }}</td><td>{{ 'Yes' if c.missing_documentation else 'No' }}</td><td>{{ c.last_update }}</td><td>{{ c.integration_status }}</td></tr>{% else %}<tr><td colspan="9">Import Task 1 claims first.</td></tr>{% endfor %}
+</tbody></table></section>
+<section class="card"><h2>Trigger an event (demonstration)</h2><form id="workflow"><label>Claim reference <input name="claim_id" value="NCL-009999" required></label><label>Event <select name="event_type"><option value="submitted">New claim submitted</option><option value="missing_documents">Missing documents</option><option value="evidence_received">Evidence received</option><option value="resolved">Claim resolved</option></select></label><button>Run workflow</button></form><p class="muted">A unique event key is generated for each submission. Reuse a key through API calls to confirm idempotency.</p><div id="result" aria-live="polite"></div></section>
+<section class="card"><h2>Zoho CRM mock synchronisation</h2><form id="pull"><label>Existing imported claim reference <input name="claim_id" value="NCL-009999" required></label><button type="submit">Pull CRM record</button></form><p class="muted">Seeded CRM records are fictional. Real API access requires explicit opt-in.</p><div id="sync-result" aria-live="polite"></div></section>
+{% endblock %}{% block scripts %}<script>
+ document.querySelector('#workflow').addEventListener('submit',e=>{e.preventDefault();execute(async()=>{const f=formObject(e.target);const data=await requestJSON('/api/workflows/events','POST',{...f,event_key:'browser-'+crypto.randomUUID()});showResult(JSON.stringify(data));});});
+ document.querySelector('#pull').addEventListener('submit',e=>{e.preventDefault();execute(async()=>{const f=formObject(e.target);const data=await requestJSON('/api/crm/claims/'+encodeURIComponent(f.claim_id)+'/sync','POST',{operation_key:'browser-'+crypto.randomUUID()});showResult(JSON.stringify(data),false,'sync-result');});});
+</script>{% endblock %}
+~~~~~~~
+
+### `app/templates/communication_templates.html` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/templates/communication_templates.html`. Purpose: {% extends 'base.html' %}{% block title %}Claim Communications{% endblock %}.
+
+~~~~~~~html
+{% extends 'base.html' %}{% block title %}Claim Communications{% endblock %}
+{% block content %}<h1>Communication Templates</h1><p class="muted">Only safe, known placeholders are supported. Preview only: no messages are sent.</p>
+<section class="card"><label>Preview claim reference <input id="claim" value="NCL-009999"></label><div id="result" aria-live="polite"></div></section>
+{% for t in templates %}<section class="card"><h2>{{ t.kind | replace('_',' ') | title }}</h2><form class="template" data-kind="{{ t.kind }}"><label>Subject <input name="subject" value="{{ t.subject }}" required></label><label>Body <textarea name="body" rows="4" required>{{ t.body }}</textarea></label><div class="actions"><button type="submit">Save template</button><button type="button" class="alt" onclick="previewTemplate('{{ t.kind }}')">Preview</button></div></form></section>{% else %}<p>Run the Task 4 seed command to install four templates.</p>{% endfor %}
+{% endblock %}{% block scripts %}<script>
+document.querySelectorAll('.template').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();execute(async()=>{const payload=formObject(form);const r=await requestJSON('/api/workflows/templates/'+form.dataset.kind,'PUT',payload);showResult(JSON.stringify(r));});}));
+function previewTemplate(kind){execute(async()=>{const reference=document.querySelector('#claim').value;const r=await requestJSON('/api/workflows/templates/'+kind+'/preview/'+encodeURIComponent(reference));showResult(r.subject+'\n'+r.body+'\n(Not sent)');});}
+</script>{% endblock %}
+~~~~~~~
+
+### `app/templates/dashboard.html` — MODIFIED
+
+Exact location in VS Code: `it-operations-platform/app/templates/dashboard.html`. Purpose: {% extends "base.html" %}{% block title %}Dashboard · Northstar Claims Ltd{% endblock %}.
+
+~~~~~~~html
+{% extends "base.html" %}{% block title %}Dashboard · Northstar Claims Ltd{% endblock %}
+{% block content %}
+<h1>IT Operations Dashboard</h1>{% if user.role in ('Admin','Technician') %}<section class="card"><a class="button" href="/employees">Employee onboarding / offboarding</a></section>{% endif %}<p class="muted">Helpdesk queue, SLA monitoring, devices and technician activity · {{ user.role }} view</p>
+<section class="grid" aria-label="Key operational metrics">
+<div class="card"><div class="muted stats">Open / unresolved</div><div class="value">{{ stats.open_tickets }}</div></div>
+<div class="card"><div class="muted stats">Resolved / closed</div><div class="value good">{{ stats.resolved_tickets }}</div></div>
+<div class="card"><div class="muted stats">High / critical issues</div><div class="value">{{ stats.high_priority }}</div></div>
+<div class="card"><div class="muted stats">Overdue SLA</div><div class="value danger">{{ stats.overdue_tickets }}</div></div>
+<div class="card"><div class="muted stats">Devices assigned</div><div class="value">{{ stats.assigned_devices }}</div></div>
+{% if user.role in ('Admin','Technician') %}<div class="card"><div class="muted stats">Devices needing maintenance</div><div class="value">{{ stats.maintenance_devices }}</div></div>{% endif %}
+</section>
+<section class="card"><div class="actions"><a class="button" href="/tickets/new">Report an issue</a><a class="button alt" href="/tickets">View tickets</a>
+{% if user.role in ('Admin','Technician') %}<a class="button alt" href="/assets">Manage inventory</a>{% endif %}</div></section>
+<section class="card scroll"><h2>Recent accessible tickets</h2>
+<table><thead><tr><th>Reference</th><th>Title</th><th>Priority</th><th>Status</th><th>Due UTC</th></tr></thead><tbody>
+{% for t in recent_tickets %}<tr><td><a href="/tickets/{{ t.id }}">{{ t.reference }}</a></td><td>{{ t.title }}</td><td>{{ t.priority }}</td><td>{{ t.status }}</td><td>{{ t.sla_due_at }}</td></tr>
+{% else %}<tr><td colspan="5">No tickets available.</td></tr>{% endfor %}</tbody></table></section>
+{% if user.role in ('Admin','Technician') %}
+<section class="card scroll"><h2>Recent technician activities</h2><table><thead><tr><th>Technician</th><th>Event</th><th>UTC</th></tr></thead><tbody>
+{% for e in events %}<tr><td>{{ e.technician }}</td><td>{{ e.type }}</td><td>{{ e.when }}</td></tr>{% else %}<tr><td colspan="3">No recent technician actions.</td></tr>{% endfor %}
+</tbody></table></section>{% endif %}
+{% if user.role == 'Admin' %}
+<section class="grid"><div class="card"><div class="muted">Imported claims · Task 1</div><div class="value">{{ total_claims }}</div></div>
+<div class="card"><div class="muted">Total claimed GBP · Task 1</div><div class="value">£{{ total_amount }}</div></div>
+<div class="card"><div class="muted">Recent import batches · Task 1</div><div class="value">{{ batches|length }}</div></div></section>
+<section class="card"><a class="button" href="/claims-management">Open Task 4 claims management</a> <a class="button alt" href="/workflow-logs">Investigate workflows</a></section>
+<section class="card"><h2>Task 1: Import claims</h2>
+<p class="muted">Upload a UTF-8 CSV or XLSX, up to the configured limit.</p>
+<form id="upload"><input type="file" name="file" accept=".csv,.xlsx" aria-label="Claims file" required>
+<button type="submit">Import claims</button> <a class="button alt" href="/api/reports/claims.xlsx">Download claims Excel</a></form>
+<div id="result" aria-live="polite"></div></section>
+<section class="card scroll"><h2>Recent claims</h2><table><thead><tr><th>Claim ID</th><th>Claimant</th><th>Type</th><th>Status</th><th>Amount GBP</th></tr></thead><tbody>
+{% for c in claims %}<tr><td>{{ c.claim_id }}</td><td>{{ c.claimant_name }}</td><td>{{ c.claim_type }}</td><td>{{ c.status }}</td><td>£{{ '%.2f'|format(c.amount_gbp) }}</td></tr>
+{% else %}<tr><td colspan="5">No claims yet.</td></tr>{% endfor %}</tbody></table></section>
+<section class="card scroll"><h2>Recent import batches</h2><table><thead><tr><th>Batch</th><th>Filename</th><th>Rows</th><th>Imported</th><th>Rejected</th><th>Rejections</th></tr></thead><tbody>
+{% for b in batches %}<tr><td>{{ b.id }}</td><td>{{ b.filename }}</td><td>{{ b.total_rows }}</td><td>{{ b.imported_rows }}</td><td>{{ b.rejected_rows }}</td><td><a href="/api/imports/{{ b.id }}/rejections">Inspect</a></td></tr>
+{% else %}<tr><td colspan="6">No import batches.</td></tr>{% endfor %}</tbody></table></section>
+{% endif %}
+{% endblock %}{% block scripts %}{% if user.role == 'Admin' %}<script>
+document.getElementById('upload').addEventListener('submit',async e=>{
+ e.preventDefault();const button=e.target.querySelector('button');button.disabled=true;
+ try{const res=await fetch('/api/claims/import',{method:'POST',body:new FormData(e.target),headers:{'X-CSRF-Token':window.csrfToken},credentials:'same-origin'});
+ const data=await res.json();if(!res.ok)throw Error(JSON.stringify(data.detail));showResult(`${data.imported_rows} imported; ${data.rejected_rows} rejected; replayed=${data.replayed}`);}
+ catch(err){showResult(err.message,true)}finally{button.disabled=false}
+});</script>{% endif %}{% endblock %}
+~~~~~~~
+
+### `app/templates/employees.html` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/templates/employees.html`. Purpose: {% extends "base.html" %}.
+
+~~~~~~~html
+{% extends "base.html" %}
+{% block title %}Employee Management · Northstar Claims{% endblock %}
+{% block content %}
+<h1>Employee Management</h1>
+<p class="muted">All directory provisioning is MOCK ONLY. Employees and requests are fictional. Account plans never execute against AD or Google.</p>
+<section class="grid">
+<div class="card"><div class="muted">Active demo employees</div><div class="value">{{ stats.active }}</div></div>
+<div class="card"><div class="muted">Pending onboarding</div><div class="value">{{ stats.pending_onboarding }}</div></div>
+<div class="card"><div class="muted">Offboarding approvals</div><div class="value">{{ stats.pending_offboarding }}</div></div>
+<div class="card"><div class="muted">Issued devices (Task 2)</div><div class="value">{{ stats.assigned_devices }}</div></div>
+<div class="card"><div class="muted">Reserved laptops</div><div class="value">{{ stats.reserved }}</div></div>
+<div class="card"><div class="muted">Failed operations</div><div class="value danger">{{ stats.failed }}</div></div>
+</section>
+{% if admin %}
+<section class="card"><h2>New employee onboarding</h2>
+<form id="onboard-form">
+<label>Employee full name <input name="full_name" required placeholder="Alex Morgan"></label>
+<label>Department <select name="department" id="department" required>{% for name in groups %}<option value="{{ name }}">{{ name }}</option>{% endfor %}</select></label>
+<label>Job title <input name="job_title" required placeholder="Claims Handler"></label>
+<label>Manager full name <input name="manager_name" required placeholder="Sarah Bennett"></label>
+<label>Start date <input name="start_date" type="date" required></label>
+<fieldset><legend>Approved department security groups</legend><div id="group-options"></div></fieldset>
+<fieldset><legend>Devices required</legend><label><input type="checkbox" name="device" value="Laptop" checked> Laptop</label>
+<label><input type="checkbox" name="device" value="Monitor"> Monitor</label>
+<label><input type="checkbox" name="device" value="Headset"> Headset</label></fieldset>
+<button type="submit">Prepare onboarding (mock)</button></form><div id="result" aria-live="polite"></div></section>
+{% endif %}
+<section class="card scroll"><h2>Employees and provisioning status</h2>
+<table><thead><tr><th>Employee</th><th>Department / Role</th><th>Start</th><th>Email</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+{% for emp in employees %}<tr><td>{{ emp.full_name }}</td><td>{{ emp.department }} · {{ emp.job_title }}</td>
+<td>{{ emp.start_date }}</td><td>{{ emp.work_email }}</td><td>{{ emp.status }}</td>
+<td>{% if admin and emp.status == 'Prepared' %}<button type="button" onclick="activateEmployee({{ emp.id }})">Activate (mock)</button>{% endif %}
+{% if emp.status in ('Active','Prepared') %}<button type="button" class="button alt" onclick="requestOffboarding({{ emp.id }})">Request offboarding</button>{% endif %}
+{% if admin %}<a class="button alt" href="/api/employees/{{ emp.id }}/ad-plan" target="_blank" rel="noopener">AD plan JSON</a>{% endif %}
+<button class="button alt" type="button" onclick="viewChecklist({{ emp.id }})">Checklist</button></td></tr>
+{% else %}<tr><td colspan="6">No employee records yet.</td></tr>{% endfor %}
+</tbody></table></section>
+<section class="card scroll"><h2>Offboarding approval queue</h2>
+<table><thead><tr><th>Request ID</th><th>Employee</th><th>Reason</th><th>Status</th><th>Approval</th></tr></thead><tbody>
+{% for o in offboards %}<tr><td>{{ o.id }}</td><td>{{ o.employee.full_name }}</td><td>{{ o.reason }}</td><td>{{ o.status }}</td>
+<td>{% if admin and o.status == 'PendingApproval' %}<button type="button" onclick="approveOffboarding({{ o.id }})">Approve mock suspension</button>{% endif %}</td></tr>
+{% else %}<tr><td colspan="5">No requests.</td></tr>{% endfor %}</tbody></table></section>
+<section class="card scroll"><h2>Issued equipment (Task 2 inventory)</h2>
+<p class="muted">Issued devices belong to existing helpdesk User accounts; onboarding reservations are separate and are not a physical handover.</p>
+<table><thead><tr><th>Asset</th><th>Model</th><th>Assigned to</th><th>Status</th></tr></thead><tbody>
+{% for a in assigned_assets %}<tr><td>{{ a.asset_tag }}</td><td>{{ a.model }}</td><td>{{ a.assigned_employee.full_name if a.assigned_employee else 'Unknown' }}</td><td>{{ a.status }}</td></tr>
+{% else %}<tr><td colspan="4">No issued assets.</td></tr>{% endfor %}</tbody></table></section>
+<section class="card scroll"><h2>Provisioning checklist and exceptions</h2><div id="checklist" class="message muted">Select Checklist next to an employee to see all recorded operations.</div>
+<table><thead><tr><th>Employee ID</th><th>Operation</th><th>Target</th><th>Result</th><th>Detail</th></tr></thead><tbody>
+{% for a in activities %}<tr><td>{{ a.employee_id }}</td><td>{{ a.action_type }}</td><td>{{ a.target }}</td><td>{{ a.status }}</td><td>{{ a.result_detail }}</td></tr>
+{% else %}<tr><td colspan="5">No operations yet.</td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}
+{% block scripts %}<script>
+'use strict';
+const groupMap={{ groups | tojson }};
+const dept=document.getElementById('department');
+function showGroups(){
+ const wrapper=document.getElementById('group-options');if(!wrapper||!dept)return;
+ wrapper.replaceChildren();
+ for(const group of (groupMap[dept.value]||[])){
+   const label=document.createElement('label');const input=document.createElement('input');
+   input.type='checkbox';input.name='group';input.value=group;input.checked=true;
+   label.append(input,document.createTextNode(' '+group+' '));wrapper.append(label);
+ }
+}
+if(dept){dept.addEventListener('change',showGroups);showGroups()}
+const form=document.getElementById('onboard-form');
+if(form)form.addEventListener('submit',async ev=>{
+ ev.preventDefault();const data=new FormData(form);
+ const payload={full_name:data.get('full_name'),department:data.get('department'),job_title:data.get('job_title'),
+ manager_name:data.get('manager_name'),start_date:data.get('start_date'),required_groups:data.getAll('group'),device_requirements:data.getAll('device')};
+ try{const employee=await requestJSON('/api/employees/onboarding','POST',payload);
+ showResult('Prepared '+employee.full_name+' (ID '+employee.id+'). No live directories changed.');location.reload();}
+ catch(err){showResult(err.message,true)}
+});
+async function activateEmployee(id){try{await requestJSON('/api/employees/'+id+'/activate','POST');location.reload()}catch(err){showResult(err.message,true)}}
+async function requestOffboarding(id){
+ const reason=prompt('Reason for departure (at least 10 characters):');if(!reason)return;
+ const last_working_date=prompt('Last working day (YYYY-MM-DD):',new Date().toISOString().slice(0,10));if(!last_working_date)return;
+ try{await requestJSON('/api/employees/'+id+'/offboarding','POST',{reason,last_working_date});location.reload()}catch(err){showResult(err.message,true)}
+}
+async function approveOffboarding(id){
+ const comment=prompt('Approval justification (at least 10 characters):');if(!comment)return;
+ if(!confirm('Approve MOCK suspension? Separate administrator required; no real accounts will be affected.'))return;
+ try{await requestJSON('/api/employees/offboarding/'+id+'/approve','POST',{confirm:true,comment});location.reload()}catch(err){showResult(err.message,true)}
+}
+async function viewChecklist(id){
+ try{const employee=await requestJSON('/api/employees/'+id);
+ const checklist=document.getElementById('checklist');checklist.replaceChildren();
+ const title=document.createElement('strong');title.textContent=employee.full_name+' · '+employee.status;
+ checklist.append(title);
+ for(const a of employee.actions){const p=document.createElement('p');p.textContent=a.status+' — '+a.type+' — '+a.target+' — '+a.detail;checklist.append(p)}
+ }catch(err){showResult(err.message,true)}
+}
+</script>{% endblock %}
+~~~~~~~
+
+### `app/templates/login.html` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/templates/login.html`. Purpose: {% extends "base.html" %}{% block title %}Sign in · Northstar Claims Ltd{% endblock %}.
+
+~~~~~~~html
+{% extends "base.html" %}{% block title %}Sign in · Northstar Claims Ltd{% endblock %}
+{% block content %}
+<section class="card narrow"><h1>IT Operations Platform</h1><p class="muted">Local demonstration sign-in. Ask the local administrator for a demo account.</p>
+<form id="login"><label for="username">Username</label><input id="username" name="username" required autocomplete="username">
+<label for="password">Password</label><input id="password" type="password" name="password" required autocomplete="current-password">
+<p><button type="submit">Sign in</button></p></form><div id="result" aria-live="polite"></div></section>
+{% endblock %}{% block scripts %}<script>
+document.getElementById('login').addEventListener('submit',async e=>{
+ e.preventDefault();const b=e.target.querySelector('button');b.disabled=true;
+ try{const body=formObject(e.target);const res=await requestJSON('/api/auth/login','POST',body);window.csrfToken=res.csrf_token;location.assign('/');}
+ catch(err){showResult(err.message,true);b.disabled=false;}
+});</script>{% endblock %}
+~~~~~~~
+
+### `app/templates/ticket_detail.html` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/templates/ticket_detail.html`. Purpose: {% extends "base.html" %}{% block title %}{{ ticket.reference }} · Northstar Claims Ltd{% endblock %}.
+
+~~~~~~~html
+{% extends "base.html" %}{% block title %}{{ ticket.reference }} · Northstar Claims Ltd{% endblock %}
+{% block content %}<h1>{{ ticket.reference }} — {{ ticket.title }}</h1>
+<div class="actions"><span class="tag">{{ ticket.category }}</span><span class="tag">{{ ticket.priority }}</span><span class="tag">{{ ticket.status }}</span><a href="/tickets">All tickets</a></div>
+<section class="card"><h2>Problem details</h2><p>{{ ticket.description }}</p><p>Submitted by: <b>{{ ticket.employee.full_name }}</b><br>Assigned to: <b>{{ ticket.technician.full_name if ticket.technician else 'Not yet assigned' }}</b><br>
+Affected asset: {{ ticket.asset.asset_tag if ticket.asset else 'Unspecified' }}<br>Created UTC: {{ ticket.created_at }}<br>SLA deadline UTC: {{ ticket.sla_due_at }}<br>
+Resolved UTC: {{ ticket.resolved_at if ticket.resolved_at else 'Not resolved' }}<br>Resolution: {{ ticket.resolution_details or 'Pending' }}</p></section>
+{% if can_assign and ticket.status in ('Open','Assigned') %}<section class="card"><h2>Assign technician</h2>
+<form id="assign" class="actions">{% if user.role == 'Admin' %}<select name="technician_id" required>{% for tech in technicians %}<option value="{{ tech.id }}">{{ tech.full_name }}</option>{% endfor %}</select>{% else %}<input type="hidden" name="technician_id" value="{{ user.id }}">I will take this ticket{% endif %}<button>Assign ticket</button></form></section>{% endif %}
+{% if can_update %}<section class="card"><h2>Update status</h2>
+<form id="change"><label for="status">Next status</label><select id="status" name="status" required>{% if ticket.status == 'Assigned' %}<option>In Progress</option><option>Resolved</option>{% elif ticket.status == 'In Progress' %}<option>Resolved</option>{% elif ticket.status == 'Resolved' %}<option>Closed</option><option>In Progress</option>{% endif %}</select>
+<label for="resolution">Resolution details (required when resolving)</label><textarea id="resolution" name="resolution_details" placeholder="Actions taken and evidence of the fix"></textarea><p><button>Save status</button></p></form>
+<h2>Troubleshooting note</h2><form id="note"><textarea name="note" required minlength="2" placeholder="Investigation, test results, escalation notes"></textarea><p><button>Add note</button></p></form></section>{% endif %}
+<section class="card"><h2>Ticket history</h2><ol class="history">{% for h in ticket.history %}<li><b>{{ h.action }}</b> · {{ h.actor.full_name }} · {{ h.occurred_at }} UTC{% if h.previous_status or h.new_status %}<br>{{ h.previous_status or '—' }} → {{ h.new_status or '—' }}{% endif %}{% if h.note %}<p>{{ h.note }}</p>{% endif %}</li>{% endfor %}</ol></section>
+<div id="result" aria-live="polite"></div>{% endblock %}
+{% block scripts %}<script>
+const ticketId={{ ticket.id }};
+for(const [id,url,method,build] of [
+ ['assign',`/api/tickets/${ticketId}/assign`,'POST',f=>({technician_id:Number(formObject(f).technician_id)})],
+ ['change',`/api/tickets/${ticketId}`,'PATCH',f=>{const b=formObject(f);return {status:b.status,resolution_details:b.resolution_details||null};}],
+ ['note',`/api/tickets/${ticketId}/notes`,'POST',f=>formObject(f)]
+]){const form=document.getElementById(id);if(!form)continue;form.addEventListener('submit',async e=>{
+ e.preventDefault();await execute(async()=>{await requestJSON(url,method,build(form));location.reload();});
+});}
+</script>{% endblock %}
+~~~~~~~
+
+### `app/templates/ticket_new.html` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/templates/ticket_new.html`. Purpose: {% extends "base.html" %}{% block title %}New ticket · Northstar Claims Ltd{% endblock %}.
+
+~~~~~~~html
+{% extends "base.html" %}{% block title %}New ticket · Northstar Claims Ltd{% endblock %}
+{% block content %}<section class="card narrow"><h1>Report an IT problem</h1>
+<form id="newTicket"><label for="title">Problem title</label><input id="title" name="title" required minlength="5" maxlength="160" style="width:100%">
+<label for="description">Detailed problem description</label><textarea id="description" name="description" required minlength="10"></textarea>
+<div class="form-grid"><div><label for="category">Category</label><select id="category" name="category">{% for item in ('Hardware','Software','Network','Printer','Account Access','Other') %}<option>{{ item }}</option>{% endfor %}</select></div>
+<div><label for="priority">Priority</label><select id="priority" name="priority">{% for item in ('Low','Medium','High','Critical') %}<option{% if item == 'Medium' %} selected{% endif %}>{{ item }}</option>{% endfor %}</select></div></div>
+<label for="affected_asset_id">Affected device (optional)</label><select id="affected_asset_id" name="affected_asset_id"><option value="">No device / unknown</option>{% for a in assets %}<option value="{{ a.id }}">{{ a.asset_tag }} · {{ a.model }}</option>{% endfor %}</select>
+{% if user.role == 'Admin' %}<label for="employee_id">Submit for employee</label><select id="employee_id" name="employee_id"><option value="">Myself</option>{% for e in employees %}<option value="{{ e.id }}">{{ e.full_name }}</option>{% endfor %}</select>{% endif %}
+<p><button>Create ticket</button></p></form><div id="result" aria-live="polite"></div></section>{% endblock %}
+{% block scripts %}<script>
+document.getElementById('newTicket').addEventListener('submit',async e=>{
+ e.preventDefault();const b=formObject(e.target);b.affected_asset_id=optionalInteger(b.affected_asset_id);if('employee_id' in b)b.employee_id=optionalInteger(b.employee_id);
+ await execute(async()=>{const t=await requestJSON('/api/tickets','POST',b);location.assign(`/tickets/${t.id}`);});
+});</script>{% endblock %}
+~~~~~~~
+
+### `app/templates/tickets.html` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/templates/tickets.html`. Purpose: {% extends "base.html" %}{% block title %}Tickets · Northstar Claims Ltd{% endblock %}.
+
+~~~~~~~html
+{% extends "base.html" %}{% block title %}Tickets · Northstar Claims Ltd{% endblock %}
+{% block content %}<h1>IT Support Tickets</h1><p class="muted">Employees can see their own tickets. Technicians see tickets assigned to them.</p>
+<a class="button" href="/tickets/new">Create support ticket</a>
+{% if user.role in ('Admin','Technician') %}<a class="button alt" href="/api/reports/tickets.xlsx">Download tickets Excel</a>{% endif %}
+<section class="card scroll"><table><thead><tr><th>Reference</th><th>Title</th><th>Employee</th><th>Category</th><th>Priority</th><th>Status</th><th>SLA due (UTC)</th></tr></thead><tbody>
+{% for t in tickets %}<tr><td><a href="/tickets/{{ t.id }}">{{ t.reference }}</a></td><td>{{ t.title }}</td><td>{{ t.employee.full_name }}</td><td>{{ t.category }}</td><td>{{ t.priority }}</td><td><span class="tag">{{ t.status }}</span></td><td>{{ t.sla_due_at }}</td></tr>
+{% else %}<tr><td colspan="7">No tickets available.</td></tr>{% endfor %}</tbody></table></section>{% endblock %}
+~~~~~~~
+
+### `app/templates/users.html` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/app/templates/users.html`. Purpose: {% extends "base.html" %}{% block title %}Accounts · Northstar Claims Ltd{% endblock %}.
+
+~~~~~~~html
+{% extends "base.html" %}{% block title %}Accounts · Northstar Claims Ltd{% endblock %}
+{% block content %}<h1>Local demonstration accounts</h1><p class="muted">Admin-only user creation; account passwords are stored using Argon2id hashes.</p>
+<section class="card"><h2>Create account</h2><form id="create" class="form-grid">
+<div><label>Username</label><input name="username" pattern="[a-z0-9._-]{3,60}" required></div>
+<div><label>Full name</label><input name="full_name" required></div>
+<div><label>Email</label><input name="email" type="email" required></div>
+<div><label>Role</label><select name="role"><option>Employee</option><option>Technician</option><option>Admin</option></select></div>
+<div><label>Password (min 12 characters)</label><input type="password" name="password" required minlength="12"></div><div><label>&nbsp;</label><button>Create account</button></div></form></section>
+<section class="card scroll"><table><thead><tr><th>Username</th><th>Name</th><th>Email</th><th>Role</th><th>Active</th><th>Actions</th></tr></thead><tbody>
+{% for u in users %}<tr><td>{{ u.username }}</td><td>{{ u.full_name }}</td><td>{{ u.email }}</td><td>{{ u.role }}</td><td>{{ u.is_active }}</td><td><button class="button alt" type="button" onclick="editUser({{ u.id }})">Edit</button></td></tr>{% endfor %}</tbody></table></section>
+<div id="result"></div>{% endblock %}{% block scripts %}<script>
+document.getElementById('create').addEventListener('submit',async e=>{e.preventDefault();await execute(async()=>{
+ await requestJSON('/api/users','POST',formObject(e.target));location.reload();});});
+async function editUser(id){
+ const role=prompt('Role: Admin, Technician or Employee (leave blank to keep)');if(role===null)return;
+ const enabled=prompt('Active: true or false (leave blank to keep)');if(enabled===null)return;
+ const newPassword=prompt('New password (leave blank to keep; at least 12 chars)');if(newPassword===null)return;
+ const body={};if(role.trim())body.role=role.trim();if(enabled.trim())body.is_active=enabled.trim().toLowerCase()==='true';
+ if(newPassword.trim())body.password=newPassword;if(!Object.keys(body).length)return;
+ await execute(async()=>{await requestJSON(`/api/users/${id}`,'PATCH',body);location.reload();});
+}
+</script>{% endblock %}
+~~~~~~~
+
+### `app/templates/workflow_logs.html` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/templates/workflow_logs.html`. Purpose: {% extends 'base.html' %}{% block title %}Workflow Logs{% endblock %}.
+
+~~~~~~~html
+{% extends 'base.html' %}{% block title %}Workflow Logs{% endblock %}
+{% block content %}<h1>Workflow Troubleshooting</h1><p class="muted">Failed workflow entries remain visible, including timestamps, stages, errors and retry counts. Admins can retry failed executions.</p>
+<section class="card scroll"><table><thead><tr><th>UTC started</th><th>Workflow</th><th>Claim</th><th>Input</th><th>Output</th><th>Result</th><th>Error</th><th>Retries</th><th>Helpdesk</th><th>Action</th></tr></thead><tbody>
+{% for e in executions %}<tr><td>{{ e.started_at }}</td><td>{{ e.rule.name }}</td><td>{{ e.claim.claim_id }}</td><td>{{ e.input_status }}</td><td>{{ e.output_status or '—' }}</td><td>{{ e.status }}</td><td>{{ e.error_reason or '—' }}</td><td>{{ e.retry_count }}</td><td>{% if e.support_ticket_id %}<a href="/tickets/{{ e.support_ticket_id }}">Ticket {{ e.support_ticket_id }}</a>{% else %}—{% endif %}</td><td>{% if e.status == 'Failed' and e.retry_count < 3 %}<button onclick="retryWorkflow({{ e.id }})">Retry</button>{% endif %}</td></tr>
+{% else %}<tr><td colspan="10">No workflow events recorded.</td></tr>{% endfor %}</tbody></table></section><section class="card"><h2>Fix a failed rule</h2><p class="muted">Modify its allowed action, then retry the failed execution above. This editing page is Admin-only.</p>
+<form id="rule-edit"><label>Rule<select name="rule_id">{% for r in rules %}<option value="{{ r.id }}">{{ r.name }} — {{ r.action_type }}</option>{% endfor %}</select></label>
+<label>Action<select name="action_type"><option value="assign_team">Assign team</option><option value="evidence_required">Request evidence</option><option value="ready_for_review">Ready for review</option><option value="resolve">Resolve</option><option value="demo_fail">Demonstration failure</option></select></label><button>Update rule</button></form></section><div id="result"></div>
+{% endblock %}{% block scripts %}<script>document.getElementById('rule-edit').addEventListener('submit',e=>{e.preventDefault();execute(async()=>{const x=formObject(e.target);const data=await requestJSON('/api/workflows/rules/'+x.rule_id,'PATCH',{action_type:x.action_type});showResult(JSON.stringify(data));});}); function retryWorkflow(id){execute(async()=>{const data=await requestJSON('/api/workflows/executions/'+id+'/retry','POST');showResult(JSON.stringify(data));});}</script>{% endblock %}
+~~~~~~~
+
+### `app/workflow_schemas.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/app/workflow_schemas.py`. Purpose: """Validated Task 4 API contracts. No arbitrary Python or SQL action execution.""".
+
+~~~~~~~python
+"""Validated Task 4 API contracts. No arbitrary Python or SQL action execution."""
+from typing import Literal
+from pydantic import BaseModel, Field
+
+
+class WorkflowEventIn(BaseModel):
+    claim_id: str = Field(min_length=3, max_length=10)
+    event_type: Literal['submitted', 'missing_documents', 'evidence_received', 'resolved']
+    event_key: str = Field(min_length=8, max_length=100, pattern=r'^[A-Za-z0-9_:\-]+$')
+
+
+class RuleIn(BaseModel):
+    name: str = Field(min_length=3, max_length=120)
+    event_type: Literal['submitted', 'missing_documents', 'evidence_received', 'resolved']
+    action_type: Literal['assign_team', 'evidence_required', 'ready_for_review', 'resolve', 'demo_fail']
+    handler: str | None = Field(default=None, max_length=120)
+
+
+class RulePatch(BaseModel):
+    enabled: bool | None = None
+    action_type: Literal['assign_team', 'evidence_required', 'ready_for_review', 'resolve', 'demo_fail'] | None = None
+    handler: str | None = Field(default=None, min_length=2, max_length=120)
+
+
+class SyncIn(BaseModel):
+    operation_key: str = Field(min_length=8, max_length=100, pattern=r'^[A-Za-z0-9_:\-]+$')
+
+
+class TemplateUpdate(BaseModel):
+    subject: str = Field(min_length=1, max_length=200)
+    body: str = Field(min_length=1, max_length=4000)
+~~~~~~~
+
+### `docs/TASK2_ARCHITECTURE.md` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/docs/TASK2_ARCHITECTURE.md`. Purpose: # Task 2 — implementation and function-level architecture.
+
+~~~~~~~markdown
+# Task 2 — implementation and function-level architecture
+
+This document accompanies the complete source document and `README.md`. It explains the functions, their data flow and how to extend the **existing** Task 1 project without rebuilding or dropping tables.
+
+## Data flow
+
+```text
+Windows 11 browser (HTML / JS)
+    |  signed HttpOnly cookie + X-CSRF-Token
+    v
+app/main.py -> FastAPI routers
+    |  Depends(get_db) and Depends(current_user / require_roles)
+    +-> auth.py    -> security.py -> users
+    +-> tickets.py -> helpdesk_service.py -> tickets, ticket_history, audit_events
+    +-> assets.py  -> asset_service.py    -> assets, asset_movements, audit_events
+    +-> pages.py   -> Jinja2 templates
+    +-> it_reports.py -> it_report_service.py -> Excel downloads
+    +-> original Task 1 claims/imports/reports -> same claims data and existing services
+                     |
+                     v
+              app/db.py -> SQLAlchemy -> pyodbc -> ClaimsITOpsDemo on SQL Server
+```
+
+## Database schema, relationships and constraints
+
+| Table | Role | Database-enforced constraints |
+| --- | --- | --- |
+| `users` | Local accounts for employees, technicians and admins | unique username/email, role CHECK, not-null password hash, active bit. |
+| `assets` | Physical inventory and current holder | unique asset tag/serial, device-type and status CHECKs, warranty order CHECK, employee FK, CHECK tying status Assigned to non-null employee. |
+| `tickets` | Fault, priority, owner, technician, asset, SLA and timestamps | employee/technician/device FKs, priority/category/status CHECKs, SLA due timestamp, indexes on status/due date and assignee. |
+| `ticket_history` | Append-only notes/assignments/status transitions | ticket FK, user FK, timestamp, from/to status, note; indexed by ticket. |
+| `asset_movements` | Each assign/return with human initiator | asset FK, employee FK, actor FK, action and UTC timestamp; indexed by asset. |
+| `audit_events` | Shared Task 1/Task 2 audit log | Old rows retained; nullable import batch and new nullable actor FK; expanded event-type CHECK. |
+
+Task 1 original tables `claims`, `import_batches` and `rejected_rows` are left untouched. The original `AuditEvent` columns and import code remain compatible: `IMPORT_COMPLETED` rows continue to have `import_batch_id`; Task 2 events instead have `actor_user_id` and structured JSON details.
+
+### Ticket uniqueness and SLA
+
+`Ticket.reference` is a read-only SQLAlchemy property derived from the unique database identity `id`. A ticket created with ID 23 has the stable reference `TKT-000023`; there is no secondary reference sequence that can collide, and the integer ID cannot change. The SLA deadline is set once as `created_at + SLA_HOURS[priority]`. Priority changes aren't implemented because they would alter SLA policy retrospectively. `sla_status()` checks the stored resolution timestamp against the due time and flags unresolved overdue tickets at request time. This is a **demonstration SLA policy**, not a contract.
+
+### Asset concurrency and conflicting assignments
+
+`change_assignment()` executes one conditional SQL `UPDATE`:
+
+- Assign only if `status='Available' AND assigned_employee_id IS NULL`.
+- Return only if `status='Assigned' AND assigned_employee_id=<expected-holder>`.
+- Exactly one row must change; otherwise return HTTP 409.
+
+SQL Server updates are atomic and take write locks. This prevents two concurrent requests assigning one device to different employees. A database `ck_assets_assignment` CHECK guards the invariant even against writes outside FastAPI. Every successful operation adds one `asset_movements` row and one `AuditEvent` in the same SQLAlchemy transaction. `tickets.assign()` uses a conditional update to make competing technician self-claims fail rather than overwrite one another.
+
+## Function-by-function reference
+
+### Security (`app/security.py`)
+
+- `hash_password(password)`: generates a new salted Argon2id hash. Hashes—not raw passwords—are stored in `users.password_hash`.
+- `verify_password(hash_value, password)`: safely checks input passwords against Argon2id hashes, returning `False` on mismatches.
+- `signer()`: loads `APP_SECRET_KEY` from the private `.env`; fails closed if the secret is absent or too short. Returns a time-limited signed serializer.
+- `create_session(user)`: issues a signed cookie token containing only user ID and a random CSRF token (no password or role claim).
+- `cookie_secure()`: controls the cookie's HTTPS `Secure` flag from environment, `false` only for local HTTP.
+- `session_data(request)`: validates cookie signature and 8-hour expiry and checks the two required payload fields.
+- `current_user(request, db)`: reloads the account from SQL Server on **each** request, checks `is_active`, and verifies `X-CSRF-Token` on non-GET operations.
+- `require_roles(*roles)`: dependency factory returning a 403 on disallowed access. Used in both APIs and Jinja browser pages.
+- `html_context(request, db)`: exposes only a validated current user and CSRF token to server-rendered pages.
+
+### HTTP validation (`app/schemas.py`)
+
+- `StrictModel`: Pydantic base with forbidden unknown JSON fields and stripped text.
+- `UserCreate` and `UserEdit`: password-length and role validation; admin-only POST/PATCH route enforces privilege controls.
+- `TicketCreate`, `TicketAssign`, `TicketUpdate` and `TicketNote`: validated issue category, priorities, note size and technician ID. `TicketUpdate` status changes are further checked by the ticket state machine.
+- `AssetCreate`: requires asset tag, serial, device type, purchase date and model; the `validate_dates()` model validator blocks future purchase dates and invalid warranty order.
+- `AssetEdit`, `AssetAssign`: restrict edited fields and positive employee IDs. Disallow making a device Assigned simply by editing status.
+- `clean()`: reusable whitespace normaliser for potential future input cleaning extensions.
+
+### Authentication/account routes (`app/routers/auth.py`)
+
+- `public_user()`: serialises safe account fields; never returns `password_hash`.
+- `login()`: validates credentials; sets `nc_session` as HttpOnly, SameSite=Strict cookie and returns a one-time-in-session CSRF token.
+- `logout()`: verifies user/CSRF before clearing the browser cookie.
+- `me()`: returns current user's public account information.
+- `list_users()`: Admin-only listing of accounts.
+- `create_user()`: Admin-only creation, Argon2id hashing, unique-field conflict handling, `USER_CREATED` audit.
+- `edit_user()`: Admin can update fields and reset passwords while blocking self-deactivation, removing the last Admin, role changes conflicting with assigned devices/tickets and duplicate emails. Writes `USER_UPDATED` audit **without recording password values**.
+
+### Helpdesk router (`app/routers/tickets.py`)
+
+- `ticket_query()`: builds an ORM query with related employee, technician, asset and ticket history preloaded for safe JSON serialisation.
+- `create_ticket()`: allows signed-in users to report problems, sets their own identity except Admin submissions on an employee's behalf, checks employee device ownership, generates SLA timestamp, adds the history event and audit in one transaction.
+- `list_tickets()`: checks role and scopes employees to own tickets, technicians to own/assigned tickets, and admins to all tickets; supports status/priority filters and pagination.
+- `detail()`: fetches a single permitted ticket and its full history; returns 404 rather than leaking other employees' ticket IDs.
+- `assign()`: Admin assigns active technicians; technicians only self-claim an unassigned/currently-self-assigned ticket. Conditional SQL UPDATE rejects concurrency conflicts. Records `assigned_at`.
+- `update_ticket()`: enforces the state machine, sets resolved/closed timestamps, requires substantive resolution details, and records from/to status with audit.
+- `add_note()`: Admin or assigned tech adds a troubleshooting entry; closed tickets are read-only. Creates a ticket-history and audit row without replacing earlier notes.
+
+### Helpdesk services (`app/services/helpdesk_service.py`)
+
+- `SLA_HOURS`: business demonstration dictionary (`Low=72`, `Medium=24`, `High=8`, `Critical=2`).
+- `TRANSITIONS`: explicit state machine guarding invalid status jumps.
+- `log_event()`: appends structured changes to **Task 1's existing** `audit_events` table, setting actor and retaining nullable `import_batch_id` for IT events.
+- `ticket_history()`: appends a ticket-specific timeline event and supporting note.
+- `allowed_ticket()` and `require_ticket()`: centralise read/write rules; employee reads own, technician writes assigned only, admin all.
+- `sla_status()`: derives `On track`, `Overdue`, `Met`, `Breached` or `Closed` from dates/current status.
+- `ticket_dict()`: serialises SQLAlchemy ticket and optional history to JSON including reference, employee, technician, asset, SLA and timestamps.
+
+### Inventory routes and service (`app/routers/assets.py`, `app/services/asset_service.py`)
+
+- `asset_query()`: eager-loads the current holder for display.
+- `list_assets()`: Admin/Technician inventory search across tag, serial and model; also filters device type/status and pages results.
+- `create_asset()`: inserts and validates a new Available device; returns HTTP 409 on duplicate tag/serial; logs creation.
+- `get_asset()`: displays a single accessible record.
+- `edit_asset()`: modifies model/OS/warranty/notes/device status; blocks changing assigned devices directly and invalid warranty dates.
+- `assign_asset()`: validates an active Employee recipient and invokes atomic `change_assignment()`.
+- `return_asset()`: invokes atomic return to Available.
+- `asset_dict()`: formats dates, current assignee and metadata.
+- `change_assignment()`: conditional SQL mutation + append-only movement + shared audit event, all committed by the router.
+
+### Pages (`app/routers/pages.py`, `app/routers/dashboard.py`)
+
+- `pages.render()`: supplies logged-in identity and CSRF to Jinja templates.
+- `login_page()`: renders unauthenticated sign-in.
+- `tickets_page()`, `new_ticket_page()`, `ticket_page()`: return role-filtered ticket lists, owned-device picker and detailed timeline/technician controls.
+- `assets_page()`: creates the inventory page for IT roles and supplies eligible employees for assignment dropdowns.
+- `users_page()`: Admin-only account administration.
+- `dashboard.dashboard()`: delivers Task 2 open/resolved/high/overdue/device counts and recent technician audit events; **preserves Task 1 claims charts/uploads only for Admin**. Unauthenticated users are shown the login form.
+
+### Reports (`app/routers/it_reports.py`, `app/services/it_report_service.py`)
+
+- `stream()`: returns a real XLSX download with appropriate Excel MIME type and filename.
+- `export_tickets()`, `export_assets()`, `export_workload()`: enforce server-side IT/Admin reporting permissions.
+- `tickets_report()`: pulls tickets with resolution details, asset tags and SLA outcomes; adds COUNTIF summary formulas.
+- `inventory_report()`: exports device metadata, assignment/warranty and COUNTIF summary formulas.
+- `workload_report()`: groups technician ticket counts and work states for planning.
+- `finish()`: consistently applies Task 1 header styling, freeze panes, filters, widths, workbook recalc flag and returns an in-memory BytesIO object.
+
+### Setup (`scripts/`)
+
+- `migrate_task2.main()`: checks the existing Task 1 tables, parses `GO` batches from the incremental SQL Server script and runs its transactional DDL over the existing `app/db.py` engine.
+- `configure_local.main()`: creates or updates `.env` with a cryptographically random signing key without overwriting existing DB variables or previously set keys.
+- `seed_task2.main()`: insert-only repeatable demo setup for local fake accounts, six devices and four example support tickets.
+- `03_task2_migration.sql`: SQL Server idempotent DDL and Task 1 audit extension; execute directly in SSMS if preferred.
+- `04_task2_checks.sql`: reporting and verification SQL for ticket lifecycle, asset movement, audit events, overdue tickets, duplicate tags and original claims row counts.
+
+## Migrations and data safety
+
+Before upgrade: back up SQL Server. The migration script uses `SET XACT_ABORT ON; BEGIN TRANSACTION; ... COMMIT TRANSACTION;`. In the same transaction it adds the five new tables and modifies only the necessary audit structure. If a statement fails, SQL Server rolls back the transaction. Existing Task 1 import events retain their import batch IDs. Running the script twice doesn't duplicate tables or indexes. **Do not use `Base.metadata.create_all()` as a replacement for an ALTER migration on an existing Task 1 database**.
+
+For the next project milestone, add a separate `scripts/05_task3_migration.sql` and keep all existing source modules rather than duplicating the app.
+
+## End-to-end test of the laptop incident
+
+`tests/test_laptop_walkthrough.py::test_laptop_fault_reported_assigned_investigated_resolved_closed` creates an available fictional laptop, assigns it to an employee, authenticates as that employee to report an issue, authenticates as Admin to assign a technician, authenticates as Technician to add notes and resolve, and returns to Admin to close. It verifies the audit trail, six chronological ticket history entries, device assignment and Excel report response. This follows the browser walkthrough step by step without touching SQL Server during unit tests.
+~~~~~~~
+
+### `docs/TASK3_ARCHITECTURE.md` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/docs/TASK3_ARCHITECTURE.md`. Purpose: # Task 3 architecture — employee joiners and leavers.
+
+~~~~~~~markdown
+# Task 3 architecture — employee joiners and leavers
+
+This is **an extension of Task 1/Task 2**, not a new application. The existing `app/db.py`, Task 1 claims pipelines, Task 2 `User`, `Asset`, `Ticket`, authentication and audit log are reused without recreating tables. The **latest Task 2 login/session fix is preserved**.
+
+## Safety boundary
+
+- All FastAPI onboarding/offboarding routes call only `MockDirectory` and create **AD plans**; none imports or calls real Active Directory cmdlets or live Google credentials. Local HR employee status `Active`/`Offboarded` means *simulated lifecycle*, not live directory state.
+- PowerShell `powershell/Invoke-NorthstarAD.ps1` is dry-run by default (requires no domain or RSAT). Its separate `-LabLive` mode requires an isolated Windows Server lab; actual changes additionally require `-CommitLabChanges`, `NORTHSTAR_AD_LAB_ALLOWED=YES` and a typed confirmation.
+- `RealGoogleDirectory` exists only in `app/services/google_directory.py` and is used only by **standalone** `scripts/google_workspace_lab.py`, never included by the web application. It requires explicit lab opt-in, a service account file OUTSIDE the repository, delegated administrator and the two Directory scopes. Its targets are constrained to a configured allowed lab domain.
+- These are portfolio demonstration controls, not a production employee-identity platform. A production design needs enterprise HR identity matching, a durable outbox/worker for external operations, secret management, full approvals, reconciliation and lifecycle retries.
+
+## Component routing
+
+```text
+Browser /employees
+  -> app/routers/employee_pages.py -> app/templates/employees.html
+    -> app/static/app.js requestJSON() -> /api/employees/*
+      -> app/routers/employees.py (RBAC, CSRF, Pydantic)
+         -> app/services/employee_service.py (atomic SQLAlchemy changes)
+             -> employees / onboarding_requests / offboarding_requests
+             -> provisioning_actions / approval_records / asset_reservations
+             -> Task 2 assets / Task 2 users / original audit_events
+         -> app/services/google_directory.py (MOCK ONLY)
+
+Separate tools (NEVER invoked by API):
+  powershell/Invoke-NorthstarAD.ps1        -> dry-run OR isolated AD lab
+  scripts/google_workspace_lab.py         -> mock OR explicit Google lab
+```
+
+## Model fields and relationships
+
+| Table | Purpose | Integrity |
+|---|---|---|
+| `employees` | HR record, names, manager, department, start date, generated email/AD name, demo status | Unique email/AD username, department/status CHECKs |
+| `onboarding_requests` | Admin request, group/device JSON, preparation state and activation time | Employee and requester FKs; unique onboarding per employee |
+| `offboarding_requests` | Technician/Admin departure request, departure date, reason, separate approver, workflow timestamps | Employee and two user FKs; status CHECK |
+| `provisioning_actions` | Every mock/prepared/failed/manual-required checklist item, target and result | Parent-request exclusive-or CHECK, employee and request FKs, status CHECK |
+| `approval_records` | Approver, rationale, timestamp | Unique offboarding request, approver FK, decision CHECK |
+| `asset_reservations` | Reserved Task 2 laptop link to HR employee and onboarding | Filtered unique indexes on active asset and onboarding reservation; CHECK |
+| `assets` (modified) | Task 2 asset with additional `Reserved` status | Task 2 assignment allows only `Available`; conditional status update atomically reserves |
+| `audit_events` (modified) | Task 1/2/3 event stream | New event types in one extended SQL CHECK; existing rows untouched |
+
+Note: `Employee` is a simulated HR record distinct from existing Task 2 `User` login accounts. This intentionally avoids granting portal accounts just because an external account has been *prepared*. Device reservations are **not** physical issue/return. The offboarding checklist flags outstanding equipment returns instead of falsely marking a device as collected.
+
+## Function-level reference
+
+- `employee_schemas.OnboardIn`: strict name, department, date, group and device validation; duplicate options rejected.
+- `employee_schemas.OffboardIn` / `ApprovalIn`: validates reason/date and requires explicit `confirm: true`.
+- `employee_service.create_onboarding`: verifies a department group allowlist, persists employee/request/checklist, prepares AD user/groups, simulates Google create/group, reserves an available laptop with a conditional SQL UPDATE, audits and commits. A stock shortage is persisted as `Failed`/`Attention`, not silently ignored.
+- `employee_service.activate`: Admin marks the **local simulation** Active only for fully prepared requests; audit is recorded.
+- `employee_service.request_offboarding`: creates `PendingApproval`, blocks duplicate pending/completed requests, audits and commits **without changing accounts**.
+- `employee_service.approve_offboarding`: requires another Admin, inserts unique approval record, prepares AD disable/group review, simulates Google suspension, releases reservations atomically, flags physical device returns, writes audit and commits.
+- `employee_service.ad_plan`: serialises the approved AD-lab plan with allowlisted groups, no credentials.
+- `employee_service.employee_dict`: serialises linked checklist and current reservation for API/dashboard.
+- `google_directory.MockDirectory`: implements create/list/group/update/suspend entirely in process; no network.
+- `google_directory.RealGoogleDirectory`: uses the Google client library and domain-wide delegated service-account credentials **only** when standalone lab configuration is explicitly enabled.
+- `routers.employees`: RBAC and CSRF-protected create/read/activate/offboarding/approval/AD-plan routes; only Admin can provision or approve, Technicians can request offboarding, employees have no HR data access.
+- `routers.employee_pages.index`: serves combined HR statistics, provisioning actions, reservation counts and approval queue for Admin/Technician.
+- `scripts.migrate_task3`: executes SQL Server migration in batches; SQL script owns its transaction.
+- `scripts.seed_task3`: adds a second fictional Admin reviewer only if missing.
+
+## Intentional limitations
+
+- Group removal at departure is **flagged for human review**; no destructive delete operations in the demo.
+- Reservations are distinct from *issuing* a laptop to a Task 2 `User`. A real joiner would later need a mapped portal account, asset handover acknowledgement, and an explicit `Reserved -> Assigned` transaction with local user link.
+- There is no retry scheduler or external event reconciliation because all web operations are mocks. Provisioning actions provide the persistent plan and error trail to extend with a future approval-gated background worker.
+- The SQL Server migration is provided for your own SSMS/SQL Express validation. Automated tests use SQLite to remain usable without AD, Workspace or SQL Server.
+~~~~~~~
+
+### `docs/TASK4_ARCHITECTURE.md` — NEW
+
+Exact location in VS Code: `it-operations-platform/docs/TASK4_ARCHITECTURE.md`. Purpose: # Task 4 architecture — additive integration.
+
+~~~~~~~markdown
+# Task 4 architecture — additive integration
+
+Task 4 is implemented **in the same project** as Tasks 1–3. The SQL Server database remains `ClaimsITOpsDemo`; authentication comes from `app/security.py`; audit events reuse `app/models.AuditEvent`; on failure the new workflow engine creates a real *local* Task 2 `Ticket` and `TicketHistory`.
+
+## Persistent model relationships
+
+- `claims` (Task 1) → `claim_crm_states` (zero/one): operational workflow stage, handler, document flag, CRM ID, sync timestamps; **existing Task 1 fields and constraints are unchanged**.
+- `claims` → `workflow_executions` (many) → `workflow_rules` (one), and optionally → `workflow_transitions` (one success). The database uniqueness on `(claim_id,rule_id,event_key)` prevents replayed events creating a second action.
+- `workflow_executions.support_ticket_id` → `tickets.id` (Task 2). Each failed execution gets one support ticket, never a second escalation on retry.
+- `claims` → `crm_operations` (many): unique operation keys, outcome, retry count and error; outgoing/incoming CRM changes are explicitly requested.
+- `communication_templates`: editable subjects and bodies with allowlisted placeholders; previews only.
+- `audit_events`: new Task 4 event types are added to the original existing constraint and records.
+
+## Operations
+
+1. `app/services/claims_workflow.py`: validates allowed status transitions and rule actions; applies changes transactionally; creates transition/execution/audit rows; escalates a rule failure to a helpdesk ticket. Uses **original** claim status mapping (`Open`, `In Progress`, `Closed`) while retaining richer `ClaimCRMState.stage`.
+2. `app/services/zoho_client.py`: deterministic `MockZohoClient` plus an explicitly opt-in `RealZohoClient` using V8 endpoint naming, OAuth refresh and configurable regional API host, module and field API names. OAuth client secrets/tokens are environment-only and never placed in log messages. Remote reads are limited to 10 pages of 200 records; production sync for larger modules needs incremental paging.
+3. `app/services/crm_sync.py`: correlates remote and local records by claim reference, links a remote record, syncs metadata and maps status; pushes a stage to CRM; logs failure outcomes for manual retry. No automatic, uncontrolled real API requests.
+4. `app/services/claim_templates.py`: validates **only** `{claim_id}`, `{claimant_name}`, `{claim_type}`, `{claim_status}`, `{handler}`, `{submission_date}`. No dotted expressions, indexing, conversions or format-spec expressions. No delivery API.
+5. `app/services/claim_report_service.py`: follows the existing Python Excel reporter and produces seven worksheets including summary formulas and five requested report views.
+6. `app/routers/claims_crm.py`: server-side Admin permission on dashboard data, CRM operations, remote reads and retries.
+7. `app/routers/claim_workflows.py`: Admin-only rule configuration, events, logs, failed execution retry, templates, previews.
+8. `app/routers/claim_pages.py`: three HTML pages reusing Task 2 sessions and CSRF headers from `app/static/app.js`.
+
+## Idempotency and consistency
+
+- A *client-generated immutable event key* identifies the same event across network retries. A claim/rule/event triplet is unique; a successful or failed event is returned as already processed, and failed executions are only retried using the dedicated Admin endpoint.
+- A *client-generated immutable operation key* identifies a CRM pull/push. A result is stored in `crm_operations`; a failed operation can only be retried using the dedicated Admin endpoint, at most three retries.
+- Database check constraints, indexes, and foreign keys enforce core invariants on SQL Server and in SQLite test fixtures. Never run `Base.metadata.drop_all()` against the live SQL Server instance.
+- In a multi-worker production scenario add explicit database row locks/queueing and scheduler-driven CRM paging; Task 4 is a portfolio **local demonstration**.
+
+## Boundaries
+
+Mock CRM data lives in `sample_data/task4_zoho_mock.json` and is not a real Zoho organisation. Browser template previews never send email. Only SQL Server and Task 2 local helpdesk records are changed by default. Real Zoho access requires *both* `ZOHO_MODE=real` and `ZOHO_REAL_ENABLED=YES`, a supported region, credentials and module/field setup. Run real integration only against an authorised Zoho test/sandbox organisation.
+~~~~~~~
+
+### `powershell/Invoke-NorthstarAD.ps1` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/powershell/Invoke-NorthstarAD.ps1`. Purpose: #requires -Version 5.1.
+
+~~~~~~~powershell
+#requires -Version 5.1
+<#
+.SYNOPSIS
+  Northstar Claims Active Directory rehearsal. DRY-RUN BY DEFAULT.
+.EXAMPLE
+  .\powershell\Invoke-NorthstarAD.ps1 -PlanPath .\sample_data\task3_ad_plan.json
+.EXAMPLE
+  .\powershell\Invoke-NorthstarAD.ps1 -PlanPath .\sample_data\task3_ad_plan.json -Action InspectUser
+.NOTES
+  Lab-only: -LabLive loads RSAT; modifying cmdlets use -WhatIf unless -CommitLabChanges
+  AND NORTHSTAR_AD_LAB_ALLOWED=YES and interactive confirmation.
+#>
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory=$true)][string]$PlanPath,
+    [ValidateSet('PrepareAccount','InspectUser','InspectGroups','DisableAccount')][string]$Action='PrepareAccount',
+    [switch]$LabLive,
+    [switch]$CommitLabChanges,
+    [string]$LabServer='dc1.northstar.lab',
+    [string]$LabOU='OU=LabUsers,DC=northstar,DC=lab'
+)
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+$plan = Get-Content -LiteralPath $PlanPath -Raw -Encoding UTF8 | ConvertFrom-Json
+if ($plan.domain -ne 'northstar.lab' -or $plan.samAccountName -notmatch '^nc[0-9]{6}$') {
+    throw 'Plan must target the Northstar fictional AD lab domain and a generated nc user.'
+}
+if ($LabServer -ne 'dc1.northstar.lab' -or $LabOU -ne 'OU=LabUsers,DC=northstar,DC=lab') {
+    throw 'Non-lab target refused. This script only supports the isolated northstar.lab example.'
+}
+foreach ($group in $plan.groups) {
+    if ($group -notin @('SG-Claims-Read','SG-Claims-Write','SG-Operations-Read','SG-Finance-Read','SG-HR-Read','SG-IT-Helpdesk')) {
+        throw "Unapproved lab group $group"
+    }
+}
+if (-not $LabLive) {
+    Write-Host 'DRY RUN. No AD module, network connection or account changes.' -ForegroundColor Cyan
+    [pscustomobject]@{Mode='DryRun';Action=$Action;User=$plan.samAccountName;Groups=$plan.groups;Target=$LabServer} | Format-List
+    switch ($Action) {
+        'PrepareAccount' { Write-Host "WOULD: New-ADUser -Name '$($plan.name)' -SamAccountName '$($plan.samAccountName)' -Server '$LabServer'";
+                           foreach ($g in $plan.groups) { Write-Host "WOULD: Add-ADGroupMember -Identity '$g' -Members '$($plan.samAccountName)'" } }
+        'InspectUser' { Write-Host "WOULD: Get-ADUser -Identity '$($plan.samAccountName)'" }
+        'InspectGroups' { foreach ($g in $plan.groups) { Write-Host "WOULD: Get-ADGroupMember -Identity '$g'" } }
+        'DisableAccount' { Write-Host "WOULD: Disable-ADAccount -Identity '$($plan.samAccountName)'" }
+    }
+    exit 0
+}
+Import-Module ActiveDirectory -ErrorAction Stop
+if ($CommitLabChanges) {
+    if ($env:NORTHSTAR_AD_LAB_ALLOWED -ne 'YES') { throw 'Set NORTHSTAR_AD_LAB_ALLOWED=YES inside the isolated lab only.' }
+    $ack = Read-Host 'Type NORTHSTAR LAB ONLY to commit changes to your isolated domain'
+    if ($ack -cne 'NORTHSTAR LAB ONLY') { throw 'Approval phrase mismatch; no changes made.' }
+}
+$whatIf = -not $CommitLabChanges
+switch ($Action) {
+    'InspectUser' { Get-ADUser -Identity $plan.samAccountName -Server $LabServer -Properties Enabled,EmailAddress,MemberOf |
+                   Select-Object SamAccountName,Enabled,EmailAddress,MemberOf }
+    'InspectGroups' { foreach ($g in $plan.groups) {
+                         Get-ADGroupMember -Identity $g -Server $LabServer | Select-Object @{n='Group';e={$g}},Name,SamAccountName
+                     } }
+    'PrepareAccount' {
+        if ($whatIf) {
+            Write-Host 'Lab connection enabled but changes guarded by -WhatIf.'
+            New-ADUser -Name $plan.name -SamAccountName $plan.samAccountName -UserPrincipalName "$($plan.samAccountName)@northstar.lab" `
+              -EmailAddress $plan.email -Department $plan.department -Title $plan.title -Path $LabOU `
+              -Server $LabServer -Enabled:$false -WhatIf
+            foreach ($g in $plan.groups) { Add-ADGroupMember -Identity $g -Members $plan.samAccountName -Server $LabServer -WhatIf }
+        } else {
+            $password = Read-Host 'Temporary LAB-only password' -AsSecureString
+            New-ADUser -Name $plan.name -SamAccountName $plan.samAccountName -UserPrincipalName "$($plan.samAccountName)@northstar.lab" `
+              -EmailAddress $plan.email -Department $plan.department -Title $plan.title -Path $LabOU `
+              -Server $LabServer -Enabled:$true -AccountPassword $password -ChangePasswordAtLogon $true -ErrorAction Stop
+            foreach ($g in $plan.groups) { Add-ADGroupMember -Identity $g -Members $plan.samAccountName -Server $LabServer -ErrorAction Stop }
+            Get-ADUser -Identity $plan.samAccountName -Server $LabServer | Select-Object Name,SamAccountName,Enabled
+        }
+    }
+    'DisableAccount' {
+        Disable-ADAccount -Identity $plan.samAccountName -Server $LabServer -WhatIf:$whatIf -ErrorAction Stop
+    }
+}
+~~~~~~~
+
+### `pytest.ini` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/pytest.ini`. Purpose: [pytest].
+
+~~~~~~~text
+[pytest]
+testpaths = tests
+addopts = -q
+~~~~~~~
+
+### `requirements-google-lab.txt` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/requirements-google-lab.txt`. Purpose: # OPTIONAL standalone Google lab only; not needed for FastAPI or pytest..
+
+~~~~~~~text
+# OPTIONAL standalone Google lab only; not needed for FastAPI or pytest.
+google-api-python-client>=2.150,<3.0
+google-auth>=2.35,<3.0
+~~~~~~~
+
+### `requirements.txt` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/requirements.txt`. Purpose: fastapi>=0.115,<1.0.
+
+~~~~~~~text
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30,<1.0
+Jinja2>=3.1,<4.0
+SQLAlchemy>=2.0,<3.0
+pyodbc>=5.1,<6.0
+pandas>=2.2,<3.0
+openpyxl>=3.1,<4.0
+python-dotenv>=1.0,<2.0
+python-multipart>=0.0.9,<1.0
+pytest>=8.0,<10.0
+httpx>=0.27,<1.0
+argon2-cffi>=23.1,<26.0
+itsdangerous>=2.2,<3.0
+pydantic>=2.7,<3.0
+~~~~~~~
+
+### `sample_data/northstar_claims_1000.csv` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/sample_data/northstar_claims_1000.csv`. Purpose: claim_id,policy_number,claimant_name,claim_type,incident_date,reported_date,status,amount_gbp,postcode,description.
+
+~~~~~~~csv
+claim_id,policy_number,claimant_name,claim_type,incident_date,reported_date,status,amount_gbp,postcode,description
+NCL-000001,POL-000001,Test Claimant 0001,Home,2024-01-02,2024-01-04,In Progress,100.75,M2 3AB,Fictional portfolio test claim 0001
+NCL-000002,POL-000002,Test Claimant 0002,Travel,2024-01-03,2024-01-06,Closed,101.5,M3 4AD,Fictional portfolio test claim 0002
+NCL-000003,POL-000003,Test Claimant 0003,Business,2024-01-04,2024-01-08,Declined,102.25,M4 5AF,Fictional portfolio test claim 0003
+NCL-000004,POL-000004,Test Claimant 0004,Motor,2024-01-05,2024-01-10,Open,103.0,M5 6AG,Fictional portfolio test claim 0004
+NCL-000005,POL-000005,Test Claimant 0005,Home,2024-01-06,2024-01-12,In Progress,103.75,M1 1AA,Fictional portfolio test claim 0005
+NCL-000006,POL-000006,Test Claimant 0006,Travel,2024-01-07,2024-01-14,Closed,104.5,M2 3AB,Fictional portfolio test claim 0006
+NCL-000007,POL-000007,  test   claimant 0007 ,Business,2024-01-08,2024-01-16,Declined,105.25,M3 4AD,Fictional portfolio test claim 0007
+NCL-000008,POL-000008,Test Claimant 0008,Motor,2024-01-09,2024-01-18,Open,106.0,m4 5af,Fictional portfolio test claim 0008
+NCL-000009,POL-000009,Test Claimant 0009,Home,2024-01-10,2024-01-11, in progress ,106.75,M5 6AG,Fictional portfolio test claim 0009
+NCL-000010,POL-000010,Test Claimant 0010,Travel,2024-01-11,2024-01-13,Closed,107.5,M1 1AA,Fictional portfolio test claim 0010
+ ncl-000011,POL-000011,Test Claimant 0011,Business,2024-01-12,2024-01-15,Declined,108.25,M2 3AB,Fictional portfolio test claim 0011
+NCL-000012,POL-000012,Test Claimant 0012,Motor,2024-01-13,2024-01-17,Open,109.0,M3 4AD,Fictional portfolio test claim 0012
+NCL-000013,pol-000013,Test Claimant 0013,Home,2024-01-14,2024-01-19,In Progress,109.75,M4 5AF,Fictional portfolio test claim 0013
+NCL-000014,POL-000014,  test   claimant 0014 ,Travel,2024-01-15,2024-01-21,Closed,110.5,M5 6AG,Fictional portfolio test claim 0014
+NCL-000015,POL-000015,Test Claimant 0015,Business,2024-01-16,2024-01-23,Declined,111.25,M1 1AA,Fictional portfolio test claim 0015
+NCL-000016,POL-000016,Test Claimant 0016,Motor,2024-01-17,2024-01-25,Open,112.0,m2 3ab,Fictional portfolio test claim 0016
+NCL-000017 ,POL-000017,Test Claimant 0017,Home,2024-01-18,2024-01-27,In Progress,112.75,M3 4AD,Fictional portfolio test claim 0017
+NCL-000018,POL-000018,Test Claimant 0018,Travel,2024-01-19,2024-01-20, closed ,113.5,M4 5AF,Fictional portfolio test claim 0018
+NCL-000019,POL-000019,Test Claimant 0019,business,2024-01-20,2024-01-22,Declined,114.25,M5 6AG,Fictional portfolio test claim 0019
+NCL-000020,POL-000020,Test Claimant 0020,Motor,2024-01-21,2024-01-24,Open,115.0,M1 1AA,Fictional portfolio test claim 0020
+NCL-000021,POL-000021,  test   claimant 0021 ,Home,2024-01-22,2024-01-26,In Progress,115.75,M2 3AB,Fictional portfolio test claim 0021
+ ncl-000022,POL-000022,Test Claimant 0022,Travel,2024-01-23,2024-01-28,Closed,116.5,M3 4AD,Fictional portfolio test claim 0022
+NCL-000023,POL-000023,Test Claimant 0023,Business,2024-01-24,2024-01-30,Declined,117.25,M4 5AF,Fictional portfolio test claim 0023
+NCL-000024,POL-000024,Test Claimant 0024,Motor,2024-01-25,2024-02-01,Open,118.0,m5 6ag,Fictional portfolio test claim 0024
+NCL-000025,POL-000025,Test Claimant 0025,Home,2024-01-26,2024-02-03,In Progress,118.75,M1 1AA,Fictional portfolio test claim 0025
+NCL-000026,pol-000026,Test Claimant 0026,Travel,2024-01-27,2024-02-05,Closed,119.5,M2 3AB,Fictional portfolio test claim 0026
+NCL-000027,POL-000027,Test Claimant 0027,Business,2024-01-28,2024-01-29, declined ,120.25,M3 4AD,Fictional portfolio test claim 0027
+NCL-000028,POL-000028,  test   claimant 0028 ,Motor,2024-01-29,2024-01-31,Open,121.0,M4 5AF,Fictional portfolio test claim 0028
+NCL-000029,POL-000029,Test Claimant 0029,Home,2024-01-30,2024-02-02,In Progress,121.75,M5 6AG,Fictional portfolio test claim 0029
+NCL-000030,POL-000030,Test Claimant 0030,Travel,2024-01-31,2024-02-04,Closed,122.5,M1 1AA,Fictional portfolio test claim 0030
+NCL-000031,POL-000031,Test Claimant 0031,Business,2024-02-01,2024-02-06,Declined,123.25,M2 3AB,Fictional portfolio test claim 0031
+NCL-000032,POL-000032,Test Claimant 0032,Motor,2024-02-02,2024-02-08,Open,124.0,m3 4ad,Fictional portfolio test claim 0032
+ ncl-000033,POL-000033,Test Claimant 0033,Home,2024-02-03,2024-02-10,In Progress,124.75,M4 5AF,Fictional portfolio test claim 0033
+NCL-000034 ,POL-000034,Test Claimant 0034,Travel,2024-02-04,2024-02-12,Closed,125.5,M5 6AG,Fictional portfolio test claim 0034
+NCL-000035,POL-000035,  test   claimant 0035 ,Business,2024-02-05,2024-02-14,Declined,126.25,M1 1AA,Fictional portfolio test claim 0035
+NCL-000036,POL-000036,Test Claimant 0036,Motor,2024-02-06,2024-02-07, open ,127.0,M2 3AB,Fictional portfolio test claim 0036
+NCL-000037,POL-000037,Test Claimant 0037,Home,2024-02-07,2024-02-09,In Progress,127.75,M3 4AD,Fictional portfolio test claim 0037
+NCL-000038,POL-000038,Test Claimant 0038,travel,2024-02-08,2024-02-11,Closed,128.5,M4 5AF,Fictional portfolio test claim 0038
+NCL-000039,pol-000039,Test Claimant 0039,Business,2024-02-09,2024-02-13,Declined,129.25,M5 6AG,Fictional portfolio test claim 0039
+NCL-000040,POL-000040,Test Claimant 0040,Motor,2024-02-10,2024-02-15,Open,130.0,m1 1aa,Fictional portfolio test claim 0040
+NCL-000041,POL-000041,Test Claimant 0041,Home,2024-02-11,2024-02-17,In Progress,130.75,M2 3AB,Fictional portfolio test claim 0041
+NCL-000042,POL-000042,  test   claimant 0042 ,Travel,2024-02-12,2024-02-19,Closed,131.5,M3 4AD,Fictional portfolio test claim 0042
+NCL-000043,POL-000043,Test Claimant 0043,Business,2024-02-13,2024-02-21,Declined,132.25,M4 5AF,Fictional portfolio test claim 0043
+ ncl-000044,POL-000044,Test Claimant 0044,Motor,2024-02-14,2024-02-23,Open,133.0,M5 6AG,Fictional portfolio test claim 0044
+NCL-000045,POL-000045,Test Claimant 0045,Home,2024-02-15,2024-02-16, in progress ,133.75,M1 1AA,Fictional portfolio test claim 0045
+NCL-000046,POL-000046,Test Claimant 0046,Travel,2024-02-16,2024-02-18,Closed,134.5,M2 3AB,Fictional portfolio test claim 0046
+NCL-000047,POL-000047,Test Claimant 0047,Business,2024-02-17,2024-02-20,Declined,135.25,M3 4AD,Fictional portfolio test claim 0047
+NCL-000048,POL-000048,Test Claimant 0048,Motor,2024-02-18,2024-02-22,Open,136.0,m4 5af,Fictional portfolio test claim 0048
+NCL-000049,POL-000049,  test   claimant 0049 ,Home,2024-02-19,2024-02-24,In Progress,136.75,M5 6AG,Fictional portfolio test claim 0049
+NCL-000050,POL-000050,Test Claimant 0050,Travel,2024-02-20,2024-02-26,Closed,137.5,M1 1AA,Fictional portfolio test claim 0050
+NCL-000051 ,POL-000051,Test Claimant 0051,Business,2024-02-21,2024-02-28,Declined,138.25,M2 3AB,Fictional portfolio test claim 0051
+NCL-000052,pol-000052,Test Claimant 0052,Motor,2024-02-22,2024-03-01,Open,139.0,M3 4AD,Fictional portfolio test claim 0052
+NCL-000053,POL-000053,Test Claimant 0053,Home,2024-02-23,2024-03-03,In Progress,139.75,M4 5AF,Fictional portfolio test claim 0053
+NCL-000054,POL-000054,Test Claimant 0054,Travel,2024-02-24,2024-02-25, closed ,140.5,M5 6AG,Fictional portfolio test claim 0054
+ ncl-000055,POL-000055,Test Claimant 0055,Business,2024-02-25,2024-02-27,Declined,141.25,M1 1AA,Fictional portfolio test claim 0055
+NCL-000056,POL-000056,  test   claimant 0056 ,Motor,2024-02-26,2024-02-29,Open,142.0,m2 3ab,Fictional portfolio test claim 0056
+NCL-000057,POL-000057,Test Claimant 0057,home,2024-02-27,2024-03-02,In Progress,142.75,M3 4AD,Fictional portfolio test claim 0057
+NCL-000058,POL-000058,Test Claimant 0058,Travel,2024-02-28,2024-03-04,Closed,143.5,M4 5AF,Fictional portfolio test claim 0058
+NCL-000059,POL-000059,Test Claimant 0059,Business,2024-02-29,2024-03-06,Declined,144.25,M5 6AG,Fictional portfolio test claim 0059
+NCL-000060,POL-000060,Test Claimant 0060,Motor,2024-03-01,2024-03-08,Open,145.0,M1 1AA,Fictional portfolio test claim 0060
+NCL-000061,POL-000061,Test Claimant 0061,Home,2024-03-02,2024-03-10,In Progress,145.75,M2 3AB,Fictional portfolio test claim 0061
+NCL-000062,POL-000062,Test Claimant 0062,Travel,2024-03-03,2024-03-12,Closed,146.5,M3 4AD,Fictional portfolio test claim 0062
+NCL-000063,POL-000063,  test   claimant 0063 ,Business,2024-03-04,2024-03-05, declined ,147.25,M4 5AF,Fictional portfolio test claim 0063
+NCL-000064,POL-000064,Test Claimant 0064,Motor,2024-03-05,2024-03-07,Open,148.0,m5 6ag,Fictional portfolio test claim 0064
+NCL-000065,pol-000065,Test Claimant 0065,Home,2024-03-06,2024-03-09,In Progress,148.75,M1 1AA,Fictional portfolio test claim 0065
+ ncl-000066,POL-000066,Test Claimant 0066,Travel,2024-03-07,2024-03-11,Closed,149.5,M2 3AB,Fictional portfolio test claim 0066
+NCL-000067,POL-000067,Test Claimant 0067,Business,2024-03-08,2024-03-13,Declined,150.25,M3 4AD,Fictional portfolio test claim 0067
+NCL-000068 ,POL-000068,Test Claimant 0068,Motor,2024-03-09,2024-03-15,Open,151.0,M4 5AF,Fictional portfolio test claim 0068
+NCL-000069,POL-000069,Test Claimant 0069,Home,2024-03-10,2024-03-17,In Progress,151.75,M5 6AG,Fictional portfolio test claim 0069
+NCL-000070,POL-000070,  test   claimant 0070 ,Travel,2024-03-11,2024-03-19,Closed,152.5,M1 1AA,Fictional portfolio test claim 0070
+NCL-000071,POL-000071,Test Claimant 0071,Business,2024-03-12,2024-03-21,Declined,153.25,M2 3AB,Fictional portfolio test claim 0071
+NCL-000072,POL-000072,Test Claimant 0072,Motor,2024-03-13,2024-03-14, open ,154.0,m3 4ad,Fictional portfolio test claim 0072
+NCL-000073,POL-000073,Test Claimant 0073,Home,2024-03-14,2024-03-16,In Progress,154.75,M4 5AF,Fictional portfolio test claim 0073
+NCL-000074,POL-000074,Test Claimant 0074,Travel,2024-03-15,2024-03-18,Closed,155.5,M5 6AG,Fictional portfolio test claim 0074
+NCL-000075,POL-000075,Test Claimant 0075,Business,2024-03-16,2024-03-20,Declined,156.25,M1 1AA,Fictional portfolio test claim 0075
+NCL-000076,POL-000076,Test Claimant 0076,motor,2024-03-17,2024-03-22,Open,157.0,M2 3AB,Fictional portfolio test claim 0076
+ ncl-000077,POL-000077,  test   claimant 0077 ,Home,2024-03-18,2024-03-24,In Progress,157.75,M3 4AD,Fictional portfolio test claim 0077
+NCL-000078,pol-000078,Test Claimant 0078,Travel,2024-03-19,2024-03-26,Closed,158.5,M4 5AF,Fictional portfolio test claim 0078
+NCL-000079,POL-000079,Test Claimant 0079,Business,2024-03-20,2024-03-28,Declined,159.25,M5 6AG,Fictional portfolio test claim 0079
+NCL-000080,POL-000080,Test Claimant 0080,Motor,2024-03-21,2024-03-30,Open,160.0,m1 1aa,Fictional portfolio test claim 0080
+NCL-000081,POL-000081,Test Claimant 0081,Home,2024-03-22,2024-03-23, in progress ,160.75,M2 3AB,Fictional portfolio test claim 0081
+NCL-000082,POL-000082,Test Claimant 0082,Travel,2024-03-23,2024-03-25,Closed,161.5,M3 4AD,Fictional portfolio test claim 0082
+NCL-000083,POL-000083,Test Claimant 0083,Business,2024-03-24,2024-03-27,Declined,162.25,M4 5AF,Fictional portfolio test claim 0083
+NCL-000084,POL-000084,  test   claimant 0084 ,Motor,2024-03-25,2024-03-29,Open,163.0,M5 6AG,Fictional portfolio test claim 0084
+NCL-000085 ,POL-000085,Test Claimant 0085,Home,2024-03-26,2024-03-31,In Progress,163.75,M1 1AA,Fictional portfolio test claim 0085
+NCL-000086,POL-000086,Test Claimant 0086,Travel,2024-03-27,2024-04-02,Closed,164.5,M2 3AB,Fictional portfolio test claim 0086
+NCL-000087,POL-000087,Test Claimant 0087,Business,2024-03-28,2024-04-04,Declined,165.25,M3 4AD,Fictional portfolio test claim 0087
+ ncl-000088,POL-000088,Test Claimant 0088,Motor,2024-03-29,2024-04-06,Open,166.0,m4 5af,Fictional portfolio test claim 0088
+NCL-000089,POL-000089,Test Claimant 0089,Home,2024-03-30,2024-04-08,In Progress,166.75,M5 6AG,Fictional portfolio test claim 0089
+NCL-000090,POL-000090,Test Claimant 0090,Travel,2024-03-31,2024-04-01, closed ,167.5,M1 1AA,Fictional portfolio test claim 0090
+NCL-000091,pol-000091,  test   claimant 0091 ,Business,2024-04-01,2024-04-03,Declined,168.25,M2 3AB,Fictional portfolio test claim 0091
+NCL-000092,POL-000092,Test Claimant 0092,Motor,2024-04-02,2024-04-05,Open,169.0,M3 4AD,Fictional portfolio test claim 0092
+NCL-000093,POL-000093,Test Claimant 0093,Home,2024-04-03,2024-04-07,In Progress,169.75,M4 5AF,Fictional portfolio test claim 0093
+NCL-000094,POL-000094,Test Claimant 0094,Travel,2024-04-04,2024-04-09,Closed,170.5,M5 6AG,Fictional portfolio test claim 0094
+NCL-000095,POL-000095,Test Claimant 0095,business,2024-04-05,2024-04-11,Declined,171.25,M1 1AA,Fictional portfolio test claim 0095
+NCL-000096,POL-000096,Test Claimant 0096,Motor,2024-04-06,2024-04-13,Open,172.0,m2 3ab,Fictional portfolio test claim 0096
+NCL-000097,POL-000097,Test Claimant 0097,Home,2024-04-07,2024-04-15,In Progress,172.75,M3 4AD,Fictional portfolio test claim 0097
+NCL-000098,POL-000098,  test   claimant 0098 ,Travel,2024-04-08,2024-04-17,Closed,173.5,M4 5AF,Fictional portfolio test claim 0098
+ ncl-000099,POL-000099,Test Claimant 0099,Business,2024-04-09,2024-04-10, declined ,174.25,M5 6AG,Fictional portfolio test claim 0099
+NCL-000100,POL-000100,Test Claimant 0100,Motor,2024-04-10,2024-04-12,Open,175.0,M1 1AA,Fictional portfolio test claim 0100
+NCL-000101,POL-000101,Test Claimant 0101,Home,2024-04-11,2024-04-14,In Progress,175.75,M2 3AB,Fictional portfolio test claim 0101
+NCL-000102 ,POL-000102,Test Claimant 0102,Travel,2024-04-12,2024-04-16,Closed,176.5,M3 4AD,Fictional portfolio test claim 0102
+NCL-000103,POL-000103,Test Claimant 0103,Business,2024-04-13,2024-04-18,Declined,177.25,M4 5AF,Fictional portfolio test claim 0103
+NCL-000104,pol-000104,Test Claimant 0104,Motor,2024-04-14,2024-04-20,Open,178.0,m5 6ag,Fictional portfolio test claim 0104
+NCL-000105,POL-000105,  test   claimant 0105 ,Home,2024-04-15,2024-04-22,In Progress,178.75,M1 1AA,Fictional portfolio test claim 0105
+NCL-000106,POL-000106,Test Claimant 0106,Travel,2024-04-16,2024-04-24,Closed,179.5,M2 3AB,Fictional portfolio test claim 0106
+NCL-000107,POL-000107,Test Claimant 0107,Business,2024-04-17,2024-04-26,Declined,180.25,M3 4AD,Fictional portfolio test claim 0107
+NCL-000108,POL-000108,Test Claimant 0108,Motor,2024-04-18,2024-04-19, open ,181.0,M4 5AF,Fictional portfolio test claim 0108
+NCL-000109,POL-000109,Test Claimant 0109,Home,2024-04-19,2024-04-21,In Progress,181.75,M5 6AG,Fictional portfolio test claim 0109
+ ncl-000110,POL-000110,Test Claimant 0110,Travel,2024-04-20,2024-04-23,Closed,182.5,M1 1AA,Fictional portfolio test claim 0110
+NCL-000111,POL-000111,Test Claimant 0111,Business,2024-04-21,2024-04-25,Declined,183.25,M2 3AB,Fictional portfolio test claim 0111
+NCL-000112,POL-000112,  test   claimant 0112 ,Motor,2024-04-22,2024-04-27,Open,184.0,m3 4ad,Fictional portfolio test claim 0112
+NCL-000113,POL-000113,Test Claimant 0113,Home,2024-04-23,2024-04-29,In Progress,184.75,M4 5AF,Fictional portfolio test claim 0113
+NCL-000114,POL-000114,Test Claimant 0114,travel,2024-04-24,2024-05-01,Closed,185.5,M5 6AG,Fictional portfolio test claim 0114
+NCL-000115,POL-000115,Test Claimant 0115,Business,2024-04-25,2024-05-03,Declined,186.25,M1 1AA,Fictional portfolio test claim 0115
+NCL-000116,POL-000116,Test Claimant 0116,Motor,2024-04-26,2024-05-05,Open,187.0,M2 3AB,Fictional portfolio test claim 0116
+NCL-000117,pol-000117,Test Claimant 0117,Home,2024-04-27,2024-04-28, in progress ,187.75,M3 4AD,Fictional portfolio test claim 0117
+NCL-000118,POL-000118,Test Claimant 0118,Travel,2024-04-28,2024-04-30,Closed,188.5,M4 5AF,Fictional portfolio test claim 0118
+NCL-000119 ,POL-000119,  test   claimant 0119 ,Business,2024-04-29,2024-05-02,Declined,189.25,M5 6AG,Fictional portfolio test claim 0119
+NCL-000120,POL-000120,Test Claimant 0120,Motor,2024-04-30,2024-05-04,Open,190.0,m1 1aa,Fictional portfolio test claim 0120
+ ncl-000121,POL-000121,Test Claimant 0121,Home,2024-05-01,2024-05-06,In Progress,190.75,M2 3AB,Fictional portfolio test claim 0121
+NCL-000122,POL-000122,Test Claimant 0122,Travel,2024-05-02,2024-05-08,Closed,191.5,M3 4AD,Fictional portfolio test claim 0122
+NCL-000123,POL-000123,Test Claimant 0123,Business,2024-05-03,2024-05-10,Declined,192.25,M4 5AF,Fictional portfolio test claim 0123
+NCL-000124,POL-000124,Test Claimant 0124,Motor,2024-05-04,2024-05-12,Open,193.0,M5 6AG,Fictional portfolio test claim 0124
+NCL-000125,POL-000125,Test Claimant 0125,Home,2024-05-05,2024-05-14,In Progress,193.75,M1 1AA,Fictional portfolio test claim 0125
+NCL-000126,POL-000126,  test   claimant 0126 ,Travel,2024-05-06,2024-05-07, closed ,194.5,M2 3AB,Fictional portfolio test claim 0126
+NCL-000127,POL-000127,Test Claimant 0127,Business,2024-05-07,2024-05-09,Declined,195.25,M3 4AD,Fictional portfolio test claim 0127
+NCL-000128,POL-000128,Test Claimant 0128,Motor,2024-05-08,2024-05-11,Open,196.0,m4 5af,Fictional portfolio test claim 0128
+NCL-000129,POL-000129,Test Claimant 0129,Home,2024-05-09,2024-05-13,In Progress,196.75,M5 6AG,Fictional portfolio test claim 0129
+NCL-000130,pol-000130,Test Claimant 0130,Travel,2024-05-10,2024-05-15,Closed,197.5,M1 1AA,Fictional portfolio test claim 0130
+NCL-000131,POL-000131,Test Claimant 0131,Business,2024-05-11,2024-05-17,Declined,198.25,M2 3AB,Fictional portfolio test claim 0131
+ ncl-000132,POL-000132,Test Claimant 0132,Motor,2024-05-12,2024-05-19,Open,199.0,M3 4AD,Fictional portfolio test claim 0132
+NCL-000133,POL-000133,  test   claimant 0133 ,home,2024-05-13,2024-05-21,In Progress,199.75,M4 5AF,Fictional portfolio test claim 0133
+NCL-000134,POL-000134,Test Claimant 0134,Travel,2024-05-14,2024-05-23,Closed,200.5,M5 6AG,Fictional portfolio test claim 0134
+NCL-000135,POL-000135,Test Claimant 0135,Business,2024-05-15,2024-05-16, declined ,201.25,M1 1AA,Fictional portfolio test claim 0135
+NCL-000136 ,POL-000136,Test Claimant 0136,Motor,2024-05-16,2024-05-18,Open,202.0,m2 3ab,Fictional portfolio test claim 0136
+NCL-000137,POL-000137,Test Claimant 0137,Home,2024-05-17,2024-05-20,In Progress,202.75,M3 4AD,Fictional portfolio test claim 0137
+NCL-000138,POL-000138,Test Claimant 0138,Travel,2024-05-18,2024-05-22,Closed,203.5,M4 5AF,Fictional portfolio test claim 0138
+NCL-000139,POL-000139,Test Claimant 0139,Business,2024-05-19,2024-05-24,Declined,204.25,M5 6AG,Fictional portfolio test claim 0139
+NCL-000140,POL-000140,  test   claimant 0140 ,Motor,2024-05-20,2024-05-26,Open,205.0,M1 1AA,Fictional portfolio test claim 0140
+NCL-000141,POL-000141,Test Claimant 0141,Home,2024-05-21,2024-05-28,In Progress,205.75,M2 3AB,Fictional portfolio test claim 0141
+NCL-000142,POL-000142,Test Claimant 0142,Travel,2024-05-22,2024-05-30,Closed,206.5,M3 4AD,Fictional portfolio test claim 0142
+ ncl-000143,pol-000143,Test Claimant 0143,Business,2024-05-23,2024-06-01,Declined,207.25,M4 5AF,Fictional portfolio test claim 0143
+NCL-000144,POL-000144,Test Claimant 0144,Motor,2024-05-24,2024-05-25, open ,208.0,m5 6ag,Fictional portfolio test claim 0144
+NCL-000145,POL-000145,Test Claimant 0145,Home,2024-05-25,2024-05-27,In Progress,208.75,M1 1AA,Fictional portfolio test claim 0145
+NCL-000146,POL-000146,Test Claimant 0146,Travel,2024-05-26,2024-05-29,Closed,209.5,M2 3AB,Fictional portfolio test claim 0146
+NCL-000147,POL-000147,  test   claimant 0147 ,Business,2024-05-27,2024-05-31,Declined,210.25,M3 4AD,Fictional portfolio test claim 0147
+NCL-000148,POL-000148,Test Claimant 0148,Motor,2024-05-28,2024-06-02,Open,211.0,M4 5AF,Fictional portfolio test claim 0148
+NCL-000149,POL-000149,Test Claimant 0149,Home,2024-05-29,2024-06-04,In Progress,211.75,M5 6AG,Fictional portfolio test claim 0149
+NCL-000150,POL-000150,Test Claimant 0150,Travel,2024-05-30,2024-06-06,Closed,212.5,M1 1AA,Fictional portfolio test claim 0150
+NCL-000151,POL-000151,Test Claimant 0151,Business,2024-05-31,2024-06-08,Declined,213.25,M2 3AB,Fictional portfolio test claim 0151
+NCL-000152,POL-000152,Test Claimant 0152,motor,2024-06-01,2024-06-10,Open,214.0,m3 4ad,Fictional portfolio test claim 0152
+NCL-000153 ,POL-000153,Test Claimant 0153,Home,2024-06-02,2024-06-03, in progress ,214.75,M4 5AF,Fictional portfolio test claim 0153
+ ncl-000154,POL-000154,  test   claimant 0154 ,Travel,2024-06-03,2024-06-05,Closed,215.5,M5 6AG,Fictional portfolio test claim 0154
+NCL-000155,POL-000155,Test Claimant 0155,Business,2024-06-04,2024-06-07,Declined,216.25,M1 1AA,Fictional portfolio test claim 0155
+NCL-000156,pol-000156,Test Claimant 0156,Motor,2024-06-05,2024-06-09,Open,217.0,M2 3AB,Fictional portfolio test claim 0156
+NCL-000157,POL-000157,Test Claimant 0157,Home,2024-06-06,2024-06-11,In Progress,217.75,M3 4AD,Fictional portfolio test claim 0157
+NCL-000158,POL-000158,Test Claimant 0158,Travel,2024-06-07,2024-06-13,Closed,218.5,M4 5AF,Fictional portfolio test claim 0158
+NCL-000159,POL-000159,Test Claimant 0159,Business,2024-06-08,2024-06-15,Declined,219.25,M5 6AG,Fictional portfolio test claim 0159
+NCL-000160,POL-000160,Test Claimant 0160,Motor,2024-06-09,2024-06-17,Open,220.0,m1 1aa,Fictional portfolio test claim 0160
+NCL-000161,POL-000161,  test   claimant 0161 ,Home,2024-06-10,2024-06-19,In Progress,220.75,M2 3AB,Fictional portfolio test claim 0161
+NCL-000162,POL-000162,Test Claimant 0162,Travel,2024-06-11,2024-06-12, closed ,221.5,M3 4AD,Fictional portfolio test claim 0162
+NCL-000163,POL-000163,Test Claimant 0163,Business,2024-06-12,2024-06-14,Declined,222.25,M4 5AF,Fictional portfolio test claim 0163
+NCL-000164,POL-000164,Test Claimant 0164,Motor,2024-06-13,2024-06-16,Open,223.0,M5 6AG,Fictional portfolio test claim 0164
+ ncl-000165,POL-000165,Test Claimant 0165,Home,2024-06-14,2024-06-18,In Progress,223.75,M1 1AA,Fictional portfolio test claim 0165
+NCL-000166,POL-000166,Test Claimant 0166,Travel,2024-06-15,2024-06-20,Closed,224.5,M2 3AB,Fictional portfolio test claim 0166
+NCL-000167,POL-000167,Test Claimant 0167,Business,2024-06-16,2024-06-22,Declined,225.25,M3 4AD,Fictional portfolio test claim 0167
+NCL-000168,POL-000168,  test   claimant 0168 ,Motor,2024-06-17,2024-06-24,Open,226.0,m4 5af,Fictional portfolio test claim 0168
+NCL-000169,pol-000169,Test Claimant 0169,Home,2024-06-18,2024-06-26,In Progress,226.75,M5 6AG,Fictional portfolio test claim 0169
+NCL-000170 ,POL-000170,Test Claimant 0170,Travel,2024-06-19,2024-06-28,Closed,227.5,M1 1AA,Fictional portfolio test claim 0170
+NCL-000171,POL-000171,Test Claimant 0171,business,2024-06-20,2024-06-21, declined ,228.25,M2 3AB,Fictional portfolio test claim 0171
+NCL-000172,POL-000172,Test Claimant 0172,Motor,2024-06-21,2024-06-23,Open,229.0,M3 4AD,Fictional portfolio test claim 0172
+NCL-000173,POL-000173,Test Claimant 0173,Home,2024-06-22,2024-06-25,In Progress,229.75,M4 5AF,Fictional portfolio test claim 0173
+NCL-000174,POL-000174,Test Claimant 0174,Travel,2024-06-23,2024-06-27,Closed,230.5,M5 6AG,Fictional portfolio test claim 0174
+NCL-000175,POL-000175,  test   claimant 0175 ,Business,2024-06-24,2024-06-29,Declined,231.25,M1 1AA,Fictional portfolio test claim 0175
+ ncl-000176,POL-000176,Test Claimant 0176,Motor,2024-06-25,2024-07-01,Open,232.0,m2 3ab,Fictional portfolio test claim 0176
+NCL-000177,POL-000177,Test Claimant 0177,Home,2024-06-26,2024-07-03,In Progress,232.75,M3 4AD,Fictional portfolio test claim 0177
+NCL-000178,POL-000178,Test Claimant 0178,Travel,2024-06-27,2024-07-05,Closed,233.5,M4 5AF,Fictional portfolio test claim 0178
+NCL-000179,POL-000179,Test Claimant 0179,Business,2024-06-28,2024-07-07,Declined,234.25,M5 6AG,Fictional portfolio test claim 0179
+NCL-000180,POL-000180,Test Claimant 0180,Motor,2024-06-29,2024-06-30, open ,235.0,M1 1AA,Fictional portfolio test claim 0180
+NCL-000181,POL-000181,Test Claimant 0181,Home,2024-06-30,2024-07-02,In Progress,235.75,M2 3AB,Fictional portfolio test claim 0181
+NCL-000182,pol-000182,  test   claimant 0182 ,Travel,2024-07-01,2024-07-04,Closed,236.5,M3 4AD,Fictional portfolio test claim 0182
+NCL-000183,POL-000183,Test Claimant 0183,Business,2024-07-02,2024-07-06,Declined,237.25,M4 5AF,Fictional portfolio test claim 0183
+NCL-000184,POL-000184,Test Claimant 0184,Motor,2024-07-03,2024-07-08,Open,238.0,m5 6ag,Fictional portfolio test claim 0184
+NCL-000185,POL-000185,Test Claimant 0185,Home,2024-07-04,2024-07-10,In Progress,238.75,M1 1AA,Fictional portfolio test claim 0185
+NCL-000186,POL-000186,Test Claimant 0186,Travel,2024-07-05,2024-07-12,Closed,239.5,M2 3AB,Fictional portfolio test claim 0186
+ ncl-000187 ,POL-000187,Test Claimant 0187,Business,2024-07-06,2024-07-14,Declined,240.25,M3 4AD,Fictional portfolio test claim 0187
+NCL-000188,POL-000188,Test Claimant 0188,Motor,2024-07-07,2024-07-16,Open,241.0,M4 5AF,Fictional portfolio test claim 0188
+NCL-000189,POL-000189,  test   claimant 0189 ,Home,2024-07-08,2024-07-09, in progress ,241.75,M5 6AG,Fictional portfolio test claim 0189
+NCL-000190,POL-000190,Test Claimant 0190,travel,2024-07-09,2024-07-11,Closed,242.5,M1 1AA,Fictional portfolio test claim 0190
+NCL-000191,POL-000191,Test Claimant 0191,Business,2024-07-10,2024-07-13,Declined,243.25,M2 3AB,Fictional portfolio test claim 0191
+NCL-000192,POL-000192,Test Claimant 0192,Motor,2024-07-11,2024-07-15,Open,244.0,m3 4ad,Fictional portfolio test claim 0192
+NCL-000193,POL-000193,Test Claimant 0193,Home,2024-07-12,2024-07-17,In Progress,244.75,M4 5AF,Fictional portfolio test claim 0193
+NCL-000194,POL-000194,Test Claimant 0194,Travel,2024-07-13,2024-07-19,Closed,245.5,M5 6AG,Fictional portfolio test claim 0194
+NCL-000195,pol-000195,Test Claimant 0195,Business,2024-07-14,2024-07-21,Declined,246.25,M1 1AA,Fictional portfolio test claim 0195
+NCL-000196,POL-000196,  test   claimant 0196 ,Motor,2024-07-15,2024-07-23,Open,247.0,M2 3AB,Fictional portfolio test claim 0196
+NCL-000197,POL-000197,Test Claimant 0197,Home,2024-07-16,2024-07-25,In Progress,247.75,M3 4AD,Fictional portfolio test claim 0197
+ ncl-000198,POL-000198,Test Claimant 0198,Travel,2024-07-17,2024-07-18, closed ,248.5,M4 5AF,Fictional portfolio test claim 0198
+NCL-000199,POL-000199,Test Claimant 0199,Business,2024-07-18,2024-07-20,Declined,249.25,M5 6AG,Fictional portfolio test claim 0199
+NCL-000200,POL-000200,Test Claimant 0200,Motor,2024-07-19,2024-07-22,Open,250.0,m1 1aa,Fictional portfolio test claim 0200
+NCL-000201,POL-000201,Test Claimant 0201,Home,2024-07-20,2024-07-24,In Progress,250.75,M2 3AB,Fictional portfolio test claim 0201
+NCL-000202,POL-000202,Test Claimant 0202,Travel,2024-07-21,2024-07-26,Closed,251.5,M3 4AD,Fictional portfolio test claim 0202
+NCL-000203,POL-000203,  test   claimant 0203 ,Business,2024-07-22,2024-07-28,Declined,252.25,M4 5AF,Fictional portfolio test claim 0203
+NCL-000204 ,POL-000204,Test Claimant 0204,Motor,2024-07-23,2024-07-30,Open,253.0,M5 6AG,Fictional portfolio test claim 0204
+NCL-000205,POL-000205,Test Claimant 0205,Home,2024-07-24,2024-08-01,In Progress,253.75,M1 1AA,Fictional portfolio test claim 0205
+NCL-000206,POL-000206,Test Claimant 0206,Travel,2024-07-25,2024-08-03,Closed,254.5,M2 3AB,Fictional portfolio test claim 0206
+NCL-000207,POL-000207,Test Claimant 0207,Business,2024-07-26,2024-07-27, declined ,255.25,M3 4AD,Fictional portfolio test claim 0207
+NCL-000208,pol-000208,Test Claimant 0208,Motor,2024-07-27,2024-07-29,Open,256.0,m4 5af,Fictional portfolio test claim 0208
+ ncl-000209,POL-000209,Test Claimant 0209,home,2024-07-28,2024-07-31,In Progress,256.75,M5 6AG,Fictional portfolio test claim 0209
+NCL-000210,POL-000210,  test   claimant 0210 ,Travel,2024-07-29,2024-08-02,Closed,257.5,M1 1AA,Fictional portfolio test claim 0210
+NCL-000211,POL-000211,Test Claimant 0211,Business,2024-07-30,2024-08-04,Declined,258.25,M2 3AB,Fictional portfolio test claim 0211
+NCL-000212,POL-000212,Test Claimant 0212,Motor,2024-07-31,2024-08-06,Open,259.0,M3 4AD,Fictional portfolio test claim 0212
+NCL-000213,POL-000213,Test Claimant 0213,Home,2024-08-01,2024-08-08,In Progress,259.75,M4 5AF,Fictional portfolio test claim 0213
+NCL-000214,POL-000214,Test Claimant 0214,Travel,2024-08-02,2024-08-10,Closed,260.5,M5 6AG,Fictional portfolio test claim 0214
+NCL-000215,POL-000215,Test Claimant 0215,Business,2024-08-03,2024-08-12,Declined,261.25,M1 1AA,Fictional portfolio test claim 0215
+NCL-000216,POL-000216,Test Claimant 0216,Motor,2024-08-04,2024-08-05, open ,262.0,m2 3ab,Fictional portfolio test claim 0216
+NCL-000217,POL-000217,  test   claimant 0217 ,Home,2024-08-05,2024-08-07,In Progress,262.75,M3 4AD,Fictional portfolio test claim 0217
+NCL-000218,POL-000218,Test Claimant 0218,Travel,2024-08-06,2024-08-09,Closed,263.5,M4 5AF,Fictional portfolio test claim 0218
+NCL-000219,POL-000219,Test Claimant 0219,Business,2024-08-07,2024-08-11,Declined,264.25,M5 6AG,Fictional portfolio test claim 0219
+ ncl-000220,POL-000220,Test Claimant 0220,Motor,2024-08-08,2024-08-13,Open,265.0,M1 1AA,Fictional portfolio test claim 0220
+NCL-000221 ,pol-000221,Test Claimant 0221,Home,2024-08-09,2024-08-15,In Progress,265.75,M2 3AB,Fictional portfolio test claim 0221
+NCL-000222,POL-000222,Test Claimant 0222,Travel,2024-08-10,2024-08-17,Closed,266.5,M3 4AD,Fictional portfolio test claim 0222
+NCL-000223,POL-000223,Test Claimant 0223,Business,2024-08-11,2024-08-19,Declined,267.25,M4 5AF,Fictional portfolio test claim 0223
+NCL-000224,POL-000224,  test   claimant 0224 ,Motor,2024-08-12,2024-08-21,Open,268.0,m5 6ag,Fictional portfolio test claim 0224
+NCL-000225,POL-000225,Test Claimant 0225,Home,2024-08-13,2024-08-14, in progress ,268.75,M1 1AA,Fictional portfolio test claim 0225
+NCL-000226,POL-000226,Test Claimant 0226,Travel,2024-08-14,2024-08-16,Closed,269.5,M2 3AB,Fictional portfolio test claim 0226
+NCL-000227,POL-000227,Test Claimant 0227,Business,2024-08-15,2024-08-18,Declined,270.25,M3 4AD,Fictional portfolio test claim 0227
+NCL-000228,POL-000228,Test Claimant 0228,motor,2024-08-16,2024-08-20,Open,271.0,M4 5AF,Fictional portfolio test claim 0228
+NCL-000229,POL-000229,Test Claimant 0229,Home,2024-08-17,2024-08-22,In Progress,271.75,M5 6AG,Fictional portfolio test claim 0229
+NCL-000230,POL-000230,Test Claimant 0230,Travel,2024-08-18,2024-08-24,Closed,272.5,M1 1AA,Fictional portfolio test claim 0230
+ ncl-000231,POL-000231,  test   claimant 0231 ,Business,2024-08-19,2024-08-26,Declined,273.25,M2 3AB,Fictional portfolio test claim 0231
+NCL-000232,POL-000232,Test Claimant 0232,Motor,2024-08-20,2024-08-28,Open,274.0,m3 4ad,Fictional portfolio test claim 0232
+NCL-000233,POL-000233,Test Claimant 0233,Home,2024-08-21,2024-08-30,In Progress,274.75,M4 5AF,Fictional portfolio test claim 0233
+NCL-000234,pol-000234,Test Claimant 0234,Travel,2024-08-22,2024-08-23, closed ,275.5,M5 6AG,Fictional portfolio test claim 0234
+NCL-000235,POL-000235,Test Claimant 0235,Business,2024-08-23,2024-08-25,Declined,276.25,M1 1AA,Fictional portfolio test claim 0235
+NCL-000236,POL-000236,Test Claimant 0236,Motor,2024-08-24,2024-08-27,Open,277.0,M2 3AB,Fictional portfolio test claim 0236
+NCL-000237,POL-000237,Test Claimant 0237,Home,2024-08-25,2024-08-29,In Progress,277.75,M3 4AD,Fictional portfolio test claim 0237
+NCL-000238 ,POL-000238,  test   claimant 0238 ,Travel,2024-08-26,2024-08-31,Closed,278.5,M4 5AF,Fictional portfolio test claim 0238
+NCL-000239,POL-000239,Test Claimant 0239,Business,2024-08-27,2024-09-02,Declined,279.25,M5 6AG,Fictional portfolio test claim 0239
+NCL-000240,POL-000240,Test Claimant 0240,Motor,2024-08-28,2024-09-04,Open,280.0,m1 1aa,Fictional portfolio test claim 0240
+NCL-000241,POL-000241,Test Claimant 0241,Home,2024-08-29,2024-09-06,In Progress,280.75,M2 3AB,Fictional portfolio test claim 0241
+ ncl-000242,POL-000242,Test Claimant 0242,Travel,2024-08-30,2024-09-08,Closed,281.5,M3 4AD,Fictional portfolio test claim 0242
+NCL-000243,POL-000243,Test Claimant 0243,Business,2024-08-31,2024-09-01, declined ,282.25,M4 5AF,Fictional portfolio test claim 0243
+NCL-000244,POL-000244,Test Claimant 0244,Motor,2024-09-01,2024-09-03,Open,283.0,M5 6AG,Fictional portfolio test claim 0244
+NCL-000245,POL-000245,  test   claimant 0245 ,Home,2024-09-02,2024-09-05,In Progress,283.75,M1 1AA,Fictional portfolio test claim 0245
+NCL-000246,POL-000246,Test Claimant 0246,Travel,2024-09-03,2024-09-07,Closed,284.5,M2 3AB,Fictional portfolio test claim 0246
+NCL-000247,pol-000247,Test Claimant 0247,business,2024-09-04,2024-09-09,Declined,285.25,M3 4AD,Fictional portfolio test claim 0247
+NCL-000248,POL-000248,Test Claimant 0248,Motor,2024-09-05,2024-09-11,Open,286.0,m4 5af,Fictional portfolio test claim 0248
+NCL-000249,POL-000249,Test Claimant 0249,Home,2024-09-06,2024-09-13,In Progress,286.75,M5 6AG,Fictional portfolio test claim 0249
+NCL-000250,POL-000250,Test Claimant 0250,Travel,2024-09-07,2024-09-15,Closed,287.5,M1 1AA,Fictional portfolio test claim 0250
+NCL-000251,POL-000251,Test Claimant 0251,Business,2024-09-08,2024-09-17,Declined,288.25,M2 3AB,Fictional portfolio test claim 0251
+NCL-000252,POL-000252,  test   claimant 0252 ,Motor,2024-09-09,2024-09-10, open ,289.0,M3 4AD,Fictional portfolio test claim 0252
+ ncl-000253,POL-000253,Test Claimant 0253,Home,2024-09-10,2024-09-12,In Progress,289.75,M4 5AF,Fictional portfolio test claim 0253
+NCL-000254,POL-000254,Test Claimant 0254,Travel,2024-09-11,2024-09-14,Closed,290.5,M5 6AG,Fictional portfolio test claim 0254
+NCL-000255 ,POL-000255,Test Claimant 0255,Business,2024-09-12,2024-09-16,Declined,291.25,M1 1AA,Fictional portfolio test claim 0255
+NCL-000256,POL-000256,Test Claimant 0256,Motor,2024-09-13,2024-09-18,Open,292.0,m2 3ab,Fictional portfolio test claim 0256
+NCL-000257,POL-000257,Test Claimant 0257,Home,2024-09-14,2024-09-20,In Progress,292.75,M3 4AD,Fictional portfolio test claim 0257
+NCL-000258,POL-000258,Test Claimant 0258,Travel,2024-09-15,2024-09-22,Closed,293.5,M4 5AF,Fictional portfolio test claim 0258
+NCL-000259,POL-000259,  test   claimant 0259 ,Business,2024-09-16,2024-09-24,Declined,294.25,M5 6AG,Fictional portfolio test claim 0259
+NCL-000260,pol-000260,Test Claimant 0260,Motor,2024-09-17,2024-09-26,Open,295.0,M1 1AA,Fictional portfolio test claim 0260
+NCL-000261,POL-000261,Test Claimant 0261,Home,2024-09-18,2024-09-19, in progress ,295.75,M2 3AB,Fictional portfolio test claim 0261
+NCL-000262,POL-000262,Test Claimant 0262,Travel,2024-09-19,2024-09-21,Closed,296.5,M3 4AD,Fictional portfolio test claim 0262
+NCL-000263,POL-000263,Test Claimant 0263,Business,2024-09-20,2024-09-23,Declined,297.25,M4 5AF,Fictional portfolio test claim 0263
+ ncl-000264,POL-000264,Test Claimant 0264,Motor,2024-09-21,2024-09-25,Open,298.0,m5 6ag,Fictional portfolio test claim 0264
+NCL-000265,POL-000265,Test Claimant 0265,Home,2024-09-22,2024-09-27,In Progress,298.75,M1 1AA,Fictional portfolio test claim 0265
+NCL-000266,POL-000266,  test   claimant 0266 ,travel,2024-09-23,2024-09-29,Closed,299.5,M2 3AB,Fictional portfolio test claim 0266
+NCL-000267,POL-000267,Test Claimant 0267,Business,2024-09-24,2024-10-01,Declined,300.25,M3 4AD,Fictional portfolio test claim 0267
+NCL-000268,POL-000268,Test Claimant 0268,Motor,2024-09-25,2024-10-03,Open,301.0,M4 5AF,Fictional portfolio test claim 0268
+NCL-000269,POL-000269,Test Claimant 0269,Home,2024-09-26,2024-10-05,In Progress,301.75,M5 6AG,Fictional portfolio test claim 0269
+NCL-000270,POL-000270,Test Claimant 0270,Travel,2024-09-27,2024-09-28, closed ,302.5,M1 1AA,Fictional portfolio test claim 0270
+NCL-000271,POL-000271,Test Claimant 0271,Business,2024-09-28,2024-09-30,Declined,303.25,M2 3AB,Fictional portfolio test claim 0271
+NCL-000272 ,POL-000272,Test Claimant 0272,Motor,2024-09-29,2024-10-02,Open,304.0,m3 4ad,Fictional portfolio test claim 0272
+NCL-000273,pol-000273,  test   claimant 0273 ,Home,2024-09-30,2024-10-04,In Progress,304.75,M4 5AF,Fictional portfolio test claim 0273
+NCL-000274,POL-000274,Test Claimant 0274,Travel,2024-10-01,2024-10-06,Closed,305.5,M5 6AG,Fictional portfolio test claim 0274
+ ncl-000275,POL-000275,Test Claimant 0275,Business,2024-10-02,2024-10-08,Declined,306.25,M1 1AA,Fictional portfolio test claim 0275
+NCL-000276,POL-000276,Test Claimant 0276,Motor,2024-10-03,2024-10-10,Open,307.0,M2 3AB,Fictional portfolio test claim 0276
+NCL-000277,POL-000277,Test Claimant 0277,Home,2024-10-04,2024-10-12,In Progress,307.75,M3 4AD,Fictional portfolio test claim 0277
+NCL-000278,POL-000278,Test Claimant 0278,Travel,2024-10-05,2024-10-14,Closed,308.5,M4 5AF,Fictional portfolio test claim 0278
+NCL-000279,POL-000279,Test Claimant 0279,Business,2024-10-06,2024-10-07, declined ,309.25,M5 6AG,Fictional portfolio test claim 0279
+NCL-000280,POL-000280,  test   claimant 0280 ,Motor,2024-10-07,2024-10-09,Open,310.0,m1 1aa,Fictional portfolio test claim 0280
+NCL-000281,POL-000281,Test Claimant 0281,Home,2024-10-08,2024-10-11,In Progress,310.75,M2 3AB,Fictional portfolio test claim 0281
+NCL-000282,POL-000282,Test Claimant 0282,Travel,2024-10-09,2024-10-13,Closed,311.5,M3 4AD,Fictional portfolio test claim 0282
+NCL-000283,POL-000283,Test Claimant 0283,Business,2024-10-10,2024-10-15,Declined,312.25,M4 5AF,Fictional portfolio test claim 0283
+NCL-000284,POL-000284,Test Claimant 0284,Motor,2024-10-11,2024-10-17,Open,313.0,M5 6AG,Fictional portfolio test claim 0284
+NCL-000285,POL-000285,Test Claimant 0285,home,2024-10-12,2024-10-19,In Progress,313.75,M1 1AA,Fictional portfolio test claim 0285
+ ncl-000286,pol-000286,Test Claimant 0286,Travel,2024-10-13,2024-10-21,Closed,314.5,M2 3AB,Fictional portfolio test claim 0286
+NCL-000287,POL-000287,  test   claimant 0287 ,Business,2024-10-14,2024-10-23,Declined,315.25,M3 4AD,Fictional portfolio test claim 0287
+NCL-000288,POL-000288,Test Claimant 0288,Motor,2024-10-15,2024-10-16, open ,316.0,m4 5af,Fictional portfolio test claim 0288
+NCL-000289 ,POL-000289,Test Claimant 0289,Home,2024-10-16,2024-10-18,In Progress,316.75,M5 6AG,Fictional portfolio test claim 0289
+NCL-000290,POL-000290,Test Claimant 0290,Travel,2024-10-17,2024-10-20,Closed,317.5,M1 1AA,Fictional portfolio test claim 0290
+NCL-000291,POL-000291,Test Claimant 0291,Business,2024-10-18,2024-10-22,Declined,318.25,M2 3AB,Fictional portfolio test claim 0291
+NCL-000292,POL-000292,Test Claimant 0292,Motor,2024-10-19,2024-10-24,Open,319.0,M3 4AD,Fictional portfolio test claim 0292
+NCL-000293,POL-000293,Test Claimant 0293,Home,2024-10-20,2024-10-26,In Progress,319.75,M4 5AF,Fictional portfolio test claim 0293
+NCL-000294,POL-000294,  test   claimant 0294 ,Travel,2024-10-21,2024-10-28,Closed,320.5,M5 6AG,Fictional portfolio test claim 0294
+NCL-000295,POL-000295,Test Claimant 0295,Business,2024-10-22,2024-10-30,Declined,321.25,M1 1AA,Fictional portfolio test claim 0295
+NCL-000296,POL-000296,Test Claimant 0296,Motor,2024-10-23,2024-11-01,Open,322.0,m2 3ab,Fictional portfolio test claim 0296
+ ncl-000297,POL-000297,Test Claimant 0297,Home,2024-10-24,2024-10-25, in progress ,322.75,M3 4AD,Fictional portfolio test claim 0297
+NCL-000298,POL-000298,Test Claimant 0298,Travel,2024-10-25,2024-10-27,Closed,323.5,M4 5AF,Fictional portfolio test claim 0298
+NCL-000299,pol-000299,Test Claimant 0299,Business,2024-10-26,2024-10-29,Declined,324.25,M5 6AG,Fictional portfolio test claim 0299
+NCL-000300,POL-000300,Test Claimant 0300,Motor,2024-01-01,2024-01-05,Open,325.0,M1 1AA,Fictional portfolio test claim 0300
+NCL-000301,POL-000301,  test   claimant 0301 ,Home,2024-01-02,2024-01-07,In Progress,325.75,M2 3AB,Fictional portfolio test claim 0301
+NCL-000302,POL-000302,Test Claimant 0302,Travel,2024-01-03,2024-01-09,Closed,326.5,M3 4AD,Fictional portfolio test claim 0302
+NCL-000303,POL-000303,Test Claimant 0303,Business,2024-01-04,2024-01-11,Declined,327.25,M4 5AF,Fictional portfolio test claim 0303
+NCL-000304,POL-000304,Test Claimant 0304,motor,2024-01-05,2024-01-13,Open,328.0,m5 6ag,Fictional portfolio test claim 0304
+NCL-000305,POL-000305,Test Claimant 0305,Home,2024-01-06,2024-01-15,In Progress,328.75,M1 1AA,Fictional portfolio test claim 0305
+NCL-000306 ,POL-000306,Test Claimant 0306,Travel,2024-01-07,2024-01-08, closed ,329.5,M2 3AB,Fictional portfolio test claim 0306
+NCL-000307,POL-000307,Test Claimant 0307,Business,2024-01-08,2024-01-10,Declined,330.25,M3 4AD,Fictional portfolio test claim 0307
+ ncl-000308,POL-000308,  test   claimant 0308 ,Motor,2024-01-09,2024-01-12,Open,331.0,M4 5AF,Fictional portfolio test claim 0308
+NCL-000309,POL-000309,Test Claimant 0309,Home,2024-01-10,2024-01-14,In Progress,331.75,M5 6AG,Fictional portfolio test claim 0309
+NCL-000310,POL-000310,Test Claimant 0310,Travel,2024-01-11,2024-01-16,Closed,332.5,M1 1AA,Fictional portfolio test claim 0310
+NCL-000311,POL-000311,Test Claimant 0311,Business,2024-01-12,2024-01-18,Declined,333.25,M2 3AB,Fictional portfolio test claim 0311
+NCL-000312,pol-000312,Test Claimant 0312,Motor,2024-01-13,2024-01-20,Open,334.0,m3 4ad,Fictional portfolio test claim 0312
+NCL-000313,POL-000313,Test Claimant 0313,Home,2024-01-14,2024-01-22,In Progress,334.75,M4 5AF,Fictional portfolio test claim 0313
+NCL-000314,POL-000314,Test Claimant 0314,Travel,2024-01-15,2024-01-24,Closed,335.5,M5 6AG,Fictional portfolio test claim 0314
+NCL-000315,POL-000315,  test   claimant 0315 ,Business,2024-01-16,2024-01-17, declined ,336.25,M1 1AA,Fictional portfolio test claim 0315
+NCL-000316,POL-000316,Test Claimant 0316,Motor,2024-01-17,2024-01-19,Open,337.0,M2 3AB,Fictional portfolio test claim 0316
+NCL-000317,POL-000317,Test Claimant 0317,Home,2024-01-18,2024-01-21,In Progress,337.75,M3 4AD,Fictional portfolio test claim 0317
+NCL-000318,POL-000318,Test Claimant 0318,Travel,2024-01-19,2024-01-23,Closed,338.5,M4 5AF,Fictional portfolio test claim 0318
+ ncl-000319,POL-000319,Test Claimant 0319,Business,2024-01-20,2024-01-25,Declined,339.25,M5 6AG,Fictional portfolio test claim 0319
+NCL-000320,POL-000320,Test Claimant 0320,Motor,2024-01-21,2024-01-27,Open,340.0,m1 1aa,Fictional portfolio test claim 0320
+NCL-000321,POL-000321,Test Claimant 0321,Home,2024-01-22,2024-01-29,In Progress,340.75,M2 3AB,Fictional portfolio test claim 0321
+NCL-000322,POL-000322,  test   claimant 0322 ,Travel,2024-01-23,2024-01-31,Closed,341.5,M3 4AD,Fictional portfolio test claim 0322
+NCL-000323 ,POL-000323,Test Claimant 0323,business,2024-01-24,2024-02-02,Declined,342.25,M4 5AF,Fictional portfolio test claim 0323
+NCL-000324,POL-000324,Test Claimant 0324,Motor,2024-01-25,2024-01-26, open ,343.0,M5 6AG,Fictional portfolio test claim 0324
+NCL-000325,pol-000325,Test Claimant 0325,Home,2024-01-26,2024-01-28,In Progress,343.75,M1 1AA,Fictional portfolio test claim 0325
+NCL-000326,POL-000326,Test Claimant 0326,Travel,2024-01-27,2024-01-30,Closed,344.5,M2 3AB,Fictional portfolio test claim 0326
+NCL-000327,POL-000327,Test Claimant 0327,Business,2024-01-28,2024-02-01,Declined,345.25,M3 4AD,Fictional portfolio test claim 0327
+NCL-000328,POL-000328,Test Claimant 0328,Motor,2024-01-29,2024-02-03,Open,346.0,m4 5af,Fictional portfolio test claim 0328
+NCL-000329,POL-000329,  test   claimant 0329 ,Home,2024-01-30,2024-02-05,In Progress,346.75,M5 6AG,Fictional portfolio test claim 0329
+ ncl-000330,POL-000330,Test Claimant 0330,Travel,2024-01-31,2024-02-07,Closed,347.5,M1 1AA,Fictional portfolio test claim 0330
+NCL-000331,POL-000331,Test Claimant 0331,Business,2024-02-01,2024-02-09,Declined,348.25,M2 3AB,Fictional portfolio test claim 0331
+NCL-000332,POL-000332,Test Claimant 0332,Motor,2024-02-02,2024-02-11,Open,349.0,M3 4AD,Fictional portfolio test claim 0332
+NCL-000333,POL-000333,Test Claimant 0333,Home,2024-02-03,2024-02-04, in progress ,349.75,M4 5AF,Fictional portfolio test claim 0333
+NCL-000334,POL-000334,Test Claimant 0334,Travel,2024-02-04,2024-02-06,Closed,350.5,M5 6AG,Fictional portfolio test claim 0334
+NCL-000335,POL-000335,Test Claimant 0335,Business,2024-02-05,2024-02-08,Declined,351.25,M1 1AA,Fictional portfolio test claim 0335
+NCL-000336,POL-000336,  test   claimant 0336 ,Motor,2024-02-06,2024-02-10,Open,352.0,m2 3ab,Fictional portfolio test claim 0336
+NCL-000337,POL-000337,Test Claimant 0337,Home,2024-02-07,2024-02-12,In Progress,352.75,M3 4AD,Fictional portfolio test claim 0337
+NCL-000338,pol-000338,Test Claimant 0338,Travel,2024-02-08,2024-02-14,Closed,353.5,M4 5AF,Fictional portfolio test claim 0338
+NCL-000339,POL-000339,Test Claimant 0339,Business,2024-02-09,2024-02-16,Declined,354.25,M5 6AG,Fictional portfolio test claim 0339
+NCL-000340 ,POL-000340,Test Claimant 0340,Motor,2024-02-10,2024-02-18,Open,355.0,M1 1AA,Fictional portfolio test claim 0340
+ ncl-000341,POL-000341,Test Claimant 0341,Home,2024-02-11,2024-02-20,In Progress,355.75,M2 3AB,Fictional portfolio test claim 0341
+NCL-000342,POL-000342,Test Claimant 0342,travel,2024-02-12,2024-02-13, closed ,356.5,M3 4AD,Fictional portfolio test claim 0342
+NCL-000343,POL-000343,  test   claimant 0343 ,Business,2024-02-13,2024-02-15,Declined,357.25,M4 5AF,Fictional portfolio test claim 0343
+NCL-000344,POL-000344,Test Claimant 0344,Motor,2024-02-14,2024-02-17,Open,358.0,m5 6ag,Fictional portfolio test claim 0344
+NCL-000345,POL-000345,Test Claimant 0345,Home,2024-02-15,2024-02-19,In Progress,358.75,M1 1AA,Fictional portfolio test claim 0345
+NCL-000346,POL-000346,Test Claimant 0346,Travel,2024-02-16,2024-02-21,Closed,359.5,M2 3AB,Fictional portfolio test claim 0346
+NCL-000347,POL-000347,Test Claimant 0347,Business,2024-02-17,2024-02-23,Declined,360.25,M3 4AD,Fictional portfolio test claim 0347
+NCL-000348,POL-000348,Test Claimant 0348,Motor,2024-02-18,2024-02-25,Open,361.0,M4 5AF,Fictional portfolio test claim 0348
+NCL-000349,POL-000349,Test Claimant 0349,Home,2024-02-19,2024-02-27,In Progress,361.75,M5 6AG,Fictional portfolio test claim 0349
+NCL-000350,POL-000350,  test   claimant 0350 ,Travel,2024-02-20,2024-02-29,Closed,362.5,M1 1AA,Fictional portfolio test claim 0350
+NCL-000351,pol-000351,Test Claimant 0351,Business,2024-02-21,2024-02-22, declined ,363.25,M2 3AB,Fictional portfolio test claim 0351
+ ncl-000352,POL-000352,Test Claimant 0352,Motor,2024-02-22,2024-02-24,Open,364.0,m3 4ad,Fictional portfolio test claim 0352
+NCL-000353,POL-000353,Test Claimant 0353,Home,2024-02-23,2024-02-26,In Progress,364.75,M4 5AF,Fictional portfolio test claim 0353
+NCL-000354,POL-000354,Test Claimant 0354,Travel,2024-02-24,2024-02-28,Closed,365.5,M5 6AG,Fictional portfolio test claim 0354
+NCL-000355,POL-000355,Test Claimant 0355,Business,2024-02-25,2024-03-01,Declined,366.25,M1 1AA,Fictional portfolio test claim 0355
+NCL-000356,POL-000356,Test Claimant 0356,Motor,2024-02-26,2024-03-03,Open,367.0,M2 3AB,Fictional portfolio test claim 0356
+NCL-000357 ,POL-000357,  test   claimant 0357 ,Home,2024-02-27,2024-03-05,In Progress,367.75,M3 4AD,Fictional portfolio test claim 0357
+NCL-000358,POL-000358,Test Claimant 0358,Travel,2024-02-28,2024-03-07,Closed,368.5,M4 5AF,Fictional portfolio test claim 0358
+NCL-000359,POL-000359,Test Claimant 0359,Business,2024-02-29,2024-03-09,Declined,369.25,M5 6AG,Fictional portfolio test claim 0359
+NCL-000360,POL-000360,Test Claimant 0360,Motor,2024-03-01,2024-03-02, open ,370.0,m1 1aa,Fictional portfolio test claim 0360
+NCL-000361,POL-000361,Test Claimant 0361,home,2024-03-02,2024-03-04,In Progress,370.75,M2 3AB,Fictional portfolio test claim 0361
+NCL-000362,POL-000362,Test Claimant 0362,Travel,2024-03-03,2024-03-06,Closed,371.5,M3 4AD,Fictional portfolio test claim 0362
+ ncl-000363,POL-000363,Test Claimant 0363,Business,2024-03-04,2024-03-08,Declined,372.25,M4 5AF,Fictional portfolio test claim 0363
+NCL-000364,pol-000364,  test   claimant 0364 ,Motor,2024-03-05,2024-03-10,Open,373.0,M5 6AG,Fictional portfolio test claim 0364
+NCL-000365,POL-000365,Test Claimant 0365,Home,2024-03-06,2024-03-12,In Progress,373.75,M1 1AA,Fictional portfolio test claim 0365
+NCL-000366,POL-000366,Test Claimant 0366,Travel,2024-03-07,2024-03-14,Closed,374.5,M2 3AB,Fictional portfolio test claim 0366
+NCL-000367,POL-000367,Test Claimant 0367,Business,2024-03-08,2024-03-16,Declined,375.25,M3 4AD,Fictional portfolio test claim 0367
+NCL-000368,POL-000368,Test Claimant 0368,Motor,2024-03-09,2024-03-18,Open,376.0,m4 5af,Fictional portfolio test claim 0368
+NCL-000369,POL-000369,Test Claimant 0369,Home,2024-03-10,2024-03-11, in progress ,376.75,M5 6AG,Fictional portfolio test claim 0369
+NCL-000370,POL-000370,Test Claimant 0370,Travel,2024-03-11,2024-03-13,Closed,377.5,M1 1AA,Fictional portfolio test claim 0370
+NCL-000371,POL-000371,  test   claimant 0371 ,Business,2024-03-12,2024-03-15,Declined,378.25,M2 3AB,Fictional portfolio test claim 0371
+NCL-000372,POL-000372,Test Claimant 0372,Motor,2024-03-13,2024-03-17,Open,379.0,M3 4AD,Fictional portfolio test claim 0372
+NCL-000373,POL-000373,Test Claimant 0373,Home,2024-03-14,2024-03-19,In Progress,379.75,M4 5AF,Fictional portfolio test claim 0373
+ ncl-000374 ,POL-000374,Test Claimant 0374,Travel,2024-03-15,2024-03-21,Closed,380.5,M5 6AG,Fictional portfolio test claim 0374
+NCL-000375,POL-000375,Test Claimant 0375,Business,2024-03-16,2024-03-23,Declined,381.25,M1 1AA,Fictional portfolio test claim 0375
+NCL-000376,POL-000376,Test Claimant 0376,Motor,2024-03-17,2024-03-25,Open,382.0,m2 3ab,Fictional portfolio test claim 0376
+NCL-000377,pol-000377,Test Claimant 0377,Home,2024-03-18,2024-03-27,In Progress,382.75,M3 4AD,Fictional portfolio test claim 0377
+NCL-000378,POL-000378,  test   claimant 0378 ,Travel,2024-03-19,2024-03-20, closed ,383.5,M4 5AF,Fictional portfolio test claim 0378
+NCL-000379,POL-000379,Test Claimant 0379,Business,2024-03-20,2024-03-22,Declined,384.25,M5 6AG,Fictional portfolio test claim 0379
+NCL-000380,POL-000380,Test Claimant 0380,motor,2024-03-21,2024-03-24,Open,385.0,M1 1AA,Fictional portfolio test claim 0380
+NCL-000381,POL-000381,Test Claimant 0381,Home,2024-03-22,2024-03-26,In Progress,385.75,M2 3AB,Fictional portfolio test claim 0381
+NCL-000382,POL-000382,Test Claimant 0382,Travel,2024-03-23,2024-03-28,Closed,386.5,M3 4AD,Fictional portfolio test claim 0382
+NCL-000383,POL-000383,Test Claimant 0383,Business,2024-03-24,2024-03-30,Declined,387.25,M4 5AF,Fictional portfolio test claim 0383
+NCL-000384,POL-000384,Test Claimant 0384,Motor,2024-03-25,2024-04-01,Open,388.0,m5 6ag,Fictional portfolio test claim 0384
+ ncl-000385,POL-000385,  test   claimant 0385 ,Home,2024-03-26,2024-04-03,In Progress,388.75,M1 1AA,Fictional portfolio test claim 0385
+NCL-000386,POL-000386,Test Claimant 0386,Travel,2024-03-27,2024-04-05,Closed,389.5,M2 3AB,Fictional portfolio test claim 0386
+NCL-000387,POL-000387,Test Claimant 0387,Business,2024-03-28,2024-03-29, declined ,390.25,M3 4AD,Fictional portfolio test claim 0387
+NCL-000388,POL-000388,Test Claimant 0388,Motor,2024-03-29,2024-03-31,Open,391.0,M4 5AF,Fictional portfolio test claim 0388
+NCL-000389,POL-000389,Test Claimant 0389,Home,2024-03-30,2024-04-02,In Progress,391.75,M5 6AG,Fictional portfolio test claim 0389
+NCL-000390,pol-000390,Test Claimant 0390,Travel,2024-03-31,2024-04-04,Closed,392.5,M1 1AA,Fictional portfolio test claim 0390
+NCL-000391 ,POL-000391,Test Claimant 0391,Business,2024-04-01,2024-04-06,Declined,393.25,M2 3AB,Fictional portfolio test claim 0391
+NCL-000392,POL-000392,  test   claimant 0392 ,Motor,2024-04-02,2024-04-08,Open,394.0,m3 4ad,Fictional portfolio test claim 0392
+NCL-000393,POL-000393,Test Claimant 0393,Home,2024-04-03,2024-04-10,In Progress,394.75,M4 5AF,Fictional portfolio test claim 0393
+NCL-000394,POL-000394,Test Claimant 0394,Travel,2024-04-04,2024-04-12,Closed,395.5,M5 6AG,Fictional portfolio test claim 0394
+NCL-000395,POL-000395,Test Claimant 0395,Business,2024-04-05,2024-04-14,Declined,396.25,M1 1AA,Fictional portfolio test claim 0395
+ ncl-000396,POL-000396,Test Claimant 0396,Motor,2024-04-06,2024-04-07, open ,397.0,M2 3AB,Fictional portfolio test claim 0396
+NCL-000397,POL-000397,Test Claimant 0397,Home,2024-04-07,2024-04-09,In Progress,397.75,M3 4AD,Fictional portfolio test claim 0397
+NCL-000398,POL-000398,Test Claimant 0398,Travel,2024-04-08,2024-04-11,Closed,398.5,M4 5AF,Fictional portfolio test claim 0398
+NCL-000399,POL-000399,  test   claimant 0399 ,business,2024-04-09,2024-04-13,Declined,399.25,M5 6AG,Fictional portfolio test claim 0399
+NCL-000400,POL-000400,Test Claimant 0400,Motor,2024-04-10,2024-04-15,Open,400.0,m1 1aa,Fictional portfolio test claim 0400
+NCL-000401,POL-000401,Test Claimant 0401,Home,2024-04-11,2024-04-17,In Progress,400.75,M2 3AB,Fictional portfolio test claim 0401
+NCL-000402,POL-000402,Test Claimant 0402,Travel,2024-04-12,2024-04-19,Closed,401.5,M3 4AD,Fictional portfolio test claim 0402
+NCL-000403,pol-000403,Test Claimant 0403,Business,2024-04-13,2024-04-21,Declined,402.25,M4 5AF,Fictional portfolio test claim 0403
+NCL-000404,POL-000404,Test Claimant 0404,Motor,2024-04-14,2024-04-23,Open,403.0,M5 6AG,Fictional portfolio test claim 0404
+NCL-000405,POL-000405,Test Claimant 0405,Home,2024-04-15,2024-04-16, in progress ,403.75,M1 1AA,Fictional portfolio test claim 0405
+NCL-000406,POL-000406,  test   claimant 0406 ,Travel,2024-04-16,2024-04-18,Closed,404.5,M2 3AB,Fictional portfolio test claim 0406
+ ncl-000407,POL-000407,Test Claimant 0407,Business,2024-04-17,2024-04-20,Declined,405.25,M3 4AD,Fictional portfolio test claim 0407
+NCL-000408 ,POL-000408,Test Claimant 0408,Motor,2024-04-18,2024-04-22,Open,406.0,m4 5af,Fictional portfolio test claim 0408
+NCL-000409,POL-000409,Test Claimant 0409,Home,2024-04-19,2024-04-24,In Progress,406.75,M5 6AG,Fictional portfolio test claim 0409
+NCL-000410,POL-000410,Test Claimant 0410,Travel,2024-04-20,2024-04-26,Closed,407.5,M1 1AA,Fictional portfolio test claim 0410
+NCL-000411,POL-000411,Test Claimant 0411,Business,2024-04-21,2024-04-28,Declined,408.25,M2 3AB,Fictional portfolio test claim 0411
+NCL-000412,POL-000412,Test Claimant 0412,Motor,2024-04-22,2024-04-30,Open,409.0,M3 4AD,Fictional portfolio test claim 0412
+NCL-000413,POL-000413,  test   claimant 0413 ,Home,2024-04-23,2024-05-02,In Progress,409.75,M4 5AF,Fictional portfolio test claim 0413
+NCL-000414,POL-000414,Test Claimant 0414,Travel,2024-04-24,2024-04-25, closed ,410.5,M5 6AG,Fictional portfolio test claim 0414
+NCL-000415,POL-000415,Test Claimant 0415,Business,2024-04-25,2024-04-27,Declined,411.25,M1 1AA,Fictional portfolio test claim 0415
+NCL-000416,pol-000416,Test Claimant 0416,Motor,2024-04-26,2024-04-29,Open,412.0,m2 3ab,Fictional portfolio test claim 0416
+NCL-000417,POL-000417,Test Claimant 0417,Home,2024-04-27,2024-05-01,In Progress,412.75,M3 4AD,Fictional portfolio test claim 0417
+ ncl-000418,POL-000418,Test Claimant 0418,travel,2024-04-28,2024-05-03,Closed,413.5,M4 5AF,Fictional portfolio test claim 0418
+NCL-000419,POL-000419,Test Claimant 0419,Business,2024-04-29,2024-05-05,Declined,414.25,M5 6AG,Fictional portfolio test claim 0419
+NCL-000420,POL-000420,  test   claimant 0420 ,Motor,2024-04-30,2024-05-07,Open,415.0,M1 1AA,Fictional portfolio test claim 0420
+NCL-000421,POL-000421,Test Claimant 0421,Home,2024-05-01,2024-05-09,In Progress,415.75,M2 3AB,Fictional portfolio test claim 0421
+NCL-000422,POL-000422,Test Claimant 0422,Travel,2024-05-02,2024-05-11,Closed,416.5,M3 4AD,Fictional portfolio test claim 0422
+NCL-000423,POL-000423,Test Claimant 0423,Business,2024-05-03,2024-05-04, declined ,417.25,M4 5AF,Fictional portfolio test claim 0423
+NCL-000424,POL-000424,Test Claimant 0424,Motor,2024-05-04,2024-05-06,Open,418.0,m5 6ag,Fictional portfolio test claim 0424
+NCL-000425 ,POL-000425,Test Claimant 0425,Home,2024-05-05,2024-05-08,In Progress,418.75,M1 1AA,Fictional portfolio test claim 0425
+NCL-000426,POL-000426,Test Claimant 0426,Travel,2024-05-06,2024-05-10,Closed,419.5,M2 3AB,Fictional portfolio test claim 0426
+NCL-000427,POL-000427,  test   claimant 0427 ,Business,2024-05-07,2024-05-12,Declined,420.25,M3 4AD,Fictional portfolio test claim 0427
+NCL-000428,POL-000428,Test Claimant 0428,Motor,2024-05-08,2024-05-14,Open,421.0,M4 5AF,Fictional portfolio test claim 0428
+ ncl-000429,pol-000429,Test Claimant 0429,Home,2024-05-09,2024-05-16,In Progress,421.75,M5 6AG,Fictional portfolio test claim 0429
+NCL-000430,POL-000430,Test Claimant 0430,Travel,2024-05-10,2024-05-18,Closed,422.5,M1 1AA,Fictional portfolio test claim 0430
+NCL-000431,POL-000431,Test Claimant 0431,Business,2024-05-11,2024-05-20,Declined,423.25,M2 3AB,Fictional portfolio test claim 0431
+NCL-000432,POL-000432,Test Claimant 0432,Motor,2024-05-12,2024-05-13, open ,424.0,m3 4ad,Fictional portfolio test claim 0432
+NCL-000433,POL-000433,Test Claimant 0433,Home,2024-05-13,2024-05-15,In Progress,424.75,M4 5AF,Fictional portfolio test claim 0433
+NCL-000434,POL-000434,  test   claimant 0434 ,Travel,2024-05-14,2024-05-17,Closed,425.5,M5 6AG,Fictional portfolio test claim 0434
+NCL-000435,POL-000435,Test Claimant 0435,Business,2024-05-15,2024-05-19,Declined,426.25,M1 1AA,Fictional portfolio test claim 0435
+NCL-000436,POL-000436,Test Claimant 0436,Motor,2024-05-16,2024-05-21,Open,427.0,M2 3AB,Fictional portfolio test claim 0436
+NCL-000437,POL-000437,Test Claimant 0437,home,2024-05-17,2024-05-23,In Progress,427.75,M3 4AD,Fictional portfolio test claim 0437
+NCL-000438,POL-000438,Test Claimant 0438,Travel,2024-05-18,2024-05-25,Closed,428.5,M4 5AF,Fictional portfolio test claim 0438
+NCL-000439,POL-000439,Test Claimant 0439,Business,2024-05-19,2024-05-27,Declined,429.25,M5 6AG,Fictional portfolio test claim 0439
+ ncl-000440,POL-000440,Test Claimant 0440,Motor,2024-05-20,2024-05-29,Open,430.0,m1 1aa,Fictional portfolio test claim 0440
+NCL-000441,POL-000441,  test   claimant 0441 ,Home,2024-05-21,2024-05-22, in progress ,430.75,M2 3AB,Fictional portfolio test claim 0441
+NCL-000442 ,pol-000442,Test Claimant 0442,Travel,2024-05-22,2024-05-24,Closed,431.5,M3 4AD,Fictional portfolio test claim 0442
+NCL-000443,POL-000443,Test Claimant 0443,Business,2024-05-23,2024-05-26,Declined,432.25,M4 5AF,Fictional portfolio test claim 0443
+NCL-000444,POL-000444,Test Claimant 0444,Motor,2024-05-24,2024-05-28,Open,433.0,M5 6AG,Fictional portfolio test claim 0444
+NCL-000445,POL-000445,Test Claimant 0445,Home,2024-05-25,2024-05-30,In Progress,433.75,M1 1AA,Fictional portfolio test claim 0445
+NCL-000446,POL-000446,Test Claimant 0446,Travel,2024-05-26,2024-06-01,Closed,434.5,M2 3AB,Fictional portfolio test claim 0446
+NCL-000447,POL-000447,Test Claimant 0447,Business,2024-05-27,2024-06-03,Declined,435.25,M3 4AD,Fictional portfolio test claim 0447
+NCL-000448,POL-000448,  test   claimant 0448 ,Motor,2024-05-28,2024-06-05,Open,436.0,m4 5af,Fictional portfolio test claim 0448
+NCL-000449,POL-000449,Test Claimant 0449,Home,2024-05-29,2024-06-07,In Progress,436.75,M5 6AG,Fictional portfolio test claim 0449
+NCL-000450,POL-000450,Test Claimant 0450,Travel,2024-05-30,2024-05-31, closed ,437.5,M1 1AA,Fictional portfolio test claim 0450
+ ncl-000451,POL-000451,Test Claimant 0451,Business,2024-05-31,2024-06-02,Declined,438.25,M2 3AB,Fictional portfolio test claim 0451
+NCL-000452,POL-000452,Test Claimant 0452,Motor,2024-06-01,2024-06-04,Open,439.0,M3 4AD,Fictional portfolio test claim 0452
+NCL-000453,POL-000453,Test Claimant 0453,Home,2024-06-02,2024-06-06,In Progress,439.75,M4 5AF,Fictional portfolio test claim 0453
+NCL-000454,POL-000454,Test Claimant 0454,Travel,2024-06-03,2024-06-08,Closed,440.5,M5 6AG,Fictional portfolio test claim 0454
+NCL-000455,pol-000455,  test   claimant 0455 ,Business,2024-06-04,2024-06-10,Declined,441.25,M1 1AA,Fictional portfolio test claim 0455
+NCL-000456,POL-000456,Test Claimant 0456,motor,2024-06-05,2024-06-12,Open,442.0,m2 3ab,Fictional portfolio test claim 0456
+NCL-000457,POL-000457,Test Claimant 0457,Home,2024-06-06,2024-06-14,In Progress,442.75,M3 4AD,Fictional portfolio test claim 0457
+NCL-000458,POL-000458,Test Claimant 0458,Travel,2024-06-07,2024-06-16,Closed,443.5,M4 5AF,Fictional portfolio test claim 0458
+NCL-000459 ,POL-000459,Test Claimant 0459,Business,2024-06-08,2024-06-09, declined ,444.25,M5 6AG,Fictional portfolio test claim 0459
+NCL-000460,POL-000460,Test Claimant 0460,Motor,2024-06-09,2024-06-11,Open,445.0,M1 1AA,Fictional portfolio test claim 0460
+NCL-000461,POL-000461,Test Claimant 0461,Home,2024-06-10,2024-06-13,In Progress,445.75,M2 3AB,Fictional portfolio test claim 0461
+ ncl-000462,POL-000462,  test   claimant 0462 ,Travel,2024-06-11,2024-06-15,Closed,446.5,M3 4AD,Fictional portfolio test claim 0462
+NCL-000463,POL-000463,Test Claimant 0463,Business,2024-06-12,2024-06-17,Declined,447.25,M4 5AF,Fictional portfolio test claim 0463
+NCL-000464,POL-000464,Test Claimant 0464,Motor,2024-06-13,2024-06-19,Open,448.0,m5 6ag,Fictional portfolio test claim 0464
+NCL-000465,POL-000465,Test Claimant 0465,Home,2024-06-14,2024-06-21,In Progress,448.75,M1 1AA,Fictional portfolio test claim 0465
+NCL-000466,POL-000466,Test Claimant 0466,Travel,2024-06-15,2024-06-23,Closed,449.5,M2 3AB,Fictional portfolio test claim 0466
+NCL-000467,POL-000467,Test Claimant 0467,Business,2024-06-16,2024-06-25,Declined,450.25,M3 4AD,Fictional portfolio test claim 0467
+NCL-000468,pol-000468,Test Claimant 0468,Motor,2024-06-17,2024-06-18, open ,451.0,M4 5AF,Fictional portfolio test claim 0468
+NCL-000469,POL-000469,  test   claimant 0469 ,Home,2024-06-18,2024-06-20,In Progress,451.75,M5 6AG,Fictional portfolio test claim 0469
+NCL-000470,POL-000470,Test Claimant 0470,Travel,2024-06-19,2024-06-22,Closed,452.5,M1 1AA,Fictional portfolio test claim 0470
+NCL-000471,POL-000471,Test Claimant 0471,Business,2024-06-20,2024-06-24,Declined,453.25,M2 3AB,Fictional portfolio test claim 0471
+NCL-000472,POL-000472,Test Claimant 0472,Motor,2024-06-21,2024-06-26,Open,454.0,m3 4ad,Fictional portfolio test claim 0472
+ ncl-000473,POL-000473,Test Claimant 0473,Home,2024-06-22,2024-06-28,In Progress,454.75,M4 5AF,Fictional portfolio test claim 0473
+NCL-000474,POL-000474,Test Claimant 0474,Travel,2024-06-23,2024-06-30,Closed,455.5,M5 6AG,Fictional portfolio test claim 0474
+NCL-000475,POL-000475,Test Claimant 0475,business,2024-06-24,2024-07-02,Declined,456.25,M1 1AA,Fictional portfolio test claim 0475
+NCL-000476 ,POL-000476,  test   claimant 0476 ,Motor,2024-06-25,2024-07-04,Open,457.0,M2 3AB,Fictional portfolio test claim 0476
+NCL-000477,POL-000477,Test Claimant 0477,Home,2024-06-26,2024-06-27, in progress ,457.75,M3 4AD,Fictional portfolio test claim 0477
+NCL-000478,POL-000478,Test Claimant 0478,Travel,2024-06-27,2024-06-29,Closed,458.5,M4 5AF,Fictional portfolio test claim 0478
+NCL-000479,POL-000479,Test Claimant 0479,Business,2024-06-28,2024-07-01,Declined,459.25,M5 6AG,Fictional portfolio test claim 0479
+NCL-000480,POL-000480,Test Claimant 0480,Motor,2024-06-29,2024-07-03,Open,460.0,m1 1aa,Fictional portfolio test claim 0480
+NCL-000481,pol-000481,Test Claimant 0481,Home,2024-06-30,2024-07-05,In Progress,460.75,M2 3AB,Fictional portfolio test claim 0481
+NCL-000482,POL-000482,Test Claimant 0482,Travel,2024-07-01,2024-07-07,Closed,461.5,M3 4AD,Fictional portfolio test claim 0482
+NCL-000483,POL-000483,  test   claimant 0483 ,Business,2024-07-02,2024-07-09,Declined,462.25,M4 5AF,Fictional portfolio test claim 0483
+ ncl-000484,POL-000484,Test Claimant 0484,Motor,2024-07-03,2024-07-11,Open,463.0,M5 6AG,Fictional portfolio test claim 0484
+NCL-000485,POL-000485,Test Claimant 0485,Home,2024-07-04,2024-07-13,In Progress,463.75,M1 1AA,Fictional portfolio test claim 0485
+NCL-000486,POL-000486,Test Claimant 0486,Travel,2024-07-05,2024-07-06, closed ,464.5,M2 3AB,Fictional portfolio test claim 0486
+NCL-000487,POL-000487,Test Claimant 0487,Business,2024-07-06,2024-07-08,Declined,465.25,M3 4AD,Fictional portfolio test claim 0487
+NCL-000488,POL-000488,Test Claimant 0488,Motor,2024-07-07,2024-07-10,Open,466.0,m4 5af,Fictional portfolio test claim 0488
+NCL-000489,POL-000489,Test Claimant 0489,Home,2024-07-08,2024-07-12,In Progress,466.75,M5 6AG,Fictional portfolio test claim 0489
+NCL-000490,POL-000490,  test   claimant 0490 ,Travel,2024-07-09,2024-07-14,Closed,467.5,M1 1AA,Fictional portfolio test claim 0490
+NCL-000491,POL-000491,Test Claimant 0491,Business,2024-07-10,2024-07-16,Declined,468.25,M2 3AB,Fictional portfolio test claim 0491
+NCL-000492,POL-000492,Test Claimant 0492,Motor,2024-07-11,2024-07-18,Open,469.0,M3 4AD,Fictional portfolio test claim 0492
+NCL-000493 ,POL-000493,Test Claimant 0493,Home,2024-07-12,2024-07-20,In Progress,469.75,M4 5AF,Fictional portfolio test claim 0493
+NCL-000494,pol-000494,Test Claimant 0494,travel,2024-07-13,2024-07-22,Closed,470.5,M5 6AG,Fictional portfolio test claim 0494
+ ncl-000495,POL-000495,Test Claimant 0495,Business,2024-07-14,2024-07-15, declined ,471.25,M1 1AA,Fictional portfolio test claim 0495
+NCL-000496,POL-000496,Test Claimant 0496,Motor,2024-07-15,2024-07-17,Open,472.0,m2 3ab,Fictional portfolio test claim 0496
+NCL-000497,POL-000497,  test   claimant 0497 ,Home,2024-07-16,2024-07-19,In Progress,472.75,M3 4AD,Fictional portfolio test claim 0497
+NCL-000498,POL-000498,Test Claimant 0498,Travel,2024-07-17,2024-07-21,Closed,473.5,M4 5AF,Fictional portfolio test claim 0498
+NCL-000499,POL-000499,Test Claimant 0499,Business,2024-07-18,2024-07-23,Declined,474.25,M5 6AG,Fictional portfolio test claim 0499
+NCL-000500,POL-000500,Test Claimant 0500,Motor,2024-07-19,2024-07-25,Open,475.0,M1 1AA,Fictional portfolio test claim 0500
+NCL-000501,POL-000501,Test Claimant 0501,Home,2024-07-20,2024-07-27,In Progress,475.75,M2 3AB,Fictional portfolio test claim 0501
+NCL-000502,POL-000502,Test Claimant 0502,Travel,2024-07-21,2024-07-29,Closed,476.5,M3 4AD,Fictional portfolio test claim 0502
+NCL-000503,POL-000503,Test Claimant 0503,Business,2024-07-22,2024-07-31,Declined,477.25,M4 5AF,Fictional portfolio test claim 0503
+NCL-000504,POL-000504,  test   claimant 0504 ,Motor,2024-07-23,2024-07-24, open ,478.0,m5 6ag,Fictional portfolio test claim 0504
+NCL-000505,POL-000505,Test Claimant 0505,Home,2024-07-24,2024-07-26,In Progress,478.75,M1 1AA,Fictional portfolio test claim 0505
+ ncl-000506,POL-000506,Test Claimant 0506,Travel,2024-07-25,2024-07-28,Closed,479.5,M2 3AB,Fictional portfolio test claim 0506
+NCL-000507,pol-000507,Test Claimant 0507,Business,2024-07-26,2024-07-30,Declined,480.25,M3 4AD,Fictional portfolio test claim 0507
+NCL-000508,POL-000508,Test Claimant 0508,Motor,2024-07-27,2024-08-01,Open,481.0,M4 5AF,Fictional portfolio test claim 0508
+NCL-000509,POL-000509,Test Claimant 0509,Home,2024-07-28,2024-08-03,In Progress,481.75,M5 6AG,Fictional portfolio test claim 0509
+NCL-000510 ,POL-000510,Test Claimant 0510,Travel,2024-07-29,2024-08-05,Closed,482.5,M1 1AA,Fictional portfolio test claim 0510
+NCL-000511,POL-000511,  test   claimant 0511 ,Business,2024-07-30,2024-08-07,Declined,483.25,M2 3AB,Fictional portfolio test claim 0511
+NCL-000512,POL-000512,Test Claimant 0512,Motor,2024-07-31,2024-08-09,Open,484.0,m3 4ad,Fictional portfolio test claim 0512
+NCL-000513,POL-000513,Test Claimant 0513,home,2024-08-01,2024-08-02, in progress ,484.75,M4 5AF,Fictional portfolio test claim 0513
+NCL-000514,POL-000514,Test Claimant 0514,Travel,2024-08-02,2024-08-04,Closed,485.5,M5 6AG,Fictional portfolio test claim 0514
+NCL-000515,POL-000515,Test Claimant 0515,Business,2024-08-03,2024-08-06,Declined,486.25,M1 1AA,Fictional portfolio test claim 0515
+NCL-000516,POL-000516,Test Claimant 0516,Motor,2024-08-04,2024-08-08,Open,487.0,M2 3AB,Fictional portfolio test claim 0516
+ ncl-000517,POL-000517,Test Claimant 0517,Home,2024-08-05,2024-08-10,In Progress,487.75,M3 4AD,Fictional portfolio test claim 0517
+NCL-000518,POL-000518,  test   claimant 0518 ,Travel,2024-08-06,2024-08-12,Closed,488.5,M4 5AF,Fictional portfolio test claim 0518
+NCL-000519,POL-000519,Test Claimant 0519,Business,2024-08-07,2024-08-14,Declined,489.25,M5 6AG,Fictional portfolio test claim 0519
+NCL-000520,pol-000520,Test Claimant 0520,Motor,2024-08-08,2024-08-16,Open,490.0,m1 1aa,Fictional portfolio test claim 0520
+NCL-000521,POL-000521,Test Claimant 0521,Home,2024-08-09,2024-08-18,In Progress,490.75,M2 3AB,Fictional portfolio test claim 0521
+NCL-000522,POL-000522,Test Claimant 0522,Travel,2024-08-10,2024-08-11, closed ,491.5,M3 4AD,Fictional portfolio test claim 0522
+NCL-000523,POL-000523,Test Claimant 0523,Business,2024-08-11,2024-08-13,Declined,492.25,M4 5AF,Fictional portfolio test claim 0523
+NCL-000524,POL-000524,Test Claimant 0524,Motor,2024-08-12,2024-08-15,Open,493.0,M5 6AG,Fictional portfolio test claim 0524
+NCL-000525,POL-000525,  test   claimant 0525 ,Home,2024-08-13,2024-08-17,In Progress,493.75,M1 1AA,Fictional portfolio test claim 0525
+NCL-000526,POL-000526,Test Claimant 0526,Travel,2024-08-14,2024-08-19,Closed,494.5,M2 3AB,Fictional portfolio test claim 0526
+NCL-000527 ,POL-000527,Test Claimant 0527,Business,2024-08-15,2024-08-21,Declined,495.25,M3 4AD,Fictional portfolio test claim 0527
+ ncl-000528,POL-000528,Test Claimant 0528,Motor,2024-08-16,2024-08-23,Open,496.0,m4 5af,Fictional portfolio test claim 0528
+NCL-000529,POL-000529,Test Claimant 0529,Home,2024-08-17,2024-08-25,In Progress,496.75,M5 6AG,Fictional portfolio test claim 0529
+NCL-000530,POL-000530,Test Claimant 0530,Travel,2024-08-18,2024-08-27,Closed,497.5,M1 1AA,Fictional portfolio test claim 0530
+NCL-000531,POL-000531,Test Claimant 0531,Business,2024-08-19,2024-08-20, declined ,498.25,M2 3AB,Fictional portfolio test claim 0531
+NCL-000532,POL-000532,  test   claimant 0532 ,motor,2024-08-20,2024-08-22,Open,499.0,M3 4AD,Fictional portfolio test claim 0532
+NCL-000533,pol-000533,Test Claimant 0533,Home,2024-08-21,2024-08-24,In Progress,499.75,M4 5AF,Fictional portfolio test claim 0533
+NCL-000534,POL-000534,Test Claimant 0534,Travel,2024-08-22,2024-08-26,Closed,500.5,M5 6AG,Fictional portfolio test claim 0534
+NCL-000535,POL-000535,Test Claimant 0535,Business,2024-08-23,2024-08-28,Declined,501.25,M1 1AA,Fictional portfolio test claim 0535
+NCL-000536,POL-000536,Test Claimant 0536,Motor,2024-08-24,2024-08-30,Open,502.0,m2 3ab,Fictional portfolio test claim 0536
+NCL-000537,POL-000537,Test Claimant 0537,Home,2024-08-25,2024-09-01,In Progress,502.75,M3 4AD,Fictional portfolio test claim 0537
+NCL-000538,POL-000538,Test Claimant 0538,Travel,2024-08-26,2024-09-03,Closed,503.5,M4 5AF,Fictional portfolio test claim 0538
+ ncl-000539,POL-000539,  test   claimant 0539 ,Business,2024-08-27,2024-09-05,Declined,504.25,M5 6AG,Fictional portfolio test claim 0539
+NCL-000540,POL-000540,Test Claimant 0540,Motor,2024-08-28,2024-08-29, open ,505.0,M1 1AA,Fictional portfolio test claim 0540
+NCL-000541,POL-000541,Test Claimant 0541,Home,2024-08-29,2024-08-31,In Progress,505.75,M2 3AB,Fictional portfolio test claim 0541
+NCL-000542,POL-000542,Test Claimant 0542,Travel,2024-08-30,2024-09-02,Closed,506.5,M3 4AD,Fictional portfolio test claim 0542
+NCL-000543,POL-000543,Test Claimant 0543,Business,2024-08-31,2024-09-04,Declined,507.25,M4 5AF,Fictional portfolio test claim 0543
+NCL-000544 ,POL-000544,Test Claimant 0544,Motor,2024-09-01,2024-09-06,Open,508.0,m5 6ag,Fictional portfolio test claim 0544
+NCL-000545,POL-000545,Test Claimant 0545,Home,2024-09-02,2024-09-08,In Progress,508.75,M1 1AA,Fictional portfolio test claim 0545
+NCL-000546,pol-000546,  test   claimant 0546 ,Travel,2024-09-03,2024-09-10,Closed,509.5,M2 3AB,Fictional portfolio test claim 0546
+NCL-000547,POL-000547,Test Claimant 0547,Business,2024-09-04,2024-09-12,Declined,510.25,M3 4AD,Fictional portfolio test claim 0547
+NCL-000548,POL-000548,Test Claimant 0548,Motor,2024-09-05,2024-09-14,Open,511.0,M4 5AF,Fictional portfolio test claim 0548
+NCL-000549,POL-000549,Test Claimant 0549,Home,2024-09-06,2024-09-07, in progress ,511.75,M5 6AG,Fictional portfolio test claim 0549
+ ncl-000550,POL-000550,Test Claimant 0550,Travel,2024-09-07,2024-09-09,Closed,512.5,M1 1AA,Fictional portfolio test claim 0550
+NCL-000551,POL-000551,Test Claimant 0551,business,2024-09-08,2024-09-11,Declined,513.25,M2 3AB,Fictional portfolio test claim 0551
+NCL-000552,POL-000552,Test Claimant 0552,Motor,2024-09-09,2024-09-13,Open,514.0,m3 4ad,Fictional portfolio test claim 0552
+NCL-000553,POL-000553,  test   claimant 0553 ,Home,2024-09-10,2024-09-15,In Progress,514.75,M4 5AF,Fictional portfolio test claim 0553
+NCL-000554,POL-000554,Test Claimant 0554,Travel,2024-09-11,2024-09-17,Closed,515.5,M5 6AG,Fictional portfolio test claim 0554
+NCL-000555,POL-000555,Test Claimant 0555,Business,2024-09-12,2024-09-19,Declined,516.25,M1 1AA,Fictional portfolio test claim 0555
+NCL-000556,POL-000556,Test Claimant 0556,Motor,2024-09-13,2024-09-21,Open,517.0,M2 3AB,Fictional portfolio test claim 0556
+NCL-000557,POL-000557,Test Claimant 0557,Home,2024-09-14,2024-09-23,In Progress,517.75,M3 4AD,Fictional portfolio test claim 0557
+NCL-000558,POL-000558,Test Claimant 0558,Travel,2024-09-15,2024-09-16, closed ,518.5,M4 5AF,Fictional portfolio test claim 0558
+NCL-000559,pol-000559,Test Claimant 0559,Business,2024-09-16,2024-09-18,Declined,519.25,M5 6AG,Fictional portfolio test claim 0559
+NCL-000560,POL-000560,  test   claimant 0560 ,Motor,2024-09-17,2024-09-20,Open,520.0,m1 1aa,Fictional portfolio test claim 0560
+ ncl-000561 ,POL-000561,Test Claimant 0561,Home,2024-09-18,2024-09-22,In Progress,520.75,M2 3AB,Fictional portfolio test claim 0561
+NCL-000562,POL-000562,Test Claimant 0562,Travel,2024-09-19,2024-09-24,Closed,521.5,M3 4AD,Fictional portfolio test claim 0562
+NCL-000563,POL-000563,Test Claimant 0563,Business,2024-09-20,2024-09-26,Declined,522.25,M4 5AF,Fictional portfolio test claim 0563
+NCL-000564,POL-000564,Test Claimant 0564,Motor,2024-09-21,2024-09-28,Open,523.0,M5 6AG,Fictional portfolio test claim 0564
+NCL-000565,POL-000565,Test Claimant 0565,Home,2024-09-22,2024-09-30,In Progress,523.75,M1 1AA,Fictional portfolio test claim 0565
+NCL-000566,POL-000566,Test Claimant 0566,Travel,2024-09-23,2024-10-02,Closed,524.5,M2 3AB,Fictional portfolio test claim 0566
+NCL-000567,POL-000567,  test   claimant 0567 ,Business,2024-09-24,2024-09-25, declined ,525.25,M3 4AD,Fictional portfolio test claim 0567
+NCL-000568,POL-000568,Test Claimant 0568,Motor,2024-09-25,2024-09-27,Open,526.0,m4 5af,Fictional portfolio test claim 0568
+NCL-000569,POL-000569,Test Claimant 0569,Home,2024-09-26,2024-09-29,In Progress,526.75,M5 6AG,Fictional portfolio test claim 0569
+NCL-000570,POL-000570,Test Claimant 0570,travel,2024-09-27,2024-10-01,Closed,527.5,M1 1AA,Fictional portfolio test claim 0570
+NCL-000571,POL-000571,Test Claimant 0571,Business,2024-09-28,2024-10-03,Declined,528.25,M2 3AB,Fictional portfolio test claim 0571
+ ncl-000572,pol-000572,Test Claimant 0572,Motor,2024-09-29,2024-10-05,Open,529.0,M3 4AD,Fictional portfolio test claim 0572
+NCL-000573,POL-000573,Test Claimant 0573,Home,2024-09-30,2024-10-07,In Progress,529.75,M4 5AF,Fictional portfolio test claim 0573
+NCL-000574,POL-000574,  test   claimant 0574 ,Travel,2024-10-01,2024-10-09,Closed,530.5,M5 6AG,Fictional portfolio test claim 0574
+NCL-000575,POL-000575,Test Claimant 0575,Business,2024-10-02,2024-10-11,Declined,531.25,M1 1AA,Fictional portfolio test claim 0575
+NCL-000576,POL-000576,Test Claimant 0576,Motor,2024-10-03,2024-10-04, open ,532.0,m2 3ab,Fictional portfolio test claim 0576
+NCL-000577,POL-000577,Test Claimant 0577,Home,2024-10-04,2024-10-06,In Progress,532.75,M3 4AD,Fictional portfolio test claim 0577
+NCL-000578 ,POL-000578,Test Claimant 0578,Travel,2024-10-05,2024-10-08,Closed,533.5,M4 5AF,Fictional portfolio test claim 0578
+NCL-000579,POL-000579,Test Claimant 0579,Business,2024-10-06,2024-10-10,Declined,534.25,M5 6AG,Fictional portfolio test claim 0579
+NCL-000580,POL-000580,Test Claimant 0580,Motor,2024-10-07,2024-10-12,Open,535.0,M1 1AA,Fictional portfolio test claim 0580
+NCL-000581,POL-000581,  test   claimant 0581 ,Home,2024-10-08,2024-10-14,In Progress,535.75,M2 3AB,Fictional portfolio test claim 0581
+NCL-000582,POL-000582,Test Claimant 0582,Travel,2024-10-09,2024-10-16,Closed,536.5,M3 4AD,Fictional portfolio test claim 0582
+ ncl-000583,POL-000583,Test Claimant 0583,Business,2024-10-10,2024-10-18,Declined,537.25,M4 5AF,Fictional portfolio test claim 0583
+NCL-000584,POL-000584,Test Claimant 0584,Motor,2024-10-11,2024-10-20,Open,538.0,m5 6ag,Fictional portfolio test claim 0584
+NCL-000585,pol-000585,Test Claimant 0585,Home,2024-10-12,2024-10-13, in progress ,538.75,M1 1AA,Fictional portfolio test claim 0585
+NCL-000586,POL-000586,Test Claimant 0586,Travel,2024-10-13,2024-10-15,Closed,539.5,M2 3AB,Fictional portfolio test claim 0586
+NCL-000587,POL-000587,Test Claimant 0587,Business,2024-10-14,2024-10-17,Declined,540.25,M3 4AD,Fictional portfolio test claim 0587
+NCL-000588,POL-000588,  test   claimant 0588 ,Motor,2024-10-15,2024-10-19,Open,541.0,M4 5AF,Fictional portfolio test claim 0588
+NCL-000589,POL-000589,Test Claimant 0589,home,2024-10-16,2024-10-21,In Progress,541.75,M5 6AG,Fictional portfolio test claim 0589
+NCL-000590,POL-000590,Test Claimant 0590,Travel,2024-10-17,2024-10-23,Closed,542.5,M1 1AA,Fictional portfolio test claim 0590
+NCL-000591,POL-000591,Test Claimant 0591,Business,2024-10-18,2024-10-25,Declined,543.25,M2 3AB,Fictional portfolio test claim 0591
+NCL-000592,POL-000592,Test Claimant 0592,Motor,2024-10-19,2024-10-27,Open,544.0,m3 4ad,Fictional portfolio test claim 0592
+NCL-000593,POL-000593,Test Claimant 0593,Home,2024-10-20,2024-10-29,In Progress,544.75,M4 5AF,Fictional portfolio test claim 0593
+ ncl-000594,POL-000594,Test Claimant 0594,Travel,2024-10-21,2024-10-22, closed ,545.5,M5 6AG,Fictional portfolio test claim 0594
+NCL-000595 ,POL-000595,  test   claimant 0595 ,Business,2024-10-22,2024-10-24,Declined,546.25,M1 1AA,Fictional portfolio test claim 0595
+NCL-000596,POL-000596,Test Claimant 0596,Motor,2024-10-23,2024-10-26,Open,547.0,M2 3AB,Fictional portfolio test claim 0596
+NCL-000597,POL-000597,Test Claimant 0597,Home,2024-10-24,2024-10-28,In Progress,547.75,M3 4AD,Fictional portfolio test claim 0597
+NCL-000598,pol-000598,Test Claimant 0598,Travel,2024-10-25,2024-10-30,Closed,548.5,M4 5AF,Fictional portfolio test claim 0598
+NCL-000599,POL-000599,Test Claimant 0599,Business,2024-10-26,2024-11-01,Declined,549.25,M5 6AG,Fictional portfolio test claim 0599
+NCL-000600,POL-000600,Test Claimant 0600,Motor,2024-01-01,2024-01-08,Open,550.0,m1 1aa,Fictional portfolio test claim 0600
+NCL-000601,POL-000601,Test Claimant 0601,Home,2024-01-02,2024-01-10,In Progress,550.75,M2 3AB,Fictional portfolio test claim 0601
+NCL-000602,POL-000602,  test   claimant 0602 ,Travel,2024-01-03,2024-01-12,Closed,551.5,M3 4AD,Fictional portfolio test claim 0602
+NCL-000603,POL-000603,Test Claimant 0603,Business,2024-01-04,2024-01-05, declined ,552.25,M4 5AF,Fictional portfolio test claim 0603
+NCL-000604,POL-000604,Test Claimant 0604,Motor,2024-01-05,2024-01-07,Open,553.0,M5 6AG,Fictional portfolio test claim 0604
+ ncl-000605,POL-000605,Test Claimant 0605,Home,2024-01-06,2024-01-09,In Progress,553.75,M1 1AA,Fictional portfolio test claim 0605
+NCL-000606,POL-000606,Test Claimant 0606,Travel,2024-01-07,2024-01-11,Closed,554.5,M2 3AB,Fictional portfolio test claim 0606
+NCL-000607,POL-000607,Test Claimant 0607,Business,2024-01-08,2024-01-13,Declined,555.25,M3 4AD,Fictional portfolio test claim 0607
+NCL-000608,POL-000608,Test Claimant 0608,motor,2024-01-09,2024-01-15,Open,556.0,m4 5af,Fictional portfolio test claim 0608
+NCL-000609,POL-000609,  test   claimant 0609 ,Home,2024-01-10,2024-01-17,In Progress,556.75,M5 6AG,Fictional portfolio test claim 0609
+NCL-000610,POL-000610,Test Claimant 0610,Travel,2024-01-11,2024-01-19,Closed,557.5,M1 1AA,Fictional portfolio test claim 0610
+NCL-000611,pol-000611,Test Claimant 0611,Business,2024-01-12,2024-01-21,Declined,558.25,M2 3AB,Fictional portfolio test claim 0611
+NCL-000612 ,POL-000612,Test Claimant 0612,Motor,2024-01-13,2024-01-14, open ,559.0,M3 4AD,Fictional portfolio test claim 0612
+NCL-000613,POL-000613,Test Claimant 0613,Home,2024-01-14,2024-01-16,In Progress,559.75,M4 5AF,Fictional portfolio test claim 0613
+NCL-000614,POL-000614,Test Claimant 0614,Travel,2024-01-15,2024-01-18,Closed,560.5,M5 6AG,Fictional portfolio test claim 0614
+NCL-000615,POL-000615,Test Claimant 0615,Business,2024-01-16,2024-01-20,Declined,561.25,M1 1AA,Fictional portfolio test claim 0615
+ ncl-000616,POL-000616,  test   claimant 0616 ,Motor,2024-01-17,2024-01-22,Open,562.0,m2 3ab,Fictional portfolio test claim 0616
+NCL-000617,POL-000617,Test Claimant 0617,Home,2024-01-18,2024-01-24,In Progress,562.75,M3 4AD,Fictional portfolio test claim 0617
+NCL-000618,POL-000618,Test Claimant 0618,Travel,2024-01-19,2024-01-26,Closed,563.5,M4 5AF,Fictional portfolio test claim 0618
+NCL-000619,POL-000619,Test Claimant 0619,Business,2024-01-20,2024-01-28,Declined,564.25,M5 6AG,Fictional portfolio test claim 0619
+NCL-000620,POL-000620,Test Claimant 0620,Motor,2024-01-21,2024-01-30,Open,565.0,M1 1AA,Fictional portfolio test claim 0620
+NCL-000621,POL-000621,Test Claimant 0621,Home,2024-01-22,2024-01-23, in progress ,565.75,M2 3AB,Fictional portfolio test claim 0621
+NCL-000622,POL-000622,Test Claimant 0622,Travel,2024-01-23,2024-01-25,Closed,566.5,M3 4AD,Fictional portfolio test claim 0622
+NCL-000623,POL-000623,  test   claimant 0623 ,Business,2024-01-24,2024-01-27,Declined,567.25,M4 5AF,Fictional portfolio test claim 0623
+NCL-000624,pol-000624,Test Claimant 0624,Motor,2024-01-25,2024-01-29,Open,568.0,m5 6ag,Fictional portfolio test claim 0624
+NCL-000625,POL-000625,Test Claimant 0625,Home,2024-01-26,2024-01-31,In Progress,568.75,M1 1AA,Fictional portfolio test claim 0625
+NCL-000626,POL-000626,Test Claimant 0626,Travel,2024-01-27,2024-02-02,Closed,569.5,M2 3AB,Fictional portfolio test claim 0626
+ ncl-000627,POL-000627,Test Claimant 0627,business,2024-01-28,2024-02-04,Declined,570.25,M3 4AD,Fictional portfolio test claim 0627
+NCL-000628,POL-000628,Test Claimant 0628,Motor,2024-01-29,2024-02-06,Open,571.0,M4 5AF,Fictional portfolio test claim 0628
+NCL-000629 ,POL-000629,Test Claimant 0629,Home,2024-01-30,2024-02-08,In Progress,571.75,M5 6AG,Fictional portfolio test claim 0629
+NCL-000630,POL-000630,  test   claimant 0630 ,Travel,2024-01-31,2024-02-01, closed ,572.5,M1 1AA,Fictional portfolio test claim 0630
+NCL-000631,POL-000631,Test Claimant 0631,Business,2024-02-01,2024-02-03,Declined,573.25,M2 3AB,Fictional portfolio test claim 0631
+NCL-000632,POL-000632,Test Claimant 0632,Motor,2024-02-02,2024-02-05,Open,574.0,m3 4ad,Fictional portfolio test claim 0632
+NCL-000633,POL-000633,Test Claimant 0633,Home,2024-02-03,2024-02-07,In Progress,574.75,M4 5AF,Fictional portfolio test claim 0633
+NCL-000634,POL-000634,Test Claimant 0634,Travel,2024-02-04,2024-02-09,Closed,575.5,M5 6AG,Fictional portfolio test claim 0634
+NCL-000635,POL-000635,Test Claimant 0635,Business,2024-02-05,2024-02-11,Declined,576.25,M1 1AA,Fictional portfolio test claim 0635
+NCL-000636,POL-000636,Test Claimant 0636,Motor,2024-02-06,2024-02-13,Open,577.0,M2 3AB,Fictional portfolio test claim 0636
+NCL-000637,pol-000637,  test   claimant 0637 ,Home,2024-02-07,2024-02-15,In Progress,577.75,M3 4AD,Fictional portfolio test claim 0637
+ ncl-000638,POL-000638,Test Claimant 0638,Travel,2024-02-08,2024-02-17,Closed,578.5,M4 5AF,Fictional portfolio test claim 0638
+NCL-000639,POL-000639,Test Claimant 0639,Business,2024-02-09,2024-02-10, declined ,579.25,M5 6AG,Fictional portfolio test claim 0639
+NCL-000640,POL-000640,Test Claimant 0640,Motor,2024-02-10,2024-02-12,Open,580.0,m1 1aa,Fictional portfolio test claim 0640
+NCL-000641,POL-000641,Test Claimant 0641,Home,2024-02-11,2024-02-14,In Progress,580.75,M2 3AB,Fictional portfolio test claim 0641
+NCL-000642,POL-000642,Test Claimant 0642,Travel,2024-02-12,2024-02-16,Closed,581.5,M3 4AD,Fictional portfolio test claim 0642
+NCL-000643,POL-000643,Test Claimant 0643,Business,2024-02-13,2024-02-18,Declined,582.25,M4 5AF,Fictional portfolio test claim 0643
+NCL-000644,POL-000644,  test   claimant 0644 ,Motor,2024-02-14,2024-02-20,Open,583.0,M5 6AG,Fictional portfolio test claim 0644
+NCL-000645,POL-000645,Test Claimant 0645,Home,2024-02-15,2024-02-22,In Progress,583.75,M1 1AA,Fictional portfolio test claim 0645
+NCL-000646 ,POL-000646,Test Claimant 0646,travel,2024-02-16,2024-02-24,Closed,584.5,M2 3AB,Fictional portfolio test claim 0646
+NCL-000647,POL-000647,Test Claimant 0647,Business,2024-02-17,2024-02-26,Declined,585.25,M3 4AD,Fictional portfolio test claim 0647
+NCL-000648,POL-000648,Test Claimant 0648,Motor,2024-02-18,2024-02-19, open ,586.0,m4 5af,Fictional portfolio test claim 0648
+ ncl-000649,POL-000649,Test Claimant 0649,Home,2024-02-19,2024-02-21,In Progress,586.75,M5 6AG,Fictional portfolio test claim 0649
+NCL-000650,pol-000650,Test Claimant 0650,Travel,2024-02-20,2024-02-23,Closed,587.5,M1 1AA,Fictional portfolio test claim 0650
+NCL-000651,POL-000651,  test   claimant 0651 ,Business,2024-02-21,2024-02-25,Declined,588.25,M2 3AB,Fictional portfolio test claim 0651
+NCL-000652,POL-000652,Test Claimant 0652,Motor,2024-02-22,2024-02-27,Open,589.0,M3 4AD,Fictional portfolio test claim 0652
+NCL-000653,POL-000653,Test Claimant 0653,Home,2024-02-23,2024-02-29,In Progress,589.75,M4 5AF,Fictional portfolio test claim 0653
+NCL-000654,POL-000654,Test Claimant 0654,Travel,2024-02-24,2024-03-02,Closed,590.5,M5 6AG,Fictional portfolio test claim 0654
+NCL-000655,POL-000655,Test Claimant 0655,Business,2024-02-25,2024-03-04,Declined,591.25,M1 1AA,Fictional portfolio test claim 0655
+NCL-000656,POL-000656,Test Claimant 0656,Motor,2024-02-26,2024-03-06,Open,592.0,m2 3ab,Fictional portfolio test claim 0656
+NCL-000657,POL-000657,Test Claimant 0657,Home,2024-02-27,2024-02-28, in progress ,592.75,M3 4AD,Fictional portfolio test claim 0657
+NCL-000658,POL-000658,  test   claimant 0658 ,Travel,2024-02-28,2024-03-01,Closed,593.5,M4 5AF,Fictional portfolio test claim 0658
+NCL-000659,POL-000659,Test Claimant 0659,Business,2024-02-29,2024-03-03,Declined,594.25,M5 6AG,Fictional portfolio test claim 0659
+ ncl-000660,POL-000660,Test Claimant 0660,Motor,2024-03-01,2024-03-05,Open,595.0,M1 1AA,Fictional portfolio test claim 0660
+NCL-000661,POL-000661,Test Claimant 0661,Home,2024-03-02,2024-03-07,In Progress,595.75,M2 3AB,Fictional portfolio test claim 0661
+NCL-000662,POL-000662,Test Claimant 0662,Travel,2024-03-03,2024-03-09,Closed,596.5,M3 4AD,Fictional portfolio test claim 0662
+NCL-000663 ,pol-000663,Test Claimant 0663,Business,2024-03-04,2024-03-11,Declined,597.25,M4 5AF,Fictional portfolio test claim 0663
+NCL-000664,POL-000664,Test Claimant 0664,Motor,2024-03-05,2024-03-13,Open,598.0,m5 6ag,Fictional portfolio test claim 0664
+NCL-000665,POL-000665,  test   claimant 0665 ,home,2024-03-06,2024-03-15,In Progress,598.75,M1 1AA,Fictional portfolio test claim 0665
+NCL-000666,POL-000666,Test Claimant 0666,Travel,2024-03-07,2024-03-08, closed ,599.5,M2 3AB,Fictional portfolio test claim 0666
+NCL-000667,POL-000667,Test Claimant 0667,Business,2024-03-08,2024-03-10,Declined,600.25,M3 4AD,Fictional portfolio test claim 0667
+NCL-000668,POL-000668,Test Claimant 0668,Motor,2024-03-09,2024-03-12,Open,601.0,M4 5AF,Fictional portfolio test claim 0668
+NCL-000669,POL-000669,Test Claimant 0669,Home,2024-03-10,2024-03-14,In Progress,601.75,M5 6AG,Fictional portfolio test claim 0669
+NCL-000670,POL-000670,Test Claimant 0670,Travel,2024-03-11,2024-03-16,Closed,602.5,M1 1AA,Fictional portfolio test claim 0670
+ ncl-000671,POL-000671,Test Claimant 0671,Business,2024-03-12,2024-03-18,Declined,603.25,M2 3AB,Fictional portfolio test claim 0671
+NCL-000672,POL-000672,  test   claimant 0672 ,Motor,2024-03-13,2024-03-20,Open,604.0,m3 4ad,Fictional portfolio test claim 0672
+NCL-000673,POL-000673,Test Claimant 0673,Home,2024-03-14,2024-03-22,In Progress,604.75,M4 5AF,Fictional portfolio test claim 0673
+NCL-000674,POL-000674,Test Claimant 0674,Travel,2024-03-15,2024-03-24,Closed,605.5,M5 6AG,Fictional portfolio test claim 0674
+NCL-000675,POL-000675,Test Claimant 0675,Business,2024-03-16,2024-03-17, declined ,606.25,M1 1AA,Fictional portfolio test claim 0675
+NCL-000676,pol-000676,Test Claimant 0676,Motor,2024-03-17,2024-03-19,Open,607.0,M2 3AB,Fictional portfolio test claim 0676
+NCL-000677,POL-000677,Test Claimant 0677,Home,2024-03-18,2024-03-21,In Progress,607.75,M3 4AD,Fictional portfolio test claim 0677
+NCL-000678,POL-000678,Test Claimant 0678,Travel,2024-03-19,2024-03-23,Closed,608.5,M4 5AF,Fictional portfolio test claim 0678
+NCL-000679,POL-000679,  test   claimant 0679 ,Business,2024-03-20,2024-03-25,Declined,609.25,M5 6AG,Fictional portfolio test claim 0679
+NCL-000680 ,POL-000680,Test Claimant 0680,Motor,2024-03-21,2024-03-27,Open,610.0,m1 1aa,Fictional portfolio test claim 0680
+NCL-000681,POL-000681,Test Claimant 0681,Home,2024-03-22,2024-03-29,In Progress,610.75,M2 3AB,Fictional portfolio test claim 0681
+ ncl-000682,POL-000682,Test Claimant 0682,Travel,2024-03-23,2024-03-31,Closed,611.5,M3 4AD,Fictional portfolio test claim 0682
+NCL-000683,POL-000683,Test Claimant 0683,Business,2024-03-24,2024-04-02,Declined,612.25,M4 5AF,Fictional portfolio test claim 0683
+NCL-000684,POL-000684,Test Claimant 0684,motor,2024-03-25,2024-03-26, open ,613.0,M5 6AG,Fictional portfolio test claim 0684
+NCL-000685,POL-000685,Test Claimant 0685,Home,2024-03-26,2024-03-28,In Progress,613.75,M1 1AA,Fictional portfolio test claim 0685
+NCL-000686,POL-000686,  test   claimant 0686 ,Travel,2024-03-27,2024-03-30,Closed,614.5,M2 3AB,Fictional portfolio test claim 0686
+NCL-000687,POL-000687,Test Claimant 0687,Business,2024-03-28,2024-04-01,Declined,615.25,M3 4AD,Fictional portfolio test claim 0687
+NCL-000688,POL-000688,Test Claimant 0688,Motor,2024-03-29,2024-04-03,Open,616.0,m4 5af,Fictional portfolio test claim 0688
+NCL-000689,pol-000689,Test Claimant 0689,Home,2024-03-30,2024-04-05,In Progress,616.75,M5 6AG,Fictional portfolio test claim 0689
+NCL-000690,POL-000690,Test Claimant 0690,Travel,2024-03-31,2024-04-07,Closed,617.5,M1 1AA,Fictional portfolio test claim 0690
+NCL-000691,POL-000691,Test Claimant 0691,Business,2024-04-01,2024-04-09,Declined,618.25,M2 3AB,Fictional portfolio test claim 0691
+NCL-000692,POL-000692,Test Claimant 0692,Motor,2024-04-02,2024-04-11,Open,619.0,M3 4AD,Fictional portfolio test claim 0692
+ ncl-000693,POL-000693,  test   claimant 0693 ,Home,2024-04-03,2024-04-04, in progress ,619.75,M4 5AF,Fictional portfolio test claim 0693
+NCL-000694,POL-000694,Test Claimant 0694,Travel,2024-04-04,2024-04-06,Closed,620.5,M5 6AG,Fictional portfolio test claim 0694
+NCL-000695,POL-000695,Test Claimant 0695,Business,2024-04-05,2024-04-08,Declined,621.25,M1 1AA,Fictional portfolio test claim 0695
+NCL-000696,POL-000696,Test Claimant 0696,Motor,2024-04-06,2024-04-10,Open,622.0,m2 3ab,Fictional portfolio test claim 0696
+NCL-000697 ,POL-000697,Test Claimant 0697,Home,2024-04-07,2024-04-12,In Progress,622.75,M3 4AD,Fictional portfolio test claim 0697
+NCL-000698,POL-000698,Test Claimant 0698,Travel,2024-04-08,2024-04-14,Closed,623.5,M4 5AF,Fictional portfolio test claim 0698
+NCL-000699,POL-000699,Test Claimant 0699,Business,2024-04-09,2024-04-16,Declined,624.25,M5 6AG,Fictional portfolio test claim 0699
+NCL-000700,POL-000700,  test   claimant 0700 ,Motor,2024-04-10,2024-04-18,Open,625.0,M1 1AA,Fictional portfolio test claim 0700
+NCL-000701,POL-000701,Test Claimant 0701,Home,2024-04-11,2024-04-20,In Progress,625.75,M2 3AB,Fictional portfolio test claim 0701
+NCL-000702,pol-000702,Test Claimant 0702,Travel,2024-04-12,2024-04-13, closed ,626.5,M3 4AD,Fictional portfolio test claim 0702
+NCL-000703,POL-000703,Test Claimant 0703,business,2024-04-13,2024-04-15,Declined,627.25,M4 5AF,Fictional portfolio test claim 0703
+ ncl-000704,POL-000704,Test Claimant 0704,Motor,2024-04-14,2024-04-17,Open,628.0,m5 6ag,Fictional portfolio test claim 0704
+NCL-000705,POL-000705,Test Claimant 0705,Home,2024-04-15,2024-04-19,In Progress,628.75,M1 1AA,Fictional portfolio test claim 0705
+NCL-000706,POL-000706,Test Claimant 0706,Travel,2024-04-16,2024-04-21,Closed,629.5,M2 3AB,Fictional portfolio test claim 0706
+NCL-000707,POL-000707,  test   claimant 0707 ,Business,2024-04-17,2024-04-23,Declined,630.25,M3 4AD,Fictional portfolio test claim 0707
+NCL-000708,POL-000708,Test Claimant 0708,Motor,2024-04-18,2024-04-25,Open,631.0,M4 5AF,Fictional portfolio test claim 0708
+NCL-000709,POL-000709,Test Claimant 0709,Home,2024-04-19,2024-04-27,In Progress,631.75,M5 6AG,Fictional portfolio test claim 0709
+NCL-000710,POL-000710,Test Claimant 0710,Travel,2024-04-20,2024-04-29,Closed,632.5,M1 1AA,Fictional portfolio test claim 0710
+NCL-000711,POL-000711,Test Claimant 0711,Business,2024-04-21,2024-04-22, declined ,633.25,M2 3AB,Fictional portfolio test claim 0711
+NCL-000712,POL-000712,Test Claimant 0712,Motor,2024-04-22,2024-04-24,Open,634.0,m3 4ad,Fictional portfolio test claim 0712
+NCL-000713,POL-000713,Test Claimant 0713,Home,2024-04-23,2024-04-26,In Progress,634.75,M4 5AF,Fictional portfolio test claim 0713
+NCL-000714 ,POL-000714,  test   claimant 0714 ,Travel,2024-04-24,2024-04-28,Closed,635.5,M5 6AG,Fictional portfolio test claim 0714
+ ncl-000715,pol-000715,Test Claimant 0715,Business,2024-04-25,2024-04-30,Declined,636.25,M1 1AA,Fictional portfolio test claim 0715
+NCL-000716,POL-000716,Test Claimant 0716,Motor,2024-04-26,2024-05-02,Open,637.0,M2 3AB,Fictional portfolio test claim 0716
+NCL-000717,POL-000717,Test Claimant 0717,Home,2024-04-27,2024-05-04,In Progress,637.75,M3 4AD,Fictional portfolio test claim 0717
+NCL-000718,POL-000718,Test Claimant 0718,Travel,2024-04-28,2024-05-06,Closed,638.5,M4 5AF,Fictional portfolio test claim 0718
+NCL-000719,POL-000719,Test Claimant 0719,Business,2024-04-29,2024-05-08,Declined,639.25,M5 6AG,Fictional portfolio test claim 0719
+NCL-000720,POL-000720,Test Claimant 0720,Motor,2024-04-30,2024-05-01, open ,640.0,m1 1aa,Fictional portfolio test claim 0720
+NCL-000721,POL-000721,  test   claimant 0721 ,Home,2024-05-01,2024-05-03,In Progress,640.75,M2 3AB,Fictional portfolio test claim 0721
+NCL-000722,POL-000722,Test Claimant 0722,travel,2024-05-02,2024-05-05,Closed,641.5,M3 4AD,Fictional portfolio test claim 0722
+NCL-000723,POL-000723,Test Claimant 0723,Business,2024-05-03,2024-05-07,Declined,642.25,M4 5AF,Fictional portfolio test claim 0723
+NCL-000724,POL-000724,Test Claimant 0724,Motor,2024-05-04,2024-05-09,Open,643.0,M5 6AG,Fictional portfolio test claim 0724
+NCL-000725,POL-000725,Test Claimant 0725,Home,2024-05-05,2024-05-11,In Progress,643.75,M1 1AA,Fictional portfolio test claim 0725
+ ncl-000726,POL-000726,Test Claimant 0726,Travel,2024-05-06,2024-05-13,Closed,644.5,M2 3AB,Fictional portfolio test claim 0726
+NCL-000727,POL-000727,Test Claimant 0727,Business,2024-05-07,2024-05-15,Declined,645.25,M3 4AD,Fictional portfolio test claim 0727
+NCL-000728,pol-000728,  test   claimant 0728 ,Motor,2024-05-08,2024-05-17,Open,646.0,m4 5af,Fictional portfolio test claim 0728
+NCL-000729,POL-000729,Test Claimant 0729,Home,2024-05-09,2024-05-10, in progress ,646.75,M5 6AG,Fictional portfolio test claim 0729
+NCL-000730,POL-000730,Test Claimant 0730,Travel,2024-05-10,2024-05-12,Closed,647.5,M1 1AA,Fictional portfolio test claim 0730
+NCL-000731 ,POL-000731,Test Claimant 0731,Business,2024-05-11,2024-05-14,Declined,648.25,M2 3AB,Fictional portfolio test claim 0731
+NCL-000732,POL-000732,Test Claimant 0732,Motor,2024-05-12,2024-05-16,Open,649.0,M3 4AD,Fictional portfolio test claim 0732
+NCL-000733,POL-000733,Test Claimant 0733,Home,2024-05-13,2024-05-18,In Progress,649.75,M4 5AF,Fictional portfolio test claim 0733
+NCL-000734,POL-000734,Test Claimant 0734,Travel,2024-05-14,2024-05-20,Closed,650.5,M5 6AG,Fictional portfolio test claim 0734
+NCL-000735,POL-000735,  test   claimant 0735 ,Business,2024-05-15,2024-05-22,Declined,651.25,M1 1AA,Fictional portfolio test claim 0735
+NCL-000736,POL-000736,Test Claimant 0736,Motor,2024-05-16,2024-05-24,Open,652.0,m2 3ab,Fictional portfolio test claim 0736
+ ncl-000737,POL-000737,Test Claimant 0737,Home,2024-05-17,2024-05-26,In Progress,652.75,M3 4AD,Fictional portfolio test claim 0737
+NCL-000738,POL-000738,Test Claimant 0738,Travel,2024-05-18,2024-05-19, closed ,653.5,M4 5AF,Fictional portfolio test claim 0738
+NCL-000739,POL-000739,Test Claimant 0739,Business,2024-05-19,2024-05-21,Declined,654.25,M5 6AG,Fictional portfolio test claim 0739
+NCL-000740,POL-000740,Test Claimant 0740,Motor,2024-05-20,2024-05-23,Open,655.0,M1 1AA,Fictional portfolio test claim 0740
+NCL-000741,pol-000741,Test Claimant 0741,home,2024-05-21,2024-05-25,In Progress,655.75,M2 3AB,Fictional portfolio test claim 0741
+NCL-000742,POL-000742,  test   claimant 0742 ,Travel,2024-05-22,2024-05-27,Closed,656.5,M3 4AD,Fictional portfolio test claim 0742
+NCL-000743,POL-000743,Test Claimant 0743,Business,2024-05-23,2024-05-29,Declined,657.25,M4 5AF,Fictional portfolio test claim 0743
+NCL-000744,POL-000744,Test Claimant 0744,Motor,2024-05-24,2024-05-31,Open,658.0,m5 6ag,Fictional portfolio test claim 0744
+NCL-000745,POL-000745,Test Claimant 0745,Home,2024-05-25,2024-06-02,In Progress,658.75,M1 1AA,Fictional portfolio test claim 0745
+NCL-000746,POL-000746,Test Claimant 0746,Travel,2024-05-26,2024-06-04,Closed,659.5,M2 3AB,Fictional portfolio test claim 0746
+NCL-000747,POL-000747,Test Claimant 0747,Business,2024-05-27,2024-05-28, declined ,660.25,M3 4AD,Fictional portfolio test claim 0747
+ ncl-000748 ,POL-000748,Test Claimant 0748,Motor,2024-05-28,2024-05-30,Open,661.0,M4 5AF,Fictional portfolio test claim 0748
+NCL-000749,POL-000749,  test   claimant 0749 ,Home,2024-05-29,2024-06-01,In Progress,661.75,M5 6AG,Fictional portfolio test claim 0749
+NCL-000750,POL-000750,Test Claimant 0750,Travel,2024-05-30,2024-06-03,Closed,662.5,M1 1AA,Fictional portfolio test claim 0750
+NCL-000751,POL-000751,Test Claimant 0751,Business,2024-05-31,2024-06-05,Declined,663.25,M2 3AB,Fictional portfolio test claim 0751
+NCL-000752,POL-000752,Test Claimant 0752,Motor,2024-06-01,2024-06-07,Open,664.0,m3 4ad,Fictional portfolio test claim 0752
+NCL-000753,POL-000753,Test Claimant 0753,Home,2024-06-02,2024-06-09,In Progress,664.75,M4 5AF,Fictional portfolio test claim 0753
+NCL-000754,pol-000754,Test Claimant 0754,Travel,2024-06-03,2024-06-11,Closed,665.5,M5 6AG,Fictional portfolio test claim 0754
+NCL-000755,POL-000755,Test Claimant 0755,Business,2024-06-04,2024-06-13,Declined,666.25,M1 1AA,Fictional portfolio test claim 0755
+NCL-000756,POL-000756,  test   claimant 0756 ,Motor,2024-06-05,2024-06-06, open ,667.0,M2 3AB,Fictional portfolio test claim 0756
+NCL-000757,POL-000757,Test Claimant 0757,Home,2024-06-06,2024-06-08,In Progress,667.75,M3 4AD,Fictional portfolio test claim 0757
+NCL-000758,POL-000758,Test Claimant 0758,Travel,2024-06-07,2024-06-10,Closed,668.5,M4 5AF,Fictional portfolio test claim 0758
+ ncl-000759,POL-000759,Test Claimant 0759,Business,2024-06-08,2024-06-12,Declined,669.25,M5 6AG,Fictional portfolio test claim 0759
+NCL-000760,POL-000760,Test Claimant 0760,motor,2024-06-09,2024-06-14,Open,670.0,m1 1aa,Fictional portfolio test claim 0760
+NCL-000761,POL-000761,Test Claimant 0761,Home,2024-06-10,2024-06-16,In Progress,670.75,M2 3AB,Fictional portfolio test claim 0761
+NCL-000762,POL-000762,Test Claimant 0762,Travel,2024-06-11,2024-06-18,Closed,671.5,M3 4AD,Fictional portfolio test claim 0762
+NCL-000763,POL-000763,  test   claimant 0763 ,Business,2024-06-12,2024-06-20,Declined,672.25,M4 5AF,Fictional portfolio test claim 0763
+NCL-000764,POL-000764,Test Claimant 0764,Motor,2024-06-13,2024-06-22,Open,673.0,M5 6AG,Fictional portfolio test claim 0764
+NCL-000765 ,POL-000765,Test Claimant 0765,Home,2024-06-14,2024-06-15, in progress ,673.75,M1 1AA,Fictional portfolio test claim 0765
+NCL-000766,POL-000766,Test Claimant 0766,Travel,2024-06-15,2024-06-17,Closed,674.5,M2 3AB,Fictional portfolio test claim 0766
+NCL-000767,pol-000767,Test Claimant 0767,Business,2024-06-16,2024-06-19,Declined,675.25,M3 4AD,Fictional portfolio test claim 0767
+NCL-000768,POL-000768,Test Claimant 0768,Motor,2024-06-17,2024-06-21,Open,676.0,m4 5af,Fictional portfolio test claim 0768
+NCL-000769,POL-000769,Test Claimant 0769,Home,2024-06-18,2024-06-23,In Progress,676.75,M5 6AG,Fictional portfolio test claim 0769
+ ncl-000770,POL-000770,  test   claimant 0770 ,Travel,2024-06-19,2024-06-25,Closed,677.5,M1 1AA,Fictional portfolio test claim 0770
+NCL-000771,POL-000771,Test Claimant 0771,Business,2024-06-20,2024-06-27,Declined,678.25,M2 3AB,Fictional portfolio test claim 0771
+NCL-000772,POL-000772,Test Claimant 0772,Motor,2024-06-21,2024-06-29,Open,679.0,M3 4AD,Fictional portfolio test claim 0772
+NCL-000773,POL-000773,Test Claimant 0773,Home,2024-06-22,2024-07-01,In Progress,679.75,M4 5AF,Fictional portfolio test claim 0773
+NCL-000774,POL-000774,Test Claimant 0774,Travel,2024-06-23,2024-06-24, closed ,680.5,M5 6AG,Fictional portfolio test claim 0774
+NCL-000775,POL-000775,Test Claimant 0775,Business,2024-06-24,2024-06-26,Declined,681.25,M1 1AA,Fictional portfolio test claim 0775
+NCL-000776,POL-000776,Test Claimant 0776,Motor,2024-06-25,2024-06-28,Open,682.0,m2 3ab,Fictional portfolio test claim 0776
+NCL-000777,POL-000777,  test   claimant 0777 ,Home,2024-06-26,2024-06-30,In Progress,682.75,M3 4AD,Fictional portfolio test claim 0777
+NCL-000778,POL-000778,Test Claimant 0778,Travel,2024-06-27,2024-07-02,Closed,683.5,M4 5AF,Fictional portfolio test claim 0778
+NCL-000779,POL-000779,Test Claimant 0779,business,2024-06-28,2024-07-04,Declined,684.25,M5 6AG,Fictional portfolio test claim 0779
+NCL-000780,pol-000780,Test Claimant 0780,Motor,2024-06-29,2024-07-06,Open,685.0,M1 1AA,Fictional portfolio test claim 0780
+ ncl-000781,POL-000781,Test Claimant 0781,Home,2024-06-30,2024-07-08,In Progress,685.75,M2 3AB,Fictional portfolio test claim 0781
+NCL-000782 ,POL-000782,Test Claimant 0782,Travel,2024-07-01,2024-07-10,Closed,686.5,M3 4AD,Fictional portfolio test claim 0782
+NCL-000783,POL-000783,Test Claimant 0783,Business,2024-07-02,2024-07-03, declined ,687.25,M4 5AF,Fictional portfolio test claim 0783
+NCL-000784,POL-000784,  test   claimant 0784 ,Motor,2024-07-03,2024-07-05,Open,688.0,m5 6ag,Fictional portfolio test claim 0784
+NCL-000785,POL-000785,Test Claimant 0785,Home,2024-07-04,2024-07-07,In Progress,688.75,M1 1AA,Fictional portfolio test claim 0785
+NCL-000786,POL-000786,Test Claimant 0786,Travel,2024-07-05,2024-07-09,Closed,689.5,M2 3AB,Fictional portfolio test claim 0786
+NCL-000787,POL-000787,Test Claimant 0787,Business,2024-07-06,2024-07-11,Declined,690.25,M3 4AD,Fictional portfolio test claim 0787
+NCL-000788,POL-000788,Test Claimant 0788,Motor,2024-07-07,2024-07-13,Open,691.0,M4 5AF,Fictional portfolio test claim 0788
+NCL-000789,POL-000789,Test Claimant 0789,Home,2024-07-08,2024-07-15,In Progress,691.75,M5 6AG,Fictional portfolio test claim 0789
+NCL-000790,POL-000790,Test Claimant 0790,Travel,2024-07-09,2024-07-17,Closed,692.5,M1 1AA,Fictional portfolio test claim 0790
+NCL-000791,POL-000791,  test   claimant 0791 ,Business,2024-07-10,2024-07-19,Declined,693.25,M2 3AB,Fictional portfolio test claim 0791
+ ncl-000792,POL-000792,Test Claimant 0792,Motor,2024-07-11,2024-07-12, open ,694.0,m3 4ad,Fictional portfolio test claim 0792
+NCL-000793,pol-000793,Test Claimant 0793,Home,2024-07-12,2024-07-14,In Progress,694.75,M4 5AF,Fictional portfolio test claim 0793
+NCL-000794,POL-000794,Test Claimant 0794,Travel,2024-07-13,2024-07-16,Closed,695.5,M5 6AG,Fictional portfolio test claim 0794
+NCL-000795,POL-000795,Test Claimant 0795,Business,2024-07-14,2024-07-18,Declined,696.25,M1 1AA,Fictional portfolio test claim 0795
+NCL-000796,POL-000796,Test Claimant 0796,Motor,2024-07-15,2024-07-20,Open,697.0,M2 3AB,Fictional portfolio test claim 0796
+NCL-000797,POL-000797,Test Claimant 0797,Home,2024-07-16,2024-07-22,In Progress,697.75,M3 4AD,Fictional portfolio test claim 0797
+NCL-000798,POL-000798,  test   claimant 0798 ,travel,2024-07-17,2024-07-24,Closed,698.5,M4 5AF,Fictional portfolio test claim 0798
+NCL-000799 ,POL-000799,Test Claimant 0799,Business,2024-07-18,2024-07-26,Declined,699.25,M5 6AG,Fictional portfolio test claim 0799
+NCL-000800,POL-000800,Test Claimant 0800,Motor,2024-07-19,2024-07-28,Open,700.0,m1 1aa,Fictional portfolio test claim 0800
+NCL-000801,POL-000801,Test Claimant 0801,Home,2024-07-20,2024-07-21, in progress ,700.75,M2 3AB,Fictional portfolio test claim 0801
+NCL-000802,POL-000802,Test Claimant 0802,Travel,2024-07-21,2024-07-23,Closed,701.5,M3 4AD,Fictional portfolio test claim 0802
+ ncl-000803,POL-000803,Test Claimant 0803,Business,2024-07-22,2024-07-25,Declined,702.25,M4 5AF,Fictional portfolio test claim 0803
+NCL-000804,POL-000804,Test Claimant 0804,Motor,2024-07-23,2024-07-27,Open,703.0,M5 6AG,Fictional portfolio test claim 0804
+NCL-000805,POL-000805,  test   claimant 0805 ,Home,2024-07-24,2024-07-29,In Progress,703.75,M1 1AA,Fictional portfolio test claim 0805
+NCL-000806,pol-000806,Test Claimant 0806,Travel,2024-07-25,2024-07-31,Closed,704.5,M2 3AB,Fictional portfolio test claim 0806
+NCL-000807,POL-000807,Test Claimant 0807,Business,2024-07-26,2024-08-02,Declined,705.25,M3 4AD,Fictional portfolio test claim 0807
+NCL-000808,POL-000808,Test Claimant 0808,Motor,2024-07-27,2024-08-04,Open,706.0,m4 5af,Fictional portfolio test claim 0808
+NCL-000809,POL-000809,Test Claimant 0809,Home,2024-07-28,2024-08-06,In Progress,706.75,M5 6AG,Fictional portfolio test claim 0809
+NCL-000810,POL-000810,Test Claimant 0810,Travel,2024-07-29,2024-07-30, closed ,707.5,M1 1AA,Fictional portfolio test claim 0810
+NCL-000811,POL-000811,Test Claimant 0811,Business,2024-07-30,2024-08-01,Declined,708.25,M2 3AB,Fictional portfolio test claim 0811
+NCL-000812,POL-000812,  test   claimant 0812 ,Motor,2024-07-31,2024-08-03,Open,709.0,M3 4AD,Fictional portfolio test claim 0812
+NCL-000813,POL-000813,Test Claimant 0813,Home,2024-08-01,2024-08-05,In Progress,709.75,M4 5AF,Fictional portfolio test claim 0813
+ ncl-000814,POL-000814,Test Claimant 0814,Travel,2024-08-02,2024-08-07,Closed,710.5,M5 6AG,Fictional portfolio test claim 0814
+NCL-000815,POL-000815,Test Claimant 0815,Business,2024-08-03,2024-08-09,Declined,711.25,M1 1AA,Fictional portfolio test claim 0815
+NCL-000816 ,POL-000816,Test Claimant 0816,Motor,2024-08-04,2024-08-11,Open,712.0,m2 3ab,Fictional portfolio test claim 0816
+NCL-000817,POL-000817,Test Claimant 0817,home,2024-08-05,2024-08-13,In Progress,712.75,M3 4AD,Fictional portfolio test claim 0817
+NCL-000818,POL-000818,Test Claimant 0818,Travel,2024-08-06,2024-08-15,Closed,713.5,M4 5AF,Fictional portfolio test claim 0818
+NCL-000819,pol-000819,  test   claimant 0819 ,Business,2024-08-07,2024-08-08, declined ,714.25,M5 6AG,Fictional portfolio test claim 0819
+NCL-000820,POL-000820,Test Claimant 0820,Motor,2024-08-08,2024-08-10,Open,715.0,M1 1AA,Fictional portfolio test claim 0820
+NCL-000821,POL-000821,Test Claimant 0821,Home,2024-08-09,2024-08-12,In Progress,715.75,M2 3AB,Fictional portfolio test claim 0821
+NCL-000822,POL-000822,Test Claimant 0822,Travel,2024-08-10,2024-08-14,Closed,716.5,M3 4AD,Fictional portfolio test claim 0822
+NCL-000823,POL-000823,Test Claimant 0823,Business,2024-08-11,2024-08-16,Declined,717.25,M4 5AF,Fictional portfolio test claim 0823
+NCL-000824,POL-000824,Test Claimant 0824,Motor,2024-08-12,2024-08-18,Open,718.0,m5 6ag,Fictional portfolio test claim 0824
+ ncl-000825,POL-000825,Test Claimant 0825,Home,2024-08-13,2024-08-20,In Progress,718.75,M1 1AA,Fictional portfolio test claim 0825
+NCL-000826,POL-000826,  test   claimant 0826 ,Travel,2024-08-14,2024-08-22,Closed,719.5,M2 3AB,Fictional portfolio test claim 0826
+NCL-000827,POL-000827,Test Claimant 0827,Business,2024-08-15,2024-08-24,Declined,720.25,M3 4AD,Fictional portfolio test claim 0827
+NCL-000828,POL-000828,Test Claimant 0828,Motor,2024-08-16,2024-08-17, open ,721.0,M4 5AF,Fictional portfolio test claim 0828
+NCL-000829,POL-000829,Test Claimant 0829,Home,2024-08-17,2024-08-19,In Progress,721.75,M5 6AG,Fictional portfolio test claim 0829
+NCL-000830,POL-000830,Test Claimant 0830,Travel,2024-08-18,2024-08-21,Closed,722.5,M1 1AA,Fictional portfolio test claim 0830
+NCL-000831,POL-000831,Test Claimant 0831,Business,2024-08-19,2024-08-23,Declined,723.25,M2 3AB,Fictional portfolio test claim 0831
+NCL-000832,pol-000832,Test Claimant 0832,Motor,2024-08-20,2024-08-25,Open,724.0,m3 4ad,Fictional portfolio test claim 0832
+NCL-000833 ,POL-000833,  test   claimant 0833 ,Home,2024-08-21,2024-08-27,In Progress,724.75,M4 5AF,Fictional portfolio test claim 0833
+NCL-000834,POL-000834,Test Claimant 0834,Travel,2024-08-22,2024-08-29,Closed,725.5,M5 6AG,Fictional portfolio test claim 0834
+NCL-000835,POL-000835,Test Claimant 0835,Business,2024-08-23,2024-08-31,Declined,726.25,M1 1AA,Fictional portfolio test claim 0835
+ ncl-000836,POL-000836,Test Claimant 0836,motor,2024-08-24,2024-09-02,Open,727.0,M2 3AB,Fictional portfolio test claim 0836
+NCL-000837,POL-000837,Test Claimant 0837,Home,2024-08-25,2024-08-26, in progress ,727.75,M3 4AD,Fictional portfolio test claim 0837
+NCL-000838,POL-000838,Test Claimant 0838,Travel,2024-08-26,2024-08-28,Closed,728.5,M4 5AF,Fictional portfolio test claim 0838
+NCL-000839,POL-000839,Test Claimant 0839,Business,2024-08-27,2024-08-30,Declined,729.25,M5 6AG,Fictional portfolio test claim 0839
+NCL-000840,POL-000840,  test   claimant 0840 ,Motor,2024-08-28,2024-09-01,Open,730.0,m1 1aa,Fictional portfolio test claim 0840
+NCL-000841,POL-000841,Test Claimant 0841,Home,2024-08-29,2024-09-03,In Progress,730.75,M2 3AB,Fictional portfolio test claim 0841
+NCL-000842,POL-000842,Test Claimant 0842,Travel,2024-08-30,2024-09-05,Closed,731.5,M3 4AD,Fictional portfolio test claim 0842
+NCL-000843,POL-000843,Test Claimant 0843,Business,2024-08-31,2024-09-07,Declined,732.25,M4 5AF,Fictional portfolio test claim 0843
+NCL-000844,POL-000844,Test Claimant 0844,Motor,2024-09-01,2024-09-09,Open,733.0,M5 6AG,Fictional portfolio test claim 0844
+NCL-000845,pol-000845,Test Claimant 0845,Home,2024-09-02,2024-09-11,In Progress,733.75,M1 1AA,Fictional portfolio test claim 0845
+NCL-000846,POL-000846,Test Claimant 0846,Travel,2024-09-03,2024-09-04, closed ,734.5,M2 3AB,Fictional portfolio test claim 0846
+ ncl-000847,POL-000847,  test   claimant 0847 ,Business,2024-09-04,2024-09-06,Declined,735.25,M3 4AD,Fictional portfolio test claim 0847
+NCL-000848,POL-000848,Test Claimant 0848,Motor,2024-09-05,2024-09-08,Open,736.0,m4 5af,Fictional portfolio test claim 0848
+NCL-000849,POL-000849,Test Claimant 0849,Home,2024-09-06,2024-09-10,In Progress,736.75,M5 6AG,Fictional portfolio test claim 0849
+NCL-000850 ,POL-000850,Test Claimant 0850,Travel,2024-09-07,2024-09-12,Closed,737.5,M1 1AA,Fictional portfolio test claim 0850
+NCL-000851,POL-000851,Test Claimant 0851,Business,2024-09-08,2024-09-14,Declined,738.25,M2 3AB,Fictional portfolio test claim 0851
+NCL-000852,POL-000852,Test Claimant 0852,Motor,2024-09-09,2024-09-16,Open,739.0,M3 4AD,Fictional portfolio test claim 0852
+NCL-000853,POL-000853,Test Claimant 0853,Home,2024-09-10,2024-09-18,In Progress,739.75,M4 5AF,Fictional portfolio test claim 0853
+NCL-000854,POL-000854,  test   claimant 0854 ,Travel,2024-09-11,2024-09-20,Closed,740.5,M5 6AG,Fictional portfolio test claim 0854
+NCL-000855,POL-000855,Test Claimant 0855,business,2024-09-12,2024-09-13, declined ,741.25,M1 1AA,Fictional portfolio test claim 0855
+NCL-000856,POL-000856,Test Claimant 0856,Motor,2024-09-13,2024-09-15,Open,742.0,m2 3ab,Fictional portfolio test claim 0856
+NCL-000857,POL-000857,Test Claimant 0857,Home,2024-09-14,2024-09-17,In Progress,742.75,M3 4AD,Fictional portfolio test claim 0857
+ ncl-000858,pol-000858,Test Claimant 0858,Travel,2024-09-15,2024-09-19,Closed,743.5,M4 5AF,Fictional portfolio test claim 0858
+NCL-000859,POL-000859,Test Claimant 0859,Business,2024-09-16,2024-09-21,Declined,744.25,M5 6AG,Fictional portfolio test claim 0859
+NCL-000860,POL-000860,Test Claimant 0860,Motor,2024-09-17,2024-09-23,Open,745.0,M1 1AA,Fictional portfolio test claim 0860
+NCL-000861,POL-000861,  test   claimant 0861 ,Home,2024-09-18,2024-09-25,In Progress,745.75,M2 3AB,Fictional portfolio test claim 0861
+NCL-000862,POL-000862,Test Claimant 0862,Travel,2024-09-19,2024-09-27,Closed,746.5,M3 4AD,Fictional portfolio test claim 0862
+NCL-000863,POL-000863,Test Claimant 0863,Business,2024-09-20,2024-09-29,Declined,747.25,M4 5AF,Fictional portfolio test claim 0863
+NCL-000864,POL-000864,Test Claimant 0864,Motor,2024-09-21,2024-09-22, open ,748.0,m5 6ag,Fictional portfolio test claim 0864
+NCL-000865,POL-000865,Test Claimant 0865,Home,2024-09-22,2024-09-24,In Progress,748.75,M1 1AA,Fictional portfolio test claim 0865
+NCL-000866,POL-000866,Test Claimant 0866,Travel,2024-09-23,2024-09-26,Closed,749.5,M2 3AB,Fictional portfolio test claim 0866
+NCL-000867 ,POL-000867,Test Claimant 0867,Business,2024-09-24,2024-09-28,Declined,750.25,M3 4AD,Fictional portfolio test claim 0867
+NCL-000868,POL-000868,  test   claimant 0868 ,Motor,2024-09-25,2024-09-30,Open,751.0,M4 5AF,Fictional portfolio test claim 0868
+ ncl-000869,POL-000869,Test Claimant 0869,Home,2024-09-26,2024-10-02,In Progress,751.75,M5 6AG,Fictional portfolio test claim 0869
+NCL-000870,POL-000870,Test Claimant 0870,Travel,2024-09-27,2024-10-04,Closed,752.5,M1 1AA,Fictional portfolio test claim 0870
+NCL-000871,pol-000871,Test Claimant 0871,Business,2024-09-28,2024-10-06,Declined,753.25,M2 3AB,Fictional portfolio test claim 0871
+NCL-000872,POL-000872,Test Claimant 0872,Motor,2024-09-29,2024-10-08,Open,754.0,m3 4ad,Fictional portfolio test claim 0872
+NCL-000873,POL-000873,Test Claimant 0873,Home,2024-09-30,2024-10-01, in progress ,754.75,M4 5AF,Fictional portfolio test claim 0873
+NCL-000874,POL-000874,Test Claimant 0874,travel,2024-10-01,2024-10-03,Closed,755.5,M5 6AG,Fictional portfolio test claim 0874
+NCL-000875,POL-000875,  test   claimant 0875 ,Business,2024-10-02,2024-10-05,Declined,756.25,M1 1AA,Fictional portfolio test claim 0875
+NCL-000876,POL-000876,Test Claimant 0876,Motor,2024-10-03,2024-10-07,Open,757.0,M2 3AB,Fictional portfolio test claim 0876
+NCL-000877,POL-000877,Test Claimant 0877,Home,2024-10-04,2024-10-09,In Progress,757.75,M3 4AD,Fictional portfolio test claim 0877
+NCL-000878,POL-000878,Test Claimant 0878,Travel,2024-10-05,2024-10-11,Closed,758.5,M4 5AF,Fictional portfolio test claim 0878
+NCL-000879,POL-000879,Test Claimant 0879,Business,2024-10-06,2024-10-13,Declined,759.25,M5 6AG,Fictional portfolio test claim 0879
+ ncl-000880,POL-000880,Test Claimant 0880,Motor,2024-10-07,2024-10-15,Open,760.0,m1 1aa,Fictional portfolio test claim 0880
+NCL-000881,POL-000881,Test Claimant 0881,Home,2024-10-08,2024-10-17,In Progress,760.75,M2 3AB,Fictional portfolio test claim 0881
+NCL-000882,POL-000882,  test   claimant 0882 ,Travel,2024-10-09,2024-10-10, closed ,761.5,M3 4AD,Fictional portfolio test claim 0882
+NCL-000883,POL-000883,Test Claimant 0883,Business,2024-10-10,2024-10-12,Declined,762.25,M4 5AF,Fictional portfolio test claim 0883
+NCL-000884 ,pol-000884,Test Claimant 0884,Motor,2024-10-11,2024-10-14,Open,763.0,M5 6AG,Fictional portfolio test claim 0884
+NCL-000885,POL-000885,Test Claimant 0885,Home,2024-10-12,2024-10-16,In Progress,763.75,M1 1AA,Fictional portfolio test claim 0885
+NCL-000886,POL-000886,Test Claimant 0886,Travel,2024-10-13,2024-10-18,Closed,764.5,M2 3AB,Fictional portfolio test claim 0886
+NCL-000887,POL-000887,Test Claimant 0887,Business,2024-10-14,2024-10-20,Declined,765.25,M3 4AD,Fictional portfolio test claim 0887
+NCL-000888,POL-000888,Test Claimant 0888,Motor,2024-10-15,2024-10-22,Open,766.0,m4 5af,Fictional portfolio test claim 0888
+NCL-000889,POL-000889,  test   claimant 0889 ,Home,2024-10-16,2024-10-24,In Progress,766.75,M5 6AG,Fictional portfolio test claim 0889
+NCL-000890,POL-000890,Test Claimant 0890,Travel,2024-10-17,2024-10-26,Closed,767.5,M1 1AA,Fictional portfolio test claim 0890
+ ncl-000891,POL-000891,Test Claimant 0891,Business,2024-10-18,2024-10-19, declined ,768.25,M2 3AB,Fictional portfolio test claim 0891
+NCL-000892,POL-000892,Test Claimant 0892,Motor,2024-10-19,2024-10-21,Open,769.0,M3 4AD,Fictional portfolio test claim 0892
+NCL-000893,POL-000893,Test Claimant 0893,home,2024-10-20,2024-10-23,In Progress,769.75,M4 5AF,Fictional portfolio test claim 0893
+NCL-000894,POL-000894,Test Claimant 0894,Travel,2024-10-21,2024-10-25,Closed,770.5,M5 6AG,Fictional portfolio test claim 0894
+NCL-000895,POL-000895,Test Claimant 0895,Business,2024-10-22,2024-10-27,Declined,771.25,M1 1AA,Fictional portfolio test claim 0895
+NCL-000896,POL-000896,  test   claimant 0896 ,Motor,2024-10-23,2024-10-29,Open,772.0,m2 3ab,Fictional portfolio test claim 0896
+NCL-000897,pol-000897,Test Claimant 0897,Home,2024-10-24,2024-10-31,In Progress,772.75,M3 4AD,Fictional portfolio test claim 0897
+NCL-000898,POL-000898,Test Claimant 0898,Travel,2024-10-25,2024-11-02,Closed,773.5,M4 5AF,Fictional portfolio test claim 0898
+NCL-000899,POL-000899,Test Claimant 0899,Business,2024-10-26,2024-11-04,Declined,774.25,M5 6AG,Fictional portfolio test claim 0899
+NCL-000900,POL-000900,Test Claimant 0900,Motor,2024-01-01,2024-01-02, open ,775.0,M1 1AA,Fictional portfolio test claim 0900
+NCL-000001,POL-000001,Test Claimant 0001,Home,2024-01-02,2024-01-04,In Progress,100.75,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0001
+NCL-000002,POL-000002,Test Claimant 0002,Travel,2024-01-03,2024-01-06,Closed,101.5,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0002
+NCL-000003,POL-000003,Test Claimant 0003,Business,2024-01-04,2024-01-08,Declined,102.25,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0003
+NCL-000004,POL-000004,Test Claimant 0004,Motor,2024-01-05,2024-01-10,Open,103.0,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0004
+NCL-000005,POL-000005,Test Claimant 0005,Home,2024-01-06,2024-01-12,In Progress,103.75,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0005
+NCL-000006,POL-000006,Test Claimant 0006,Travel,2024-01-07,2024-01-14,Closed,104.5,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0006
+NCL-000007,POL-000007,  test   claimant 0007 ,Business,2024-01-08,2024-01-16,Declined,105.25,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0007
+NCL-000008,POL-000008,Test Claimant 0008,Motor,2024-01-09,2024-01-18,Open,106.0,m4 5af,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0008
+NCL-000009,POL-000009,Test Claimant 0009,Home,2024-01-10,2024-01-11, in progress ,106.75,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0009
+NCL-000010,POL-000010,Test Claimant 0010,Travel,2024-01-11,2024-01-13,Closed,107.5,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0010
+ ncl-000011,POL-000011,Test Claimant 0011,Business,2024-01-12,2024-01-15,Declined,108.25,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0011
+NCL-000012,POL-000012,Test Claimant 0012,Motor,2024-01-13,2024-01-17,Open,109.0,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0012
+NCL-000013,pol-000013,Test Claimant 0013,Home,2024-01-14,2024-01-19,In Progress,109.75,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0013
+NCL-000014,POL-000014,  test   claimant 0014 ,Travel,2024-01-15,2024-01-21,Closed,110.5,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0014
+NCL-000015,POL-000015,Test Claimant 0015,Business,2024-01-16,2024-01-23,Declined,111.25,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0015
+NCL-000016,POL-000016,Test Claimant 0016,Motor,2024-01-17,2024-01-25,Open,112.0,m2 3ab,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0016
+NCL-000017 ,POL-000017,Test Claimant 0017,Home,2024-01-18,2024-01-27,In Progress,112.75,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0017
+NCL-000018,POL-000018,Test Claimant 0018,Travel,2024-01-19,2024-01-20, closed ,113.5,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0018
+NCL-000019,POL-000019,Test Claimant 0019,business,2024-01-20,2024-01-22,Declined,114.25,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0019
+NCL-000020,POL-000020,Test Claimant 0020,Motor,2024-01-21,2024-01-24,Open,115.0,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0020
+NCL-000021,POL-000021,  test   claimant 0021 ,Home,2024-01-22,2024-01-26,In Progress,115.75,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0021
+ ncl-000022,POL-000022,Test Claimant 0022,Travel,2024-01-23,2024-01-28,Closed,116.5,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0022
+NCL-000023,POL-000023,Test Claimant 0023,Business,2024-01-24,2024-01-30,Declined,117.25,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0023
+NCL-000024,POL-000024,Test Claimant 0024,Motor,2024-01-25,2024-02-01,Open,118.0,m5 6ag,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0024
+NCL-000025,POL-000025,Test Claimant 0025,Home,2024-01-26,2024-02-03,In Progress,118.75,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0025
+NCL-000026,pol-000026,Test Claimant 0026,Travel,2024-01-27,2024-02-05,Closed,119.5,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0026
+NCL-000027,POL-000027,Test Claimant 0027,Business,2024-01-28,2024-01-29, declined ,120.25,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0027
+NCL-000028,POL-000028,  test   claimant 0028 ,Motor,2024-01-29,2024-01-31,Open,121.0,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0028
+NCL-000029,POL-000029,Test Claimant 0029,Home,2024-01-30,2024-02-02,In Progress,121.75,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0029
+NCL-000030,POL-000030,Test Claimant 0030,Travel,2024-01-31,2024-02-04,Closed,122.5,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0030
+NCL-000031,POL-000031,Test Claimant 0031,Business,2024-02-01,2024-02-06,Declined,123.25,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0031
+NCL-000032,POL-000032,Test Claimant 0032,Motor,2024-02-02,2024-02-08,Open,124.0,m3 4ad,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0032
+ ncl-000033,POL-000033,Test Claimant 0033,Home,2024-02-03,2024-02-10,In Progress,124.75,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0033
+NCL-000034 ,POL-000034,Test Claimant 0034,Travel,2024-02-04,2024-02-12,Closed,125.5,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0034
+NCL-000035,POL-000035,  test   claimant 0035 ,Business,2024-02-05,2024-02-14,Declined,126.25,M1 1AA,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0035
+NCL-000036,POL-000036,Test Claimant 0036,Motor,2024-02-06,2024-02-07, open ,127.0,M2 3AB,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0036
+NCL-000037,POL-000037,Test Claimant 0037,Home,2024-02-07,2024-02-09,In Progress,127.75,M3 4AD,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0037
+NCL-000038,POL-000038,Test Claimant 0038,travel,2024-02-08,2024-02-11,Closed,128.5,M4 5AF,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0038
+NCL-000039,pol-000039,Test Claimant 0039,Business,2024-02-09,2024-02-13,Declined,129.25,M5 6AG,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0039
+NCL-000040,POL-000040,Test Claimant 0040,Motor,2024-02-10,2024-02-15,Open,130.0,m1 1aa,INTENTIONAL DUPLICATE: Fictional portfolio test claim 0040
+INVALID-ID,POL-000101,Test Claimant 0101,Home,2024-04-11,2024-04-14,In Progress,175.75,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0101
+INVALID-ID,POL-000102,Test Claimant 0102,Travel,2024-04-12,2024-04-16,Closed,176.5,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0102
+INVALID-ID,POL-000103,Test Claimant 0103,Business,2024-04-13,2024-04-18,Declined,177.25,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0103
+INVALID-ID,pol-000104,Test Claimant 0104,Motor,2024-04-14,2024-04-20,Open,178.0,m5 6ag,INTENTIONAL INVALID: Fictional portfolio test claim 0104
+INVALID-ID,POL-000105,  test   claimant 0105 ,Home,2024-04-15,2024-04-22,In Progress,178.75,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0105
+INVALID-ID,POL-000106,Test Claimant 0106,Travel,2024-04-16,2024-04-24,Closed,179.5,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0106
+INVALID-ID,POL-000107,Test Claimant 0107,Business,2024-04-17,2024-04-26,Declined,180.25,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0107
+INVALID-ID,POL-000108,Test Claimant 0108,Motor,2024-04-18,2024-04-19, open ,181.0,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0108
+INVALID-ID,POL-000109,Test Claimant 0109,Home,2024-04-19,2024-04-21,In Progress,181.75,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0109
+INVALID-ID,POL-000110,Test Claimant 0110,Travel,2024-04-20,2024-04-23,Closed,182.5,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0110
+INVALID-ID,POL-000111,Test Claimant 0111,Business,2024-04-21,2024-04-25,Declined,183.25,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0111
+INVALID-ID,POL-000112,  test   claimant 0112 ,Motor,2024-04-22,2024-04-27,Open,184.0,m3 4ad,INTENTIONAL INVALID: Fictional portfolio test claim 0112
+NCL-000913,POL-000113,Test Claimant 0113,Home,2024-04-23,31/02/2025,In Progress,184.75,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0113
+NCL-000914,POL-000114,Test Claimant 0114,travel,2024-04-24,31/02/2025,Closed,185.5,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0114
+NCL-000915,POL-000115,Test Claimant 0115,Business,2024-04-25,31/02/2025,Declined,186.25,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0115
+NCL-000916,POL-000116,Test Claimant 0116,Motor,2024-04-26,31/02/2025,Open,187.0,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0116
+NCL-000917,pol-000117,Test Claimant 0117,Home,2024-04-27,31/02/2025, in progress ,187.75,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0117
+NCL-000918,POL-000118,Test Claimant 0118,Travel,2024-04-28,31/02/2025,Closed,188.5,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0118
+NCL-000919,POL-000119,  test   claimant 0119 ,Business,2024-04-29,31/02/2025,Declined,189.25,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0119
+NCL-000920,POL-000120,Test Claimant 0120,Motor,2024-04-30,31/02/2025,Open,190.0,m1 1aa,INTENTIONAL INVALID: Fictional portfolio test claim 0120
+NCL-000921,POL-000121,Test Claimant 0121,Home,2024-05-01,31/02/2025,In Progress,190.75,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0121
+NCL-000922,POL-000122,Test Claimant 0122,Travel,2024-05-02,31/02/2025,Closed,191.5,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0122
+NCL-000923,POL-000123,Test Claimant 0123,Business,2024-05-03,31/02/2025,Declined,192.25,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0123
+NCL-000924,POL-000124,Test Claimant 0124,Motor,2024-05-04,31/02/2025,Open,193.0,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0124
+NCL-000925,POL-000125,Test Claimant 0125,Home,2024-05-05,2024-05-14,In Progress,-50.00,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0125
+NCL-000926,POL-000126,  test   claimant 0126 ,Travel,2024-05-06,2024-05-07, closed ,-50.00,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0126
+NCL-000927,POL-000127,Test Claimant 0127,Business,2024-05-07,2024-05-09,Declined,-50.00,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0127
+NCL-000928,POL-000128,Test Claimant 0128,Motor,2024-05-08,2024-05-11,Open,-50.00,m4 5af,INTENTIONAL INVALID: Fictional portfolio test claim 0128
+NCL-000929,POL-000129,Test Claimant 0129,Home,2024-05-09,2024-05-13,In Progress,-50.00,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0129
+NCL-000930,pol-000130,Test Claimant 0130,Travel,2024-05-10,2024-05-15,Closed,-50.00,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0130
+NCL-000931,POL-000131,Test Claimant 0131,Business,2024-05-11,2024-05-17,Declined,-50.00,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0131
+NCL-000932,POL-000132,Test Claimant 0132,Motor,2024-05-12,2024-05-19,Open,-50.00,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0132
+NCL-000933,POL-000133,  test   claimant 0133 ,home,2024-05-13,2024-05-21,In Progress,-50.00,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0133
+NCL-000934,POL-000134,Test Claimant 0134,Travel,2024-05-14,2024-05-23,Closed,-50.00,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0134
+NCL-000935,POL-000135,Test Claimant 0135,Business,2024-05-15,2024-05-16, declined ,-50.00,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0135
+NCL-000936,POL-000136,Test Claimant 0136,Motor,2024-05-16,2024-05-18,Open,-50.00,m2 3ab,INTENTIONAL INVALID: Fictional portfolio test claim 0136
+NCL-000937,POL-000137,Test Claimant 0137,Home,2024-05-17,2024-05-20,Pending unknown,202.75,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0137
+NCL-000938,POL-000138,Test Claimant 0138,Travel,2024-05-18,2024-05-22,Pending unknown,203.5,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0138
+NCL-000939,POL-000139,Test Claimant 0139,Business,2024-05-19,2024-05-24,Pending unknown,204.25,M5 6AG,INTENTIONAL INVALID: Fictional portfolio test claim 0139
+NCL-000940,POL-000140,  test   claimant 0140 ,Motor,2024-05-20,2024-05-26,Pending unknown,205.0,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0140
+NCL-000941,POL-000141,Test Claimant 0141,Home,2024-05-21,2024-05-28,Pending unknown,205.75,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0141
+NCL-000942,POL-000142,Test Claimant 0142,Travel,2024-05-22,2024-05-30,Pending unknown,206.5,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0142
+NCL-000943,pol-000143,Test Claimant 0143,Business,2024-05-23,2024-06-01,Pending unknown,207.25,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0143
+NCL-000944,POL-000144,Test Claimant 0144,Motor,2024-05-24,2024-05-25,Pending unknown,208.0,m5 6ag,INTENTIONAL INVALID: Fictional portfolio test claim 0144
+NCL-000945,POL-000145,Test Claimant 0145,Home,2024-05-25,2024-05-27,Pending unknown,208.75,M1 1AA,INTENTIONAL INVALID: Fictional portfolio test claim 0145
+NCL-000946,POL-000146,Test Claimant 0146,Travel,2024-05-26,2024-05-29,Pending unknown,209.5,M2 3AB,INTENTIONAL INVALID: Fictional portfolio test claim 0146
+NCL-000947,POL-000147,  test   claimant 0147 ,Business,2024-05-27,2024-05-31,Pending unknown,210.25,M3 4AD,INTENTIONAL INVALID: Fictional portfolio test claim 0147
+NCL-000948,POL-000148,Test Claimant 0148,Motor,2024-05-28,2024-06-02,Pending unknown,211.0,M4 5AF,INTENTIONAL INVALID: Fictional portfolio test claim 0148
+NCL-000949,POL-000149,Test Claimant 0149,Home,2024-05-29,2024-06-04,In Progress,211.75,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0149
+NCL-000950,POL-000150,Test Claimant 0150,Travel,2024-05-30,2024-06-06,Closed,212.5,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0150
+NCL-000951,POL-000151,Test Claimant 0151,Business,2024-05-31,2024-06-08,Declined,213.25,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0151
+NCL-000952,POL-000152,Test Claimant 0152,motor,2024-06-01,2024-06-10,Open,214.0,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0152
+NCL-000953,POL-000153,Test Claimant 0153,Home,2024-06-02,2024-06-03, in progress ,214.75,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0153
+NCL-000954,POL-000154,  test   claimant 0154 ,Travel,2024-06-03,2024-06-05,Closed,215.5,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0154
+NCL-000955,POL-000155,Test Claimant 0155,Business,2024-06-04,2024-06-07,Declined,216.25,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0155
+NCL-000956,pol-000156,Test Claimant 0156,Motor,2024-06-05,2024-06-09,Open,217.0,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0156
+NCL-000957,POL-000157,Test Claimant 0157,Home,2024-06-06,2024-06-11,In Progress,217.75,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0157
+NCL-000958,POL-000158,Test Claimant 0158,Travel,2024-06-07,2024-06-13,Closed,218.5,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0158
+NCL-000959,POL-000159,Test Claimant 0159,Business,2024-06-08,2024-06-15,Declined,219.25,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0159
+NCL-000960,POL-000160,Test Claimant 0160,Motor,2024-06-09,2024-06-17,Open,220.0,NOT A POSTCODE,INTENTIONAL INVALID: Fictional portfolio test claim 0160
+~~~~~~~
+
+### `sample_data/northstar_claims_1000.xlsx` — PRESERVED (Excel binary)
+
+The full workbook bytes are included under this path in the ZIP.
+
+### `sample_data/task2_inventory_example.xlsx` — PRESERVED (Excel binary)
+
+The full workbook bytes are included under this path in the ZIP.
+
+### `sample_data/task2_tickets_example.xlsx` — PRESERVED (Excel binary)
+
+The full workbook bytes are included under this path in the ZIP.
+
+### `sample_data/task2_workload_example.xlsx` — PRESERVED (Excel binary)
+
+The full workbook bytes are included under this path in the ZIP.
+
+### `sample_data/task3_ad_plan.json` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/sample_data/task3_ad_plan.json`. Purpose: {.
+
+~~~~~~~json
+{
+  "mode": "DryRun",
+  "operation": "PrepareAccount",
+  "domain": "northstar.lab",
+  "samAccountName": "nc000001",
+  "name": "Alex Morgan",
+  "email": "nc000001@northstar.example",
+  "department": "Claims",
+  "title": "Claims Handler",
+  "manager": "Sarah Bennett",
+  "groups": ["SG-Claims-Read"]
+}
+~~~~~~~
+
+### `sample_data/task4_demo_claims.csv` — NEW
+
+Exact location in VS Code: `it-operations-platform/sample_data/task4_demo_claims.csv`. Purpose: claim_id,policy_number,claimant_name,claim_type,incident_date,reported_date,status,amount_gbp,postcode,description.
+
+~~~~~~~csv
+claim_id,policy_number,claimant_name,claim_type,incident_date,reported_date,status,amount_gbp,postcode,description
+NCL-009999,POL-009999,Alex Finch,Motor,2025-04-06,2025-04-07,Open,540.00,M1 1AA,Fictional vehicle bumper damage claim for workflow demo
+NCL-009998,POL-009998,Jordan Wells,Home,2025-03-15,2025-03-16,Open,1250.00,M2 3AB,Fictional roof damage claim for failure escalation demo
+~~~~~~~
+
+### `sample_data/task4_zoho_mock.json` — NEW
+
+Exact location in VS Code: `it-operations-platform/sample_data/task4_zoho_mock.json`. Purpose: [.
+
+~~~~~~~json
+[
+  {
+    "id": "mock-1001",
+    "Claim_Reference": "NCL-000001",
+    "Claimant_Name": "Alex Morgan",
+    "Claim_Type": "Motor",
+    "Status": "Open",
+    "Missing_Documents": false,
+    "Submission_Date": "2026-09-10"
+  },
+  {
+    "id": "mock-1002",
+    "Claim_Reference": "NCL-000002",
+    "Claimant_Name": "Jamie Taylor",
+    "Claim_Type": "Home",
+    "Status": "Evidence Required",
+    "Missing_Documents": true,
+    "Submission_Date": "2026-09-11"
+  },
+  {
+    "id": "mock-9999",
+    "Claim_Reference": "NCL-009999",
+    "Claimant_Name": "Alex Finch",
+    "Claim_Type": "Motor",
+    "Status": "Open",
+    "Missing_Documents": false,
+    "Submission_Date": "2025-04-07"
+  },
+  {
+    "id": "mock-9998",
+    "Claim_Reference": "NCL-009998",
+    "Claimant_Name": "Jordan Wells",
+    "Claim_Type": "Home",
+    "Status": "Open",
+    "Missing_Documents": false,
+    "Submission_Date": "2025-03-16"
+  }
+]
+~~~~~~~
+
+### `scripts/01_create_database.sql` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/01_create_database.sql`. Purpose: -- Run in SSMS connected to .\SQLEXPRESS using Windows Authentication..
+
+~~~~~~~sql
+-- Run in SSMS connected to .\SQLEXPRESS using Windows Authentication.
+-- Requires CREATE DATABASE permission (local sysadmin is sufficient).
+USE master;
+GO
+IF DB_ID(N'ClaimsITOpsDemo') IS NULL
+BEGIN
+    CREATE DATABASE ClaimsITOpsDemo;
+END;
+GO
+SELECT name, state_desc
+FROM sys.databases
+WHERE name = N'ClaimsITOpsDemo';
+GO
+-- Application tables are then created from SQLAlchemy models:
+-- python -m scripts.init_schema
+~~~~~~~
+
+### `scripts/02_reporting_queries.sql` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/02_reporting_queries.sql`. Purpose: -- Run only AFTER: python -m scripts.init_schema and your first import..
+
+~~~~~~~sql
+-- Run only AFTER: python -m scripts.init_schema and your first import.
+USE ClaimsITOpsDemo;
+GO
+-- 1. Confirm row count and overall claim value.
+SELECT COUNT(*) AS total_claims,
+       COALESCE(SUM(amount_gbp), 0) AS total_amount_gbp
+FROM dbo.claims;
+GO
+-- 2. Claim totals by status.
+SELECT status,
+       COUNT(*) AS claim_count,
+       SUM(amount_gbp) AS amount_gbp
+FROM dbo.claims
+GROUP BY status
+ORDER BY status;
+GO
+-- 3. Unique claim ID check: expected zero results.
+SELECT claim_id, COUNT(*) AS occurrences
+FROM dbo.claims
+GROUP BY claim_id
+HAVING COUNT(*) > 1;
+GO
+-- 4. Rejected rows and failure reasons by batch.
+SELECT r.import_batch_id, r.source_row_number, r.claim_id, r.failure_reason
+FROM dbo.rejected_rows AS r
+ORDER BY r.import_batch_id DESC, r.source_row_number;
+GO
+-- 5. Import outcomes (including rejected row counts).
+SELECT id, filename, status, total_rows, imported_rows, rejected_rows, created_at
+FROM dbo.import_batches
+ORDER BY id DESC;
+GO
+-- 6. Monthly claim volumes (SQL Server syntax).
+SELECT YEAR(reported_date) AS report_year,
+       MONTH(reported_date) AS report_month,
+       COUNT(*) AS claim_count
+FROM dbo.claims
+GROUP BY YEAR(reported_date), MONTH(reported_date)
+ORDER BY report_year, report_month;
+GO
+-- 7. Auditable operations with source batch filename.
+SELECT a.occurred_at, a.event_type, b.filename, a.details_json
+FROM dbo.audit_events AS a
+INNER JOIN dbo.import_batches AS b ON b.id = a.import_batch_id
+ORDER BY a.occurred_at DESC;
+GO
+-- 8. Verify SQL Server check/unique/foreign key constraints exist.
+SELECT 'CHECK' AS constraint_kind, name FROM sys.check_constraints
+WHERE parent_object_id IN (OBJECT_ID('dbo.claims'), OBJECT_ID('dbo.import_batches'), OBJECT_ID('dbo.rejected_rows'), OBJECT_ID('dbo.audit_events'))
+UNION ALL
+SELECT 'UNIQUE', name FROM sys.key_constraints
+WHERE type = 'UQ' AND parent_object_id IN (OBJECT_ID('dbo.claims'), OBJECT_ID('dbo.import_batches'))
+UNION ALL
+SELECT 'FOREIGN KEY', name FROM sys.foreign_keys
+WHERE parent_object_id IN (OBJECT_ID('dbo.claims'), OBJECT_ID('dbo.rejected_rows'), OBJECT_ID('dbo.audit_events'));
+GO
+~~~~~~~
+
+### `scripts/03_task2_migration.sql` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/03_task2_migration.sql`. Purpose: /* Non-destructive SQL Server Task 1 -> Task 2 migration..
+
+~~~~~~~sql
+/* Non-destructive SQL Server Task 1 -> Task 2 migration.
+   Execute in SSMS (F5) or: python -m scripts.migrate_task2.
+   Existing dbo.claims/import_batches/rejected_rows/audit_events data is retained.
+*/
+USE ClaimsITOpsDemo;
+GO
+SET XACT_ABORT ON;
+BEGIN TRANSACTION;
+
+IF OBJECT_ID(N'dbo.users', N'U') IS NULL
+BEGIN
+ CREATE TABLE dbo.users (
+  id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  username VARCHAR(60) NOT NULL,
+  full_name NVARCHAR(120) NOT NULL,
+  email VARCHAR(180) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  role VARCHAR(20) NOT NULL,
+  is_active BIT NOT NULL,
+  created_at DATETIME NOT NULL,
+  CONSTRAINT uq_users_username UNIQUE (username),
+  CONSTRAINT uq_users_email UNIQUE (email),
+  CONSTRAINT ck_users_role CHECK (role IN ('Admin','Technician','Employee'))
+ );
+END;
+
+IF OBJECT_ID(N'dbo.assets', N'U') IS NULL
+BEGIN
+ CREATE TABLE dbo.assets (
+  id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  asset_tag VARCHAR(40) NOT NULL,
+  serial_number VARCHAR(100) NOT NULL,
+  device_type VARCHAR(20) NOT NULL,
+  manufacturer NVARCHAR(80) NOT NULL,
+  model NVARCHAR(120) NOT NULL,
+  operating_system NVARCHAR(100) NULL,
+  purchase_date DATE NOT NULL,
+  warranty_expiry DATE NULL,
+  status VARCHAR(20) NOT NULL,
+  assigned_employee_id INT NULL,
+  assigned_at DATETIME NULL,
+  notes NVARCHAR(1000) NOT NULL,
+  created_at DATETIME NOT NULL,
+  CONSTRAINT uq_assets_tag UNIQUE (asset_tag),
+  CONSTRAINT uq_assets_serial UNIQUE (serial_number),
+  CONSTRAINT ck_assets_type CHECK (device_type IN ('Laptop','Desktop','Printer','Router','Switch')),
+  CONSTRAINT ck_assets_status CHECK (status IN ('Available','Assigned','Maintenance','Retired')),
+  CONSTRAINT ck_assets_warranty CHECK (warranty_expiry IS NULL OR warranty_expiry >= purchase_date),
+  CONSTRAINT ck_assets_assignment CHECK ((status = 'Assigned' AND assigned_employee_id IS NOT NULL) OR (status <> 'Assigned' AND assigned_employee_id IS NULL)),
+  CONSTRAINT fk_assets_employee FOREIGN KEY (assigned_employee_id) REFERENCES dbo.users(id)
+ );
+END;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'ix_assets_status' AND object_id = OBJECT_ID('dbo.assets'))
+ CREATE INDEX ix_assets_status ON dbo.assets(status);
+
+IF OBJECT_ID(N'dbo.tickets', N'U') IS NULL
+BEGIN
+ CREATE TABLE dbo.tickets (
+  id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  employee_id INT NOT NULL,
+  assigned_technician_id INT NULL,
+  affected_asset_id INT NULL,
+  title NVARCHAR(160) NOT NULL,
+  description NVARCHAR(3000) NOT NULL,
+  category VARCHAR(30) NOT NULL,
+  priority VARCHAR(10) NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  resolution_details NVARCHAR(3000) NULL,
+  created_at DATETIME NOT NULL,
+  assigned_at DATETIME NULL,
+  resolved_at DATETIME NULL,
+  closed_at DATETIME NULL,
+  sla_due_at DATETIME NOT NULL,
+  CONSTRAINT fk_tickets_employee FOREIGN KEY (employee_id) REFERENCES dbo.users(id),
+  CONSTRAINT fk_tickets_technician FOREIGN KEY (assigned_technician_id) REFERENCES dbo.users(id),
+  CONSTRAINT fk_tickets_asset FOREIGN KEY (affected_asset_id) REFERENCES dbo.assets(id),
+  CONSTRAINT ck_tickets_category CHECK (category IN ('Hardware','Software','Network','Printer','Account Access','Other')),
+  CONSTRAINT ck_tickets_priority CHECK (priority IN ('Low','Medium','High','Critical')),
+  CONSTRAINT ck_tickets_status CHECK (status IN ('Open','Assigned','In Progress','Resolved','Closed'))
+ );
+END;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'ix_tickets_status_due' AND object_id = OBJECT_ID('dbo.tickets'))
+ CREATE INDEX ix_tickets_status_due ON dbo.tickets(status, sla_due_at);
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'ix_tickets_assignee' AND object_id = OBJECT_ID('dbo.tickets'))
+ CREATE INDEX ix_tickets_assignee ON dbo.tickets(assigned_technician_id);
+
+IF OBJECT_ID(N'dbo.ticket_history', N'U') IS NULL
+BEGIN
+ CREATE TABLE dbo.ticket_history (
+  id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  ticket_id INT NOT NULL,
+  actor_user_id INT NOT NULL,
+  action VARCHAR(30) NOT NULL,
+  previous_status VARCHAR(20) NULL,
+  new_status VARCHAR(20) NULL,
+  note NVARCHAR(3000) NOT NULL,
+  occurred_at DATETIME NOT NULL,
+  CONSTRAINT fk_history_ticket FOREIGN KEY (ticket_id) REFERENCES dbo.tickets(id),
+  CONSTRAINT fk_history_actor FOREIGN KEY (actor_user_id) REFERENCES dbo.users(id)
+ );
+END;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'ix_ticket_history_ticket' AND object_id = OBJECT_ID('dbo.ticket_history'))
+ CREATE INDEX ix_ticket_history_ticket ON dbo.ticket_history(ticket_id);
+
+IF OBJECT_ID(N'dbo.asset_movements', N'U') IS NULL
+BEGIN
+ CREATE TABLE dbo.asset_movements (
+  id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  asset_id INT NOT NULL,
+  employee_id INT NOT NULL,
+  actor_user_id INT NOT NULL,
+  action VARCHAR(15) NOT NULL,
+  occurred_at DATETIME NOT NULL,
+  CONSTRAINT fk_movement_asset FOREIGN KEY (asset_id) REFERENCES dbo.assets(id),
+  CONSTRAINT fk_movement_employee FOREIGN KEY (employee_id) REFERENCES dbo.users(id),
+  CONSTRAINT fk_movement_actor FOREIGN KEY (actor_user_id) REFERENCES dbo.users(id)
+ );
+END;
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'ix_asset_movements_asset' AND object_id = OBJECT_ID('dbo.asset_movements'))
+ CREATE INDEX ix_asset_movements_asset ON dbo.asset_movements(asset_id);
+
+/* Task 1's audit check accepted only IMPORT_COMPLETED; retain all old events. */
+IF COL_LENGTH('dbo.audit_events', 'actor_user_id') IS NULL
+ ALTER TABLE dbo.audit_events ADD actor_user_id INT NULL;
+IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name = 'fk_audit_actor')
+ ALTER TABLE dbo.audit_events ADD CONSTRAINT fk_audit_actor FOREIGN KEY (actor_user_id) REFERENCES dbo.users(id);
+IF EXISTS (SELECT 1 FROM sys.check_constraints WHERE name = 'ck_audit_events_type' AND parent_object_id = OBJECT_ID('dbo.audit_events'))
+ ALTER TABLE dbo.audit_events DROP CONSTRAINT ck_audit_events_type;
+IF EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID('dbo.audit_events') AND name='import_batch_id' AND is_nullable=0)
+ ALTER TABLE dbo.audit_events ALTER COLUMN import_batch_id INT NULL;
+ALTER TABLE dbo.audit_events ADD CONSTRAINT ck_audit_events_type
+ CHECK (event_type IN ('IMPORT_COMPLETED','TICKET_CREATED','TICKET_UPDATED','TICKET_ASSIGNED','TICKET_NOTE','ASSET_CREATED','ASSET_UPDATED','ASSET_ASSIGNED','ASSET_RETURNED','USER_CREATED','USER_UPDATED'));
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'ix_audit_events_actor' AND object_id = OBJECT_ID('dbo.audit_events'))
+ CREATE INDEX ix_audit_events_actor ON dbo.audit_events(actor_user_id);
+
+COMMIT TRANSACTION;
+GO
+SELECT (SELECT COUNT(*) FROM dbo.claims) AS existing_claims,
+       (SELECT COUNT(*) FROM dbo.audit_events WHERE event_type='IMPORT_COMPLETED') AS original_import_events,
+       (SELECT COUNT(*) FROM dbo.users) AS new_users;
+GO
+~~~~~~~
+
+### `scripts/04_task2_checks.sql` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/04_task2_checks.sql`. Purpose: USE ClaimsITOpsDemo;.
+
+~~~~~~~sql
+USE ClaimsITOpsDemo;
+GO
+SELECT COUNT(*) AS original_claims_intact FROM dbo.claims;
+SELECT event_type, COUNT(*) AS events FROM dbo.audit_events GROUP BY event_type;
+SELECT t.id, CONCAT('TKT-',RIGHT('000000' + CAST(t.id AS VARCHAR(12)),6)) AS reference,
+       t.title, t.priority, t.status, t.sla_due_at,
+       u.full_name AS employee, tech.full_name AS technician
+FROM dbo.tickets t
+JOIN dbo.users u ON u.id=t.employee_id
+LEFT JOIN dbo.users tech ON tech.id=t.assigned_technician_id;
+SELECT asset_tag, status, assigned_employee_id FROM dbo.assets ORDER BY asset_tag;
+SELECT asset_id, employee_id, action, occurred_at FROM dbo.asset_movements ORDER BY id DESC;
+SELECT ticket_id, action, previous_status, new_status, occurred_at
+FROM dbo.ticket_history ORDER BY id DESC;
+SELECT asset_tag, COUNT(*) AS duplicated FROM dbo.assets GROUP BY asset_tag HAVING COUNT(*)>1;
+SELECT COUNT(*) AS overdue_tickets FROM dbo.tickets
+ WHERE status NOT IN ('Resolved','Closed') AND sla_due_at < GETUTCDATE();
+GO
+~~~~~~~
+
+### `scripts/05_task3_migration.sql` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/05_task3_migration.sql`. Purpose: /* Task 3 additive migration for existing Task 1 + Task 2 ClaimsITOpsDemo..
+
+~~~~~~~sql
+/* Task 3 additive migration for existing Task 1 + Task 2 ClaimsITOpsDemo.
+   BACK UP DATABASE FIRST. Safe to re-run. Never drops employee/claim/ticket data. */
+USE ClaimsITOpsDemo;
+GO
+SET XACT_ABORT ON;
+BEGIN TRY
+ BEGIN TRANSACTION;
+ IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name='users' AND schema_id=SCHEMA_ID('dbo'))
+  THROW 51001, 'Task 2 schema missing. Apply 03_task2_migration.sql first.', 1;
+ IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name='claims' AND schema_id=SCHEMA_ID('dbo'))
+  THROW 51002, 'Task 1 schema missing.', 1;
+
+ /* Transition Reserved is new, and prevents Task 2 assignment of reserved laptops. */
+ IF EXISTS (SELECT 1 FROM sys.check_constraints WHERE name='ck_assets_status' AND parent_object_id=OBJECT_ID('dbo.assets'))
+  ALTER TABLE dbo.assets DROP CONSTRAINT ck_assets_status;
+ ALTER TABLE dbo.assets WITH CHECK ADD CONSTRAINT ck_assets_status
+  CHECK (status IN ('Available','Assigned','Reserved','Maintenance','Retired'));
+
+ IF OBJECT_ID('dbo.employees','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.employees (
+   id INT IDENTITY(1,1) PRIMARY KEY, full_name NVARCHAR(120) NOT NULL,
+   department VARCHAR(30) NOT NULL, job_title NVARCHAR(120) NOT NULL,
+   manager_name NVARCHAR(120) NOT NULL, start_date DATE NOT NULL,
+   work_email VARCHAR(180) NOT NULL, ad_username VARCHAR(20) NOT NULL,
+   status VARCHAR(20) NOT NULL, created_at DATETIME NOT NULL,
+   CONSTRAINT uq_employees_work_email UNIQUE(work_email),
+   CONSTRAINT uq_employees_ad_username UNIQUE(ad_username),
+   CONSTRAINT ck_employees_department CHECK (department IN ('Claims','Operations','Finance','HR','IT')),
+   CONSTRAINT ck_employees_status CHECK (status IN ('Prepared','Active','Offboarding','Offboarded'))
+  );
+ END;
+ IF OBJECT_ID('dbo.onboarding_requests','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.onboarding_requests (
+   id INT IDENTITY(1,1) PRIMARY KEY, employee_id INT NOT NULL,
+   requested_by INT NOT NULL, requested_groups_json NVARCHAR(MAX) NOT NULL,
+   device_requirements_json NVARCHAR(MAX) NOT NULL, status VARCHAR(20) NOT NULL,
+   created_at DATETIME NOT NULL, activated_at DATETIME NULL,
+   CONSTRAINT uq_onboarding_employee UNIQUE(employee_id),
+   CONSTRAINT fk_onboarding_employee FOREIGN KEY(employee_id) REFERENCES dbo.employees(id),
+   CONSTRAINT fk_onboarding_actor FOREIGN KEY(requested_by) REFERENCES dbo.users(id),
+   CONSTRAINT ck_onboarding_status CHECK(status IN ('Prepared','Attention','Activated'))
+  );
+ END;
+ IF OBJECT_ID('dbo.offboarding_requests','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.offboarding_requests (
+   id INT IDENTITY(1,1) PRIMARY KEY, employee_id INT NOT NULL,
+   requested_by INT NOT NULL, approved_by INT NULL,
+   last_working_date DATE NOT NULL, reason NVARCHAR(500) NOT NULL,
+   status VARCHAR(20) NOT NULL, created_at DATETIME NOT NULL,
+   approved_at DATETIME NULL, completed_at DATETIME NULL,
+   CONSTRAINT fk_offboarding_employee FOREIGN KEY(employee_id) REFERENCES dbo.employees(id),
+   CONSTRAINT fk_offboarding_requester FOREIGN KEY(requested_by) REFERENCES dbo.users(id),
+   CONSTRAINT fk_offboarding_approver FOREIGN KEY(approved_by) REFERENCES dbo.users(id),
+   CONSTRAINT ck_offboarding_status CHECK(status IN ('PendingApproval','Approved','Completed','Attention'))
+  );
+ END;
+ IF OBJECT_ID('dbo.provisioning_actions','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.provisioning_actions (
+   id INT IDENTITY(1,1) PRIMARY KEY, employee_id INT NOT NULL,
+   onboarding_request_id INT NULL, offboarding_request_id INT NULL,
+   action_type VARCHAR(40) NOT NULL, target NVARCHAR(200) NOT NULL,
+   status VARCHAR(20) NOT NULL, result_detail NVARCHAR(1000) NOT NULL,
+   created_at DATETIME NOT NULL,
+   CONSTRAINT fk_provisioning_employee FOREIGN KEY(employee_id) REFERENCES dbo.employees(id),
+   CONSTRAINT fk_provisioning_onboard FOREIGN KEY(onboarding_request_id) REFERENCES dbo.onboarding_requests(id),
+   CONSTRAINT fk_provisioning_offboard FOREIGN KEY(offboarding_request_id) REFERENCES dbo.offboarding_requests(id),
+   CONSTRAINT ck_provisioning_status CHECK(status IN ('Prepared','Mocked','Failed','ManualRequired')),
+   CONSTRAINT ck_provisioning_one_request CHECK(
+    (onboarding_request_id IS NOT NULL AND offboarding_request_id IS NULL) OR
+    (onboarding_request_id IS NULL AND offboarding_request_id IS NOT NULL))
+  );
+ END;
+ IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='ix_provisioning_employee' AND object_id=OBJECT_ID('dbo.provisioning_actions'))
+  CREATE INDEX ix_provisioning_employee ON dbo.provisioning_actions(employee_id);
+ IF OBJECT_ID('dbo.approval_records','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.approval_records (
+   id INT IDENTITY(1,1) PRIMARY KEY, offboarding_request_id INT NOT NULL,
+   approver_user_id INT NOT NULL, decision VARCHAR(20) NOT NULL,
+   comment NVARCHAR(500) NOT NULL, decided_at DATETIME NOT NULL,
+   CONSTRAINT uq_approval_offboarding UNIQUE(offboarding_request_id),
+   CONSTRAINT fk_approval_offboard FOREIGN KEY(offboarding_request_id) REFERENCES dbo.offboarding_requests(id),
+   CONSTRAINT fk_approval_actor FOREIGN KEY(approver_user_id) REFERENCES dbo.users(id),
+   CONSTRAINT ck_approval_decision CHECK(decision IN ('Approved','Rejected'))
+  );
+ END;
+ IF OBJECT_ID('dbo.asset_reservations','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.asset_reservations (
+   id INT IDENTITY(1,1) PRIMARY KEY, asset_id INT NOT NULL,
+   employee_id INT NOT NULL, onboarding_request_id INT NOT NULL,
+   status VARCHAR(20) NOT NULL, created_at DATETIME NOT NULL,
+   released_at DATETIME NULL,
+   CONSTRAINT fk_reservation_asset FOREIGN KEY(asset_id) REFERENCES dbo.assets(id),
+   CONSTRAINT fk_reservation_employee FOREIGN KEY(employee_id) REFERENCES dbo.employees(id),
+   CONSTRAINT fk_reservation_onboard FOREIGN KEY(onboarding_request_id) REFERENCES dbo.onboarding_requests(id),
+   CONSTRAINT ck_reservation_status CHECK(status IN ('Reserved','Released'))
+  );
+ END;
+ IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='uq_asset_active_reservation' AND object_id=OBJECT_ID('dbo.asset_reservations'))
+  CREATE UNIQUE INDEX uq_asset_active_reservation ON dbo.asset_reservations(asset_id) WHERE status='Reserved';
+ IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='uq_onboarding_active_reservation' AND object_id=OBJECT_ID('dbo.asset_reservations'))
+  CREATE UNIQUE INDEX uq_onboarding_active_reservation ON dbo.asset_reservations(onboarding_request_id) WHERE status='Reserved';
+
+ /* Extend the ORIGINAL audit_events constraint; retain all Task 1/2 entries. */
+ IF EXISTS (SELECT 1 FROM sys.check_constraints WHERE name='ck_audit_events_type' AND parent_object_id=OBJECT_ID('dbo.audit_events'))
+  ALTER TABLE dbo.audit_events DROP CONSTRAINT ck_audit_events_type;
+ ALTER TABLE dbo.audit_events WITH CHECK ADD CONSTRAINT ck_audit_events_type CHECK (event_type IN (
+  'IMPORT_COMPLETED','TICKET_CREATED','TICKET_UPDATED','TICKET_ASSIGNED','TICKET_NOTE',
+  'ASSET_CREATED','ASSET_UPDATED','ASSET_ASSIGNED','ASSET_RETURNED','USER_CREATED','USER_UPDATED',
+  'EMPLOYEE_CREATED','EMPLOYEE_ACTIVATED','ONBOARDING_PREPARED','OFFBOARDING_REQUESTED',
+  'OFFBOARDING_APPROVED','OFFBOARDING_COMPLETED','ASSET_RESERVED','ASSET_RESERVATION_RELEASED'));
+ COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+ IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+ THROW;
+END CATCH;
+GO
+PRINT 'Task 3 additive migration completed; Task 1/2 data retained.';
+GO
+~~~~~~~
+
+### `scripts/06_task3_checks.sql` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/06_task3_checks.sql`. Purpose: USE ClaimsITOpsDemo;.
+
+~~~~~~~sql
+USE ClaimsITOpsDemo;
+GO
+SELECT name FROM sys.tables WHERE name IN
+ ('claims','tickets','assets','audit_events','employees','onboarding_requests',
+  'offboarding_requests','provisioning_actions','approval_records','asset_reservations') ORDER BY name;
+SELECT id,full_name,department,status,work_email FROM dbo.employees ORDER BY id DESC;
+SELECT id,employee_id,status,requested_groups_json,device_requirements_json FROM dbo.onboarding_requests ORDER BY id DESC;
+SELECT id,employee_id,status,approved_by FROM dbo.offboarding_requests ORDER BY id DESC;
+SELECT action_type,target,status,result_detail FROM dbo.provisioning_actions ORDER BY id DESC;
+SELECT a.asset_tag,a.status,r.employee_id,r.status AS reservation_status FROM dbo.assets a
+ LEFT JOIN dbo.asset_reservations r ON r.asset_id=a.id AND r.status='Reserved';
+SELECT event_type,occurred_at,actor_user_id FROM dbo.audit_events ORDER BY id DESC;
+SELECT asset_id,COUNT(*) AS active_reservations FROM dbo.asset_reservations WHERE status='Reserved'
+ GROUP BY asset_id HAVING COUNT(*)>1;
+SELECT COUNT(*) AS preserved_claims FROM dbo.claims;
+SELECT COUNT(*) AS preserved_tickets FROM dbo.tickets;
+GO
+~~~~~~~
+
+### `scripts/07_task4_migration.sql` — NEW
+
+Exact location in VS Code: `it-operations-platform/scripts/07_task4_migration.sql`. Purpose: /* TASK 4 — incremental, re-runnable SQL Server migration. BACK UP FIRST..
+
+~~~~~~~sql
+/* TASK 4 — incremental, re-runnable SQL Server migration. BACK UP FIRST.
+   Does not drop claims, users, helpdesk tickets, assets, or Task 3 records. */
+USE ClaimsITOpsDemo;
+GO
+SET XACT_ABORT ON;
+BEGIN TRY
+ BEGIN TRANSACTION;
+ IF OBJECT_ID('dbo.claims','U') IS NULL OR OBJECT_ID('dbo.tickets','U') IS NULL
+  THROW 51041, 'Tasks 1–3 must be installed first.', 1;
+
+ IF OBJECT_ID('dbo.claim_crm_states','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.claim_crm_states (
+   id INT IDENTITY(1,1) PRIMARY KEY,
+   claim_id INT NOT NULL, zoho_record_id VARCHAR(80) NULL,
+   stage VARCHAR(30) NOT NULL, assigned_handler NVARCHAR(120) NULL,
+   missing_documents BIT NOT NULL CONSTRAINT df_crm_missing DEFAULT(0),
+   integration_status VARCHAR(20) NOT NULL, last_updated DATETIME NOT NULL,
+   synced_at DATETIME NULL, completed_at DATETIME NULL,
+   CONSTRAINT fk_crm_claim FOREIGN KEY(claim_id) REFERENCES dbo.claims(id),
+   CONSTRAINT uq_claim_crm_claim UNIQUE(claim_id),
+   CONSTRAINT ck_crm_stage CHECK(stage IN ('New','Assigned','Evidence Required','Ready for Review','Resolved')),
+   CONSTRAINT ck_crm_integration CHECK(integration_status IN ('Not Synced','Synced','Failed'))
+  );
+ END;
+ IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='uq_claim_crm_zoho' AND object_id=OBJECT_ID('dbo.claim_crm_states'))
+  CREATE UNIQUE INDEX uq_claim_crm_zoho ON dbo.claim_crm_states(zoho_record_id) WHERE zoho_record_id IS NOT NULL;
+ IF OBJECT_ID('dbo.workflow_rules','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.workflow_rules (
+   id INT IDENTITY(1,1) PRIMARY KEY, name NVARCHAR(120) NOT NULL,
+   event_type VARCHAR(30) NOT NULL, action_type VARCHAR(30) NOT NULL,
+   parameters_json NVARCHAR(MAX) NOT NULL, enabled BIT NOT NULL, created_at DATETIME NOT NULL,
+   CONSTRAINT uq_workflow_rule_name UNIQUE(name),
+   CONSTRAINT ck_workflow_rule_event CHECK(event_type IN ('submitted','missing_documents','evidence_received','resolved')),
+   CONSTRAINT ck_workflow_rule_action CHECK(action_type IN ('assign_team','evidence_required','ready_for_review','resolve','demo_fail'))
+  );
+ END;
+ IF OBJECT_ID('dbo.workflow_executions','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.workflow_executions (
+   id INT IDENTITY(1,1) PRIMARY KEY, claim_id INT NOT NULL, rule_id INT NOT NULL,
+   event_key VARCHAR(100) NOT NULL, status VARCHAR(15) NOT NULL,
+   input_status VARCHAR(30) NOT NULL, output_status VARCHAR(30) NULL,
+   error_reason NVARCHAR(1000) NULL, retry_count INT NOT NULL,
+   support_ticket_id INT NULL, started_at DATETIME NOT NULL, finished_at DATETIME NULL,
+   CONSTRAINT fk_exec_claim FOREIGN KEY(claim_id) REFERENCES dbo.claims(id),
+   CONSTRAINT fk_exec_rule FOREIGN KEY(rule_id) REFERENCES dbo.workflow_rules(id),
+   CONSTRAINT fk_exec_ticket FOREIGN KEY(support_ticket_id) REFERENCES dbo.tickets(id),
+   CONSTRAINT uq_workflow_exact_event UNIQUE(claim_id,rule_id,event_key),
+   CONSTRAINT ck_workflow_execution_status CHECK(status IN ('Success','Failed')),
+   CONSTRAINT ck_workflow_retry_count CHECK(retry_count BETWEEN 0 AND 3)
+  );
+ END;
+ IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name='ix_workflow_status' AND object_id=OBJECT_ID('dbo.workflow_executions'))
+  CREATE INDEX ix_workflow_status ON dbo.workflow_executions(status,started_at);
+
+ IF OBJECT_ID('dbo.workflow_transitions','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.workflow_transitions (
+   id INT IDENTITY(1,1) PRIMARY KEY, execution_id INT NOT NULL, claim_id INT NOT NULL,
+   from_stage VARCHAR(30) NOT NULL, to_stage VARCHAR(30) NOT NULL, occurred_at DATETIME NOT NULL,
+   CONSTRAINT fk_transition_exec FOREIGN KEY(execution_id) REFERENCES dbo.workflow_executions(id),
+   CONSTRAINT fk_transition_claim FOREIGN KEY(claim_id) REFERENCES dbo.claims(id),
+   CONSTRAINT uq_transition_execution UNIQUE(execution_id)
+  );
+ END;
+ IF OBJECT_ID('dbo.crm_operations','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.crm_operations (
+   id INT IDENTITY(1,1) PRIMARY KEY, operation_key VARCHAR(100) NOT NULL,
+   claim_id INT NOT NULL, operation VARCHAR(30) NOT NULL, payload_json NVARCHAR(MAX) NOT NULL,
+   status VARCHAR(15) NOT NULL, retry_count INT NOT NULL,
+   error_reason NVARCHAR(1000) NULL, created_at DATETIME NOT NULL, finished_at DATETIME NULL,
+   CONSTRAINT fk_crmop_claim FOREIGN KEY(claim_id) REFERENCES dbo.claims(id),
+   CONSTRAINT uq_crm_operation_key UNIQUE(operation_key),
+   CONSTRAINT ck_crm_operation_status CHECK(status IN ('Success','Failed')),
+   CONSTRAINT ck_crm_operation_retry CHECK(retry_count BETWEEN 0 AND 3)
+  );
+ END;
+ IF OBJECT_ID('dbo.communication_templates','U') IS NULL
+ BEGIN
+  CREATE TABLE dbo.communication_templates (
+   id INT IDENTITY(1,1) PRIMARY KEY, kind VARCHAR(30) NOT NULL,
+   subject NVARCHAR(200) NOT NULL, body NVARCHAR(4000) NOT NULL,
+   updated_at DATETIME NOT NULL, updated_by INT NULL,
+   CONSTRAINT uq_communication_kind UNIQUE(kind),
+   CONSTRAINT fk_template_updater FOREIGN KEY(updated_by) REFERENCES dbo.users(id)
+  );
+ END;
+
+ IF EXISTS (SELECT 1 FROM sys.check_constraints WHERE name='ck_audit_events_type' AND parent_object_id=OBJECT_ID('dbo.audit_events'))
+  ALTER TABLE dbo.audit_events DROP CONSTRAINT ck_audit_events_type;
+ ALTER TABLE dbo.audit_events WITH CHECK ADD CONSTRAINT ck_audit_events_type CHECK(event_type IN (
+ 'IMPORT_COMPLETED','TICKET_CREATED','TICKET_UPDATED','TICKET_ASSIGNED','TICKET_NOTE',
+ 'ASSET_CREATED','ASSET_UPDATED','ASSET_ASSIGNED','ASSET_RETURNED','USER_CREATED','USER_UPDATED',
+ 'EMPLOYEE_CREATED','EMPLOYEE_ACTIVATED','ONBOARDING_PREPARED','OFFBOARDING_REQUESTED',
+ 'OFFBOARDING_APPROVED','OFFBOARDING_COMPLETED','ASSET_RESERVED','ASSET_RESERVATION_RELEASED',
+ 'CLAIM_WORKFLOW','CLAIM_CRM_SYNC','CLAIM_TEMPLATE_UPDATED','CLAIM_WORKFLOW_FAILED'));
+ COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+ IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+ THROW;
+END CATCH;
+GO
+PRINT 'Task 4 migration complete; claims and prior task tables retained.';
+GO
+~~~~~~~
+
+### `scripts/08_task4_checks.sql` — NEW
+
+Exact location in VS Code: `it-operations-platform/scripts/08_task4_checks.sql`. Purpose: USE ClaimsITOpsDemo;.
+
+~~~~~~~sql
+USE ClaimsITOpsDemo;
+GO
+SELECT name FROM sys.tables WHERE name IN ('claims','tickets','employees','claim_crm_states',
+ 'workflow_rules','workflow_executions','workflow_transitions','crm_operations','communication_templates') ORDER BY name;
+SELECT COUNT(*) AS claims_preserved FROM dbo.claims;
+SELECT COUNT(*) AS support_tickets_preserved FROM dbo.tickets;
+SELECT c.claim_id,c.claimant_name,c.status,s.stage,s.assigned_handler,s.integration_status,
+ s.missing_documents,s.completed_at FROM dbo.claims c LEFT JOIN dbo.claim_crm_states s ON s.claim_id=c.id ORDER BY c.id;
+SELECT e.id,r.name,c.claim_id,e.started_at,e.status,e.input_status,e.output_status,e.error_reason,
+ e.retry_count,e.support_ticket_id FROM dbo.workflow_executions e
+ JOIN dbo.workflow_rules r ON r.id=e.rule_id JOIN dbo.claims c ON c.id=e.claim_id ORDER BY e.id DESC;
+SELECT operation_key,operation,status,retry_count,error_reason FROM dbo.crm_operations ORDER BY id DESC;
+SELECT event_type,occurred_at FROM dbo.audit_events WHERE event_type LIKE 'CLAIM_%' ORDER BY id DESC;
+SELECT claim_id,rule_id,event_key,COUNT(*) AS duplicates FROM dbo.workflow_executions
+ GROUP BY claim_id,rule_id,event_key HAVING COUNT(*) > 1;
+GO
+~~~~~~~
+
+### `scripts/__init__.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/__init__.py`. Purpose: """Northstar Claims IT operations demonstration package.""".
+
+~~~~~~~python
+"""Northstar Claims IT operations demonstration package."""
+~~~~~~~
+
+### `scripts/configure_local.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/configure_local.py`. Purpose: """Create a private local .env with an unpredictable signing key without overwriting secrets.""".
+
+~~~~~~~python
+"""Create a private local .env with an unpredictable signing key without overwriting secrets."""
+import secrets
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def main():
+    path = ROOT / '.env'
+    if path.exists():
+        existing = path.read_text(encoding='utf-8')
+    else:
+        existing = (ROOT / '.env.example').read_text(encoding='utf-8')
+    lines = existing.splitlines()
+    found = False
+    for idx, line in enumerate(lines):
+        if line.startswith('APP_SECRET_KEY='):
+            found = True
+            if not line.partition('=')[2].strip():
+                lines[idx] = 'APP_SECRET_KEY=' + secrets.token_urlsafe(48)
+    if not found:
+        lines.append('APP_SECRET_KEY=' + secrets.token_urlsafe(48))
+    path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    print('Local .env ready. Existing values and nonempty APP_SECRET_KEY preserved.')
+
+
+if __name__ == '__main__':
+    main()
+~~~~~~~
+
+### `scripts/demo_task4.ps1` — NEW
+
+Exact location in VS Code: `it-operations-platform/scripts/demo_task4.ps1`. Purpose: <#.
+
+~~~~~~~powershell
+<#
+ Runs Task 4 against the LOCAL FastAPI mock CRM only.
+ Requires sample_data/task4_demo_claims.csv to be imported first.
+ Prompts for the demonstration Admin password; does not write secrets to disk.
+#>
+param([string]$BaseUrl='http://127.0.0.1:8000', [string]$Username='admin')
+$ErrorActionPreference = 'Stop'
+$BaseUrl = $BaseUrl.TrimEnd('/')
+if ($BaseUrl -ne 'http://127.0.0.1:8000' -and $BaseUrl -ne 'http://localhost:8000') {
+    throw 'Demonstration is restricted to the local FastAPI server on port 8000.'
+}
+
+$secure = Read-Host 'Local demonstration Admin password' -AsSecureString
+$bstr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure)
+try { $password = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($bstr) }
+finally { [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr) }
+$webSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+function Call-Api([string]$Path, [string]$Method='GET', [object]$Payload=$null) {
+    $args = @{ Uri=($BaseUrl+$Path); Method=$Method; WebSession=$webSession; ErrorAction='Stop' }
+    if ($Method -ne 'GET') { $args['Headers'] = $script:headers }
+    if ($null -ne $Payload) {
+        $args['ContentType'] = 'application/json'
+        $args['Body'] = ConvertTo-Json -InputObject $Payload -Compress -Depth 6
+    }
+    return Invoke-RestMethod @args
+}
+try {
+    $login = Invoke-RestMethod -Uri ($BaseUrl+'/api/auth/login') -Method POST `
+      -WebSession $webSession -ContentType 'application/json' `
+      -Body (ConvertTo-Json @{ username=$Username; password=$password } -Compress)
+} finally { $password = $null }
+if ($login.user.role -ne 'Admin') { throw 'Use a Task 2 administrator account.' }
+$script:headers = @{ 'X-CSRF-Token' = $login.csrf_token }
+$claim = Call-Api '/api/crm/claims/NCL-009999'
+if ($claim.stage -ne 'New') {
+    throw "Demo claim NCL-009999 has stage $($claim.stage). Use a new fictional claim ID for another full run."
+}
+$uid = [Guid]::NewGuid().ToString('N')
+Write-Host 'Step 1: Pull the fictional record from mock Zoho CRM'
+$pull = Call-Api '/api/crm/claims/NCL-009999/sync' 'POST' @{ operation_key=($uid+'-pull') }
+Write-Host "CRM integration: $($pull.status)"
+
+function Send-Event([string]$Name) {
+    $key = $uid+'-'+$Name
+    $result = Call-Api '/api/workflows/events' 'POST' @{
+       claim_id='NCL-009999'; event_type=$Name; event_key=$key
+    }
+    Write-Host "$Name => $(($result.results | ForEach-Object { $_.status }) -join ', ')"
+    return $result
+}
+Write-Host 'Step 2: Claim submission and assignment'
+$first = Send-Event 'submitted'
+$replay = Call-Api '/api/workflows/events' 'POST' @{
+  claim_id='NCL-009999'; event_type='submitted'; event_key=($uid+'-submitted')
+}
+Write-Host "Duplicate event recognised: $($replay.results[0].replayed)"
+Write-Host 'Step 3: Evidence required'
+$second = Send-Event 'missing_documents'
+Write-Host 'Step 4: Evidence received'
+$third = Send-Event 'evidence_received'
+Write-Host 'Step 5: Resolve the fictional claim'
+$fourth = Send-Event 'resolved'
+$push = Call-Api '/api/crm/claims/NCL-009999/push' 'POST' @{operation_key=($uid+'-push')}
+Write-Host "CRM mock push: $($push.status)"
+$completed = Call-Api '/api/crm/claims/NCL-009999'
+Write-Host "Final stage: $($completed.stage); original claim status: $($completed.claim_status)"
+Write-Host 'Step 6: Create a deliberate failed workflow on separate demo claim NCL-009998'
+$rule = Call-Api '/api/workflows/rules' 'POST' @{
+   name=('Troubleshooting exercise '+$uid.Substring(0,8)); event_type='submitted'; action_type='demo_fail'
+}
+$bad = Call-Api '/api/workflows/events' 'POST' @{
+  claim_id='NCL-009998'; event_type='submitted'; event_key=($uid+'-failure')
+}
+$failed = @($bad.results | Where-Object {$_.status -eq 'Failed'}) | Select-Object -First 1
+if ($null -eq $failed) { throw 'Expected an intentional failed workflow event.' }
+Write-Host "Failed workflow #$($failed.execution_id); support ticket #$($failed.support_ticket_id)"
+Write-Host 'Step 7: Fix configured action, then retry'
+$edit = Call-Api ('/api/workflows/rules/'+$rule.id) 'PATCH' @{action_type='evidence_required'}
+$retry = Call-Api ('/api/workflows/executions/'+$failed.execution_id+'/retry') 'POST'
+Write-Host "Retry status: $($retry.status); retry count: $($retry.retry_count)"
+Write-Host 'Task 4 demonstration complete: open /claims-management and /workflow-logs.'
+~~~~~~~
+
+### `scripts/generate_sample_data.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/generate_sample_data.py`. Purpose: """Create exactly 1,000 entirely fictional UK claims as .xlsx and .csv.""".
+
+~~~~~~~python
+"""Create exactly 1,000 entirely fictional UK claims as .xlsx and .csv."""
+import csv
+from datetime import date, timedelta
+from pathlib import Path
+
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill
+
+from app.services.validation import HEADERS
+
+OUTPUT_DIR = Path(__file__).resolve().parents[1] / "sample_data"
+STATUSES = ("Open", "In Progress", "Closed", "Declined")
+CLAIM_TYPES = ("Motor", "Home", "Travel", "Business")
+POSTCODES = ("M1 1AA", "M2 3AB", "M3 4AD", "M4 5AF", "M5 6AG")
+
+
+def generate_rows() -> list[dict]:
+    rows = []
+    for i in range(1, 901):
+        incident = date(2024, 1, 1) + timedelta(days=i % 300)
+        reported = incident + timedelta(days=(i % 9) + 1)
+        rows.append({
+            "claim_id": f"{' ncl' if i % 11 == 0 else 'NCL'}-{i:06d}{' ' if i % 17 == 0 else ''}",
+            "policy_number": f"pol-{i:06d}" if i % 13 == 0 else f"POL-{i:06d}",
+            "claimant_name": f"  test   claimant {i:04d} " if i % 7 == 0 else f"Test Claimant {i:04d}",
+            "claim_type": CLAIM_TYPES[i % len(CLAIM_TYPES)].lower() if i % 19 == 0 else CLAIM_TYPES[i % len(CLAIM_TYPES)],
+            "incident_date": incident,
+            "reported_date": reported,
+            "status": f" {STATUSES[i % 4].lower()} " if i % 9 == 0 else STATUSES[i % 4],
+            "amount_gbp": round(100 + i * 0.75, 2),
+            "postcode": POSTCODES[i % len(POSTCODES)].lower() if i % 8 == 0 else POSTCODES[i % len(POSTCODES)],
+            "description": f"Fictional portfolio test claim {i:04d}",
+        })
+    for i in range(1, 41):
+        duplicate = rows[i - 1].copy()
+        duplicate["description"] = "INTENTIONAL DUPLICATE: " + duplicate["description"]
+        rows.append(duplicate)
+    # 60 intentionally bad records: five groups of 12.
+    for i in range(60):
+        item = rows[(i + 100) % 900].copy()
+        item["claim_id"] = f"NCL-{901 + i:06d}"
+        if i < 12:
+            item["claim_id"] = "INVALID-ID"
+        elif i < 24:
+            item["reported_date"] = "31/02/2025"
+        elif i < 36:
+            item["amount_gbp"] = "-50.00"
+        elif i < 48:
+            item["status"] = "Pending unknown"
+        else:
+            item["postcode"] = "NOT A POSTCODE"
+        item["description"] = "INTENTIONAL INVALID: " + item["description"]
+        rows.append(item)
+    assert len(rows) == 1000
+    return rows
+
+
+def main() -> None:
+    OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
+    rows = generate_rows()
+    xlsx_path = OUTPUT_DIR / "northstar_claims_1000.xlsx"
+    csv_path = OUTPUT_DIR / "northstar_claims_1000.csv"
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "ClaimsData"
+    ws.append(HEADERS)
+    for i, row in enumerate(rows, start=2):
+        ws.append([row[header] for header in HEADERS])
+        if i >= 902:
+            for cell in ws[i]:
+                cell.fill = PatternFill("solid", fgColor="FFF0E8")
+    for cell in ws[1]:
+        cell.fill = PatternFill("solid", fgColor="17365D")
+        cell.font = Font(color="FFFFFF", bold=True)
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = "A1:J1001"
+    for column, width in {"A": 18, "B": 18, "C": 25, "D": 16, "E": 18, "F": 18, "G": 16, "H": 16, "I": 16, "J": 50}.items():
+        ws.column_dimensions[column].width = width
+    for row in ws.iter_rows(min_row=2, min_col=5, max_col=6):
+        for cell in row:
+            cell.number_format = "yyyy-mm-dd"
+    for cell in ws["H"][1:]:
+        if isinstance(cell.value, (float, int)):
+            cell.number_format = '"£"#,##0.00'
+    wb.save(xlsx_path)
+
+    with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=HEADERS)
+        writer.writeheader()
+        writer.writerows(rows)
+    print("Created 1,000 rows: 900 valid unique, 40 duplicate, 60 invalid")
+    print(xlsx_path)
+    print(csv_path)
+
+
+if __name__ == "__main__":
+    main()
+~~~~~~~
+
+### `scripts/google_workspace_lab.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/google_workspace_lab.py`. Purpose: """Manual Google Directory lab CLI: mock by default, no app integration.""".
+
+~~~~~~~python
+"""Manual Google Directory lab CLI: mock by default, no app integration."""
+import argparse
+import getpass
+import os
+from app.services.google_directory import MockDirectory, RealGoogleDirectory
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Standalone Google Workspace lab (mock default)')
+    parser.add_argument('--action', choices=['create','list','group','update','suspend'], default='list')
+    parser.add_argument('--email', default='nc000001@northstar.example')
+    parser.add_argument('--group', default='claims-team@northstar.example')
+    parser.add_argument('--lab-live', action='store_true')
+    parser.add_argument('--commit-lab-changes', action='store_true')
+    args = parser.parse_args()
+    if args.commit_lab_changes and not args.lab_live:
+        parser.error('Cannot commit without --lab-live')
+    if args.lab_live and args.action != 'list' and not args.commit_lab_changes:
+        parser.error('Real write operations require --commit-lab-changes; default is mock')
+    if args.commit_lab_changes:
+        confirmation = input('Type WORKSPACE ISOLATED LAB to continue: ')
+        if confirmation != 'WORKSPACE ISOLATED LAB':
+            raise SystemExit('Cancelled without changes')
+    directory = RealGoogleDirectory(confirmed_lab=True) if args.lab_live else MockDirectory()
+    if not args.lab_live and args.action != 'create':
+        directory.create_user(args.email, 'Alex', 'Morgan')
+    if args.action == 'create':
+        password = getpass.getpass('One-time lab-only user password: ') if args.lab_live else None
+        result = directory.create_user(args.email, 'Alex', 'Morgan', password)
+    elif args.action == 'list':
+        result = directory.list_users()
+    elif args.action == 'group':
+        result = directory.assign_group(args.email, args.group)
+    elif args.action == 'update':
+        result = directory.update_user(args.email, {'orgUnitPath': '/LabUsers'})
+    else:
+        result = directory.suspend_user(args.email)
+    # Never log password, token, or full credential objects.
+    print(f'{"LIVE LAB" if args.lab_live else "MOCK"} {args.action}: completed')
+    if isinstance(result, list):
+        print('Users returned:', len(result))
+    else:
+        print('Target:', result.get('primaryEmail', args.email))
+
+
+if __name__ == '__main__':
+    main()
+~~~~~~~
+
+### `scripts/init_schema.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/init_schema.py`. Purpose: """Create application tables in the database created by the SSMS script.""".
+
+~~~~~~~python
+"""Create application tables in the database created by the SSMS script."""
+from app.db import get_engine
+from app.models import Base
+
+
+def main() -> None:
+    Base.metadata.create_all(bind=get_engine())
+    print("SQLAlchemy schema ready in ClaimsITOpsDemo: claims, import_batches, rejected_rows, audit_events")
+
+
+if __name__ == "__main__":
+    main()
+~~~~~~~
+
+### `scripts/migrate_task2.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/migrate_task2.py`. Purpose: """Apply idempotent migration batches to an existing SQL Server database.""".
+
+~~~~~~~python
+"""Apply idempotent migration batches to an existing SQL Server database."""
+import re
+from pathlib import Path
+from sqlalchemy import inspect
+from app.db import get_engine
+
+
+def main():
+    engine = get_engine()
+    if engine.dialect.name != 'mssql':
+        raise RuntimeError('Task 2 migration must run on Microsoft SQL Server')
+    inspector = inspect(engine)
+    if not {'claims', 'import_batches', 'audit_events'}.issubset(set(inspector.get_table_names())):
+        raise RuntimeError('Task 1 schema missing: run scripts/01_create_database.sql and python -m scripts.init_schema first')
+    text = (Path(__file__).parent / '03_task2_migration.sql').read_text(encoding='utf-8')
+    batches = re.split(r'^\s*GO\s*$', text, flags=re.MULTILINE | re.IGNORECASE)
+    with engine.connect() as conn:
+        # Migration script owns its T-SQL transaction, not SQLAlchemy's default implicit transaction.
+        conn = conn.execution_options(isolation_level='AUTOCOMMIT')
+        for batch in batches:
+            if batch.strip():
+                conn.exec_driver_sql(batch)
+    print('Task 2 SQL Server migration applied. Existing Task 1 data retained.')
+
+
+if __name__ == '__main__':
+    main()
+~~~~~~~
+
+### `scripts/migrate_task3.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/migrate_task3.py`. Purpose: """Run SQL Server-only migration without recreating existing tables.""".
+
+~~~~~~~python
+"""Run SQL Server-only migration without recreating existing tables."""
+import re
+from pathlib import Path
+from sqlalchemy import inspect
+from app.db import get_engine
+
+
+def main():
+    engine = get_engine()
+    if engine.dialect.name != 'mssql':
+        raise RuntimeError('This migration requires Microsoft SQL Server')
+    tables = set(inspect(engine).get_table_names())
+    if not {'claims','tickets','assets','users','audit_events'}.issubset(tables):
+        raise RuntimeError('Task 2 schema missing; stop and migrate Task 1/2 first')
+    source = (Path(__file__).with_name('05_task3_migration.sql')).read_text(encoding='utf-8')
+    batches = re.split(r'^\s*GO\s*$', source, flags=re.IGNORECASE | re.MULTILINE)
+    with engine.connect() as connection:
+        connection = connection.execution_options(isolation_level='AUTOCOMMIT')
+        for batch in batches:
+            if batch.strip():
+                connection.exec_driver_sql(batch)
+    print('Task 3 SQL migration applied; existing claims, tickets and assets retained.')
+
+
+if __name__ == '__main__':
+    main()
+~~~~~~~
+
+### `scripts/migrate_task4.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/scripts/migrate_task4.py`. Purpose: """Safe SQL Server migration using existing Task 1 connection.""".
+
+~~~~~~~python
+"""Safe SQL Server migration using existing Task 1 connection."""
+import re
+from pathlib import Path
+from sqlalchemy import inspect
+from app.db import get_engine
+
+
+def main():
+    engine = get_engine()
+    if engine.dialect.name != 'mssql':
+        raise RuntimeError('Task 4 migration requires Microsoft SQL Server')
+    tables = set(inspect(engine).get_table_names())
+    if not {'claims','audit_events','tickets','users','employees'}.issubset(tables):
+        raise RuntimeError('Tasks 1–3 tables are missing; apply earlier migrations first')
+    script = (Path(__file__).with_name('07_task4_migration.sql')).read_text(encoding='utf-8')
+    batches = re.split(r'^\s*GO\s*$', script, flags=re.IGNORECASE | re.MULTILINE)
+    with engine.connect() as conn:
+        conn = conn.execution_options(isolation_level='AUTOCOMMIT')
+        for batch in batches:
+            if batch.strip():
+                conn.exec_driver_sql(batch)
+    print('Task 4 migration complete; existing data preserved.')
+
+
+if __name__ == '__main__':
+    main()
+~~~~~~~
+
+### `scripts/seed_task2.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/seed_task2.py`. Purpose: """Idempotent fictional accounts, devices and tickets; localhost demo ONLY.""".
+
+~~~~~~~python
+"""Idempotent fictional accounts, devices and tickets; localhost demo ONLY."""
+from datetime import date, timedelta
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from app.db import get_engine
+from app.models import Asset, Ticket, User, utc_now
+from app.security import hash_password
+from app.services.helpdesk_service import ticket_history, log_event
+
+# Change passwords before exposing any instance to others. Never real company accounts.
+USERS = [
+ ('admin', 'Alex Morgan', 'alex.morgan@northstar.example', 'Admin', 'NorthstarAdmin!2026'),
+ ('tech.owen', 'Owen Hughes', 'owen.hughes@northstar.example', 'Technician', 'NorthstarTech!2026'),
+ ('tech.maya', 'Maya Singh', 'maya.singh@northstar.example', 'Technician', 'NorthstarTech!2026'),
+ ('employee.ellie', 'Ellie Carter', 'ellie.carter@northstar.example', 'Employee', 'NorthstarStaff!2026'),
+ ('employee.jamie', 'Jamie Patel', 'jamie.patel@northstar.example', 'Employee', 'NorthstarStaff!2026'),
+]
+
+ASSETS = [
+ ('NS-LAP-001','NS-DELL-1001','Laptop','Dell','Latitude 5440','Windows 11', 'Available'),
+ ('NS-LAP-002','NS-LEN-1002','Laptop','Lenovo','ThinkPad T14','Windows 11', 'Available'),
+ ('NS-DES-001','NS-HP-2001','Desktop','HP','ProDesk 400','Windows 11', 'Available'),
+ ('NS-PRN-001','NS-BRO-3001','Printer','Brother','MFC-L8690CDW',None, 'Maintenance'),
+ ('NS-RTR-001','NS-CIS-4001','Router','Cisco','ISR 1100',None, 'Available'),
+ ('NS-SWT-001','NS-CIS-5001','Switch','Cisco','Catalyst 9200',None,'Available'),
+]
+
+
+def main():
+    with Session(get_engine()) as db:
+        for username, full_name, email, role, password in USERS:
+            if not db.scalar(select(User).where(User.username == username)):
+                db.add(User(username=username, full_name=full_name, email=email,
+                            role=role, password_hash=hash_password(password), is_active=True))
+        db.flush()
+        users = {u.username: u for u in db.scalars(select(User))}
+        for tag, serial, kind, manufacturer, model, os_name, state in ASSETS:
+            if not db.scalar(select(Asset).where(Asset.asset_tag == tag)):
+                db.add(Asset(asset_tag=tag, serial_number=serial, device_type=kind,
+                             manufacturer=manufacturer, model=model, operating_system=os_name,
+                             purchase_date=date(2025, 3, 10), warranty_expiry=date(2028, 3, 10),
+                             status=state, notes='Fictional inventory demonstration'))
+        db.flush()
+        # Four realistic support examples; leave NS-LAP-001 free for the laptop demo.
+        demo_tickets = [
+            ('VPN disconnects during claims review', 'Remote VPN drops after login on the desktop workstation.',
+             'Network', 'Medium', 'Open', 'employee.jamie', None, None),
+            ('First-floor printer repeatedly jams', 'The Brother printer jams after feeding more than two pages.',
+             'Printer', 'Medium', 'Assigned', 'employee.ellie', 'tech.owen', None),
+            ('Repeated account lockouts', 'Microsoft account gets locked three times each morning.',
+             'Account Access', 'High', 'In Progress', 'employee.jamie', 'tech.maya', None),
+            ('Outlook add-in freezes on launch', 'The claims review add-in freezes Microsoft Outlook after startup.',
+             'Software', 'Low', 'Resolved', 'employee.ellie', 'tech.owen',
+             'Disabled faulty add-in, installed approved update and verified Outlook startup.'),
+        ]
+        for title, description, category, priority, status, owner, tech_name, resolution in demo_tickets:
+            if db.scalar(select(Ticket).where(Ticket.title == title)):
+                continue
+            now = utc_now()
+            tech = users[tech_name] if tech_name else None
+            ticket = Ticket(employee_id=users[owner].id, title=title, description=description,
+                            category=category, priority=priority, status=status,
+                            assigned_technician_id=tech.id if tech else None,
+                            assigned_at=now if tech else None,
+                            resolved_at=now if status == 'Resolved' else None,
+                            resolution_details=resolution,
+                            created_at=now, sla_due_at=now + timedelta(hours={'Low':72,'Medium':24,'High':8,'Critical':2}[priority]))
+            db.add(ticket)
+            db.flush()
+            ticket_history(db, ticket, users[owner], 'Created', new='Open')
+            if tech:
+                ticket_history(db, ticket, users['admin'], 'Assigned',
+                               f'Assigned to {tech.full_name}', 'Open', 'Assigned')
+                log_event(db, 'TICKET_ASSIGNED', users['admin'], ticket_id=ticket.id, technician_id=tech.id)
+            if status == 'In Progress':
+                ticket_history(db, ticket, tech, 'Status change', 'Investigating account policy and lockout logs', 'Assigned', 'In Progress')
+                log_event(db, 'TICKET_UPDATED', tech, ticket_id=ticket.id, to_status='In Progress')
+            if status == 'Resolved':
+                ticket_history(db, ticket, tech, 'Status change', resolution, 'Assigned', 'Resolved')
+                log_event(db, 'TICKET_UPDATED', tech, ticket_id=ticket.id, to_status='Resolved')
+        db.commit()
+    print('Fictional Task 2 users, six assets and four support tickets are ready (existing rows untouched).')
+    for username, _, _, _, password in USERS:
+        print(f'  {username:18} {password}')
+    print('LOCAL DEMO ONLY: these credentials are not safe for production.')
+
+
+if __name__ == '__main__':
+    main()
+~~~~~~~
+
+### `scripts/seed_task3.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/scripts/seed_task3.py`. Purpose: """Create only a second fictional admin for two-person offboarding approval.""".
+
+~~~~~~~python
+"""Create only a second fictional admin for two-person offboarding approval."""
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from app.db import get_engine
+from app.models import User
+from app.security import hash_password
+
+
+def seed(db):
+    if db.scalar(select(User).where(User.username == 'admin.reviewer')):
+        return False
+    db.add(User(username='admin.reviewer', full_name='Jordan Review',
+                email='admin.reviewer@northstar.example', role='Admin', is_active=True,
+                password_hash=hash_password('NorthstarReview!2026')))
+    db.commit()
+    return True
+
+
+def main():
+    with Session(get_engine()) as db:
+        print('Created reviewer' if seed(db) else 'Reviewer already exists; no changes')
+    print('LOCAL TEST ACCOUNT: admin.reviewer / NorthstarReview!2026')
+
+
+if __name__ == '__main__':
+    main()
+~~~~~~~
+
+### `scripts/seed_task4.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/scripts/seed_task4.py`. Purpose: """Idempotent workflow + communication template seed; never overwrites edits.""".
+
+~~~~~~~python
+"""Idempotent workflow + communication template seed; never overwrites edits."""
+from sqlalchemy.orm import Session
+from app.db import get_engine
+from app.services.claims_workflow import seed_rules
+from app.services.claim_templates import seed_templates
+
+
+def seed(db):
+    seed_rules(db)
+    seed_templates(db)
+
+
+def main():
+    with Session(get_engine()) as db:
+        seed(db)
+    print('Task 4: four workflow rules and four editable templates available (idempotent).')
+
+
+if __name__ == '__main__':
+    main()
+~~~~~~~
+
+### `tests/__init__.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/__init__.py`. Purpose: """Northstar Claims IT operations demonstration package.""".
+
+~~~~~~~python
+"""Northstar Claims IT operations demonstration package."""
+~~~~~~~
+
+### `tests/conftest.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/conftest.py`. Purpose: """Isolated SQLite test database; real SQL Server verification is a separate smoke test.""".
+
+~~~~~~~python
+"""Isolated SQLite test database; real SQL Server verification is a separate smoke test."""
+import os
+os.environ.setdefault('APP_SECRET_KEY', 'TEST-ONLY-secret-key-very-long-and-never-used-on-server-123456789')
+
+import pytest
+from fastapi.testclient import TestClient
+from sqlalchemy import create_engine, event
+from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy.pool import StaticPool
+
+from app.db import get_db
+from app.main import app
+from app.models import Base, User
+from app.security import hash_password
+
+ACCOUNTS = {
+    'admin': ('Admin', 'NorthstarAdmin!2026'),
+    'tech.owen': ('Technician', 'NorthstarTech!2026'),
+    'tech.maya': ('Technician', 'NorthstarTech!2026'),
+    'employee.ellie': ('Employee', 'NorthstarStaff!2026'),
+    'employee.jamie': ('Employee', 'NorthstarStaff!2026'),
+}
+
+
+@pytest.fixture
+def session_factory():
+    engine = create_engine('sqlite+pysqlite:///:memory:', connect_args={'check_same_thread': False},
+                           poolclass=StaticPool)
+
+    @event.listens_for(engine, 'connect')
+    def enable_fk(dbapi_connection, _connection_record):
+        dbapi_connection.execute('PRAGMA foreign_keys=ON')
+
+    Base.metadata.create_all(engine)
+    maker = sessionmaker(bind=engine, expire_on_commit=False, class_=Session)
+    with maker() as db:
+        for username, (role, password) in ACCOUNTS.items():
+            db.add(User(username=username, full_name=username.title(),
+                        email=username + '@northstar.example', role=role,
+                        password_hash=hash_password(password), is_active=True))
+        db.commit()
+    yield maker
+    engine.dispose()
+
+
+@pytest.fixture
+def client(session_factory):
+    def override():
+        with session_factory() as session:
+            yield session
+    app.dependency_overrides[get_db] = override
+    try:
+        with TestClient(app) as c:
+            yield c
+    finally:
+        app.dependency_overrides.clear()
+
+
+def login_as(client, username='admin'):
+    response = client.post('/api/auth/login', json={'username': username,
+                             'password': ACCOUNTS[username][1]})
+    assert response.status_code == 200, response.text
+    return {'X-CSRF-Token': response.json()['csrf_token']}
+~~~~~~~
+
+### `tests/test_api.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/test_api.py`. Purpose: """End-to-end FastAPI tests without a running SQL Server instance.""".
+
+~~~~~~~python
+"""End-to-end FastAPI tests without a running SQL Server instance."""
+from io import BytesIO
+
+from openpyxl import load_workbook
+
+from scripts.generate_sample_data import generate_rows
+from tests.test_import_service import one_csv
+from tests.conftest import login_as
+
+
+def test_health_and_dashboard(client):
+    assert client.get("/health").json()["status"] == "ok"
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "Northstar Claims Ltd" in response.text
+
+
+def test_import_list_and_formula_report(client):
+    headers = login_as(client)
+    csv_bytes = one_csv(generate_rows()[0])
+    upload = client.post("/api/claims/import", files={"file": ("claims.csv", csv_bytes, "text/csv")}, headers=headers)
+    assert upload.status_code == 200, upload.text
+    batch = upload.json()
+    assert batch["imported_rows"] == 1
+    claims = client.get("/api/claims?limit=10").json()
+    assert claims["total"] == 1
+    assert claims["items"][0]["claim_id"] == "NCL-000001"
+    imports = client.get("/api/imports").json()
+    assert imports["items"][0]["batch_id"] == batch["batch_id"]
+    report = client.get("/api/reports/claims.xlsx")
+    assert report.status_code == 200
+    workbook = load_workbook(BytesIO(report.content), data_only=False)
+    assert workbook.sheetnames == ["Claims", "Summary", "Claim Lookup"]
+    assert workbook["Claims"]["A2"].value == "NCL-000001"
+    assert "COUNTIF" in workbook["Summary"]["B9"].value
+    assert "SUMIFS" in workbook["Summary"]["C9"].value
+    assert "XLOOKUP" in workbook["Claim Lookup"]["B3"].value
+
+
+def test_rejections_visible_in_api(client):
+    headers = login_as(client)
+    row = generate_rows()[0].copy()
+    row["status"] = "INVALID"
+    response = client.post("/api/claims/import", files={"file": ("bad.csv", one_csv(row), "text/csv")}, headers=headers)
+    assert response.status_code == 200
+    assert response.json()["rejected_rows"] == 1
+    batch_id = response.json()["batch_id"]
+    details = client.get(f"/api/imports/{batch_id}/rejections").json()
+    assert "status must" in details["items"][0]["reason"]
+
+
+def test_invalid_extension_and_oversized_upload(client, monkeypatch):
+    from app.routers import claims
+    headers = login_as(client)
+    wrong_type = client.post("/api/claims/import", files={"file": ("test.txt", b"hello", "text/plain")}, headers=headers)
+    assert wrong_type.status_code == 400
+    monkeypatch.setattr(claims, "MAX_UPLOAD_BYTES", 10)
+    oversized = client.post("/api/claims/import", files={"file": ("test.csv", b"x" * 11, "text/csv")}, headers=headers)
+    assert oversized.status_code == 413
+
+
+def test_formula_like_user_text_exported_as_text():
+    from app.services.report_service import excel_safe
+    assert excel_safe("=2+2") == "'=2+2"
+    assert excel_safe("@SUM(A1:A3)") == "'@SUM(A1:A3)"
+    assert excel_safe("ordinary") == "ordinary"
+~~~~~~~
+
+### `tests/test_assets.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/test_assets.py`. Purpose: """Inventory permissions, duplicate checks, conflicts, return history and Excel exports.""".
+
+~~~~~~~python
+"""Inventory permissions, duplicate checks, conflicts, return history and Excel exports."""
+from datetime import date
+from io import BytesIO
+from openpyxl import load_workbook
+from sqlalchemy import func, select
+from app.models import AssetMovement, AuditEvent
+from tests.conftest import login_as
+
+
+def laptop():
+    return {'asset_tag':'NS-LAP-NEW','serial_number':'SERIAL-100','device_type':'Laptop',
+            'manufacturer':'Dell', 'model':'Latitude 5440','operating_system':'Windows 11',
+            'purchase_date':'2025-01-02','warranty_expiry':'2028-01-01','notes':'Spare'}
+
+
+def test_asset_permissions_and_validation(client):
+    emp = login_as(client,'employee.ellie')
+    assert client.get('/api/assets').status_code == 403
+    assert client.post('/api/assets',json=laptop(),headers=emp).status_code == 403
+    admin = login_as(client)
+    assert client.post('/api/assets',json={**laptop(),'warranty_expiry':'2020-01-01'},headers=admin).status_code == 422
+    response=client.post('/api/assets',json=laptop(),headers=admin)
+    assert response.status_code == 201,response.text
+    assert client.post('/api/assets',json=laptop(),headers=admin).status_code == 409
+    assert len(client.get('/api/assets?q=Latitude').json()['items']) == 1
+
+
+def test_device_assigned_and_returned_without_conflict(client,session_factory):
+    tech=login_as(client,'tech.owen')
+    response=client.post('/api/assets',json=laptop(),headers=tech)
+    assert response.status_code == 201,response.text
+    aid=response.json()['id']
+    first=client.post(f'/api/assets/{aid}/assign',json={'employee_id':4},headers=tech)
+    assert first.status_code == 200, first.text
+    assert first.json()['assigned_employee_id']==4
+    assert client.post(f'/api/assets/{aid}/assign',json={'employee_id':5},headers=tech).status_code==409
+    assert client.patch(f'/api/assets/{aid}',json={'status':'Maintenance'},headers=tech).status_code==409
+    assert client.get('/api/assets?status=Assigned').json()['items'][0]['id']==aid
+    assert client.post(f'/api/assets/{aid}/return',headers=tech).json()['status']=='Available'
+    assert client.post(f'/api/assets/{aid}/return',headers=tech).status_code==409
+    patched=client.patch(f'/api/assets/{aid}',json={'status':'Maintenance','notes':'Fan cleaning due'},headers=tech)
+    assert patched.status_code == 200 and patched.json()['status']=='Maintenance'
+    assert client.post(f'/api/assets/{aid}/assign',json={'employee_id':5},headers=tech).status_code==409
+    with session_factory() as db:
+        assert db.scalar(select(func.count()).select_from(AssetMovement)) == 2
+        assert db.scalar(select(func.count()).select_from(AuditEvent).where(AuditEvent.event_type=='ASSET_RETURNED')) == 1
+
+
+def test_ticket_asset_employee_ownership_and_exports(client):
+    tech=login_as(client,'tech.owen')
+    aid=client.post('/api/assets',json=laptop(),headers=tech).json()['id']
+    assert client.post(f'/api/assets/{aid}/assign',json={'employee_id':4},headers=tech).status_code == 200
+    employee=login_as(client,'employee.jamie')
+    from tests.test_helpdesk import payload
+    assert client.post('/api/tickets',json=payload(aid),headers=employee).status_code==403
+    employee=login_as(client,'employee.ellie')
+    created=client.post('/api/tickets',json=payload(aid),headers=employee)
+    assert created.status_code==201 and created.json()['asset_tag']=='NS-LAP-NEW'
+    assert client.get('/api/reports/inventory.xlsx').status_code==403
+    tech=login_as(client,'tech.owen')
+    for kind, name in [('tickets','Tickets'),('inventory','Inventory')]:
+        response=client.get(f'/api/reports/{kind}.xlsx')
+        assert response.status_code==200
+        workbook=load_workbook(BytesIO(response.content))
+        assert name in workbook.sheetnames and 'Summary' in workbook.sheetnames
+    assert client.get('/api/reports/workload.xlsx').status_code==403
+    admin=login_as(client)
+    assert client.get('/api/reports/workload.xlsx').status_code==200
+
+
+def test_html_pages_role_visibility(client):
+    admin=login_as(client,'admin')
+    assert client.get('/assets').status_code==200
+    assert client.get('/users').status_code==200
+    assert 'Imported claims' in client.get('/').text
+    login_as(client,'employee.ellie')
+    assert client.get('/users').status_code==403
+    assert client.get('/assets').status_code==403
+    assert client.get('/tickets/new').status_code==200
+    assert 'Imported claims' not in client.get('/').text
+    assert client.get('/api/claims').status_code==403
+~~~~~~~
+
+### `tests/test_employee_lifecycle.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/test_employee_lifecycle.py`. Purpose: """Task 3 end-to-end lifecycle using isolated SQLite and no external credentials.""".
+
+~~~~~~~python
+"""Task 3 end-to-end lifecycle using isolated SQLite and no external credentials."""
+from datetime import date, timedelta
+from sqlalchemy import select
+
+from app.models import (Asset, AssetReservation, AuditEvent, Employee,
+                        OffboardingRequest, ApprovalRecord, ProvisioningAction)
+from app.services.google_directory import MockDirectory, RealGoogleDirectory
+from app.models import User
+from app.security import hash_password
+from tests.conftest import login_as
+
+
+def payload(groups=None):
+    return {'full_name': 'Alex Morgan', 'department': 'Claims', 'job_title': 'Claims Handler',
+            'manager_name': 'Sarah Bennett', 'start_date': (date.today() + timedelta(days=14)).isoformat(),
+            'required_groups': groups if groups is not None else ['SG-Claims-Read'],
+            'device_requirements': ['Laptop']}
+
+
+def laptop(db, tag='NS-LAP-TEST-03'):
+    db.add(Asset(asset_tag=tag, serial_number='SN-'+tag, device_type='Laptop',
+                 manufacturer='Dell', model='Latitude', operating_system='Windows 11',
+                 purchase_date=date(2025, 1, 1), status='Available', notes='Test only'))
+    db.commit()
+
+
+def create_employee(client, session_factory):
+    with session_factory() as db:
+        laptop(db)
+    headers = login_as(client, 'admin')
+    response = client.post('/api/employees/onboarding', headers=headers, json=payload())
+    assert response.status_code == 201, response.text
+    return response.json()['id'], headers
+
+
+def test_role_boundaries_and_csrf(client):
+    assert client.get('/api/employees').status_code == 401
+    employee_headers = login_as(client, 'employee.ellie')
+    assert client.get('/api/employees').status_code == 403
+    assert client.post('/api/employees/onboarding', headers=employee_headers, json=payload()).status_code == 403
+    technician_headers = login_as(client, 'tech.owen')
+    assert client.post('/api/employees/onboarding', headers=technician_headers, json=payload()).status_code == 403
+    admin_headers = login_as(client, 'admin')
+    assert client.post('/api/employees/onboarding', json=payload()).status_code == 403
+    assert client.get('/employees').status_code == 200
+    assert client.get('/api/employees/metrics').status_code == 200
+
+
+def test_group_allowlist_and_request_validation(client):
+    headers = login_as(client, 'admin')
+    bad = payload(['SG-IT-Helpdesk'])
+    assert client.post('/api/employees/onboarding', headers=headers, json=bad).status_code == 422
+    bad = payload()
+    bad['full_name'] = 'A'
+    assert client.post('/api/employees/onboarding', headers=headers, json=bad).status_code == 422
+    bad = payload()
+    bad['device_requirements'] = ['Laptop','Laptop']
+    assert client.post('/api/employees/onboarding', headers=headers, json=bad).status_code == 422
+
+
+def test_onboarding_reserves_task2_asset_and_audits(client, session_factory):
+    employee_id, headers = create_employee(client, session_factory)
+    row = client.get(f'/api/employees/{employee_id}').json()
+    assert row['ad_username'] == f'nc{employee_id:06d}'
+    assert row['status'] == 'Prepared'
+    assert row['reserved_asset_tag'] == 'NS-LAP-TEST-03'
+    assert any(a['type'] == 'GOOGLE_CREATE' and a['status'] == 'Mocked' for a in row['actions'])
+    assert any(a['type'] == 'AD_CREATE' and a['status'] == 'Prepared' for a in row['actions'])
+    plan = client.get(f'/api/employees/{employee_id}/ad-plan')
+    assert plan.status_code == 200
+    assert plan.json()['groups'] == ['SG-Claims-Read']
+    with session_factory() as db:
+        asset = db.scalar(select(Asset).where(Asset.asset_tag == 'NS-LAP-TEST-03'))
+        assert asset.status == 'Reserved'
+        assert db.scalar(select(AssetReservation).where(AssetReservation.employee_id == employee_id))
+        assert db.scalar(select(AuditEvent).where(AuditEvent.event_type == 'ASSET_RESERVED'))
+    assert client.post('/api/assets/1/assign', headers=headers, json={'employee_id': 4}).status_code in (404,409)
+
+
+def test_second_onboarding_cannot_reserve_same_laptop(client, session_factory):
+    first, headers = create_employee(client, session_factory)
+    second_payload = payload()
+    second_payload['full_name'] = 'Taylor Scott'
+    response = client.post('/api/employees/onboarding', headers=headers, json=second_payload)
+    assert response.status_code == 201
+    assert response.json()['onboarding_status'] == 'Attention'
+    assert response.json()['reserved_asset_tag'] is None
+    assert any(a['status'] == 'Failed' for a in response.json()['actions'])
+    assert client.post(f'/api/employees/{response.json()["id"]}/activate', headers=headers).status_code == 409
+
+
+def test_end_to_end_approval_and_reservation_release(client, session_factory):
+    employee_id, headers = create_employee(client, session_factory)
+    activated = client.post(f'/api/employees/{employee_id}/activate', headers=headers)
+    assert activated.status_code == 200
+    assert activated.json()['status'] == 'Active'
+    departure = {'last_working_date': date.today().isoformat(), 'reason': 'Fictional contract completed'}
+    requested = client.post(f'/api/employees/{employee_id}/offboarding', headers=headers, json=departure)
+    assert requested.status_code == 201
+    request_id = requested.json()['id']
+    assert client.post(f'/api/employees/{employee_id}/offboarding', headers=headers, json=departure).status_code == 409
+    approval = {'confirm': True, 'comment': 'Approved in fictional test environment'}
+    assert client.post(f'/api/employees/offboarding/{request_id}/approve', headers=headers,
+                       json=approval).status_code == 403
+    assert client.get('/api/employees/offboarding').json()['items'][0]['status'] == 'PendingApproval'
+    with session_factory() as db:
+        db.add(User(username='admin.reviewer', full_name='Jordan Review',
+                    email='reviewer@northstar.example', role='Admin', is_active=True,
+                    password_hash=hash_password('NorthstarReview!2026')))
+        db.commit()
+    login_response = client.post('/api/auth/login', json={
+        'username': 'admin.reviewer', 'password': 'NorthstarReview!2026'})
+    assert login_response.status_code == 200
+    reviewer = {'X-CSRF-Token': login_response.json()['csrf_token']}
+    completed = client.post(f'/api/employees/offboarding/{request_id}/approve', headers=reviewer, json=approval)
+    assert completed.status_code == 200, completed.text
+    assert completed.json()['simulation'] is True
+    row = client.get(f'/api/employees/{employee_id}').json()
+    assert row['status'] == 'Offboarded'
+    assert any(a['type'] == 'GOOGLE_SUSPEND' and a['status'] == 'Mocked' for a in row['actions'])
+    assert any(a['type'] == 'AD_DISABLE' and a['status'] == 'Prepared' for a in row['actions'])
+    with session_factory() as db:
+        reservation = db.scalar(select(AssetReservation).where(AssetReservation.employee_id == employee_id))
+        assert reservation.status == 'Released'
+        assert db.get(Asset, reservation.asset_id).status == 'Available'
+        assert db.scalar(select(ApprovalRecord).where(ApprovalRecord.offboarding_request_id == request_id))
+        assert db.scalar(select(AuditEvent).where(AuditEvent.event_type == 'OFFBOARDING_COMPLETED'))
+    assert client.post(f'/api/employees/offboarding/{request_id}/approve', headers=reviewer,
+                       json=approval).status_code == 409
+
+
+def test_no_device_required_and_offboard_without_reservation(client):
+    headers = login_as(client)
+    item = payload()
+    item['device_requirements'] = []
+    response = client.post('/api/employees/onboarding', headers=headers, json=item)
+    assert response.status_code == 201
+    assert response.json()['onboarding_status'] == 'Prepared'
+    assert response.json()['reserved_asset_tag'] is None
+
+
+def test_mock_google_directory_five_operations_and_live_default_disabled(monkeypatch):
+    mock = MockDirectory()
+    assert mock.create_user('alex@northstar.example','Alex','Morgan')['suspended'] is False
+    assert len(mock.list_users()) == 1
+    assert mock.assign_group('alex@northstar.example','claims@northstar.example')['role'] == 'MEMBER'
+    assert mock.update_user('alex@northstar.example',{'orgUnitPath':'/Claims'})['orgUnitPath'] == '/Claims'
+    assert mock.suspend_user('alex@northstar.example')['suspended'] is True
+    monkeypatch.delenv('GOOGLE_LAB_ENABLED', raising=False)
+    try:
+        RealGoogleDirectory(confirmed_lab=True)
+    except RuntimeError as error:
+        assert 'disabled' in str(error)
+    else:
+        raise AssertionError('Real Google adapter should not initialize by default')
+
+
+def test_department_base_group_auto_populates_and_non_inventory_devices(client):
+    headers = login_as(client, 'admin')
+    entry = payload(groups=[])
+    entry['device_requirements'] = ['Monitor']
+    response = client.post('/api/employees/onboarding', json=entry, headers=headers)
+    assert response.status_code == 201
+    emp = response.json()
+    assert any(a['type'] == 'AD_GROUP' and a['target'] == 'SG-Claims-Read' for a in emp['actions'])
+    assert any(a['type'] == 'DEVICE_REQUEST' and a['status'] == 'ManualRequired' for a in emp['actions'])
+    plan = client.get(f'/api/employees/{emp["id"]}/ad-plan').json()
+    assert plan['groups'] == ['SG-Claims-Read']
+
+
+def test_task3_seed_idempotent(session_factory):
+    from scripts.seed_task3 import seed
+    from sqlalchemy import func
+    with session_factory() as db:
+        assert seed(db) is True
+        assert seed(db) is False
+        assert db.scalar(select(func.count()).select_from(User).where(User.username == 'admin.reviewer')) == 1
+~~~~~~~
+
+### `tests/test_helpdesk.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/test_helpdesk.py`. Purpose: """API integration: RBAC, CSRF, ticket lifecycle, SLA and audit trail.""".
+
+~~~~~~~python
+"""API integration: RBAC, CSRF, ticket lifecycle, SLA and audit trail."""
+from datetime import timedelta
+from sqlalchemy import func, select
+from app.models import AuditEvent, Ticket, TicketHistory, utc_now
+from tests.conftest import login_as
+
+
+def payload(asset=None):
+    return {'title': 'Laptop blue screen after restart',
+            'description': 'Device crashes with blue screen on startup, error code is displayed.',
+            'category': 'Hardware', 'priority': 'High', 'affected_asset_id': asset}
+
+
+def test_login_validation_and_csrf(client):
+    assert client.get('/api/tickets').status_code == 401
+    assert client.post('/api/auth/login', json={'username':'admin','password':'wrong'}).status_code == 401
+    login_as(client, 'employee.ellie')
+    assert client.post('/api/tickets', json=payload()).status_code == 403
+    assert client.get('/api/auth/me').json()['role'] == 'Employee'
+
+
+def test_employee_ownership_ticket_assignment_and_resolution(client, session_factory):
+    employee_csrf = login_as(client, 'employee.ellie')
+    response = client.post('/api/tickets', json=payload(), headers=employee_csrf)
+    assert response.status_code == 201, response.text
+    ticket = response.json()
+    ticket_id = ticket['id']
+    assert ticket['reference'] == f'TKT-{ticket_id:06d}'
+    assert ticket['status'] == 'Open' and ticket['sla_status'] == 'On track'
+    assert ticket['history'][0]['action'] == 'Created'
+    assert client.get(f'/api/tickets/{ticket_id}').status_code == 200
+    assert client.post(f'/api/tickets/{ticket_id}/notes', json={'note':'test'}, headers=employee_csrf).status_code == 403
+    other_csrf = login_as(client, 'employee.jamie')
+    assert client.get(f'/api/tickets/{ticket_id}').status_code == 404
+    assert all(t['id'] != ticket_id for t in client.get('/api/tickets').json()['items'])
+    assert client.post(f'/api/tickets/{ticket_id}/assign', json={'technician_id':2}, headers=other_csrf).status_code == 403
+    tech_csrf = login_as(client, 'tech.owen')
+    assert client.patch(f'/api/tickets/{ticket_id}', json={'status':'In Progress'}, headers=tech_csrf).status_code == 404
+    assigned = client.post(f'/api/tickets/{ticket_id}/assign', json={'technician_id':2}, headers=tech_csrf)
+    assert assigned.status_code == 200, assigned.text
+    assert assigned.json()['status'] == 'Assigned'
+    assert client.patch(f'/api/tickets/{ticket_id}', json={'status':'Resolved'}, headers=tech_csrf).status_code == 422  # resolution missing
+    note = client.post(f'/api/tickets/{ticket_id}/notes', json={'note':'Checked event logs and blue screen stop code.'}, headers=tech_csrf)
+    assert note.status_code == 201
+    progress = client.patch(f'/api/tickets/{ticket_id}', json={'status':'In Progress'}, headers=tech_csrf)
+    assert progress.status_code == 200
+    resolved = client.patch(f'/api/tickets/{ticket_id}', json={
+        'status':'Resolved','resolution_details':'Updated graphics driver and confirmed three successful restarts.'}, headers=tech_csrf)
+    assert resolved.status_code == 200, resolved.text
+    assert resolved.json()['resolved_at'] and resolved.json()['sla_status'] == 'Met'
+    assert len(resolved.json()['history']) == 5
+    admin_headers = login_as(client, 'admin')
+    closed = client.patch(f'/api/tickets/{ticket_id}', json={'status':'Closed'}, headers=admin_headers)
+    assert closed.status_code == 200
+    assert closed.json()['closed_at'] is not None
+    with session_factory() as db:
+        assert db.scalar(select(func.count()).select_from(TicketHistory)) >= 6
+        assert db.scalar(select(func.count()).select_from(AuditEvent).where(AuditEvent.event_type == 'TICKET_CREATED')) == 1
+
+
+def test_assignment_permission_and_ticket_validation(client):
+    admin = login_as(client, 'admin')
+    bad = client.post('/api/tickets', json={**payload(), 'priority':'Urgent'}, headers=admin)
+    assert bad.status_code == 422
+    ticket = client.post('/api/tickets', json=payload(), headers=admin).json()
+    tech = login_as(client, 'tech.owen')
+    assert client.post(f"/api/tickets/{ticket['id']}/assign", json={'technician_id':3}, headers=tech).status_code == 403
+    assert client.post(f"/api/tickets/{ticket['id']}/assign", json={'technician_id':2}, headers=tech).status_code == 200
+    other = login_as(client, 'tech.maya')
+    assert client.post(f"/api/tickets/{ticket['id']}/assign", json={'technician_id':3}, headers=other).status_code == 409
+    assert client.post(f"/api/tickets/{ticket['id']}/notes", json={'note':'not my ticket'}, headers=other).status_code == 404
+
+
+def test_sla_overdue_logic(client, session_factory):
+    admin = login_as(client)
+    ticket_id = client.post('/api/tickets', json=payload(), headers=admin).json()['id']
+    with session_factory() as db:
+        ticket = db.get(Ticket,ticket_id)
+        ticket.sla_due_at = utc_now() - timedelta(minutes=1)
+        db.commit()
+    assert client.get(f'/api/tickets/{ticket_id}').json()['sla_status'] == 'Overdue'
+    assert 'Overdue SLA' in client.get('/').text
+
+
+def test_admin_accounts_employee_cannot_create_users(client):
+    body = {'username':'new.staff','full_name':'New Staff','email':'new.staff@northstar.example',
+            'role':'Employee','password':'A-reasonably-long-2026-password'}
+    emp = login_as(client,'employee.ellie')
+    assert client.post('/api/users',json=body,headers=emp).status_code == 403
+    admin = login_as(client)
+    created = client.post('/api/users',json=body,headers=admin)
+    assert created.status_code == 201, created.text
+    assert 'password_hash' not in created.text
+    assert client.post('/api/users',json=body,headers=admin).status_code == 409
+    assert any(x['username']=='new.staff' for x in client.get('/api/users').json()['items'])
+
+
+def test_admin_can_update_accounts_but_cannot_disable_self(client):
+    admin=login_as(client)
+    assert client.patch('/api/users/1',json={'is_active':False},headers=admin).status_code==409
+    changed=client.patch('/api/users/5',json={'full_name':'Jamie Patricia Patel'},headers=admin)
+    assert changed.status_code==200
+    assert changed.json()['full_name']=='Jamie Patricia Patel'
+    assert client.patch('/api/users/5',json={'is_active':False},headers=admin).status_code==200
+    assert client.post('/api/auth/login',json={'username':'employee.jamie',
+                    'password':'NorthstarStaff!2026'}).status_code==401
+~~~~~~~
+
+### `tests/test_import_service.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/test_import_service.py`. Purpose: """Database atomicity, duplicates, idempotence, and audit coverage.""".
+
+~~~~~~~python
+"""Database atomicity, duplicates, idempotence, and audit coverage."""
+import json
+
+from sqlalchemy import func, select
+
+from app.models import AuditEvent, Claim, ImportBatch, RejectedRow
+from app.services.import_service import import_claims
+from scripts.generate_sample_data import generate_rows
+
+
+def one_csv(row, *, reverse=False):
+    import csv
+    from io import StringIO
+    from app.services.validation import HEADERS
+    buffer = StringIO()
+    writer = csv.DictWriter(buffer, fieldnames=HEADERS)
+    writer.writeheader()
+    writer.writerow(row)
+    return buffer.getvalue().encode("utf-8")
+
+
+def test_repeated_identical_upload_creates_one_batch(session_factory):
+    data = one_csv(generate_rows()[0])
+    with session_factory() as session:
+        first = import_claims(session, "input.csv", data)
+    with session_factory() as session:
+        second = import_claims(session, "input.csv", data)
+        assert first["imported_rows"] == 1
+        assert second["replayed"] is True
+        assert second["batch_id"] == first["batch_id"]
+        assert session.scalar(select(func.count()).select_from(Claim)) == 1
+        assert session.scalar(select(func.count()).select_from(ImportBatch)) == 1
+        assert session.scalar(select(func.count()).select_from(AuditEvent)) == 1
+
+
+def test_different_file_same_claim_id_rejected(session_factory):
+    row = generate_rows()[0]
+    data_one = one_csv(row)
+    edited = row.copy()
+    edited["description"] = "same ID, different file hash"
+    data_two = one_csv(edited)
+    with session_factory() as session:
+        import_claims(session, "first.csv", data_one)
+    with session_factory() as session:
+        result = import_claims(session, "second.csv", data_two)
+        assert result["imported_rows"] == 0
+        assert result["rejected_rows"] == 1
+        assert session.scalar(select(func.count()).select_from(Claim)) == 1
+        rejected = session.scalar(select(RejectedRow))
+        assert "already exists" in rejected.failure_reason
+        assert json.loads(rejected.raw_data_json)["claim_id"] == "NCL-000001"
+
+
+def test_real_xlsx_has_900_accepted_and_100_rejected(session_factory):
+    from pathlib import Path
+    data = (Path(__file__).resolve().parents[1] / "sample_data" / "northstar_claims_1000.xlsx").read_bytes()
+    with session_factory() as session:
+        result = import_claims(session, "northstar_claims_1000.xlsx", data)
+        assert result["total_rows"] == 1000
+        assert result["imported_rows"] == 900
+        assert result["rejected_rows"] == 100
+        assert session.scalar(select(func.count()).select_from(Claim)) == 900
+        assert session.scalar(select(func.count()).select_from(RejectedRow)) == 100
+~~~~~~~
+
+### `tests/test_laptop_walkthrough.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/test_laptop_walkthrough.py`. Purpose: """Complete practical helpdesk walkthrough: laptop assignment through ticket closure.""".
+
+~~~~~~~python
+"""Complete practical helpdesk walkthrough: laptop assignment through ticket closure."""
+from sqlalchemy import func, select
+from app.models import Asset, AuditEvent, Ticket, TicketHistory
+from tests.conftest import login_as
+from tests.test_assets import laptop
+
+
+def test_laptop_fault_reported_assigned_investigated_resolved_closed(client, session_factory):
+    # IT prepares a real (fictional) laptop and assigns it to employee Ellie.
+    tech_headers = login_as(client, 'tech.owen')
+    asset = client.post('/api/assets', json=laptop(), headers=tech_headers).json()
+    assigned_asset = client.post(f"/api/assets/{asset['id']}/assign",
+        json={'employee_id':4}, headers=tech_headers)
+    assert assigned_asset.status_code == 200
+
+    # Ellie submits a hardware incident and selects only the device assigned to her.
+    employee_headers = login_as(client, 'employee.ellie')
+    ticket_data = {
+        'title':'Laptop crashes on startup',
+        'description':'The Latitude 5440 blue-screens at sign-in, blocking claims processing.',
+        'category':'Hardware', 'priority':'High', 'affected_asset_id':asset['id'],
+    }
+    ticket_response = client.post('/api/tickets', json=ticket_data, headers=employee_headers)
+    assert ticket_response.status_code == 201
+    ticket = ticket_response.json()
+    assert ticket['reference'].startswith('TKT-') and ticket['asset_tag'] == asset['asset_tag']
+
+    # Admin triages and assigns Owen.
+    admin_headers = login_as(client)
+    route = f"/api/tickets/{ticket['id']}"
+    assert client.post(route+'/assign', json={'technician_id':2}, headers=admin_headers).json()['status'] == 'Assigned'
+
+    # Owen investigates, notes evidence, resolves with a concrete change record.
+    tech_headers = login_as(client, 'tech.owen')
+    assert client.patch(route, json={'status':'In Progress'}, headers=tech_headers).status_code == 200
+    assert client.post(route+'/notes', json={
+        'note':'Event Viewer shows outdated graphics driver; ran hardware diagnostics.'
+    }, headers=tech_headers).status_code == 201
+    fixed = client.patch(route, json={
+        'status':'Resolved',
+        'resolution_details':'Installed approved display driver, restarted three times, and verified claim access.'
+    }, headers=tech_headers)
+    assert fixed.status_code == 200 and fixed.json()['resolved_at']
+    assert fixed.json()['sla_status'] == 'Met'
+
+    # Admin closes and exports the report; ticket history is append-only.
+    admin_headers = login_as(client)
+    closed = client.patch(route, json={'status':'Closed'}, headers=admin_headers)
+    assert closed.status_code == 200 and closed.json()['closed_at']
+    assert len(closed.json()['history']) == 6
+    assert client.get('/api/reports/tickets.xlsx').status_code == 200
+    with session_factory() as db:
+        assert db.get(Asset, asset['id']).assigned_employee_id == 4
+        assert db.get(Ticket,ticket['id']).status == 'Closed'
+        assert db.scalar(select(func.count()).select_from(TicketHistory).where(TicketHistory.ticket_id==ticket['id'])) == 6
+        assert db.scalar(select(func.count()).select_from(AuditEvent).where(AuditEvent.event_type=='TICKET_UPDATED')) == 3
+~~~~~~~
+
+### `tests/test_seed.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/test_seed.py`. Purpose: """Demonstration seed is repeatable and never deletes claims or IT records.""".
+
+~~~~~~~python
+"""Demonstration seed is repeatable and never deletes claims or IT records."""
+from sqlalchemy import func, select
+from app.models import Asset, Ticket, User
+from scripts import seed_task2
+
+
+def test_idempotent_task2_seed(monkeypatch, session_factory):
+    db_engine = session_factory.kw['bind']
+    monkeypatch.setattr(seed_task2, 'get_engine', lambda: db_engine)
+    seed_task2.main()
+    seed_task2.main()
+    with session_factory() as db:
+        assert db.scalar(select(func.count()).select_from(User)) == 5
+        assert db.scalar(select(func.count()).select_from(Asset)) == 6
+        assert db.scalar(select(func.count()).select_from(Ticket)) == 4
+~~~~~~~
+
+### `tests/test_session_navigation.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/test_session_navigation.py`. Purpose: """Regression checks: login cookie permits ordinary cross-site GET navigation.""".
+
+~~~~~~~python
+"""Regression checks: login cookie permits ordinary cross-site GET navigation."""
+
+
+def test_admin_can_visit_pages_after_login(client):
+    response = client.post(
+        '/api/auth/login',
+        json={'username': 'admin', 'password': 'NorthstarAdmin!2026'},
+    )
+    assert response.status_code == 200, response.text
+    cookie = response.headers['set-cookie'].lower()
+    assert 'nc_session=' in cookie
+    assert 'samesite=lax' in cookie
+    assert 'httponly' in cookie
+    assert 'path=/' in cookie
+
+    me = client.get('/api/auth/me')
+    assert me.status_code == 200, me.text
+    assert me.json()['role'] == 'Admin'
+
+    for path in ('/', '/tickets', '/tickets/new', '/assets', '/users', '/docs'):
+        page = client.get(path)
+        assert page.status_code == 200, f'{path}: {page.status_code} {page.text[:200]}'
+
+
+def test_protected_page_without_cookie_stays_protected(client):
+    assert client.get('/tickets').status_code == 401
+    assert client.get('/users').status_code == 401
+    # Built-in Swagger UI remains public; its protected API calls need login.
+    assert client.get('/docs').status_code == 200
+~~~~~~~
+
+### `tests/test_task4_workflows.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/tests/test_task4_workflows.py`. Purpose: """Task 4 end-to-end tests; isolated SQLite, no Zoho credentials.""".
+
+~~~~~~~python
+"""Task 4 end-to-end tests; isolated SQLite, no Zoho credentials."""
+from io import BytesIO
+from openpyxl import load_workbook
+from sqlalchemy import select
+from app.models import (Claim, ClaimCRMState, CommunicationTemplate, CRMOperation,
+                        Ticket, WorkflowExecution, WorkflowRule, WorkflowTransition)
+from app.services.claims_workflow import seed_rules
+from app.services.claim_templates import seed_templates
+from app.services.zoho_client import MockZohoClient, CRMError
+from app.routers.claims_crm import get_zoho
+from scripts.generate_sample_data import generate_rows
+from tests.conftest import login_as
+from tests.test_import_service import one_csv
+
+
+def setup_claim(client, maker, reference='NCL-000001'):
+    headers = login_as(client)
+    row = next(r for r in generate_rows() if r['claim_id'] == reference)
+    response = client.post('/api/claims/import', headers=headers,
+                           files={'file': ('sample.csv', one_csv(row), 'text/csv')})
+    assert response.status_code == 200, response.text
+    with maker() as db:
+        seed_rules(db)
+        seed_templates(db)
+    return headers
+
+
+def send_event(client, headers, event, key='event-12345678', claim='NCL-000001'):
+    return client.post('/api/workflows/events', headers=headers,
+        json={'claim_id':claim,'event_type':event,'event_key':key})
+
+
+def test_full_lifecycle_deduplication_and_report(client, session_factory):
+    hdr = setup_claim(client, session_factory)
+    stages = [('submitted','Assigned'), ('missing_documents','Evidence Required'),
+              ('evidence_received','Ready for Review'), ('resolved','Resolved')]
+    for i,(event,expected) in enumerate(stages):
+        result = send_event(client, hdr, event, f'lifecycle-{i:04}').json()
+        assert result['results'][0]['status'] == 'Success', result
+        assert client.get('/api/crm/claims/NCL-000001').json()['stage'] == expected
+        repeated = send_event(client, hdr, event, f'lifecycle-{i:04}').json()
+        assert repeated['results'][0]['replayed'] is True
+    last = client.get('/api/crm/claims/NCL-000001').json()
+    assert last['claim_status'] == 'Closed'
+    assert last['missing_documentation'] is False
+    assert last['completed_at']
+    with session_factory() as db:
+        assert db.query(WorkflowExecution).count() == 4
+        assert db.query(WorkflowTransition).count() == 4
+        assert db.query(Claim).first().status == 'Closed'
+    output = client.get('/api/reports/claims-workflows.xlsx')
+    assert output.status_code == 200
+    wb = load_workbook(BytesIO(output.content))
+    assert wb.sheetnames == ['Summary','Claims by Status','Status Summary','Missing Documents',
+                             'Failed Workflows','Processing Time','Intervention']
+    assert 'AVERAGE' in wb['Summary']['B5'].value
+    assert wb['Claims by Status']['A2'].value == 'NCL-000001'
+
+
+def test_failed_workflow_helpdesk_and_admin_retry(client, session_factory):
+    hdr = setup_claim(client, session_factory)
+    with session_factory() as db:
+        db.add(WorkflowRule(name='Broken example', event_type='submitted',
+                            action_type='demo_fail', parameters_json='{}', enabled=True))
+        db.commit()
+    result = send_event(client, hdr, 'submitted', 'broken-event-111').json()
+    assert [v['status'] for v in result['results']] == ['Success','Failed']
+    failed = result['results'][1]
+    assert failed['support_ticket_id']
+    with session_factory() as db:
+        assert db.query(Ticket).count() == 1
+    duplicate = send_event(client, hdr, 'submitted', 'broken-event-111').json()
+    assert duplicate['results'][1]['replayed'] is True
+    assert client.get('/api/workflows/executions').json()['items'][0]['status'] == 'Failed'
+    with session_factory() as db:
+        rule = db.scalar(select(WorkflowRule).where(WorkflowRule.name == 'Broken example'))
+        rule.action_type = 'ready_for_review'
+        db.commit()
+    retry = client.post(f"/api/workflows/executions/{failed['execution_id']}/retry", headers=hdr)
+    assert retry.status_code == 200
+    assert retry.json()['status'] == 'Failed'  # Cannot review evidence that has not been requested
+    assert retry.json()['retry_count'] == 1
+    with session_factory() as db:
+        rule = db.scalar(select(WorkflowRule).where(WorkflowRule.name == 'Broken example'))
+        rule.action_type = 'evidence_required'
+        db.commit()
+    resolved = client.post(f"/api/workflows/executions/{failed['execution_id']}/retry",headers=hdr)
+    assert resolved.json()['status'] == 'Success'
+    assert resolved.json()['retry_count'] == 2
+    with session_factory() as db:
+        assert db.query(Ticket).count() == 1  # Never duplicate the escalation ticket
+
+
+def test_mock_crm_pull_push_and_retry(client, session_factory):
+    hdr = setup_claim(client, session_factory)
+    mocked = MockZohoClient(records=[{'id':'mock-1001','Claim_Reference':'NCL-000001',
+                                     'Status':'Open', 'Missing_Documents':False}])
+    client.app.dependency_overrides[get_zoho] = lambda: mocked
+    pulled = client.post('/api/crm/claims/NCL-000001/sync', headers=hdr,
+                         json={'operation_key':'pull-test-2026'})
+    assert pulled.status_code == 200, pulled.text
+    assert pulled.json()['status'] == 'Success'
+    assert client.post('/api/crm/claims/NCL-000001/sync',headers=hdr,
+        json={'operation_key':'pull-test-2026'}).json()['replayed'] is True
+    assert mocked.get_claim('mock-1001')['Status'] == 'Open'
+    assert send_event(client,hdr,'submitted','crm-new-event1').json()['results'][0]['status'] == 'Success'
+    pushed = client.post('/api/crm/claims/NCL-000001/push', headers=hdr,
+                          json={'operation_key':'push-test-2026'})
+    assert pushed.json()['status'] == 'Success'
+    assert mocked.get_claim('mock-1001')['Status'] == 'Assigned'
+
+    # A failed pull records its reason and can be retried after the CRM record appears.
+    missing = MockZohoClient(records=[])
+    client.app.dependency_overrides[get_zoho] = lambda: missing
+    failed = client.post('/api/crm/claims/NCL-000001/sync', headers=hdr,
+                        json={'operation_key':'failed-pull-111'}).json()
+    assert failed['status'] == 'Failed'
+    assert failed['retryable'] is True
+    assert client.post('/api/crm/claims/NCL-000001/sync', headers=hdr,
+                      json={'operation_key':'failed-pull-111'}).json()['replayed'] is True
+    missing.records = dict(mocked.records)
+    retry = client.post(f"/api/crm/operations/{failed['operation_id']}/retry", headers=hdr)
+    assert retry.json()['status'] == 'Success'
+    assert retry.json()['retry_count'] == 1
+
+
+def test_role_checks_and_csrf(client, session_factory):
+    hdr = setup_claim(client, session_factory)
+    assert client.post('/api/workflows/events', json={'claim_id':'NCL-000001',
+        'event_type':'submitted','event_key':'auth-event-111'}).status_code == 403
+    login_as(client,'employee.ellie')
+    assert client.get('/claims-management').status_code == 403
+    assert client.get('/workflow-logs').status_code == 403
+    assert client.get('/communication-templates').status_code == 403
+    assert client.get('/api/crm/claims').status_code == 403
+    assert client.get('/api/reports/claims-workflows.xlsx').status_code == 403
+    assert send_event(client, {}, 'submitted').status_code == 403
+
+
+def test_template_edit_preview_and_injection_rejected(client, session_factory):
+    hdr = setup_claim(client, session_factory)
+    route = '/api/workflows/templates/acknowledgement'
+    assert client.put(route, headers=hdr, json={'subject':'{claim_id} update',
+          'body':'Dear {claimant_name}, {claim_status}'}).status_code == 200
+    preview = client.get(route + '/preview/NCL-000001').json()
+    assert preview['subject'] == 'NCL-000001 update' and preview['sent'] is False
+    rejected = client.put(route, headers=hdr, json={'subject':'{claimant_name.__class__}',
+          'body':'Safe'})
+    assert rejected.status_code == 422
+    assert client.put(route,headers=hdr,json={'subject':'hello {claim_id}',
+          'body':'hello {claimant_name[0]}'}).status_code == 422
+    assert client.get('/communication-templates').status_code == 200
+
+
+def test_rule_configuration_and_pages(client, session_factory):
+    hdr = setup_claim(client, session_factory)
+    assert client.get('/claims-management').status_code == 200
+    assert client.get('/workflow-logs').status_code == 200
+    duplicate = client.post('/api/workflows/rules', headers=hdr,
+        json={'name':'Assign new claim to claims team','event_type':'submitted','action_type':'assign_team'})
+    assert duplicate.status_code == 409
+    added = client.post('/api/workflows/rules', headers=hdr,
+        json={'name':'Training follow-up','event_type':'submitted','action_type':'assign_team',
+              'handler':'Claims Team'})
+    assert added.status_code == 201
+    rule_id = added.json()['id']
+    disabled = client.patch(f'/api/workflows/rules/{rule_id}', headers=hdr, json={'enabled':False})
+    assert disabled.json()['enabled'] is False
+    assert client.get('/api/workflows/rules').status_code == 200
+    assert client.get('/api/workflows/transitions').status_code == 200
+
+
+def test_two_distinct_unsynced_states_and_intervention(client, session_factory):
+    """SQL Server filtered unique index must allow multiple unlinked Zoho IDs."""
+    from pathlib import Path
+    hdr = login_as(client)
+    data = (Path(__file__).resolve().parents[1] / 'sample_data' / 'task4_demo_claims.csv').read_bytes()
+    response = client.post('/api/claims/import', files={'file':('task4_demo_claims.csv',data,'text/csv')}, headers=hdr)
+    assert response.json()['imported_rows'] == 2
+    with session_factory() as db:
+        seed_rules(db)
+    for reference in ['NCL-009999','NCL-009998']:
+        assert send_event(client,hdr,'submitted','new-'+reference,reference).json()['results'][0]['status'] == 'Success'
+    assert client.get('/api/crm/claims').json()['count'] == 2
+    with session_factory() as db:
+        assert db.query(ClaimCRMState).count() == 2
+        assert all(s.zoho_record_id is None for s in db.query(ClaimCRMState))
+    bad = send_event(client,hdr,'evidence_received','bad-evidence-999','NCL-009998').json()['results'][0]
+    assert bad['status'] == 'Failed'
+    excel = load_workbook(BytesIO(client.get('/api/reports/claims-workflows.xlsx').content))
+    assert excel['Intervention']['A2'].value == 'NCL-009998'
+~~~~~~~
+
+### `tests/test_task4_zoho.py` — NEW
+
+Exact location in VS Code: `it-operations-platform/tests/test_task4_zoho.py`. Purpose: """OAuth V8 wire behaviour tested locally with HTTP mock transport only.""".
+
+~~~~~~~python
+"""OAuth V8 wire behaviour tested locally with HTTP mock transport only."""
+import logging
+import httpx
+import pytest
+from app.services.zoho_client import RealZohoClient, CRMError, MockZohoClient
+
+
+def settings(monkeypatch):
+    for key, value in {
+        'ZOHO_MODE':'real', 'ZOHO_REAL_ENABLED':'YES', 'ZOHO_REGION':'EU',
+        'ZOHO_CLIENT_ID':'test-id', 'ZOHO_CLIENT_SECRET':'test-secret',
+        'ZOHO_REFRESH_TOKEN':'test-private-refresh',
+        'ZOHO_API_BASE_URL':'https://www.zohoapis.eu',
+        'ZOHO_MODULE':'Custom_Claims', 'ZOHO_FIELD_REFERENCE':'Custom_Reference',
+        'ZOHO_FIELD_STATUS':'Claim_Status',
+    }.items():
+        monkeypatch.setenv(key, value)
+
+
+def test_real_disabled_by_default(monkeypatch):
+    monkeypatch.setenv('ZOHO_MODE','mock')
+    monkeypatch.setenv('ZOHO_REAL_ENABLED','NO')
+    with pytest.raises(RuntimeError, match='disabled'):
+        RealZohoClient()
+
+
+def test_oauth_refresh_and_field_mapping(monkeypatch, caplog):
+    settings(monkeypatch)
+    history = []
+
+    def handler(request):
+        history.append((request.method, str(request.url), dict(request.headers)))
+        if '/oauth/v2/token' in str(request.url):
+            return httpx.Response(200, json={'access_token':'TOP-SECRET-TOKEN', 'expires_in':3600})
+        if request.method == 'GET':
+            return httpx.Response(200, json={'data':[{'id':'123456','Custom_Reference':'NCL-000001',
+                'Claim_Status':'Open','Claimant_Name':'Alex Morgan'}], 'info': {'more_records':False}})
+        if request.method == 'PUT':
+            assert request.content == b'{"data":[{"Claim_Status":"Resolved"}]}'
+            return httpx.Response(200, json={'data':[{'code':'SUCCESS'}]})
+        raise AssertionError(str(request.url))
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as transport:
+        real = RealZohoClient(http_client=transport)
+        with caplog.at_level(logging.INFO):
+            rows = real.list_claims()
+            record = real.update_status('123456','Resolved')
+    assert rows[0]['Claim_Reference'] == 'NCL-000001'
+    assert rows[0]['Status'] == 'Open'
+    assert record['id'] == '123456'
+    assert history[0][0] == 'POST'
+    assert history[1][1].startswith('https://www.zohoapis.eu/crm/v8/Custom_Claims')
+    assert 'TOP-SECRET-TOKEN' not in caplog.text
+    assert 'test-private-refresh' not in caplog.text
+
+
+def test_real_api_sanitised_error_and_allowlist(monkeypatch):
+    settings(monkeypatch)
+    monkeypatch.setenv('ZOHO_API_BASE_URL','https://attacker.example')
+    with pytest.raises(ValueError, match='endpoint'):
+        RealZohoClient()
+    monkeypatch.setenv('ZOHO_API_BASE_URL','https://www.zohoapis.eu')
+    def handler(req):
+        if 'token' in str(req.url):
+            return httpx.Response(200, json={'access_token':'secrettoken'})
+        return httpx.Response(429, text='DO-NOT-LOG-TOKENS')
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        real=RealZohoClient(http_client=client)
+        with pytest.raises(CRMError) as error:
+            real.list_claims()
+    assert error.value.retryable is True
+    assert 'DO-NOT-LOG-TOKENS' not in str(error.value)
+
+
+def test_mock_record_is_local_and_editable():
+    client = MockZohoClient(records=[{'id':'one','Status':'Open'}])
+    assert client.update_status('one','Resolved')['Status'] == 'Resolved'
+    with pytest.raises(CRMError):
+        client.get_claim('missing')
+
+
+def test_401_refresh_retry_once(monkeypatch):
+    settings(monkeypatch)
+    calls={'refresh':0,'crm':0}
+    def handler(req):
+        if '/oauth/v2/token' in str(req.url):
+            calls['refresh'] += 1
+            return httpx.Response(200, json={'access_token':'new-secret-'+str(calls['refresh'])})
+        calls['crm'] += 1
+        if calls['crm']==1:
+            return httpx.Response(401, text='expired')
+        return httpx.Response(200, json={'data':[], 'info': {'more_records':False}})
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        adapter = RealZohoClient(http_client=client)
+        assert adapter.list_claims() == []
+    assert calls == {'refresh':2,'crm':2}
+~~~~~~~
+
+### `tests/test_validation.py` — PRESERVED
+
+Exact location in VS Code: `it-operations-platform/tests/test_validation.py`. Purpose: """Parsing, normalisation and row-rejection tests.""".
+
+~~~~~~~python
+"""Parsing, normalisation and row-rejection tests."""
+from datetime import date
+from io import BytesIO
+
+import pandas as pd
+import pytest
+
+from app.services.validation import FileValidationError, load_dataframe, validate_rows
+from scripts.generate_sample_data import generate_rows
+
+
+def test_thousand_rows_have_expected_rejection_breakdown():
+    accepted, failed = validate_rows(pd.DataFrame(generate_rows()))
+    assert len(accepted) == 900
+    assert len(failed) == 100
+    assert "duplicate" in failed[0].reason
+    assert accepted[6].values["claimant_name"] == "Test Claimant 0007"
+
+
+def test_invalid_date_and_negative_amount_rejected():
+    row = generate_rows()[0]
+    row["reported_date"] = "31/02/2025"
+    row["amount_gbp"] = "-4.00"
+    accepted, failed = validate_rows(pd.DataFrame([row]))
+    assert not accepted
+    assert "reported_date" in failed[0].reason
+    assert "amount_gbp" in failed[0].reason
+
+
+def test_future_date_is_rejected():
+    row = generate_rows()[0]
+    row["incident_date"] = date(2099, 1, 1)
+    accepted, failed = validate_rows(pd.DataFrame([row]), today=date(2026, 10, 12))
+    assert not accepted
+    assert "today" in failed[0].reason
+
+
+def test_csv_has_normalised_headers_and_clean_values():
+    frame = pd.DataFrame([generate_rows()[0]])
+    frame.columns = [name.replace("_", " ").upper() for name in frame.columns]
+    loaded = load_dataframe("demo.csv", frame.to_csv(index=False).encode("utf-8"))
+    accepted, failed = validate_rows(loaded)
+    assert len(accepted) == 1
+    assert len(failed) == 0
+
+
+def test_missing_columns_raise_error():
+    with pytest.raises(FileValidationError, match="Missing required columns"):
+        load_dataframe("demo.csv", b"claim_id\nNCL-000001\n")
+
+
+def test_wrong_extension_rejected():
+    with pytest.raises(FileValidationError, match="Only"):
+        load_dataframe("claims.txt", b"hello")
+~~~~~~~

@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block title %}Accounts · Northstar Claims Ltd{% endblock %}
+{% block content %}<h1>Local demonstration accounts</h1><p class="muted">Admin-only user creation; account passwords are stored using Argon2id hashes.</p>
+<section class="card"><h2>Create account</h2><form id="create" class="form-grid">
+<div><label>Username</label><input name="username" pattern="[a-z0-9._-]{3,60}" required></div>
+<div><label>Full name</label><input name="full_name" required></div>
+<div><label>Email</label><input name="email" type="email" required></div>
+<div><label>Role</label><select name="role"><option>Employee</option><option>Technician</option><option>Admin</option></select></div>
+<div><label>Password (min 12 characters)</label><input type="password" name="password" required minlength="12"></div><div><label>&nbsp;</label><button>Create account</button></div></form></section>
+<section class="card scroll"><table><thead><tr><th>Username</th><th>Name</th><th>Email</th><th>Role</th><th>Active</th><th>Actions</th></tr></thead><tbody>
+{% for u in users %}<tr><td>{{ u.username }}</td><td>{{ u.full_name }}</td><td>{{ u.email }}</td><td>{{ u.role }}</td><td>{{ u.is_active }}</td><td><button class="button alt" type="button" onclick="editUser({{ u.id }})">Edit</button></td></tr>{% endfor %}</tbody></table></section>
+<div id="result"></div>{% endblock %}{% block scripts %}<script>
+document.getElementById('create').addEventListener('submit',async e=>{e.preventDefault();await execute(async()=>{
+ await requestJSON('/api/users','POST',formObject(e.target));location.reload();});});
+async function editUser(id){
+ const role=prompt('Role: Admin, Technician or Employee (leave blank to keep)');if(role===null)return;
+ const enabled=prompt('Active: true or false (leave blank to keep)');if(enabled===null)return;
+ const newPassword=prompt('New password (leave blank to keep; at least 12 chars)');if(newPassword===null)return;
+ const body={};if(role.trim())body.role=role.trim();if(enabled.trim())body.is_active=enabled.trim().toLowerCase()==='true';
+ if(newPassword.trim())body.password=newPassword;if(!Object.keys(body).length)return;
+ await execute(async()=>{await requestJSON(`/api/users/${id}`,'PATCH',body);location.reload();});
+}
+</script>{% endblock %}

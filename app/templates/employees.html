@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Employee Management · Northstar Claims{% endblock %}
+{% block content %}
+<h1>Employee Management</h1>
+<p class="muted">All directory provisioning is MOCK ONLY. Employees and requests are fictional. Account plans never execute against AD or Google.</p>
+<section class="grid">
+<div class="card"><div class="muted">Active demo employees</div><div class="value">{{ stats.active }}</div></div>
+<div class="card"><div class="muted">Pending onboarding</div><div class="value">{{ stats.pending_onboarding }}</div></div>
+<div class="card"><div class="muted">Offboarding approvals</div><div class="value">{{ stats.pending_offboarding }}</div></div>
+<div class="card"><div class="muted">Issued devices (Task 2)</div><div class="value">{{ stats.assigned_devices }}</div></div>
+<div class="card"><div class="muted">Reserved laptops</div><div class="value">{{ stats.reserved }}</div></div>
+<div class="card"><div class="muted">Failed operations</div><div class="value danger">{{ stats.failed }}</div></div>
+</section>
+{% if admin %}
+<section class="card"><h2>New employee onboarding</h2>
+<form id="onboard-form">
+<label>Employee full name <input name="full_name" required placeholder="Alex Morgan"></label>
+<label>Department <select name="department" id="department" required>{% for name in groups %}<option value="{{ name }}">{{ name }}</option>{% endfor %}</select></label>
+<label>Job title <input name="job_title" required placeholder="Claims Handler"></label>
+<label>Manager full name <input name="manager_name" required placeholder="Sarah Bennett"></label>
+<label>Start date <input name="start_date" type="date" required></label>
+<fieldset><legend>Approved department security groups</legend><div id="group-options"></div></fieldset>
+<fieldset><legend>Devices required</legend><label><input type="checkbox" name="device" value="Laptop" checked> Laptop</label>
+<label><input type="checkbox" name="device" value="Monitor"> Monitor</label>
+<label><input type="checkbox" name="device" value="Headset"> Headset</label></fieldset>
+<button type="submit">Prepare onboarding (mock)</button></form><div id="result" aria-live="polite"></div></section>
+{% endif %}
+<section class="card scroll"><h2>Employees and provisioning status</h2>
+<table><thead><tr><th>Employee</th><th>Department / Role</th><th>Start</th><th>Email</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+{% for emp in employees %}<tr><td>{{ emp.full_name }}</td><td>{{ emp.department }} · {{ emp.job_title }}</td>
+<td>{{ emp.start_date }}</td><td>{{ emp.work_email }}</td><td>{{ emp.status }}</td>
+<td>{% if admin and emp.status == 'Prepared' %}<button type="button" onclick="activateEmployee({{ emp.id }})">Activate (mock)</button>{% endif %}
+{% if emp.status in ('Active','Prepared') %}<button type="button" class="button alt" onclick="requestOffboarding({{ emp.id }})">Request offboarding</button>{% endif %}
+{% if admin %}<a class="button alt" href="/api/employees/{{ emp.id }}/ad-plan" target="_blank" rel="noopener">AD plan JSON</a>{% endif %}
+<button class="button alt" type="button" onclick="viewChecklist({{ emp.id }})">Checklist</button></td></tr>
+{% else %}<tr><td colspan="6">No employee records yet.</td></tr>{% endfor %}
+</tbody></table></section>
+<section class="card scroll"><h2>Offboarding approval queue</h2>
+<table><thead><tr><th>Request ID</th><th>Employee</th><th>Reason</th><th>Status</th><th>Approval</th></tr></thead><tbody>
+{% for o in offboards %}<tr><td>{{ o.id }}</td><td>{{ o.employee.full_name }}</td><td>{{ o.reason }}</td><td>{{ o.status }}</td>
+<td>{% if admin and o.status == 'PendingApproval' %}<button type="button" onclick="approveOffboarding({{ o.id }})">Approve mock suspension</button>{% endif %}</td></tr>
+{% else %}<tr><td colspan="5">No requests.</td></tr>{% endfor %}</tbody></table></section>
+<section class="card scroll"><h2>Issued equipment (Task 2 inventory)</h2>
+<p class="muted">Issued devices belong to existing helpdesk User accounts; onboarding reservations are separate and are not a physical handover.</p>
+<table><thead><tr><th>Asset</th><th>Model</th><th>Assigned to</th><th>Status</th></tr></thead><tbody>
+{% for a in assigned_assets %}<tr><td>{{ a.asset_tag }}</td><td>{{ a.model }}</td><td>{{ a.assigned_employee.full_name if a.assigned_employee else 'Unknown' }}</td><td>{{ a.status }}</td></tr>
+{% else %}<tr><td colspan="4">No issued assets.</td></tr>{% endfor %}</tbody></table></section>
+<section class="card scroll"><h2>Provisioning checklist and exceptions</h2><div id="checklist" class="message muted">Select Checklist next to an employee to see all recorded operations.</div>
+<table><thead><tr><th>Employee ID</th><th>Operation</th><th>Target</th><th>Result</th><th>Detail</th></tr></thead><tbody>
+{% for a in activities %}<tr><td>{{ a.employee_id }}</td><td>{{ a.action_type }}</td><td>{{ a.target }}</td><td>{{ a.status }}</td><td>{{ a.result_detail }}</td></tr>
+{% else %}<tr><td colspan="5">No operations yet.</td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}
+{% block scripts %}<script>
+'use strict';
+const groupMap={{ groups | tojson }};
+const dept=document.getElementById('department');
+function showGroups(){
+ const wrapper=document.getElementById('group-options');if(!wrapper||!dept)return;
+ wrapper.replaceChildren();
+ for(const group of (groupMap[dept.value]||[])){
+   const label=document.createElement('label');const input=document.createElement('input');
+   input.type='checkbox';input.name='group';input.value=group;input.checked=true;
+   label.append(input,document.createTextNode(' '+group+' '));wrapper.append(label);
+ }
+}
+if(dept){dept.addEventListener('change',showGroups);showGroups()}
+const form=document.getElementById('onboard-form');
+if(form)form.addEventListener('submit',async ev=>{
+ ev.preventDefault();const data=new FormData(form);
+ const payload={full_name:data.get('full_name'),department:data.get('department'),job_title:data.get('job_title'),
+ manager_name:data.get('manager_name'),start_date:data.get('start_date'),required_groups:data.getAll('group'),device_requirements:data.getAll('device')};
+ try{const employee=await requestJSON('/api/employees/onboarding','POST',payload);
+ showResult('Prepared '+employee.full_name+' (ID '+employee.id+'). No live directories changed.');location.reload();}
+ catch(err){showResult(err.message,true)}
+});
+async function activateEmployee(id){try{await requestJSON('/api/employees/'+id+'/activate','POST');location.reload()}catch(err){showResult(err.message,true)}}
+async function requestOffboarding(id){
+ const reason=prompt('Reason for departure (at least 10 characters):');if(!reason)return;
+ const last_working_date=prompt('Last working day (YYYY-MM-DD):',new Date().toISOString().slice(0,10));if(!last_working_date)return;
+ try{await requestJSON('/api/employees/'+id+'/offboarding','POST',{reason,last_working_date});location.reload()}catch(err){showResult(err.message,true)}
+}
+async function approveOffboarding(id){
+ const comment=prompt('Approval justification (at least 10 characters):');if(!comment)return;
+ if(!confirm('Approve MOCK suspension? Separate administrator required; no real accounts will be affected.'))return;
+ try{await requestJSON('/api/employees/offboarding/'+id+'/approve','POST',{confirm:true,comment});location.reload()}catch(err){showResult(err.message,true)}
+}
+async function viewChecklist(id){
+ try{const employee=await requestJSON('/api/employees/'+id);
+ const checklist=document.getElementById('checklist');checklist.replaceChildren();
+ const title=document.createElement('strong');title.textContent=employee.full_name+' · '+employee.status;
+ checklist.append(title);
+ for(const a of employee.actions){const p=document.createElement('p');p.textContent=a.status+' — '+a.type+' — '+a.target+' — '+a.detail;checklist.append(p)}
+ }catch(err){showResult(err.message,true)}
+}
+</script>{% endblock %}

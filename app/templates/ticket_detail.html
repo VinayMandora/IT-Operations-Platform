@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% block title %}{{ ticket.reference }} · Northstar Claims Ltd{% endblock %}
+{% block content %}<h1>{{ ticket.reference }} — {{ ticket.title }}</h1>
+<div class="actions"><span class="tag">{{ ticket.category }}</span><span class="tag">{{ ticket.priority }}</span><span class="tag">{{ ticket.status }}</span><a href="/tickets">All tickets</a></div>
+<section class="card"><h2>Problem details</h2><p>{{ ticket.description }}</p><p>Submitted by: <b>{{ ticket.employee.full_name }}</b><br>Assigned to: <b>{{ ticket.technician.full_name if ticket.technician else 'Not yet assigned' }}</b><br>
+Affected asset: {{ ticket.asset.asset_tag if ticket.asset else 'Unspecified' }}<br>Created UTC: {{ ticket.created_at }}<br>SLA deadline UTC: {{ ticket.sla_due_at }}<br>
+Resolved UTC: {{ ticket.resolved_at if ticket.resolved_at else 'Not resolved' }}<br>Resolution: {{ ticket.resolution_details or 'Pending' }}</p></section>
+{% if can_assign and ticket.status in ('Open','Assigned') %}<section class="card"><h2>Assign technician</h2>
+<form id="assign" class="actions">{% if user.role == 'Admin' %}<select name="technician_id" required>{% for tech in technicians %}<option value="{{ tech.id }}">{{ tech.full_name }}</option>{% endfor %}</select>{% else %}<input type="hidden" name="technician_id" value="{{ user.id }}">I will take this ticket{% endif %}<button>Assign ticket</button></form></section>{% endif %}
+{% if can_update %}<section class="card"><h2>Update status</h2>
+<form id="change"><label for="status">Next status</label><select id="status" name="status" required>{% if ticket.status == 'Assigned' %}<option>In Progress</option><option>Resolved</option>{% elif ticket.status == 'In Progress' %}<option>Resolved</option>{% elif ticket.status == 'Resolved' %}<option>Closed</option><option>In Progress</option>{% endif %}</select>
+<label for="resolution">Resolution details (required when resolving)</label><textarea id="resolution" name="resolution_details" placeholder="Actions taken and evidence of the fix"></textarea><p><button>Save status</button></p></form>
+<h2>Troubleshooting note</h2><form id="note"><textarea name="note" required minlength="2" placeholder="Investigation, test results, escalation notes"></textarea><p><button>Add note</button></p></form></section>{% endif %}
+<section class="card"><h2>Ticket history</h2><ol class="history">{% for h in ticket.history %}<li><b>{{ h.action }}</b> · {{ h.actor.full_name }} · {{ h.occurred_at }} UTC{% if h.previous_status or h.new_status %}<br>{{ h.previous_status or '—' }} → {{ h.new_status or '—' }}{% endif %}{% if h.note %}<p>{{ h.note }}</p>{% endif %}</li>{% endfor %}</ol></section>
+<div id="result" aria-live="polite"></div>{% endblock %}
+{% block scripts %}<script>
+const ticketId={{ ticket.id }};
+for(const [id,url,method,build] of [
+ ['assign',`/api/tickets/${ticketId}/assign`,'POST',f=>({technician_id:Number(formObject(f).technician_id)})],
+ ['change',`/api/tickets/${ticketId}`,'PATCH',f=>{const b=formObject(f);return {status:b.status,resolution_details:b.resolution_details||null};}],
+ ['note',`/api/tickets/${ticketId}/notes`,'POST',f=>formObject(f)]
+]){const form=document.getElementById(id);if(!form)continue;form.addEventListener('submit',async e=>{
+ e.preventDefault();await execute(async()=>{await requestJSON(url,method,build(form));location.reload();});
+});}
+</script>{% endblock %}

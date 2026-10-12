@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Operations · Northstar Claims{% endblock %}
+{% block content %}
+<h1>IT Operations & Infrastructure</h1>
+<p class="muted">Task 5 — approved local diagnostics, read-only device health, fictional IVR/calls, recovery evidence and helpdesk incidents.</p>
+<div class="grid">
+ <section class="card"><div class="muted">Network failures (history)</div><div class="value danger">{{ network_failed }}</div></section>
+ <section class="card"><div class="muted">Call volume</div><div class="value">{{ calls_total }}</div></section>
+ <section class="card"><div class="muted">Missed calls</div><div class="value">{{ calls_missed }}</div></section>
+ <section class="card"><div class="muted">Latest verified backup</div><div class="stats">{% if backup_success %}#{{ backup_success.id }} · {{ backup_success.created_at }}{% else %}No successful backup recorded{% endif %}</div></section>
+</div>
+<section class="card"><h2>1. Network diagnostics (read-only)</h2>
+<p class="muted">Allowed DNS: {{ allowed_dns }} · Allowed TCP: {{ allowed_tcp }}. Checks are restricted to localhost unless a private lab target is explicitly enabled in .env.</p>
+<div class="form-grid"><div><label>Test</label><select id="diag-kind"><option>IPConfig</option><option>DNS</option><option>TCP</option></select></div>
+<div><label>Host (allowlisted)</label><input id="diag-target" value="localhost"></div><div><label>Port (TCP only)</label><input id="diag-port" type="number" min="1" max="65535" value="8000"></div></div>
+<button onclick="runDiagnostic()">Run diagnostic</button><p id="diag-result" class="message" aria-live="polite"></p>
+<div class="scroll"><table><thead><tr><th>Time UTC</th><th>Check</th><th>Target</th><th>Result</th><th>Time (ms)</th><th>Ticket</th></tr></thead><tbody>
+{% for row in network %}<tr><td>{{ row.created_at }}</td><td>{{ row.check_type }}</td><td>{{ row.target }}{% if row.port %}:{{ row.port }}{% endif %}</td><td>{{ row.result }}</td><td>{{ row.elapsed_ms }}</td><td>{% if row.ticket_id %}<a href="/tickets/{{ row.ticket_id }}">TKT-{{ '%06d'|format(row.ticket_id) }}</a>{% endif %}</td></tr>{% endfor %}
+</tbody></table></div></section>
+<section class="card"><h2>2. Antivirus and device health</h2><p class="muted">Mock mode by default. Windows mode calls Get-MpComputerStatus and Get-CimInstance read-only. Never changes security settings.</p>
+<button onclick="runHealth()">Capture health</button><p id="health-result" class="message" aria-live="polite"></p>
+<div class="scroll"><table><thead><tr><th>Device</th><th>Operating system</th><th>AV</th><th>Real-time</th><th>Definitions age</th><th>Disk free (GB)</th><th>Status</th></tr></thead><tbody>
+{% for row in health %}<tr><td>{{ row.hostname }}</td><td>{{ row.os_description }}</td><td>{{ row.antivirus_status }}</td><td>{{ row.realtime_protection }}</td><td>{{ row.definitions_age_days if row.definitions_age_days is not none else 'Unknown' }}</td><td>{{ '%.1f'|format((row.disk_free_bytes|float)/1073741824) if row.disk_free_bytes is not none else 'Unknown' }}</td><td>{{ row.status }}</td></tr>{% endfor %}
+</tbody></table></div></section>
+<section class="card"><h2>3. Fictional call logs and IVR</h2>
+{% if admin %}<form id="call-import"><label>CSV import (sample_data/task5_call_logs.csv)</label><input type="file" name="file" accept=".csv" required><button type="submit">Import call logs</button></form><p id="call-result" class="message" aria-live="polite"></p>{% endif %}
+<p><b>Missed calls:</b> {{ calls_missed }} of {{ calls_total }}</p>
+<div class="scroll"><table><thead><tr><th>Reference</th><th>Extension</th><th>UTC</th><th>Direction</th><th>Duration</th><th>Route</th><th>Outcome</th></tr></thead><tbody>
+{% for row in calls %}<tr><td>{{ row.call_reference }}</td><td>{{ row.extension }}</td><td>{{ row.occurred_at }}</td><td>{{ row.direction }}</td><td>{{ row.duration_seconds }}s</td><td>{{ row.route }}</td><td>{{ row.outcome }}</td></tr>{% endfor %}
+</tbody></table></div><h3>IVR routing (no live PBX)</h3>
+{% if admin %}<form id="ivr-form"><div class="form-grid"><div><label>Menu</label><input name="menu_name" value="Main" required></div><div><label>Digit</label><input name="digit" value="1" maxlength="1" required></div><div><label>Label</label><input name="label" value="Claims" required></div><div><label>Destination type</label><select name="destination_type"><option>Queue</option><option>Extension</option><option>Voicemail</option></select></div><div><label>Destination</label><input name="destination" value="ClaimsQueue" required></div></div><button>Save IVR rule</button></form>{% endif %}
+<div class="actions"><label>Simulate menu <input id="ivr-menu" value="Main"></label><label>Digit <input id="ivr-digit" value="1" maxlength="1"></label><button onclick="simulateIVR()">Simulate route</button></div>
+<p id="ivr-result" class="message" aria-live="polite"></p>
+<div class="scroll"><table><thead><tr><th>Menu</th><th>Digit</th><th>Label</th><th>Destination</th><th>Enabled</th><th>Last change</th></tr></thead><tbody>{% for rule in ivr %}<tr><td>{{ rule.menu_name }}</td><td>{{ rule.digit }}</td><td>{{ rule.label }}</td><td>{{ rule.destination_type }}: {{ rule.destination }}</td><td>{{ rule.enabled }}</td><td>{{ rule.updated_at }}</td></tr>{% endfor %}</tbody></table></div>
+</section>
+<section class="card"><h2>4. Backup management</h2>
+<p class="muted">Application export produces verified JSON recovery snapshots under backups/. SQL Server .bak and lab-only restore are in scripts/09 and scripts/10. Neither restores over the live database.</p>
+{% if admin %}<div class="actions"><button onclick="exportBackup()">Export claims, tickets and assets</button><button class="button warn" onclick="failBackup()">Simulate failed backup & incident</button></div>{% endif %}
+<p id="backup-result" class="message" aria-live="polite"></p>
+<div class="scroll"><table><thead><tr><th>Created UTC</th><th>Type</th><th>Result</th><th>Location</th><th>Verified</th><th>Support incident</th><th>Actions</th></tr></thead><tbody>{% for job in backups %}<tr><td>{{ job.created_at }}</td><td>{{ job.backup_type }}</td><td>{{ job.result }}</td><td>{{ job.location }}</td><td>{{ job.verified_at or 'Not verified' }}</td><td>{% if job.ticket_id %}<a href="/tickets/{{ job.ticket_id }}">TKT-{{ '%06d'|format(job.ticket_id) }}</a>{% endif %}</td><td>{% if admin and job.backup_type == 'ApplicationExport' %}<button onclick="verifyBackup({{ job.id }})">Verify</button> <a class="button alt" href="/api/operations/backups/{{ job.id }}/download">Download</a>{% endif %}</td></tr>{% endfor %}</tbody></table></div></section>
+<section class="card"><h2>5. Monitoring and incidents</h2><div class="scroll"><table><thead><tr><th>UTC</th><th>Event</th><th>Severity</th><th>Message</th><th>Incident</th></tr></thead><tbody>{% for e in monitoring %}<tr><td>{{ e.created_at }}</td><td>{{ e.event_type }}</td><td>{{ e.severity }}</td><td>{{ e.message }}</td><td>{% if e.ticket_id %}<a href="/tickets/{{ e.ticket_id }}">TKT-{{ '%06d'|format(e.ticket_id) }}</a>{% endif %}</td></tr>{% endfor %}</tbody></table></div>
+<h3>Outstanding support incidents</h3><div class="scroll"><table><thead><tr><th>Ticket</th><th>Priority</th><th>Status</th></tr></thead><tbody>{% for t in outstanding %}<tr><td><a href="/tickets/{{ t.id }}">{{ t.reference }} — {{ t.title }}</a></td><td>{{ t.priority }}</td><td>{{ t.status }}</td></tr>{% endfor %}</tbody></table></div>
+<h3>Recent audit records</h3><div class="scroll"><table><thead><tr><th>UTC</th><th>Action</th><th>Actor ID</th></tr></thead><tbody>{% for a in audit %}<tr><td>{{ a.occurred_at }}</td><td>{{ a.event_type }}</td><td>{{ a.actor_user_id or 'System' }}</td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}
+{% block scripts %}
+<script>
+async function opCall(fn,output){try{const result=await fn();document.getElementById(output).textContent=JSON.stringify(result,null,2);}catch(err){document.getElementById(output).textContent='ERROR: '+err.message;}}
+async function runDiagnostic(){const kind=document.getElementById('diag-kind').value;const target=document.getElementById('diag-target').value;const port=kind==='TCP'?Number(document.getElementById('diag-port').value):null;await opCall(()=>requestJSON('/api/operations/network/check','POST',{kind,target,port}),'diag-result');}
+async function runHealth(){await opCall(()=>requestJSON('/api/operations/health/check','POST',{}),'health-result');}
+async function simulateIVR(){await opCall(()=>requestJSON('/api/operations/ivr/simulate','POST',{menu_name:document.getElementById('ivr-menu').value,digit:document.getElementById('ivr-digit').value}),'ivr-result');}
+async function exportBackup(){await opCall(()=>requestJSON('/api/operations/backups/export','POST',{tables:['claims','tickets','assets']}),'backup-result');}
+async function failBackup(){await opCall(()=>requestJSON('/api/operations/backups/simulate-failure','POST',{reason:'Simulated scheduled backup failure for training exercise'}),'backup-result');}
+async function verifyBackup(id){await opCall(()=>requestJSON('/api/operations/backups/'+id+'/verify','POST',{}),'backup-result');}
+const callForm=document.getElementById('call-import');if(callForm)callForm.addEventListener('submit',async event=>{event.preventDefault();const file=callForm.querySelector('input[type=file]').files[0];if(!file)return;try{const body=new FormData();body.append('file',file);const response=await fetch('/api/operations/calls/import',{method:'POST',headers:{'X-CSRF-Token':window.csrfToken},body,credentials:'same-origin'});const result=await response.json();if(!response.ok)throw Error(JSON.stringify(result));document.getElementById('call-result').textContent=JSON.stringify(result,null,2);}catch(err){document.getElementById('call-result').textContent=err.message;}});
+const ivrForm=document.getElementById('ivr-form');if(ivrForm)ivrForm.addEventListener('submit',event=>{event.preventDefault();const data=Object.fromEntries(new FormData(ivrForm).entries());data.enabled=true;opCall(()=>requestJSON('/api/operations/ivr','PUT',data),'ivr-result');});
+</script>
+{% endblock %}
